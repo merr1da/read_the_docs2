@@ -53,7 +53,7 @@ Marine Robotics Computer Vision
 `code-ai-400393-image-dataset.7z <https://disk.yandex.ru/d/TxReQ9J6PAo9Nw>`_
 
 
-Установка
+Page 2 
 ---------
 
-.. include:: installation.rst
+.. include:: Page2.rst
