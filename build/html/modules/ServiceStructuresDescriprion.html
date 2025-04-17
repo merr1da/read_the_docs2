@@ -42,7 +42,11 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Описание служебных структур</a></li>
+<li><a class="reference internal" href="#">Описание служебных структур</a><ul>
+<li><a class="reference internal" href="#id2">Перечисления:</a></li>
+<li><a class="reference internal" href="#id3">Структуры:</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -71,7 +75,39 @@
              
   <section id="id1">
 <h1>Описание служебных структур<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>Попытка добавить вторую страницу</p>
+<p>Ниже приведены основные структуры, перечисления и параметры, используемые в библиотеке Marine Robotics Computer Vision для хранения данных, настройки алгоритмов и конфигурации камер.</p>
+<section id="id2">
+<h2>Перечисления:<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p><strong>enum class METOD_MORF</strong> — методы морфологических преобразований:
+- <cite>OPEN</cite>, <cite>CLOSE</cite>, <cite>GRADIENT</cite>, <cite>ERODE</cite>, <cite>DILAT</cite></p>
+<p><strong>enum class CODEC</strong> — поддерживаемые видео-кодеки:
+- <cite>XVID</cite>, <cite>MJPG</cite>, <cite>mp4v</cite>, <cite>h265</cite></p>
+<p><strong>enum class LOGTYPE</strong> — типы записей в лог-файл:
+- <cite>DEBUG</cite>, <cite>ERROR</cite>, <cite>EXCEPTION</cite>, <cite>INFO</cite>, <cite>WARNING</cite></p>
+<p><strong>enum class METOD_INCREASE_IMAGE_CONTRAST</strong> — методы повышения контрастности изображения:
+- <cite>EQUALIZE_HIST</cite>, <cite>CLAHE</cite>, <cite>CONTRAST_BALANCING</cite>, <cite>CONTRAST_EXTENSION</cite></p>
+<p><strong>enum class COLOR_MODEL</strong> — цветовые модели:
+- <cite>CM_RGB</cite>, <cite>CM_HSV</cite>, <cite>CM_LAB</cite>, <cite>CM_YCBCR</cite></p>
+<p><strong>enum class METOD_IMAGE_PERPROCESSIN</strong> — методы предобработки изображений:
+- <cite>NONE</cite>, <cite>CONVERTING_BGR_TO_GRAY</cite>, … <em>(см. исходный код для полного списка)</em></p>
+<p><strong>enum class METOD_DISPARITY</strong> — методы расчёта карты диспаратности:
+- <cite>MODE_NONE</cite>, <cite>MODE_BM</cite>, <cite>MODE_SGBM</cite>, <cite>MODE_SGBM_3WAY</cite>, <cite>MODE_HH</cite>, <cite>MODE_HH4</cite></p>
+<p><strong>enum class AUGMENTATION_METHOD</strong> — методы аугментации изображений:
+- <cite>FLIP_HORIZONTAL</cite>, <cite>FLIP_VERTICAL</cite>, <cite>ROTATE_IMAGE_90</cite>, и др.</p>
+<p><strong>enum class DISPARITY_TYPE</strong> — типы выходных данных по диспаратности:
+- <cite>ALL</cite>, <cite>BASIC_DISPARITY</cite>, <cite>BASIC_HEATMAP</cite>, и др.</p>
+</section>
+<section id="id3">
+<h2>Структуры:<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p><strong>cameraParameters</strong> — параметры одной камеры</p>
+<p><strong>cameraStereoParameters</strong> — параметры стерео-камеры</p>
+<p><strong>pointsData</strong> — структура данных для хранения облака точек и их проекций</p>
+<p><strong>parameters3dSceene</strong> — параметры построения и отображения 3D сцены</p>
+<p><strong>CalibrationParametersMono / Stereo</strong> — результат калибровки камеры</p>
+<p><strong>CalibrationConfig</strong> — параметры для загрузки и настройки калибровки</p>
+<p><strong>trainTricks</strong> — параметры, влияющие на поведение нейросетевого обучения</p>
+<p><strong>settingsMetodDisparity</strong> — параметры алгоритма расчёта карты диспаратности</p>
+</section>
 </section>
 
 

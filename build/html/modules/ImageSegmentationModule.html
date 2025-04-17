@@ -42,7 +42,13 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Модуль сегментации изображений</a></li>
+<li><a class="reference internal" href="#">Модуль сегментации изображений</a><ul>
+<li><a class="reference internal" href="#fpn">Архитектура FPN</a></li>
+<li><a class="reference internal" href="#segmentor">Класс Segmentor</a></li>
+<li><a class="reference internal" href="#id2">Вспомогательные классы</a></li>
+<li><a class="reference internal" href="#id3">Функции потерь</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -71,7 +77,98 @@
              
   <section id="id1">
 <h1>Модуль сегментации изображений<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>text</p>
+<p><em>Модуль реализует функционал семантической сегментации изображений с использованием архитектуры FPN (Feature Pyramid Network) на базе предобученных моделей ResNet.</em></p>
+<section id="fpn">
+<h2>Архитектура FPN<a class="headerlink" href="#fpn" title="Link to this heading"></a></h2>
+<p><strong>FPNImpl</strong> - основной класс, реализующий архитектуру Feature Pyramid Network.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">FPNImpl</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">torch</span><span class="o">::</span><span class="n">nn</span><span class="o">::</span><span class="n">Module</span>
+</pre></div>
+</div>
+<p><strong>Компоненты:</strong>
+- Энкодер (ResNet) для извлечения признаков
+- Декодер для построения пирамиды признаков
+- Голова сегментации для генерации масок</p>
+<p><strong>Инициализация:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FPNImpl</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">_numberClasses</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">encoderName</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pretrainedPath</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">encoderDepth</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">decoderChannelPyramid</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">decoderChannelsSegmentation</span><span class="p">,</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">decoderMergePolicy</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">decoder_dropout</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">upsampling</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong>
+- <code class="docutils literal notranslate"><span class="pre">_numberClasses</span></code> - количество классов сегментации
+- <code class="docutils literal notranslate"><span class="pre">encoderName</span></code> - имя модели энкодера (resnet18, resnet34, resnet50)
+- <code class="docutils literal notranslate"><span class="pre">pretrainedPath</span></code> - путь к предобученным весам
+- <code class="docutils literal notranslate"><span class="pre">encoderDepth</span></code> - глубина энкодера (3-5)</p>
+</section>
+<section id="segmentor">
+<h2>Класс Segmentor<a class="headerlink" href="#segmentor" title="Link to this heading"></a></h2>
+<p><strong>Основной интерфейс для работы с сегментацией:</strong></p>
+<p><strong>Инициализация</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">Segmentor</span><span class="o">::</span><span class="n">Initialize</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">gpu_id</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">_width</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">_height</span><span class="p">,</span>
+<span class="w">                         </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&amp;&amp;</span><span class="w"> </span><span class="n">_listName</span><span class="p">,</span>
+<span class="w">                         </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">encoderName</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pretrainedPath</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong>
+- <code class="docutils literal notranslate"><span class="pre">gpu_id</span></code> - идентификатор GPU (-1 для CPU)
+- <code class="docutils literal notranslate"><span class="pre">_width</span></code>, <code class="docutils literal notranslate"><span class="pre">_height</span></code> - размеры входного изображения
+- <code class="docutils literal notranslate"><span class="pre">_listName</span></code> - список классов сегментации
+- <code class="docutils literal notranslate"><span class="pre">encoderName</span></code> - имя модели энкодера
+- <code class="docutils literal notranslate"><span class="pre">pretrainedPath</span></code> - путь к предобученным весам</p>
+<p><strong>Обучение модели</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">Segmentor</span><span class="o">::</span><span class="n">Train</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">learning_rate</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">epochs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">batch_size</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">train_val_path</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">imageType</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">save_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры обучения:</strong>
+- <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code> - начальная скорость обучения
+- <code class="docutils literal notranslate"><span class="pre">epochs</span></code> - количество эпох
+- <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> - размер батча
+- <code class="docutils literal notranslate"><span class="pre">train_val_path</span></code> - путь к данным обучения/валидации
+- <code class="docutils literal notranslate"><span class="pre">imageType</span></code> - расширение изображений (“.jpg”, “.png”)
+- <code class="docutils literal notranslate"><span class="pre">save_path</span></code> - путь для сохранения модели</p>
+<p><strong>Загрузка весов</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">Segmentor</span><span class="o">::</span><span class="n">LoadWeight</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pathWeight</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Предсказание</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">Segmentor</span><span class="o">::</span><span class="n">Predict</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">which_class</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong>
+- <code class="docutils literal notranslate"><span class="pre">image</span></code> - входное изображение
+- <code class="docutils literal notranslate"><span class="pre">which_class</span></code> - имя класса для визуализации</p>
+</section>
+<section id="id2">
+<h2>Вспомогательные классы<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p><strong>SegDataset</strong>
+<em>Класс для работы с данными сегментации</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SegDataset</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">torch</span><span class="o">::</span><span class="n">data</span><span class="o">::</span><span class="n">Dataset</span><span class="o">&lt;</span><span class="n">SegDataset</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Функционал:</strong>
+- Загрузка изображений и масок
+- Аугментация данных
+- Преобразование в тензоры</p>
+<p><strong>Augmentations</strong></p>
+<p><em>Класс для аугментации данных</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Augmentations</span>
+</pre></div>
+</div>
+<p><strong>Методы:</strong>
+- <code class="docutils literal notranslate"><span class="pre">Resize</span></code> - изменение размера изображения и маски</p>
+</section>
+<section id="id3">
+<h2>Функции потерь<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p><strong>DiceLoss</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">DiceLoss</span><span class="p">(</span><span class="n">torch</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="n">torch</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">classNum</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>CELoss</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">CELoss</span><span class="p">(</span><span class="n">torch</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="n">torch</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

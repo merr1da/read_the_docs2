@@ -1,4 +1,241 @@
 Демонстрационные примеры
-------------------------
+========================
 
-text
+Пример использования аугментации изображений 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*Модуль предоставляет функции для аугментации изображений, включая повороты, отражения и другие преобразования.*
+
+**Загрузка изображений**
+
+*Загружает набор изображений для последующей аугментации.*
+
+.. code-block:: cpp
+
+    std::vector<cv::Mat> inputImagesAugmetation(10);
+    inputImagesAugmetation[0] = cv::imread("files\\img0.jpg", cv::IMREAD_COLOR);
+    // ... аналогично для других изображений
+
+**Проверка загрузки:**
+
+- Проверяет успешность загрузки каждого изображения.
+- В случае ошибки выводит сообщение в stderr.
+
+**Аугментация изображений**
+
+*Применяет выбранные методы аугментации к изображениям.*
+
+.. code-block:: cpp
+
+    int mrcv::augmetation(
+        const std::vector<cv::Mat>& inputImages,
+        std::vector<cv::Mat>& outputImages,
+        const std::vector<mrcv::AUGMENTATION_METHOD>& methods
+    )
+
+Пример использования кластеризации
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*Реализует алгоритмы кластеризации 3D-точек на основе данных стереокамер.*
+
+**Загрузка данных**
+
+*Загружает данные для кластеризации из файла.*
+
+.. code-block:: cpp
+
+    void mrcv::DenseStereo::loadDataFromFile(const std::string& filename)
+
+**Выполнение кластеризации**
+
+*Выполняет кластеризацию загруженных данных.*
+
+.. code-block:: cpp
+
+    void mrcv::DenseStereo::makeClustering()
+
+Пример использования сравнения изображений
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*Предоставляет функцию для сравнения двух изображений и вычисления их схожести.*
+
+**Сравнение изображений**
+
+*Вычисляет меру схожести между двумя изображениями.*
+
+.. code-block:: cpp
+
+    double mrcv::compareImages(
+        const cv::Mat& img1,
+        const cv::Mat& img2,
+        int method
+    )
+
+Пример использования детектирования объектов
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*Реализует функционал для автоматического обучения детектора объектов.*
+
+**Инициализация детектора**
+
+*Инициализирует детектор с заданными параметрами.*
+
+.. code-block:: cpp
+
+    void mrcv::Detector::Initialize(
+        int device,
+        int width,
+        int height,
+        const std::string& classesFile
+    )
+
+**Автоматическое обучение**
+
+*Выполняет автоматическое обучение модели детектора.*
+
+.. code-block:: cpp
+
+    void mrcv::Detector::AutoTrain(
+        const std::string& datasetPath,
+        const std::string& imageExtension,
+        const std::vector<int>& epochs,
+        const std::vector<int>& batchSizes,
+        const std::vector<float>& learningRates,
+        const std::string& pretrainedModel,
+        const std::string& outputModel
+    )
+
+Пример использования морфологических операций
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*Реализует основные морфологические операции над изображениями.*
+
+**Применение морфологической операции**
+
+*Выполняет заданную морфологическую операцию над изображением.*
+
+.. code-block:: cpp
+
+    int mrcv::morphologyImage(
+        cv::Mat& image,
+        const std::string& outputPath,
+        mrcv::METOD_MORF method,
+        int morph_size
+    )
+
+Пример использования модуля определения курса объекта
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*Предоставляет функционал для определения количества объектов и их курса.*
+
+**Инициализация**
+
+*Создает экземпляр класса для работы с курсом объектов.*
+
+.. code-block:: cpp
+
+    mrcv::ObjCourse::ObjCourse(
+        const std::string& modelPath,
+        const std::string& classesPath
+    )
+
+**Подсчет объектов**
+
+*Возвращает количество обнаруженных объектов на изображении.*
+
+.. code-block:: cpp
+
+    int mrcv::ObjCourse::getObjectCount(const cv::Mat& frame)
+
+Пример использования модуля предобработки изображений
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*Содержит функции для улучшения качества изображений перед анализом.*
+
+**Предобработка изображения**
+
+*Применяет последовательность методов улучшения к изображению.*
+
+.. code-block:: cpp
+
+    int mrcv::preprocessingImage(
+        cv::Mat& image,
+        const std::vector<mrcv::METOD_IMAGE_PERPROCESSIN>& methods,
+        const std::string& cameraParamsFile
+    )
+
+Пример использования модуля сегментации
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*Реализует функционал для семантической сегментации изображений.*
+
+**Инициализация сегментатора**
+
+*Настраивает сегментатор с заданными параметрами.*
+
+.. code-block:: cpp
+
+    void mrcv::Segmentor::Initialize(
+        int device,
+        int width,
+        int height,
+        const std::vector<std::string>& classes,
+        const std::string& backbone,
+        const std::string& backboneWeights
+    )
+
+Обучение модели
+~~~~~~~~~~~~~~~
+*Выполняет обучение модели сегментации.*
+
+.. code-block:: cpp
+
+    void mrcv::Segmentor::Train(
+        float learningRate,
+        int epochs,
+        int batchSize,
+        const std::string& imagesPath,
+        const std::string& imageExtension,
+        const std::string& outputWeights
+    )
+
+Тестирование модели
+~~~~~~~~~~~~~~~~~~~
+*Выполняет сегментацию входного изображения.*
+
+.. code-block:: cpp
+
+    void mrcv::Segmentor::Predict(
+        const cv::Mat& image,
+        const std::string& targetClass
+    )
+
+Пример использования модуля 3D сцены
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*Предоставляет функционал для построения 3D сцен по стереоизображениям.*
+
+**Построение 3D сцены**
+
+*Выполняет полный pipeline обработки стереоизображений для построения 3D сцены.*
+
+.. code-block:: cpp
+
+    int mrcv::find3dPointsInObjectsSegments(
+        const cv::Mat& imageLeft,
+        const cv::Mat& imageRight,
+        const mrcv::cameraStereoParameters& cameraParams,
+        cv::Mat& imageLeftRemap,
+        cv::Mat& imageRightRemap,
+        mrcv::settingsMetodDisparity& disparitySettings,
+        cv::Mat& disparityMap,
+        mrcv::pointsData& points3D,
+        std::vector<cv::Mat>& replyMasks,
+        cv::Mat& outputImage,
+        cv::Mat& output3dScene,
+        const mrcv::parameters3dSceene& sceneParams,
+        const std::string& modelPath,
+        const std::string& classesPath,
+        int limitPoints = 8000,
+        const std::vector<double>& outlierArea = {...}
+    )

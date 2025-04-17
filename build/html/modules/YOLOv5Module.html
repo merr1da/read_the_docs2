@@ -42,7 +42,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Модуль работы с YOLOv5</a></li>
+<li><a class="reference internal" href="#">Модуль работы с YOLOv5</a><ul>
+<li><a class="reference internal" href="#id1">Интерактивная разметка данных</a></li>
+<li><a class="reference internal" href="#id2">Генерация конфигурации модели</a></li>
+<li><a class="reference internal" href="#id3">Генерация гиперпараметров</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -71,7 +76,75 @@
              
   <section id="yolov5">
 <h1>Модуль работы с YOLOv5<a class="headerlink" href="#yolov5" title="Link to this heading"></a></h1>
-<p>text</p>
+<p><em>Модуль предоставляет инструменты для работы с моделями YOLOv5, включая интерактивную разметку данных, генерацию конфигурационных файлов и настройку гиперпараметров.</em></p>
+<section id="id1">
+<h2>Интерактивная разметка данных<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p><em>Инструмент для создания разметки объектов на изображениях в формате YOLO.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">YOLOv5LabelerProcessing</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">inputDir</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">outputDir</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">inputDir</span></code> - путь к директории с исходными изображениями</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outputDir</span></code> - путь для сохранения файлов разметки</p></li>
+</ul>
+<p><strong>Функционал:</strong></p>
+<ul class="simple">
+<li><p>Поддержка форматов JPG и PNG</p></li>
+<li><p>Интерактивный интерфейс с возможностью:
+- Рисования bounding box’ов
+- Редактирования существующих рамок
+- Изменения класса объектов
+- Удаления ошибочных разметок</p></li>
+<li><p>Автоматическое сохранение в YOLO-формате (нормализованные координаты)</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>Генерация конфигурации модели<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p><em>Создание конфигурационного файла модели YOLOv5 в формате YAML.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">YOLOv5GenerateConfig</span><span class="p">(</span><span class="n">YOLOv5Model</span><span class="w"> </span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">outputFile</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Поддерживаемые модели:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">YOLOv5n</span></code> - nano (наименьшая)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">YOLOv5s</span></code> - small</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">YOLOv5m</span></code> - medium</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">YOLOv5l</span></code> - large</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">YOLOv5x</span></code> - extra large</p></li>
+</ul>
+<p><strong>Содержимое конфига:</strong></p>
+<ul class="simple">
+<li><p>Параметры масштабирования (depth/width multiple)</p></li>
+<li><p>Якорные рамки (anchors)</p></li>
+<li><p>Архитектура backbone и head сети</p></li>
+<li><p>Количество классов (nc)</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>Генерация гиперпараметров<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p><em>Создание файла с оптимальными гиперпараметрами для обучения.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">YOLOv5GenerateHyperparameters</span><span class="p">(</span><span class="n">YOLOv5Model</span><span class="w"> </span><span class="n">model</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">imgWidth</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">imgHeight</span><span class="p">,</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">outputFile</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Настраиваемые параметры:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">weight_decay</span></code> - коэффициент регуляризации</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">box/cls/obj</span></code> - веса для разных компонентов loss-функции</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anchor_t</span></code> - порог для якорных рамок</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fl_gamma</span></code> - параметр focal loss</p></li>
+</ul>
+<p><strong>Особенности:</strong></p>
+<ul class="simple">
+<li><p>Автоматическая адаптация под:
+- Размер модели
+- Разрешение изображений
+- Количество классов</p></li>
+<li><p>Сохранение в YAML-формате</p></li>
+</ul>
+</section>
 </section>
 
 

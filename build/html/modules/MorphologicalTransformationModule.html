@@ -42,7 +42,15 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Модуль морфологических преобразований</a></li>
+<li><a class="reference internal" href="#">Модуль морфологических преобразований</a><ul>
+<li><a class="reference internal" href="#id2">Основная функция морфологических преобразований</a></li>
+<li><a class="reference internal" href="#id3">Функция морфологического открытия</a></li>
+<li><a class="reference internal" href="#id4">Функция морфологического закрытия</a></li>
+<li><a class="reference internal" href="#id5">Функция морфологического градиента</a></li>
+<li><a class="reference internal" href="#id6">Функция морфологической эрозии</a></li>
+<li><a class="reference internal" href="#id7">Функция морфологического расширения</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -71,7 +79,79 @@
              
   <section id="id1">
 <h1>Модуль морфологических преобразований<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>text</p>
+<p><em>Данный модуль содержит функции для выполнения морфологических операций над изображениями, включая открытие, закрытие, эрозию, расширение и градиент.</em></p>
+<section id="id2">
+<h2>Основная функция морфологических преобразований<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p><em>Применяет выбранную морфологическую операцию к изображению.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">morphologyImage</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">METOD_MORF</span><span class="w"> </span><span class="n">metod</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">morph_size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Описание параметров:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">image</span></code> - входное изображение для обработки</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out</span></code> - путь для сохранения результата</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metod</span></code> - тип морфологической операции:
+- <code class="docutils literal notranslate"><span class="pre">OPEN</span></code> - открытие
+- <code class="docutils literal notranslate"><span class="pre">CLOSE</span></code> - закрытие
+- <code class="docutils literal notranslate"><span class="pre">DILAT</span></code> - расширение
+- <code class="docutils literal notranslate"><span class="pre">ERODE</span></code> - эрозия
+- <code class="docutils literal notranslate"><span class="pre">GRADIENT</span></code> - градиент</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">morph_size</span></code> - размер структурного элемента</p></li>
+</ul>
+<p><strong>Возвращаемое значение:</strong>
+- 0 - успешное выполнение</p>
+</section>
+<section id="id3">
+<h2>Функция морфологического открытия<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p><em>Выполняет операцию открытия (эрозия с последующим расширением).</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">openingMorphological</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">element</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Описание параметров:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">element</span></code> - структурный элемент для операции</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>Функция морфологического закрытия<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p><em>Выполняет операцию закрытия (расширение с последующей эрозией).</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">closingMorphological</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">element</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>Функция морфологического градиента<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p><em>Выполняет операцию морфологического градиента (разница между расширением и эрозией).</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">gradientMorphological</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">element</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2>Функция морфологической эрозии<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p><em>Выполняет операцию эрозии (сужение светлых областей).</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">erodeMorphological</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">element</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h2>Функция морфологического расширения<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p><em>Выполняет операцию расширения (расширение светлых областей).</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">dilationMorphological</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">element</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Все функции:</p>
+<ol class="arabic simple">
+<li><p>Создают структурный элемент заданного размера</p></li>
+<li><p>Применяют соответствующую морфологическую операцию</p></li>
+<li><p>Сохраняют результат по указанному пути</p></li>
+<li><p>Возвращают 0 при успешном выполнении</p></li>
+</ol>
+<p><strong>Типы структурных элементов:</strong></p>
+<ul class="simple">
+<li><p>Используется прямоугольный элемент (MORPH_RECT)</p></li>
+<li><p>Размер элемента вычисляется как 2*morph_size + 1</p></li>
+</ul>
+</section>
 </section>
 
 

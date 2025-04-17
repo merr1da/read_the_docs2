@@ -42,7 +42,15 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Модуль служебных функций</a></li>
+<li><a class="reference internal" href="#">Модуль служебных функций</a><ul>
+<li><a class="reference internal" href="#id2">Функции работы с изображениями</a></li>
+<li><a class="reference internal" href="#id3">Функции работы с видео</a></li>
+<li><a class="reference internal" href="#id4">Функции калибровки камер</a></li>
+<li><a class="reference internal" href="#id5">Функции логирования</a></li>
+<li><a class="reference internal" href="#id6">Функции работы с изображениями из интернета</a></li>
+<li><a class="reference internal" href="#id7">Функции построения карты диспаратности</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -71,7 +79,164 @@
              
   <section id="id1">
 <h1>Модуль служебных функций<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>text</p>
+<p><em>В данном модуле реализованы вспомогательные функции для работы с изображениями, видео, калибровкой камер и логированием.</em></p>
+<section id="id2">
+<h2>Функции работы с изображениями<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p><strong>Функция сравнения изображений</strong></p>
+<p><em>Сравнивает два изображения и возвращает процент различий.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">compareImages</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">img1</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">img2</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">methodCompare</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">img1</span></code> - первое изображение для сравнения</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">img2</span></code> - второе изображение для сравнения</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">methodCompare</span></code> - метод сравнения (true/false)</p></li>
+</ul>
+<p><strong>Возвращает:</strong> процент различий между изображениями</p>
+<p><strong>Функция морфологического преобразования</strong></p>
+<p><em>Применяет морфологические операции к изображению.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">morphologyImage</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">METOD_MORF</span><span class="w"> </span><span class="n">metod</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">morph_size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong>
+- <code class="docutils literal notranslate"><span class="pre">image</span></code> - входное изображение
+- <code class="docutils literal notranslate"><span class="pre">out</span></code> - путь для сохранения результата
+- <code class="docutils literal notranslate"><span class="pre">metod</span></code> - тип морфологической операции (OPEN, CLOSE, GRADIENT, ERODE, DILAT)
+- <code class="docutils literal notranslate"><span class="pre">morph_size</span></code> - размер ядра преобразования</p>
+</section>
+<section id="id3">
+<h2>Функции работы с видео<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p><strong>Запись видеопотока</strong></p>
+<p><em>Записывает видео с камеры в файл.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">recordVideo</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">cameraID</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">recorderInterval</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fileName</span><span class="p">,</span><span class="w"> </span><span class="n">CODEC</span><span class="w"> </span><span class="n">codec</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong>
+- <code class="docutils literal notranslate"><span class="pre">cameraID</span></code> - идентификатор камеры
+- <code class="docutils literal notranslate"><span class="pre">recorderInterval</span></code> - интервал записи в секундах
+- <code class="docutils literal notranslate"><span class="pre">fileName</span></code> - имя файла для сохранения
+- <code class="docutils literal notranslate"><span class="pre">codec</span></code> - используемый кодек (XVID, MJPG, mp4v, h265)</p>
+<p><strong>Возвращает:</strong> код результата (0 - успех)</p>
+</section>
+<section id="id4">
+<h2>Функции калибровки камер<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p><strong>Калибровка одиночной камеры</strong></p>
+<p><em>Выполняет калибровку одной камеры по изображениям шахматной доски.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">cameraCalibrationMono</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">images</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pathToImages</span><span class="p">,</span>
+<span class="w">                               </span><span class="n">CalibrationParametersMono</span><span class="o">&amp;</span><span class="w"> </span><span class="n">calibrationParameters</span><span class="p">,</span>
+<span class="w">                               </span><span class="kt">int</span><span class="w"> </span><span class="n">chessboardColCount</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">chessboardRowCount</span><span class="p">,</span>
+<span class="w">                               </span><span class="kt">float</span><span class="w"> </span><span class="n">chessboardSquareSize</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">images</span></code> - вектор имен файлов изображений</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pathToImages</span></code> - путь к папке с изображениями</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">calibrationParameters</span></code> - структура для хранения параметров калибровки</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chessboardColCount</span></code> - количество углов по горизонтали</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chessboardRowCount</span></code> - количество углов по вертикали</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chessboardSquareSize</span></code> - размер клетки шахматной доски в мм</p></li>
+</ul>
+<p><strong>Калибровка стереопары</strong></p>
+<p><em>Выполняет калибровку стереопары камер.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">cameraCalibrationStereo</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">imagesL</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">imagesR</span><span class="p">,</span>
+<span class="w">                                 </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pathToImagesL</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pathToImagesR</span><span class="p">,</span>
+<span class="w">                                 </span><span class="n">CalibrationParametersStereo</span><span class="o">&amp;</span><span class="w"> </span><span class="n">calibrationParameters</span><span class="p">,</span>
+<span class="w">                                 </span><span class="kt">int</span><span class="w"> </span><span class="n">chessboardColCount</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">chessboardRowCount</span><span class="p">,</span>
+<span class="w">                                 </span><span class="kt">float</span><span class="w"> </span><span class="n">chessboardSquareSize</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">imagesL</span></code>, <code class="docutils literal notranslate"><span class="pre">imagesR</span></code> - векторы имен файлов для левой и правой камер</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pathToImagesL</span></code>, <code class="docutils literal notranslate"><span class="pre">pathToImagesR</span></code> - пути к папкам с изображениями</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">calibrationParameters</span></code> - структура для хранения параметров калибровки</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chessboardColCount</span></code>, <code class="docutils literal notranslate"><span class="pre">chessboardRowCount</span></code> - количество углов доски</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chessboardSquareSize</span></code> - размер клетки в мм</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>Функции логирования<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p><strong>Запись в лог-файл</strong></p>
+<p><em>Записывает сообщение в лог-файл с указанием типа.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">writeLog</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">logText</span><span class="p">,</span><span class="w"> </span><span class="n">LOGTYPE</span><span class="w"> </span><span class="n">logType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOGTYPE</span><span class="o">::</span><span class="n">INFO</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">logText</span></code> - текст сообщения</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logType</span></code> - тип сообщения (DEBUG, ERROR, EXCEPTION, INFO, WARNING)</p></li>
+</ul>
+<p><strong>Генерация уникального имени файла</strong></p>
+<p><em>Создает уникальное имя файла на основе текущего времени.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">generateUniqueFileName</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fileName</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fileExtension</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fileName</span></code> - префикс имени файла</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fileExtension</span></code> - расширение файла</p></li>
+</ul>
+<p><strong>Возвращает:</strong> строку с уникальным именем файла</p>
+</section>
+<section id="id6">
+<h2>Функции работы с изображениями из интернета<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p><strong>Загрузка изображений с Яндекса</strong></p>
+<p><em>Скачивает изображения по запросу из Яндекс.Картинок.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">getImagesFromYandex</span><span class="p">(</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">query</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">minWidth</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">minHeight</span><span class="p">,</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">nameTemplate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">outputFolder</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">separateDataset</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">trainsetPercentage</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">countFoto</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">money</span><span class="p">,</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">key</span><span class="p">,</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">secretKey</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">query</span></code> - строка поискового запроса</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">minWidth</span></code>, <code class="docutils literal notranslate"><span class="pre">minHeight</span></code> - минимальные размеры изображений</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nameTemplate</span></code> - шаблон имени файла</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outputFolder</span></code> - папка для сохранения</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">separateDataset</span></code> - флаг разделения на train/test</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trainsetPercentage</span></code> - процент для обучающей выборки</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">countFoto</span></code> - количество изображений для скачивания</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">money</span></code> - флаг платного API</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>, <code class="docutils literal notranslate"><span class="pre">secretKey</span></code> - ключи API</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>Функции построения карты диспаратности<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p><strong>Построение карты диспаратности</strong></p>
+<p><em>Строит карту диспаратности для стереопары изображений.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">disparityMap</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageLeft</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageRight</span><span class="p">,</span>
+<span class="w">                      </span><span class="kt">int</span><span class="w"> </span><span class="n">minDisparity</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">numDisparities</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">blockSize</span><span class="p">,</span>
+<span class="w">                      </span><span class="kt">double</span><span class="w"> </span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">DISPARITY_TYPE</span><span class="w"> </span><span class="n">disparityType</span><span class="p">,</span>
+<span class="w">                      </span><span class="kt">int</span><span class="w"> </span><span class="n">colorMap</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">saveToFile</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">showImages</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">map</span></code> - выходная карта диспаратности</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">imageLeft</span></code>, <code class="docutils literal notranslate"><span class="pre">imageRight</span></code> - изображения стереопары</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">minDisparity</span></code> - минимальная диспаратность</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numDisparities</span></code> - количество уровней диспаратности</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blockSize</span></code> - размер блока для сравнения</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lambda</span></code>, <code class="docutils literal notranslate"><span class="pre">sigma</span></code> - параметры фильтрации</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">disparityType</span></code> - тип выходной карты</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">colorMap</span></code> - цветовая схема</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">saveToFile</span></code> - флаг сохранения в файл</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">showImages</span></code> - флаг отображения окон</p></li>
+</ul>
+<p><strong>Возвращает:</strong> код результата (0 - успех)</p>
+</section>
 </section>
 
 
