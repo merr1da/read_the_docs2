@@ -1,5 +1,5 @@
 Marine Robotics Computer Vision
-==================================
+===============================
 
 Открытая библиотека компьютерного зрения для морских робототехнических систем.
 
@@ -19,4 +19,4 @@ Marine Robotics Computer Vision
 .. include:: modules/ImageSegmentationModule.rst
 .. include:: modules/3DsceneCreationModule.rst
 .. include:: modules/YOLOv5Module.rst
-.. include:: modules/DemonstrationModule.rst
+.. include:: modules/DemonstrationExamples.rst
