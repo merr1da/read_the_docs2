@@ -56,4 +56,4 @@ Marine Robotics Computer Vision
 Page 2 
 ---------
 
-.. include:: Page2.rst
+.. include:: modules/Page2.rst
