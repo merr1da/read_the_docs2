@@ -4,7 +4,7 @@ Marine Robotics Computer Vision
 Открытая библиотека компьютерного зрения для морских робототехнических систем.
 
 .. contents:: Оглавление
-   :depth: 2
+   :depth: 13
    :local:
 
 Структура каталогов
@@ -53,7 +53,7 @@ Marine Robotics Computer Vision
 `code-ai-400393-image-dataset.7z <https://disk.yandex.ru/d/TxReQ9J6PAo9Nw>`_
 
 
-Page 2 
+Описание служебных структур 
 ---------
 
-.. include:: modules/Page2.rst
+.. include:: modules/ServiceStructuresDescriprion.rst
