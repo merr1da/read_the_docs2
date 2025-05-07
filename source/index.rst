@@ -20,3 +20,4 @@ Marine Robotics Computer Vision
 .. include:: modules/3DsceneCreationModule.rst
 .. include:: modules/YOLOv5Module.rst
 .. include:: modules/DemonstrationExamples.rst
+.. include:: modules/ContributingGuide.rst
