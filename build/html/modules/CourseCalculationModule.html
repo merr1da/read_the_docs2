@@ -1,0 +1,185 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Модуль расчета курса объекта &mdash; Marine Robotics Computer Vision  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ea7bc319" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marine Robotics Computer Vision
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Модуль расчета курса объекта</a><ul>
+<li><a class="reference internal" href="#objcourse">Класс ObjCourse</a></li>
+<li><a class="reference internal" href="#id2">Инициализация нейронной сети</a></li>
+<li><a class="reference internal" href="#id3">Основной процесс обработки</a></li>
+<li><a class="reference internal" href="#id4">Расчет курса</a></li>
+<li><a class="reference internal" href="#id5">Предобработка изображения</a></li>
+<li><a class="reference internal" href="#id6">Постобработка результатов</a></li>
+<li><a class="reference internal" href="#id7">Отрисовка меток</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marine Robotics Computer Vision</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Модуль расчета курса объекта</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/CourseCalculationModule.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Модуль расчета курса объекта<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p><em>Данный модуль реализует функционал для детекции объектов и расчета курса движения относительно обнаруженных целей с использованием нейронных сетей.</em></p>
+<section id="objcourse">
+<h2>Класс ObjCourse<a class="headerlink" href="#objcourse" title="Link to this heading"></a></h2>
+<p><strong>Основные функции:</strong></p>
+</section>
+<section id="id2">
+<h2>Инициализация нейронной сети<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p><em>Загружает модель нейронной сети и файл с классами объектов.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">ObjCourse</span><span class="o">::</span><span class="n">initNN</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pathToModel</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pathToClasses</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong>
+- <code class="docutils literal notranslate"><span class="pre">pathToModel</span></code> - путь к файлу модели ONNX
+- <code class="docutils literal notranslate"><span class="pre">pathToClasses</span></code> - путь к файлу с классами объектов</p>
+<p><strong>Возвращаемые значения:</strong>
+- 0 - успешная инициализация
+- ENETDOWN - ошибка загрузки модели
+- ENOENT - ошибка загрузки файла классов</p>
+</section>
+<section id="id3">
+<h2>Основной процесс обработки<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p><em>Выполняет полный цикл обработки изображения: предобработку, детекцию и постобработку.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">ObjCourse</span><span class="o">::</span><span class="n">mainProcess</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Возвращаемое значение:</strong>
+- Обработанное изображение с отмеченными объектами</p>
+</section>
+<section id="id4">
+<h2>Расчет курса<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p><em>Определяет угол между центром кадра и обнаруженным объектом.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">ObjCourse</span><span class="o">::</span><span class="n">getObjectCourse</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">frameWidth</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">cameraAngle</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong>
+- <code class="docutils literal notranslate"><span class="pre">frame</span></code> - входное изображение
+- <code class="docutils literal notranslate"><span class="pre">frameWidth</span></code> - ширина кадра
+- <code class="docutils literal notranslate"><span class="pre">cameraAngle</span></code> - угол обзора камеры</p>
+<p><strong>Возвращаемое значение:</strong>
+- Угол отклонения объекта от центра (в градусах)</p>
+<p><strong>Вспомогательные функции:</strong></p>
+</section>
+<section id="id5">
+<h2>Предобработка изображения<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p><em>Подготавливает изображение для подачи в нейронную сеть.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ObjCourse</span><span class="o">::</span><span class="n">preProcess</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">dnn</span><span class="o">::</span><span class="n">Net</span><span class="o">&amp;</span><span class="w"> </span><span class="n">net</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2>Постобработка результатов<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p><em>Анализирует выход нейронной сети и выделяет обнаруженные объекты.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">ObjCourse</span><span class="o">::</span><span class="n">postProcess</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">outputs</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">classNames</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h2>Отрисовка меток<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p><em>Добавляет подписи к обнаруженным объектам на изображении.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">ObjCourse</span><span class="o">::</span><span class="n">drawLabel</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">top</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Технические параметры:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_inputWidth</span></code>, <code class="docutils literal notranslate"><span class="pre">_inputHeight</span></code> - размеры входного изображения для нейросети</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_scoreThreshold</span></code> - порог уверенности для детекции</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_nmsThreshold</span></code> - порог для подавления немаксимумов</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_confidenceThreshold</span></code> - минимальный уровень достоверности</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_cameraAngle</span></code> - угол обзора камеры</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Author.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

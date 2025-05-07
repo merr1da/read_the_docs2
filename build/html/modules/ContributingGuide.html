@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Руководство для контрибьюторов &mdash; Marine Robotics Computer Vision  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ea7bc319" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marine Robotics Computer Vision
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Руководство для контрибьюторов</a><ul>
+<li><a class="reference internal" href="#id2">Получение исходного кода</a></li>
+<li><a class="reference internal" href="#id3">Необходимые зависимости</a></li>
+<li><a class="reference internal" href="#id4">Настройка сборки</a><ul>
+<li><a class="reference internal" href="#cuda">Сборка с CUDA</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">Оформление изменений</a></li>
+<li><a class="reference internal" href="#id6">Репорты об ошибках</a></li>
+<li><a class="reference internal" href="#id7">Рекомендации по контрибьюции</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marine Robotics Computer Vision</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Руководство для контрибьюторов</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/ContributingGuide.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Руководство для контрибьюторов<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>Это руководство предназначено для разработчиков и пользователей, желающих внести вклад в развитие библиотеки <strong>Marine Robotics Computer Vision (MRCV)</strong>. Ниже представлены инструкции по установке зависимостей, сборке проекта и рекомендации по работе с CUDA.</p>
+<p>Датасет изображений для работы с библиотекой доступен по ссылке:</p>
+<p><a class="reference external" href="https://disk.yandex.ru/d/TxReQ9J6PAo9Nw">code-ai-400393-image-dataset.7z</a></p>
+<section id="id2">
+<h2>Получение исходного кода<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>Исходный код библиотеки доступен на внутреннем репозитории. Клонируйте проект:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/valabsoft/code-ai-400393.git
+<span class="nb">cd</span><span class="w"> </span>mrcv
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>Необходимые зависимости<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>Для корректной работы библиотеки на <strong>Windows</strong> все необходимые зависимости должны быть установлены и размещены следующим образом:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>C:\
+├───libtorch-12.4
+├───libtorch-12.4-cuda
+├───opencv-4.10.0-build
+├───opencv-4.10.0-build-cuda
+└───yaml-cpp
+</pre></div>
+</div>
+<p>Также необходимо добавить в системную переменную <cite>PATH</cite> пути к бинарным файлам обеих сборок OpenCV:</p>
+<ul class="simple">
+<li><p>C:\opencv-4.10.0-build\install\x64\vc17\bin\</p></li>
+<li><p>C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>Настройка сборки<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>В корневом <cite>CMakeLists.txt</cite> проекта имеется флаг:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">option</span><span class="p">(</span><span class="s">USE_CUDA</span><span class="w"> </span><span class="s2">&quot;Use CUDA Build&quot;</span><span class="w"> </span><span class="s">OFF</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Он определяет режим сборки библиотеки:</p>
+<ul class="simple">
+<li><p><cite>OFF</cite> — сборка без поддержки CUDA. Используются OpenCV и LibTorch для CPU. CUDA-функции не будут доступны.</p></li>
+<li><p><cite>ON</cite> — сборка с поддержкой CUDA. Используются OpenCV с модулями CUDA и LibTorch для CUDA. CUDA-функции активны в пространстве имён <cite>mrcv::</cite>.</p></li>
+</ul>
+<section id="cuda">
+<h3>Сборка с CUDA<a class="headerlink" href="#cuda" title="Link to this heading"></a></h3>
+<p>Для включения поддержки CUDA необходимо:</p>
+<ol class="arabic simple">
+<li><p>Установить:</p>
+<ul class="simple">
+<li><p><strong>CUDA Toolkit 12.4</strong></p></li>
+<li><p><strong>cuDNN 9.3</strong></p></li>
+</ul>
+</li>
+<li><p>Скопировать содержимое <cite>bin</cite>, <cite>lib</cite> и <cite>include</cite> из папки cuDNN в каталог установки CUDA Toolkit.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>После смены значения <cite>USE_CUDA</cite> обязательно удалите и пересоздайте директорию <cite>build/</cite>, иначе сборка завершится с ошибками.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rd<span class="w"> </span>/s<span class="w"> </span>/q<span class="w"> </span>build
+mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..
+cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span>--config<span class="w"> </span>Release
+</pre></div>
+</div>
+<p>При необходимости, скопируйте <cite>*.dll</cite> из используемой версии OpenCV или LibTorch в папку с исполняемыми файлами.</p>
+</section>
+</section>
+<section id="id5">
+<h2>Оформление изменений<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>Перед отправкой изменений:</p>
+<ol class="arabic simple">
+<li><p><strong>Форкните репозиторий</strong> и создайте отдельную ветку для каждой задачи.</p></li>
+<li><p><strong>Не объединяйте</strong> несвязанные изменения в одном pull request.</p></li>
+<li><p><strong>Багфиксы</strong> — на ветках от стабильной версии; <strong>новые фичи</strong> — от <cite>main</cite>.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>fix-crash-in-detector<span class="w"> </span>main
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Убедитесь, что вы:
+- написали/обновили тесты;
+- обновили документацию;
+- добавили вас в <cite>CHANGELOG.md</cite> (если он есть).</p></li>
+</ol>
+</section>
+<section id="id6">
+<h2>Репорты об ошибках<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>Перед отправкой:</p>
+<ul class="simple">
+<li><p>Обновитесь до последней версии библиотеки.</p></li>
+<li><p>Проверьте, повторяется ли ошибка на старых версиях.</p></li>
+<li><p>Проверьте зависимости: версии OpenCV, LibTorch и др.</p></li>
+<li><p>Найдите похожие тикеты/обсуждения.</p></li>
+</ul>
+<p>При оформлении тикета:</p>
+<ul class="simple">
+<li><p>Укажите ОС, версию компилятора, сборки библиотек.</p></li>
+<li><p>Приложите минимальный пример кода с воспроизведением ошибки.</p></li>
+<li><p>Включите логи и команды запуска.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>Рекомендации по контрибьюции<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Пишите понятный и документированный код.</p></li>
+<li><p>Используйте стиль оформления, принятый в библиотеке.</p></li>
+<li><p>Обновляйте документацию при добавлении новых функций.</p></li>
+<li><p>Проверяйте кросс-платформенность (Windows/Linux, CPU/CUDA).</p></li>
+<li><p>Перед публикацией изменений убедитесь, что они не нарушают сборку библиотеки.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Author.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

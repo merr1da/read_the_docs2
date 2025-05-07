@@ -1,0 +1,207 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Модуль создания 3D сцен &mdash; Marine Robotics Computer Vision  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ea7bc319" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marine Robotics Computer Vision
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Модуль создания 3D сцен</a><ul>
+<li><a class="reference internal" href="#id1">Формирование стереопары</a></li>
+<li><a class="reference internal" href="#id2">Построение карты диспаратности</a></li>
+<li><a class="reference internal" href="#id3">Сегментация объектов</a></li>
+<li><a class="reference internal" href="#id4">Визуализация 3D сцены</a></li>
+<li><a class="reference internal" href="#id5">Сохранение результатов</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marine Robotics Computer Vision</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Модуль создания 3D сцен</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/3DsceneCreationModule.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="d">
+<h1>Модуль создания 3D сцен<a class="headerlink" href="#d" title="Link to this heading"></a></h1>
+<p><em>Модуль предоставляет функционал для обработки стереоизображений, построения 3D сцен и работы с облаками точек. Включает методы калибровки, построения карт диспаратности, сегментации объектов и визуализации.</em></p>
+<section id="id1">
+<h2>Формирование стереопары<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p><em>Объединяет изображения с двух камер в единое изображение для обработки.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">makingStereoPair</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">inputImageCamera01</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">inputImageCamera02</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">outputStereoPair</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">inputImageCamera01</span></code> - изображение с левой камеры (CV_8UC3)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inputImageCamera02</span></code> - изображение с правой камеры (CV_8UC3)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outputStereoPair</span></code> - результирующее объединенное изображение</p></li>
+</ul>
+<p><strong>Возвращаемые значения:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> - успех</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> - пустое изображение</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> - ошибка</p></li>
+</ul>
+<p><strong>Особенности:</strong></p>
+<ul class="simple">
+<li><p>Автоматический расчет размеров выходного изображения</p></li>
+<li><p>Горизонтальное объединение изображений</p></li>
+<li><p>Поддержка разных размеров входных изображений</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>Построение карты диспаратности<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p><em>Вычисляет карту различий между стереоизображениями.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">find3dPointsADS</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">inputImageCamera01</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">inputImageCamera02</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mrcv</span><span class="o">::</span><span class="n">pointsData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">points3D</span><span class="p">,</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">settingsMetodDisparity</span><span class="o">&amp;</span><span class="w"> </span><span class="n">settingsMetodDisparity</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">disparityMap</span><span class="p">,</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">cameraStereoParameters</span><span class="o">&amp;</span><span class="w"> </span><span class="n">cameraParameters</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">limitOutPoints</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">limitsOutlierArea</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Методы построения:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MODE_BM</span></code> - блочное сопоставление (быстрый)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MODE_SGBM</span></code> - полуглобальное сопоставление</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MODE_HH</span></code> - двухпроходный алгоритм</p></li>
+</ul>
+<p><strong>Особенности:</strong></p>
+<ul class="simple">
+<li><p>Фильтрация выбросов по заданной области</p></li>
+<li><p>Ограничение количества выходных точек</p></li>
+<li><p>Поддержка различных цветовых карт</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>Сегментация объектов<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p><em>Обнаружение и сегментация объектов нейронной сетью.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">detectingSegmentsNeuralNet</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageInput</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageOutput</span><span class="p">,</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">replyMasks</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">filePathToModelYoloNeuralNet</span><span class="p">,</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">filePathToClasses</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Особенности:</strong></p>
+<ul class="simple">
+<li><p>Использование модели YOLO</p></li>
+<li><p>Возврат бинарных масок объектов</p></li>
+<li><p>Настройка порогов уверенности</p></li>
+<li><p>Морфологическая постобработка масок</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>Визуализация 3D сцены<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p><em>Проецирование 3D точек на 2D изображение.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">getImage3dSceene</span><span class="p">(</span><span class="n">mrcv</span><span class="o">::</span><span class="n">pointsData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">points3D</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mrcv</span><span class="o">::</span><span class="n">parameters3dSceene</span><span class="o">&amp;</span><span class="w"> </span><span class="n">parameters3dSceene</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mrcv</span><span class="o">::</span><span class="n">cameraStereoParameters</span><span class="o">&amp;</span><span class="w"> </span><span class="n">cameraParameters</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">outputImage3dSceene</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Параметры сцены:</strong></p>
+<ul class="simple">
+<li><p>Углы поворота (angX/Y/Z)</p></li>
+<li><p>Смещение (tX/Y/Z)</p></li>
+<li><p>Масштаб (scale)</p></li>
+<li><p>Расстояние до центра (dZ)</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>Сохранение результатов<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p><em>Экспорт данных о 3D точках.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">saveInFile3dPointsInObjectsSegments</span><span class="p">(</span><span class="n">pointsData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">points3D</span><span class="p">,</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">String</span><span class="w"> </span><span class="n">pathToFile</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Формат данных:</strong></p>
+<ul class="simple">
+<li><p>Координаты пикселей и 3D координаты</p></li>
+<li><p>Цвет точек</p></li>
+<li><p>Идентификаторы сегментов</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Author.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
