@@ -1194,7 +1194,7 @@
 <section id="id64">
 <h2>Пример использования аугментации изображений<a class="headerlink" href="#id64" title="Link to this heading"></a></h2>
 <p>Модуль включает три основных этапа обработки данных: загрузку изображений, указание методов аугментации, сохранение результатов преобразования.
-На первом этапе осуществляется загрузка входных изображений в вектор с использованием функции <cite>cv::imread</cite>.</p>
+На первом этапе осуществляется загрузка входных изображений в вектор с использованием функции <code class="docutils literal notranslate"><span class="pre">cv::imread</span></code>.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">inputImagesAugmetation</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 <span class="n">inputImagesAugmetation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">&quot;files</span><span class="se">\\</span><span class="s">img0.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_COLOR</span><span class="p">);</span>
 <span class="n">inputImagesAugmetation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">&quot;files</span><span class="se">\\</span><span class="s">img1.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_COLOR</span><span class="p">);</span>
@@ -1218,7 +1218,7 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">augmetation</span><span class="p">(</span><span class="n">inputImagesAugmetation</span><span class="p">,</span><span class="w"> </span><span class="n">outputImagesAugmetation</span><span class="p">,</span><span class="w"> </span><span class="n">augmetationMethod</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>После выполнения всех операций, модифицированные изображения сохраняются на диск с использованием функции cv::imwrite(ss.str(), resultImage)</p>
+<p>После выполнения всех операций, модифицированные изображения сохраняются на диск с использованием функции <code class="docutils literal notranslate"><span class="pre">cv::imwrite(ss.str(),</span> <span class="pre">resultImage)</span></code></p>
 <p>Результат работы функции аугментации :</p>
 <a class="inline-images reference internal image-reference" href="_images/augmentation1.jpg"><img alt="Пример результата обработки" class="inline-images" src="_images/augmentation1.jpg" style="width: 200px;" />
 </a>
