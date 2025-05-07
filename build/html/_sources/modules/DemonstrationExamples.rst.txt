@@ -6,6 +6,8 @@
 
 Модуль включает три основных этапа обработки данных: загрузку изображений, указание методов аугментации, сохранение результатов преобразования.
 На первом этапе осуществляется загрузка входных изображений в вектор с использованием функции cv::imread.
+
+
 .. code-block:: cpp
 
     std::vector<cv::Mat> inputImagesAugmetation(10);
@@ -29,6 +31,7 @@
     mrcv::AUGMENTATION_METHOD::FLIP_HORIZONTAL_AND_VERTICAL};
 
 Далее осуществляется вызов функции аугментации в формате
+
 .. code-block:: cpp
 
     int state = mrcv::augmetation(inputImagesAugmetation, outputImagesAugmetation, augmetationMethod);
@@ -37,17 +40,17 @@
 
 Результат работы функции аугментации :
 
-.. image:: ../images/augmentation1.jpg
+.. image:: /_static/augmentation1.jpg
    :alt: Пример результата обработки
    :width: 400px
    :align: left
 
-.. image:: ../images/augmentation2.jpg
+.. image:: /_static/augmentation2.jpg
    :alt: Пример результата обработки
    :width: 400px
    :align: center
 
-.. image:: ../images/augmentation3.jpg
+.. image:: /_static/augmentation3.jpg
    :alt: Пример результата обработки
    :width: 400px
    :align: right
