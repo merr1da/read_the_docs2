@@ -40,21 +40,18 @@
 
 Результат работы функции аугментации :
 .. rst-class:: inline-images
-    
+
 .. image:: /_static/augmentation1.jpg
    :alt: Пример результата обработки
    :width: 200px
-   :align: center
 
 .. image:: /_static/augmentation2.jpg
    :alt: Пример результата обработки
    :width: 200px
-   :align: center
 
 .. image:: /_static/augmentation3.jpg
    :alt: Пример результата обработки
    :width: 200px
-   :align: center
 
 
 Пример использования кластеризации

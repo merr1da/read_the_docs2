@@ -1,0 +1,5 @@
+.inline-images img {
+    display: inline-block;
+    margin: 0 10px; /* Отступы между изображениями */
+    vertical-align: top; /* Выравнивание по верхнему краю */
+}
