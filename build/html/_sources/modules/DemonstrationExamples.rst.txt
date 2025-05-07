@@ -42,18 +42,18 @@
 
 .. image:: /_static/augmentation1.jpg
    :alt: Пример результата обработки
-   :width: 400px
-   :align: left
+   :width: 200px
+   :align: center
 
 .. image:: /_static/augmentation2.jpg
    :alt: Пример результата обработки
-   :width: 400px
+   :width: 200px
    :align: center
 
 .. image:: /_static/augmentation3.jpg
    :alt: Пример результата обработки
-   :width: 400px
-   :align: right
+   :width: 200px
+   :align: center
 
 
 Пример использования кластеризации
