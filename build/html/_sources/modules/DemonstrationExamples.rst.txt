@@ -75,22 +75,34 @@
 
     void mrcv::DenseStereo::makeClustering()
 
-Пример использования сравнения изображений
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Пример использования модуля работы с YOLOv5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Предоставляет функцию для сравнения двух изображений и вычисления их схожести.*
-
-**Сравнение изображений**
-
-*Вычисляет меру схожести между двумя изображениями.*
+*Генерация конфигурационного файла для YOLOv5s с 80 классами представлена ниже*
 
 .. code-block:: cpp
 
-    double mrcv::compareImages(
-        const cv::Mat& img1,
-        const cv::Mat& img2,
-        int method
-    )
+    try
+    {
+    mrcv::YOLOv5GenerateHyperparameters(mrcv::YOLOv5Model::YOLOv5s,
+                                              640, 640, "yolov5s-hyp.yaml", 80);
+    }
+    catch (const std::exception &ex)
+    {
+    std::cerr << "Error: " << ex.what() << std::endl;
+    }
+
+При успешной генерации без исключений, содержимое созданного конфигурационного файла *yolov5s-hyp.yaml* приведено ниже:
+
+``weight_decay: 0.00050000000000000001``
+``box: 0.075000000000000011``
+``cls: 0.52500000000000002``
+``cls_pw: 1``
+``obj: 1``
+``obj_pw: 1``
+``anchor_t: 4``
+``fl_gamma: 0.17004397181410924``
+Здесь можно заметить обозначенные ранее параметры, которые необходимы для обучения моделей детекторов и классификаторов *YOLOv5*.
 
 Пример использования детектирования объектов
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,137 +138,191 @@
         const std::string& outputModel
     )
 
-Пример использования морфологических операций
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Пример использования предобработки изображений
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Реализует основные морфологические операции над изображениями.*
-
-**Применение морфологической операции**
-
-*Выполняет заданную морфологическую операцию над изображением.*
+Для подготовки входных параметров функции предобработки ``preprocessingImage()`` производится загрузка исходного изображения:
 
 .. code-block:: cpp
 
-    int mrcv::morphologyImage(
-        cv::Mat& image,
-        const std::string& outputPath,
-        mrcv::METOD_MORF method,
-        int morph_size
-    )
+    cv::Mat imageIn;
+    cv::Mat imageOut;    
+    imageIn = cv::imread("./files/seabed.png", cv::IMREAD_COLOR);
+    imageOut = imageIn.clone();
+    mrcv::writeLog("\t imageIn channels = " + std::to_string(imageIn.channels()));
+
+Формируется список применяемых методов предобработки:
+
+.. code-block:: cpp
+
+    std::vector<mrcv::METOD_IMAGE_PERPROCESSIN> metodImagePerProcessinBrightnessContrast = {
+        mrcv::METOD_IMAGE_PERPROCESSIN::NOISE_FILTERING_01_MEDIAN_FILTER,
+        mrcv::METOD_IMAGE_PERPROCESSIN::BALANCE_CONTRAST_10_LAB_CLAHE,
+        mrcv::METOD_IMAGE_PERPROCESSIN::SHARPENING_02,
+        mrcv::METOD_IMAGE_PERPROCESSIN::BRIGHTNESS_LEVEL_DOWN,
+        mrcv::METOD_IMAGE_PERPROCESSIN::NONE,
+        mrcv::METOD_IMAGE_PERPROCESSIN::CORRECTION_GEOMETRIC_DEFORMATION,
+    };
+
+Далее, применяется функция предобработки:
+
+.. code-block:: cpp
+
+    int state = mrcv::preprocessingImage(imageOut, metodImagePerProcessin, "./files/fileCameraParameters.xml");
+
+Сохранение результата в файл:
+
+.. code-block:: cpp
+
+    cv::String imageOutputFilePath = "./files/outImages/test.png";
+    cv::imwrite(imageOutputFilePath, imageOut);
+    mrcv::writeLog("\t результат преодобработки сохранён: " + imageOutputFilePath);
+
+Отображение результатов на экране:
+
+.. code-block:: cpp
+
+    double CoefShowWindow = 0.5;
+    cv::resize(imageIn, imageIn, cv::Size(double(imageIn.cols * CoefShowWindow),
+                                          double(imageIn.rows * CoefShowWindow)), 0, 0, cv::INTER_LINEAR);
+    cv::resize(imageOut, imageOut, cv::Size(double(imageOut.cols * CoefShowWindow),
+                                            double(imageOut.rows * CoefShowWindow)), 0, 0, cv::INTER_LINEAR);
+    cv::namedWindow("imageIn", cv::WINDOW_AUTOSIZE);
+    imshow("imageIn", imageIn);
+    cv::namedWindow("imageOut", cv::WINDOW_AUTOSIZE);
+    imshow("imageOut", imageOut);
+    cv::waitKey(0);
+
+Результаты предобработки подводных изображений:
+
+.. image:: /_static/preprocessing.jpg
+   :alt: Исходное изображение, результат предобработки
+   :width: 200px
+   :align: center
+
+Пример фрагмента log-файла во время запуска примера:
+
+.. code-block:: text
+
+    16:59:43 | INFO |  === НОВЫЙ ЗАПУСК === 
+    16:59:43 | INFO | загружено изображение: ./files/img02.jfif :: 960x600x3
+    16:59:43 | INFO | imageIn.channels = 3
+    16:59:43 | INFO | NOISE_FILTERING_01_MEDIAN_FILTER, state = 0
+    16:59:43 | INFO | BALANCE_CONTRAST_10_LAB_CLAHE, state = 0
+    16:59:43 | INFO | SHARPENING_02, state = 0
+    16:59:43 | INFO | BRIGHTNESS_LEVEL_DOWN, state = 0
+    16:59:43 | INFO | CORRECTION_GEOMETRIC_DEFORMATION, state = 0
+    16:59:43 | INFO | Предобработка изображения завершена (успешно)
+    16:59:43 | INFO | результат предобработки сохранён: ./files/img02.jfif
 
 Пример использования модуля определения курса объекта
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Предоставляет функционал для определения количества объектов и их курса.*
+- ship.bmp – кадр видеоряда с объектом интереса на изображении;
+- ship.onnx – обученная модель в формате YOLO5;
+- ship.names – текстовый файл с именами классов объектов интереса.
 
-**Инициализация**
-
-*Создает экземпляр класса для работы с курсом объектов.*
-
-.. code-block:: cpp
-
-    mrcv::ObjCourse::ObjCourse(
-        const std::string& modelPath,
-        const std::string& classesPath
-    )
-
-**Подсчет объектов**
-
-*Возвращает количество обнаруженных объектов на изображении.*
+Создание экземпляра класса осуществляется с помощью вызова конструктора:
 
 .. code-block:: cpp
 
-    int mrcv::ObjCourse::getObjectCount(const cv::Mat& frame)
+    mrcv::ObjCourse *objcourse = new mrcv::ObjCourse(modelPath.u8string(), classPath.u8string());
 
-Пример использования модуля предобработки изображений
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+В качестве входных данных конструктор принимает полный путь к модели, полный путь к файлу с классами модели и размеры детектора.
 
-*Содержит функции для улучшения качества изображений перед анализом.*
+Тестирование проводилось на синтетическом изображении — модели кадра видеопотока, содержащего объект интереса.  
+Режим отображения меток используется только в режиме отладки при включенном флаге ``IS_DEBUG_LOG_ENABLED``.
 
-**Предобработка изображения**
+Результат работы детектора:
 
-*Применяет последовательность методов улучшения к изображению.*
+.. image:: /_static/objcourse_result.jpg
+   :alt: Тестовое изображение с результатом работы
+   :width: 200px
 
-.. code-block:: cpp
-
-    int mrcv::preprocessingImage(
-        cv::Mat& image,
-        const std::vector<mrcv::METOD_IMAGE_PERPROCESSIN>& methods,
-        const std::string& cameraParamsFile
-    )
-
-Пример использования модуля сегментации
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Реализует функционал для семантической сегментации изображений.*
-
-**Инициализация сегментатора**
-
-*Настраивает сегментатор с заданными параметрами.*
+Для выполнения основных функций модуля используются вызовы методов класса ``ObjCourse``, как показано ниже.  
+Подразумевается, что тестовое изображение предварительно загружено в переменную ``cv::Mat frameShip``.
 
 .. code-block:: cpp
 
-    void mrcv::Segmentor::Initialize(
-        int device,
-        int width,
-        int height,
-        const std::vector<std::string>& classes,
-        const std::string& backbone,
-        const std::string& backboneWeights
-    )
+    // Подсчет объектов
+    int objCount = objcourse->getObjectCount(frameShip);
 
-Обучение модели
-~~~~~~~~~~~~~~~
-*Выполняет обучение модели сегментации.*
+    // Расчет курса
+    float objAngle = objcourse->getObjectCourse(frameShip, 640, 80);
 
-.. code-block:: cpp
+Метод ``getObjectCount`` принимает на вход кадр видеофрейма в формате ``cv::Mat``  
+и возвращает количество найденных объектов.
 
-    void mrcv::Segmentor::Train(
-        float learningRate,
-        int epochs,
-        int batchSize,
-        const std::string& imagesPath,
-        const std::string& imageExtension,
-        const std::string& outputWeights
-    )
-
-Тестирование модели
-~~~~~~~~~~~~~~~~~~~
-*Выполняет сегментацию входного изображения.*
-
-.. code-block:: cpp
-
-    void mrcv::Segmentor::Predict(
-        const cv::Mat& image,
-        const std::string& targetClass
-    )
+Метод ``getObjectCourse`` принимает кадр видеофрейма, разрешение камеры по горизонтали (в пикселях) и угол обзора камеры,  
+возвращая угловую поправку на текущий курс с учетом знака смещения.
 
 Пример использования модуля 3D сцены
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Предоставляет функционал для построения 3D сцен по стереоизображениям.*
+- L1000.bmp, R1000.bmp – набор исходных изображений;
+- (66a)_(960p)_NewCamStereoModule_Air.xml – xml-файл с параметрами камеры.
 
-**Построение 3D сцены**
+**Подготовка входных данных**
 
-*Выполняет полный pipeline обработки стереоизображений для построения 3D сцены.*
+Для подготовки входных параметров функции ``readCameraStereoParametrsFromFile()``  
+необходимо загрузить исходные изображения и параметры камеры.  
+Также необходимо провести инициализацию параметров, как указано в примере использования.
+
+**Основная функция**
+
+Для определения координат 3D точек в сегментах идентифицированных объектов  
+и восстановления 3D сцены по двумерным изображениям используется функция:
 
 .. code-block:: cpp
 
-    int mrcv::find3dPointsInObjectsSegments(
-        const cv::Mat& imageLeft,
-        const cv::Mat& imageRight,
-        const mrcv::cameraStereoParameters& cameraParams,
-        cv::Mat& imageLeftRemap,
-        cv::Mat& imageRightRemap,
-        mrcv::settingsMetodDisparity& disparitySettings,
-        cv::Mat& disparityMap,
-        mrcv::pointsData& points3D,
-        std::vector<cv::Mat>& replyMasks,
-        cv::Mat& outputImage,
-        cv::Mat& output3dScene,
-        const mrcv::parameters3dSceene& sceneParams,
-        const std::string& modelPath,
-        const std::string& classesPath,
-        int limitPoints = 8000,
-        const std::vector<double>& outlierArea = {...}
-    )
+    state = mrcv::find3dPointsInObjectsSegments(
+        inputImageCamera01, inputImageCamera02, cameraParameters,
+        inputImageCamera01Remap, inputImageCamera02Remap,
+        settingsMetodDisparity, disparityMap, points3D, replyMasks,
+        outputImage, outputImage3dSceene, parameters3dSceene,
+        filePathModelYoloNeuralNet, filePathClasses,
+        limitOutPoints, limitsOutlierArea
+    );
+
+**Результаты работы**
+
+.. image:: /_static/figure10_1.jpg
+   :width: 200px
+   :alt: Фотография экспериментального стенда и стереопара со стереокамеры
+
+.. image:: /_static/figure10_2.jpg
+   :width: 200px
+   :alt: Карта диспаратности и бинарные маски сегментов
+
+
+.. image:: /_static/figure10_3.jpg
+   :width: 200px
+   :alt: Результат обнаружения объектов с координатой по Z
+
+.. rst-class:: inline-images
+
+.. image:: /_static/figure10_4.jpg
+   :width: 200px
+   :alt: Изображения 3D сцены
+
+.. image:: /_static/figure10_5.jpg
+   :width: 200px
+   :alt: Изображения 3D сцены
+
+**Фрагмент лог-файла**
+
+Ниже приведён фрагмент из лог-файла библиотеки во время запуска примера использования:
+
+.. code-block:: text
+
+    14:51:16 | INFO | === НОВЫЙ ЗАПУСК ===
+    14:51:16 | INFO | 1. Загрузка изображений из файла (успешно)
+    14:51:16 | INFO |     загружено изображение: ./files/L1000.bmp :: 960x600x3
+    14:51:16 | INFO |     загружено изображение: ./files/R1000.bmp :: 960x600x3
+    14:51:16 | INFO | 2. Загрузка параметров стереокамеры из файла (успешно)
+    14:51:16 | INFO | A1. Выравнивание изображения камера 01 (успешно)
+    14:51:16 | INFO | A2. Облако 3D точек сцены найдено (успешно)
+    14:51:16 | INFO |     points3D.numPoints0 = 312718
+    14:51:16 | INFO |     points3D.numPoints = 8018
+    ...
+    14:51:17 | INFO | 4.8 Вывод проекции 3D сцены на экран (успешно)
