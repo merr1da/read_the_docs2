@@ -4,34 +4,54 @@
 Пример использования аугментации изображений 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Модуль предоставляет функции для аугментации изображений, включая повороты, отражения и другие преобразования.*
-
-**Загрузка изображений**
-
-*Загружает набор изображений для последующей аугментации.*
-
+Модуль включает три основных этапа обработки данных: загрузку изображений, указание методов аугментации, сохранение результатов преобразования.
+На первом этапе осуществляется загрузка входных изображений в вектор с использованием функции cv::imread.
 .. code-block:: cpp
 
     std::vector<cv::Mat> inputImagesAugmetation(10);
     inputImagesAugmetation[0] = cv::imread("files\\img0.jpg", cv::IMREAD_COLOR);
-    // ... аналогично для других изображений
+    inputImagesAugmetation[1] = cv::imread("files\\img1.jpg", cv::IMREAD_COLOR);
+    ...
+    inputImagesAugmetation[9] = cv::imread("files\\img9.jpg", cv::IMREAD_COLOR);
 
-**Проверка загрузки:**
-
-- Проверяет успешность загрузки каждого изображения.
-- В случае ошибки выводит сообщение в stderr.
-
-**Аугментация изображений**
-
-*Применяет выбранные методы аугментации к изображениям.*
+На этапе задания методов аугментации задаются названия методов, которые будут применяться к входным изображениям. В качестве методов преобразования могут выступать: поворот изображения на 45, 90, 270 или 315 градусов; зеркальное отображение по горизонтали, вертикали или по обоим направлениям.
+Ниже приведены методы аугментации изображений:
 
 .. code-block:: cpp
 
-    int mrcv::augmetation(
-        const std::vector<cv::Mat>& inputImages,
-        std::vector<cv::Mat>& outputImages,
-        const std::vector<mrcv::AUGMENTATION_METHOD>& methods
-    )
+    std::vector<mrcv::AUGMENTATION_METHOD> augmetationMethod = {
+    mrcv::AUGMENTATION_METHOD::ROTATE_IMAGE_90,
+    mrcv::AUGMENTATION_METHOD::FLIP_HORIZONTAL,
+    mrcv::AUGMENTATION_METHOD::FLIP_VERTICAL,
+    mrcv::AUGMENTATION_METHOD::ROTATE_IMAGE_45,
+    mrcv::AUGMENTATION_METHOD::ROTATE_IMAGE_315,
+    mrcv::AUGMENTATION_METHOD::ROTATE_IMAGE_270,
+    mrcv::AUGMENTATION_METHOD::FLIP_HORIZONTAL_AND_VERTICAL};
+
+Далее осуществляется вызов функции аугментации в формате
+.. code-block:: cpp
+
+    int state = mrcv::augmetation(inputImagesAugmetation, outputImagesAugmetation, augmetationMethod);
+
+После выполнения всех операций, модифицированные изображения сохраняются на диск с использованием функции cv::imwrite(ss.str(), resultImage)
+
+Результат работы функции аугментации :
+
+.. image:: ../images/augmentation1.jpg
+   :alt: Пример результата обработки
+   :width: 400px
+   :align: left
+
+.. image:: ../images/augmentation2.jpg
+   :alt: Пример результата обработки
+   :width: 400px
+   :align: center
+
+.. image:: ../images/augmentation3.jpg
+   :alt: Пример результата обработки
+   :width: 400px
+   :align: right
+
 
 Пример использования кластеризации
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

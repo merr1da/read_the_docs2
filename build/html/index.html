@@ -1192,28 +1192,41 @@
 <h1>Демонстрационные примеры<a class="headerlink" href="#id63" title="Link to this heading"></a></h1>
 <section id="id64">
 <h2>Пример использования аугментации изображений<a class="headerlink" href="#id64" title="Link to this heading"></a></h2>
-<p><em>Модуль предоставляет функции для аугментации изображений, включая повороты, отражения и другие преобразования.</em></p>
-<p><strong>Загрузка изображений</strong></p>
-<p><em>Загружает набор изображений для последующей аугментации.</em></p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">inputImagesAugmetation</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-<span class="n">inputImagesAugmetation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">&quot;files</span><span class="se">\\</span><span class="s">img0.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_COLOR</span><span class="p">);</span>
-<span class="c1">// ... аналогично для других изображений</span>
+<p>Модуль включает три основных этапа обработки данных: загрузку изображений, указание методов аугментации, сохранение результатов преобразования.
+На первом этапе осуществляется загрузка входных изображений в вектор с использованием функции cv::imread.
+.. code-block:: cpp</p>
+<blockquote>
+<div><p>std::vector&lt;cv::Mat&gt; inputImagesAugmetation(10);
+inputImagesAugmetation[0] = cv::imread(“files\img0.jpg”, cv::IMREAD_COLOR);
+inputImagesAugmetation[1] = cv::imread(“files\img1.jpg”, cv::IMREAD_COLOR);
+…
+inputImagesAugmetation[9] = cv::imread(“files\img9.jpg”, cv::IMREAD_COLOR);</p>
+</div></blockquote>
+<p>На этапе задания методов аугментации задаются названия методов, которые будут применяться к входным изображениям. В качестве методов преобразования могут выступать: поворот изображения на 45, 90, 270 или 315 градусов; зеркальное отображение по горизонтали, вертикали или по обоим направлениям.
+Ниже приведены методы аугментации изображений:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">&gt;</span><span class="w"> </span><span class="n">augmetationMethod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">ROTATE_IMAGE_90</span><span class="p">,</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">FLIP_HORIZONTAL</span><span class="p">,</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">FLIP_VERTICAL</span><span class="p">,</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">ROTATE_IMAGE_45</span><span class="p">,</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">ROTATE_IMAGE_315</span><span class="p">,</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">ROTATE_IMAGE_270</span><span class="p">,</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">FLIP_HORIZONTAL_AND_VERTICAL</span><span class="p">};</span>
 </pre></div>
 </div>
-<p><strong>Проверка загрузки:</strong></p>
-<ul class="simple">
-<li><p>Проверяет успешность загрузки каждого изображения.</p></li>
-<li><p>В случае ошибки выводит сообщение в stderr.</p></li>
-</ul>
-<p><strong>Аугментация изображений</strong></p>
-<p><em>Применяет выбранные методы аугментации к изображениям.</em></p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">augmetation</span><span class="p">(</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">inputImages</span><span class="p">,</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">outputImages</span><span class="p">,</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">methods</span>
-<span class="p">)</span>
-</pre></div>
-</div>
+<p>Далее осуществляется вызов функции аугментации в формате
+.. code-block:: cpp</p>
+<blockquote>
+<div><p>int state = mrcv::augmetation(inputImagesAugmetation, outputImagesAugmetation, augmetationMethod);</p>
+</div></blockquote>
+<p>После выполнения всех операций, модифицированные изображения сохраняются на диск с использованием функции cv::imwrite(ss.str(), resultImage)</p>
+<p>Результат работы функции аугментации :</p>
+<a class="reference internal image-reference" href="../images/augmentation1.jpg"><img alt="Пример результата обработки" class="align-left" src="../images/augmentation1.jpg" style="width: 400px;" />
+</a>
+<a class="reference internal image-reference" href="../images/augmentation2.jpg"><img alt="Пример результата обработки" class="align-center" src="../images/augmentation2.jpg" style="width: 400px;" />
+</a>
+<a class="reference internal image-reference" href="../images/augmentation3.jpg"><img alt="Пример результата обработки" class="align-right" src="../images/augmentation3.jpg" style="width: 400px;" />
+</a>
 </section>
 <section id="id65">
 <h2>Пример использования кластеризации<a class="headerlink" href="#id65" title="Link to this heading"></a></h2>
