@@ -44,13 +44,13 @@
               <!-- Local TOC -->
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">Демонстрационные примеры</a><ul>
-<li><a class="reference internal" href="#id2">Пример использования аугментации изображений</a></li>
-<li><a class="reference internal" href="#id3">Пример использования кластеризации</a></li>
+<li><a class="reference internal" href="#id2">Программные функции библиотеки для подсчета количества объектов интереса по данным видеопотока в реальном масштабе времени и определения курса роботизированного аппарата на объект интереса</a></li>
+<li><a class="reference internal" href="#id3">Пример использования аугментации изображений</a></li>
+<li><a class="reference internal" href="#id4">Пример использования кластеризации</a></li>
 <li><a class="reference internal" href="#yolov5">Пример использования модуля работы с YOLOv5</a></li>
-<li><a class="reference internal" href="#id4">Пример использования детектирования объектов</a></li>
-<li><a class="reference internal" href="#id5">Пример использования предобработки изображений</a></li>
-<li><a class="reference internal" href="#id6">Программные функции библиотеки для подсчета количества объектов интереса по данным видеопотока в реальном масштабе времени и определения курса роботизированного аппарата на объект интереса</a></li>
-<li><a class="reference internal" href="#d-3d">4.9     Программные функции библиотеки для компьютерного стереозрения для определения координат 3D точек в сегментах идентифицированных объектов и восстановления 3D сцены по двумерным изображениям</a></li>
+<li><a class="reference internal" href="#id5">Пример использования детектирования объектов</a></li>
+<li><a class="reference internal" href="#id6">Пример использования предобработки изображений</a></li>
+<li><a class="reference internal" href="#d-3d">Программные функции библиотеки для компьютерного стереозрения для определения координат 3D точек в сегментах идентифицированных объектов и восстановления 3D сцены по двумерным изображениям</a></li>
 </ul>
 </li>
 </ul>
@@ -82,7 +82,38 @@
   <section id="id1">
 <h1>Демонстрационные примеры<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <section id="id2">
-<h2>Пример использования аугментации изображений<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<h2>Программные функции библиотеки для подсчета количества объектов интереса по данным видеопотока в реальном масштабе времени и определения курса роботизированного аппарата на объект интереса<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ship.bmp – кадр видеоряда с объектом интереса на изображении;</p></li>
+<li><p>ship.onnx – обученная модель в формате YOLO5;</p></li>
+<li><p>ship.names – текстовый файл с именами классов объектов интереса.</p></li>
+</ul>
+<p>Создание экземпляра класса осуществляется с помощью вызова конструктора:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv</span><span class="o">::</span><span class="n">ObjCourse</span><span class="w"> </span><span class="o">*</span><span class="n">objcourse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">ObjCourse</span><span class="p">(</span><span class="n">modelPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span><span class="w"> </span><span class="n">classPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>В качестве входных данных конструктор принимает полный путь к модели, полный путь к файлу с классами модели и размеры детектора.</p>
+<p>Тестирование проводилось на синтетическом изображении — модели кадра видеопотока, содержащего объект интереса.
+Режим отображения меток используется только в режиме отладки при включенном флаге <code class="docutils literal notranslate"><span class="pre">IS_DEBUG_LOG_ENABLED</span></code>.</p>
+<p>Результат работы детектора:</p>
+<a class="reference internal image-reference" href="../_images/objcourse_result.jpg"><img alt="Тестовое изображение с результатом работы" src="../_images/objcourse_result.jpg" style="width: 200px;" />
+</a>
+<p>Для выполнения основных функций модуля используются вызовы методов класса <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code>, как показано ниже.
+Подразумевается, что тестовое изображение предварительно загружено в переменную <code class="docutils literal notranslate"><span class="pre">cv::Mat</span> <span class="pre">frameShip</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Подсчет объектов</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">objCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">objcourse</span><span class="o">-&gt;</span><span class="n">getObjectCount</span><span class="p">(</span><span class="n">frameShip</span><span class="p">);</span>
+
+<span class="c1">// Расчет курса</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">objAngle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">objcourse</span><span class="o">-&gt;</span><span class="n">getObjectCourse</span><span class="p">(</span><span class="n">frameShip</span><span class="p">,</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Метод <code class="docutils literal notranslate"><span class="pre">getObjectCount</span></code> принимает на вход кадр видеофрейма в формате <code class="docutils literal notranslate"><span class="pre">cv::Mat</span></code>
+и возвращает количество найденных объектов.</p>
+<p>Метод <code class="docutils literal notranslate"><span class="pre">getObjectCourse</span></code> принимает кадр видеофрейма, разрешение камеры по горизонтали (в пикселях) и угол обзора камеры,
+возвращая угловую поправку на текущий курс с учетом знака смещения.</p>
+</section>
+<section id="id3">
+<h2>Пример использования аугментации изображений<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>Модуль включает три основных этапа обработки данных: загрузку изображений, указание методов аугментации, сохранение результатов преобразования.
 На первом этапе осуществляется загрузка входных изображений в вектор с использованием функции <code class="docutils literal notranslate"><span class="pre">cv::imread</span></code>.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">inputImagesAugmetation</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
@@ -117,8 +148,8 @@
 <a class="reference internal image-reference" href="../_images/augmentation3.jpg"><img alt="Пример результата обработки" src="../_images/augmentation3.jpg" style="width: 200px;" />
 </a>
 </section>
-<section id="id3">
-<h2>Пример использования кластеризации<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="id4">
+<h2>Пример использования кластеризации<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p><em>Реализует алгоритмы кластеризации 3D-точек на основе данных стереокамер.</em></p>
 <p><strong>Загрузка данных</strong></p>
 <p><em>Загружает данные для кластеризации из файла.</em></p>
@@ -156,8 +187,8 @@
 <code class="docutils literal notranslate"><span class="pre">fl_gamma:</span> <span class="pre">0.17004397181410924</span></code>
 Здесь можно заметить обозначенные ранее параметры, которые необходимы для обучения моделей детекторов и классификаторов <em>YOLOv5</em>.</p>
 </section>
-<section id="id4">
-<h2>Пример использования детектирования объектов<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<section id="id5">
+<h2>Пример использования детектирования объектов<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <p><em>Реализует функционал для автоматического обучения детектора объектов.</em></p>
 <p><strong>Инициализация детектора</strong></p>
 <p><em>Инициализирует детектор с заданными параметрами.</em></p>
@@ -183,8 +214,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id5">
-<h2>Пример использования предобработки изображений<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<section id="id6">
+<h2>Пример использования предобработки изображений<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
 <p>Для подготовки входных параметров функции предобработки <code class="docutils literal notranslate"><span class="pre">preprocessingImage()</span></code> производится загрузка исходного изображения:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">imageIn</span><span class="p">;</span>
 <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">imageOut</span><span class="p">;</span>
@@ -244,39 +275,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id6">
-<h2>Программные функции библиотеки для подсчета количества объектов интереса по данным видеопотока в реальном масштабе времени и определения курса роботизированного аппарата на объект интереса<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>ship.bmp – кадр видеоряда с объектом интереса на изображении;</p></li>
-<li><p>ship.onnx – обученная модель в формате YOLO5;</p></li>
-<li><p>ship.names – текстовый файл с именами классов объектов интереса.</p></li>
-</ul>
-<p>Создание экземпляра класса осуществляется с помощью вызова конструктора:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv</span><span class="o">::</span><span class="n">ObjCourse</span><span class="w"> </span><span class="o">*</span><span class="n">objcourse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">ObjCourse</span><span class="p">(</span><span class="n">modelPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span><span class="w"> </span><span class="n">classPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">());</span>
-</pre></div>
-</div>
-<p>В качестве входных данных конструктор принимает полный путь к модели, полный путь к файлу с классами модели и размеры детектора.</p>
-<p>Тестирование проводилось на синтетическом изображении — модели кадра видеопотока, содержащего объект интереса.
-Режим отображения меток используется только в режиме отладки при включенном флаге <code class="docutils literal notranslate"><span class="pre">IS_DEBUG_LOG_ENABLED</span></code>.</p>
-<p>Результат работы детектора:</p>
-<a class="reference internal image-reference" href="../_images/objcourse_result.jpg"><img alt="Тестовое изображение с результатом работы" src="../_images/objcourse_result.jpg" style="width: 200px;" />
-</a>
-<p>Для выполнения основных функций модуля используются вызовы методов класса <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code>, как показано ниже.
-Подразумевается, что тестовое изображение предварительно загружено в переменную <code class="docutils literal notranslate"><span class="pre">cv::Mat</span> <span class="pre">frameShip</span></code>.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Подсчет объектов</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">objCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">objcourse</span><span class="o">-&gt;</span><span class="n">getObjectCount</span><span class="p">(</span><span class="n">frameShip</span><span class="p">);</span>
-
-<span class="c1">// Расчет курса</span>
-<span class="kt">float</span><span class="w"> </span><span class="n">objAngle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">objcourse</span><span class="o">-&gt;</span><span class="n">getObjectCourse</span><span class="p">(</span><span class="n">frameShip</span><span class="p">,</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>Метод <code class="docutils literal notranslate"><span class="pre">getObjectCount</span></code> принимает на вход кадр видеофрейма в формате <code class="docutils literal notranslate"><span class="pre">cv::Mat</span></code>
-и возвращает количество найденных объектов.</p>
-<p>Метод <code class="docutils literal notranslate"><span class="pre">getObjectCourse</span></code> принимает кадр видеофрейма, разрешение камеры по горизонтали (в пикселях) и угол обзора камеры,
-возвращая угловую поправку на текущий курс с учетом знака смещения.</p>
-</section>
 <section id="d-3d">
-<h2>4.9     Программные функции библиотеки для компьютерного стереозрения для определения координат 3D точек в сегментах идентифицированных объектов и восстановления 3D сцены по двумерным изображениям<a class="headerlink" href="#d-3d" title="Link to this heading"></a></h2>
+<h2>Программные функции библиотеки для компьютерного стереозрения для определения координат 3D точек в сегментах идентифицированных объектов и восстановления 3D сцены по двумерным изображениям<a class="headerlink" href="#d-3d" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>L1000.bmp, R1000.bmp – набор исходных изображений;</p></li>
 <li><p>(66a)_(960p)_NewCamStereoModule_Air.xml – xml-файл с параметрами камеры.</p></li>
