@@ -160,30 +160,440 @@
 </section>
 <section id="id3">
 <h2>Пример использования программных функций библиотеки для автоматической генерации конфигурационных файлов для моделей детекторов и классификаторов<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<p>112</p>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/configuration</span></code> библиотеки.</p>
+<p>Генерация конфигурационного файла для YOLOv5s с 80 классами представлена ниже:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">try</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">mrcv</span><span class="o">::</span><span class="n">YOLOv5GenerateConfig</span><span class="p">(</span><span class="n">mrcv</span><span class="o">::</span><span class="n">YOLOv5Model</span><span class="o">::</span><span class="n">YOLOv5s</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;yolov5s-coco.yaml&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ex</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>При успешной генерации без исключений, содержимое созданного конфигурационного файла <code class="docutils literal notranslate"><span class="pre">yolov5s-coco.yaml</span></code> приведено ниже:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">nc</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="nt">depth_multiple</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.33000000000000002</span>
+<span class="nt">width_multiple</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="nt">anchors</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">13</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">16</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">30</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">33</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">23</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">30</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">61</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">62</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">59</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">119</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">116</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">156</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">198</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">373</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">326</span><span class="p p-Indicator">]</span>
+<span class="nt">backbone</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">[[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Conv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">64</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Conv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">128</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">C3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">128</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Conv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">256</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">C3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">256</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Conv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">512</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">9</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">C3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">512</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Conv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1024</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">C3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1024</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">SPPF</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1024</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">5</span><span class="p p-Indicator">]]]</span>
+<span class="nt">head</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">[[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Conv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">512</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">nn.Upsample</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">None</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">nearest</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">6</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Concat</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">C3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">512</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">False</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Conv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">256</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">nn.Upsample</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">None</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">nearest</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Concat</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">C3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">256</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">False</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Conv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">256</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">14</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Concat</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">C3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">512</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">False</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Conv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">512</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">10</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Concat</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">C3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1024</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">False</span><span class="p p-Indicator">]],</span>
+<span class="w">   </span><span class="p p-Indicator">[[</span><span class="nv">17</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">20</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">23</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">Detect</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">nc</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">anchors</span><span class="p p-Indicator">]]]</span>
+</pre></div>
+</div>
+<p>Здесь можно заметить обозначенные ранее атрибуты, которые необходимы для конфигурации моделей детекторов и классификаторов YOLOv5.</p>
 </section>
 <section id="id4">
 <h2>Пример использования программных функций библиотеки для автоматического обучения нейронной сети для детекции и идентификации объектов<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
-<p>1112</p>
+<p>Пример использования модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/autodetector</span></code> библиотеки.
+В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся входные данные для демонстрации работы функции:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">autodetector.pt</span></code> – обученная модель в формате YOLO4_tiny;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">voc_classes.txt</span></code> – текстовый файл с именами классов объектов интереса;</p></li>
+<li><p>изображения в формате <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> для обучения и валидации модели;</p></li>
+<li><p>файлы меток классов к изображениям в формате <code class="docutils literal notranslate"><span class="pre">.xml</span></code>.</p></li>
+</ul>
+<p>Для выполнения основных функций модуля используются вызовы методов класса <code class="docutils literal notranslate"><span class="pre">mrcv::Detector</span></code>, как это показано ниже.
+Сперва необходимо объявление экземпляра класса <code class="docutils literal notranslate"><span class="pre">mrcv::Deteсtor</span> <span class="pre">detector</span></code>, после чего вызов метода
+<code class="docutils literal notranslate"><span class="pre">detector.Initialize(devID,</span> <span class="pre">width,</span> <span class="pre">height,</span> <span class="pre">nameListPath)</span></code> для инициализации модели.</p>
+<p>Входные аргументы:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">devID</span></code> – ID устройства, на котором будет исполняться функционал модели,
+ID &lt; 0 – исполнение на CPU, ID &gt;= 0 – исполнение на GPU с выбором конкретного устройства;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">width</span> <span class="pre">×</span> <span class="pre">height</span></code> – разрешение входного изображения после масштабирования;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nameListPath</span></code> – путь к текстовому файлу с именами классов объектов интереса.</p></li>
+</ul>
+<p>Метод <code class="docutils literal notranslate"><span class="pre">AutoTrain</span></code> библиотеки принимает:</p>
+<ul class="simple">
+<li><p>путь к обучающей и валидационной выборкам;</p></li>
+<li><p>тип изображения в этих выборках (например, <code class="docutils literal notranslate"><span class="pre">.jpg</span></code>, <code class="docutils literal notranslate"><span class="pre">.png</span></code> и др.);</p></li>
+<li><p>векторы значений гиперпараметров: количества эпох, размеров батча, скорости обучения;</p></li>
+<li><p>путь к предварительно обученной модели и путь для сохранения итоговой модели.</p></li>
+</ul>
+<p>Пример использования методов:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv</span><span class="o">::</span><span class="n">Detector</span><span class="w"> </span><span class="n">detector</span><span class="p">;</span>
+<span class="n">detector</span><span class="p">.</span><span class="n">Initialize</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">416</span><span class="p">,</span><span class="w"> </span><span class="mi">416</span><span class="p">,</span><span class="w"> </span><span class="n">vocClassesPath</span><span class="p">.</span><span class="n">string</span><span class="p">());</span>
+<span class="n">detector</span><span class="p">.</span><span class="n">AutoTrain</span><span class="p">(</span>
+<span class="w">    </span><span class="n">datasetPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span>
+<span class="w">    </span><span class="s">&quot;.jpg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0E-4F</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="n">pretrainedModelPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">modelSavePath</span><span class="p">.</span><span class="n">u8string</span><span class="p">()</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Тестирование производилось на взятой из открытого источника выборке, состоящей из <strong>3224 изображений для обучения</strong> и <strong>907 изображений для валидации</strong>.</p>
+<p>Результат работы функции автоматического обучения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Training with epochs: 10, batch size: 4, learning rate: 0.001
+Epoch: 0, Training Loss: 9.74461
+Epoch: 0, Valid Loss: 1.067471
+...
+Epoch: 9, Training Loss: 0.498858
+Epoch: 9, Valid Loss: 0.688751
+
+Training with epochs: 10, batch size: 4, learning rate: 0.0001
+...
+Epoch: 9, Training Loss: 0.295652
+Epoch: 9, Valid Loss: 0.416149
+
+Training with epochs: 10, batch size: 8, learning rate: 0.001
+...
+Epoch: 9, Training Loss: 0.169151
+Epoch: 9, Valid Loss: 0.1421471
+
+Training with epochs: 10, batch size: 8, learning rate: 0.0001
+...
+Epoch: 9, Training Loss: 0.1198785
+Epoch: 9, Valid Loss: 0.1454247
+
+Training with epochs: 15, batch size: 4, learning rate: 0.001
+...
+Epoch: 14, Training Loss: 0.367891
+Epoch: 14, Valid Loss: 0.549404
+
+Training with epochs: 15, batch size: 4, learning rate: 0.0001
+...
+Epoch: 14, Training Loss: 0.208666
+Epoch: 14, Valid Loss: 0.542158
+
+Training with epochs: 15, batch size: 8, learning rate: 0.001
+...
+Epoch: 14, Training Loss: 0.1019419
+Epoch: 14, Valid Loss: 0.1554376
+
+Training with epochs: 15, batch size: 8, learning rate: 0.0001
+...
+Epoch: 14, Training Loss: 0.0939302
+Epoch: 14, Valid Loss: 0.1397133
+
+Training with epochs: 30, batch size: 4, learning rate: 0.001
+...
+Epoch: 29, Training Loss: 0.2111429
+Epoch: 29, Valid Loss: 0.655723
+
+Training with epochs: 30, batch size: 4, learning rate: 0.0001
+...
+Epoch: 29, Training Loss: 0.0957526
+Epoch: 29, Valid Loss: 0.643364
+
+Training with epochs: 30, batch size: 8, learning rate: 0.001
+...
+Epoch: 29, Training Loss: 0.1048645
+Epoch: 29, Valid Loss: 0.1644395
+
+Training with epochs: 30, batch size: 8, learning rate: 0.0001
+...
+Epoch: 29, Training Loss: 0.0414545
+Epoch: 29, Valid Loss: 0.173299
+
+Best hyperparameters:
+Epochs: 30
+Batch size: 8
+Learning rate: 0.001
+Best validation loss: 0.127668
+
+Epoch: 0, Training Loss: 0.1494259
+Epoch: 0, Valid Loss: 0.1652038
+...
+Epoch: 29, Training Loss: 0.1037284
+Epoch: 29, Valid Loss: 0.136483
+</pre></div>
+</div>
+<p>Вывод:
+Из текста вывода видно, что за время работы функции было проведено <strong>13 итераций обучения</strong>, включая итоговую.
+При заданных значениях гиперпараметров <strong>минимальное значение функции потерь (0.127668)</strong> было достигнуто с использованием следующих параметров:</p>
+<ul class="simple">
+<li><p>Количество эпох: 30</p></li>
+<li><p>Размер батча: 8</p></li>
+<li><p>Темп обучения: 0.001</p></li>
+</ul>
+<p>Время обучения составило <strong>6 часов 13 минут</strong> при указанных параметрах.</p>
 </section>
 <section id="id5">
 <h2>Пример использования программных функций библиотеки для детектирования аварийной ситуации технологического объекта<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
-<p>11</p>
+<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/emergency_detector</span></code> библиотеки.
+В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> представлены выборки с данными о повреждёнными трубами (<code class="docutils literal notranslate"><span class="pre">pipes</span></code>).
+Из выборки взяты изображения для демонстрации работы функции. В той же директории находятся входные данные:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pipes/test/burst_augment_56_blur45_jpg.rf.714ba15fef8cf1f9ebcc19bbdb07dd2a.jpg</span></code> – изображение с повреждённым объектом;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">emergency_detector.pt</span></code> – обученная модель в формате YOLO4_tiny;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pipes/voc_classes.txt</span></code> – текстовый файл с именами классов, характеризующих возможные аварийные ситуации.</p></li>
+</ul>
+<p>Рисунок А.4.3 – Тестовое изображение для демонстрации работы функции:</p>
+<img alt="Тестовое изображение с повреждённой трубой" class="align-center" src="../_images/figure452.jpg" />
+<p>Использование функций</p>
+<p>Для выполнения основных функций модуля используются вызовы методов класса <code class="docutils literal notranslate"><span class="pre">mrcv::Detector</span></code>, как это показано ниже.
+Сначала необходимо создать экземпляр класса <code class="docutils literal notranslate"><span class="pre">mrcv::Detector</span> <span class="pre">detector</span></code>, затем вызвать метод
+<code class="docutils literal notranslate"><span class="pre">detector.Initialize(devID,</span> <span class="pre">width,</span> <span class="pre">height,</span> <span class="pre">nameListPath)</span></code> для инициализации модели.</p>
+<p><strong>Аргументы метода инициализации:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">devID</span></code> – ID устройства, на котором будет исполняться модель:
+<code class="docutils literal notranslate"><span class="pre">ID</span> <span class="pre">&lt;</span> <span class="pre">0</span></code> – исполнение на CPU, <code class="docutils literal notranslate"><span class="pre">ID</span> <span class="pre">&gt;=</span> <span class="pre">0</span></code> – на GPU с выбором конкретного устройства;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">width</span> <span class="pre">×</span> <span class="pre">height</span></code> – разрешение входного изображения после масштабирования;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nameListPath</span></code> – путь к файлу с именами классов объектов интереса.</p></li>
+</ul>
+<p><strong>Предполагается, что тестовое изображение предварительно загружено в переменную</strong> <code class="docutils literal notranslate"><span class="pre">cv::Mat</span> <span class="pre">image</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Детекция объектов на изображении</span>
+<span class="n">detector</span><span class="p">.</span><span class="n">Predict</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Параметры метода</strong> <code class="docutils literal notranslate"><span class="pre">Predict</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cv::Mat</span> <span class="pre">image</span></code> – изображение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">true</span></code> – флаг отображения ограничивающих рамок (bounding box);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.1</span></code> – порог доверительности (confidence threshold);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.3</span></code> – порог для NMS (Non-Maximum Suppression).</p></li>
+</ul>
+<p>Фрагмент технического лога</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>15:44:02 | INFO | Device is GPU 0
+15:44:02 | INFO | Model initializing is complete!
+15:44:03 | INFO | Starting detector...
+15:44:03 | INFO | Boxes detected: 0 with 0.954479 confidence
+15:44:03 | INFO | Boxes detected: 1 with 0.930952 confidence
+15:44:03 | INFO | Detector is complete!
+</pre></div>
+</div>
+<p>Из текста лога и на рисунке А.4.3 видно два обнаруженных места повреждения трубы.
+Доверительная вероятность обнаружения составила <strong>более 90%</strong>.
+Время работы:</p>
+<ul class="simple">
+<li><p>на системе с <strong>GPU</strong>: ~12,2 минуты;</p></li>
+<li><p>на системе с <strong>CPU</strong>: более <strong>2 часов</strong>.</p></li>
+</ul>
 </section>
 <section id="id6">
 <h2>Пример использования программных функций библиотеки для сопровождения объекта по данным системы компьютерного зрения с применением нейросетевого подхода к предсказанию положения объекта<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
-<p>13563</p>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/roi</span></code> библиотеки.</p>
+<p>Создание экземпляра класса осуществляется с помощью вызова конструктора:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv</span><span class="o">::</span><span class="n">Predictor</span><span class="w"> </span><span class="nf">predictor</span><span class="p">(</span><span class="n">hiddenSize</span><span class="p">,</span><span class="w"> </span><span class="n">layersNum</span><span class="p">,</span><span class="w"> </span><span class="n">predictorTrainPointsNum</span><span class="p">,</span><span class="w"> </span><span class="n">imgSize</span><span class="p">,</span><span class="w"> </span><span class="n">maxDeviation</span><span class="p">,</span><span class="w"> </span><span class="n">deviationThreshold</span><span class="p">,</span><span class="w"> </span><span class="n">avgScale</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>В качестве входных данных конструктор принимает:</p>
+<ul class="simple">
+<li><p>размер скрытых слоев сети,</p></li>
+<li><p>количество слоев сети,</p></li>
+<li><p>количество точек, на которых проводится первичное обучение сети,</p></li>
+<li><p>размер изображения, на котором сопровождается объект интереса,</p></li>
+<li><p>максимальное отклонение предсказания от предсказываемой величины,</p></li>
+<li><p>количество успешных предсказаний, при котором считается, что сеть достаточно натренирована,</p></li>
+<li><p>размер выборки для определения скользящего среднего предсказания.</p></li>
+</ul>
+<p>Для выполнения требований по быстродействию сети и точности предсказания определены следующие оптимальные значения параметров нейронной сети:</p>
+<ul class="simple">
+<li><p>размер скрытых слоев сети: <strong>20–25</strong></p></li>
+<li><p>количество слоев сети: <strong>1</strong></p></li>
+<li><p>максимальное отклонение сильно варьируется в зависимости от характера перемещения объекта на изображении.
+Для быстрых объектов оптимально значение не меньше <strong>150–200</strong>, для медленных — <strong>10–30</strong>.</p></li>
+</ul>
+<p>Остальные параметры либо зависят от контекста применения, либо предварительно инициализируются с оптимальными значениями.</p>
+<p>Тестирование проводилось на синтетических данных — предсказывались траектории синусоиды и окружности.
+Эти виды траекторий выбраны из-за простоты настройки и их нелинейной зависимости параметров, что усложняет предсказание и имитирует реальные условия.</p>
+<p>Обучение модели производится методом:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">predictor</span><span class="p">.</span><span class="n">trainLSTMNet</span><span class="p">(</span><span class="n">coordinates</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Метод принимает параметр с набором пар координат размером <code class="docutils literal notranslate"><span class="pre">pointsNumber</span></code>.</p>
+<p>В основном цикле программы для определения следующего положения объекта вызывается:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">predictor</span><span class="p">.</span><span class="n">predictNextCoordinate</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Он возвращает пару следующих координат объекта.</p>
+<p>После получения реальной координаты вызывается:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">predictor</span><span class="p">.</span><span class="n">continueTraining</span><span class="p">(</span><span class="n">realCoordinate</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Он принимает текущую реальную координату и выполняет дообучение модели.</p>
+<p>Дополнительно можно запрашивать состояние сети и среднее отклонение предсказания:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">predictor</span><span class="p">.</span><span class="n">isWorkState</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Метод возвращает <code class="docutils literal notranslate"><span class="pre">true</span></code>, если ошибка предсказаний остаётся ниже заданного порога <code class="docutils literal notranslate"><span class="pre">failsafeDeviation</span></code> в течение <code class="docutils literal notranslate"><span class="pre">failsafeDeviationThreshold</span></code> итераций.</p>
+<p>Пример предсказания положения для траекторий синуса и окружности представлены на рисунке А.4.4:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure462.jpg"><img alt="../_images/figure462.jpg" class="align-center" src="../_images/figure462.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure462a.jpg"><img alt="../_images/figure462a.jpg" class="align-center" src="../_images/figure462a.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p>а)                                      б)</p>
+<p>Рисунок А.4.4 – Пример работы модуля предсказания положения для траекторий
+(а) – движение по синусу; (б) – движение по окружности</p>
+<p>По результатам выполнения методов предсказания координат на примерах видно:
+по мере дообучения предсказанные координаты (траектория <strong>синего цвета</strong>) приближаются к реальным (траектория <strong>красного цвета</strong>).
+Среднее отклонение составило <strong>7 пикселей</strong>.
+Время предсказания — <strong>33.3 мс</strong>, что соответствует <strong>30 кадрам/с</strong> видеопотока.</p>
 </section>
 <section id="roi">
 <h2>Пример использования программных функций библиотеки для построения региона интереса (ROI) с использованием предсказания перемещения объекта интереса на исходном изображении<a class="headerlink" href="#roi" title="Link to this heading"></a></h2>
-<p>234764</p>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/roi</span></code> библиотеки.</p>
+<p>Создание объекта класса <code class="docutils literal notranslate"><span class="pre">Optimizer</span></code> производится при помощи конструктора:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv</span><span class="o">::</span><span class="n">Optimizer</span><span class="w"> </span><span class="nf">optimizer</span><span class="p">(</span><span class="n">sampleSize</span><span class="p">,</span><span class="w"> </span><span class="n">epochs</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>В качестве входных данных конструктор принимает:</p>
+<ul class="simple">
+<li><p>количество наборов синтетических данных для обучения;</p></li>
+<li><p>количество эпох обучения сети.</p></li>
+</ul>
+<p>В основном цикле программы, когда состояние предиктора положения становится <code class="docutils literal notranslate"><span class="pre">true</span></code>
+(<code class="docutils literal notranslate"><span class="pre">predictor.isWorkState()</span></code>), необходимо вызвать метод:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">roiSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">optimizer</span><span class="p">.</span><span class="n">optimizeRoiSize</span><span class="p">(</span>
+<span class="w">    </span><span class="n">realCoordinate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">predictedCoordinate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">objectSize</span><span class="p">,</span>
+<span class="w">    </span><span class="n">predictor</span><span class="p">.</span><span class="n">getMovingAverageDeviation</span><span class="p">()</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Если значение размера региона интереса (ROI) отлично от нуля, значит определение размера прошло успешно,
+и размер ROI соответствует критерию:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>roiSize ≥ objectSize * 1.1
+</pre></div>
+</div>
+<p>Проверим работу оптимизатора для объекта размером <strong>100 пикселей</strong>,
+данные о его перемещении получим из примера работы предиктора:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Optimized ROI size: 153.083
+</pre></div>
+</div>
+<p>Выведем регион интереса с координатами центра, полученными при помощи методов класса <code class="docutils literal notranslate"><span class="pre">Predictor</span></code>
+и размером, полученным при помощи класса <code class="docutils literal notranslate"><span class="pre">Optimizer</span></code>. Для получения ROI воспользуемся функцией:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">roi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">extractROI</span><span class="p">(</span><span class="n">imgR</span><span class="p">,</span><span class="w"> </span><span class="n">toPoint</span><span class="p">(</span><span class="n">predictedCoordinate</span><span class="p">),</span><span class="w"> </span><span class="p">{</span><span class="n">roiSize</span><span class="p">,</span><span class="w"> </span><span class="n">roiSize</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>В функцию передаются:</p>
+<ul class="simple">
+<li><p>исходное изображение,</p></li>
+<li><p>предсказанные координаты объекта интереса,</p></li>
+<li><p>оптимальный размер ROI.</p></li>
+</ul>
+<p>Регион имеет <strong>квадратную форму</strong>, поскольку объект представляет собой <strong>окружность диаметром 100 пикселей</strong>.
+Полученный ROI представлен на рисунке А.4.5:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure472.jpg"><img alt="../_images/figure472.jpg" class="align-center" src="../_images/figure472.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure472a.jpg"><img alt="../_images/figure472a.jpg" class="align-center" src="../_images/figure472a.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p>(а)                                     (б)</p>
+<p>Рисунок А.4.5 – Результат вычисления региона интереса (ROI)
+(а) – траектория; (б) – объект</p>
+<p><strong>Вывод:</strong>
+Из результатов построения следует, что размер ROI подобран <strong>оптимально</strong>,
+так как при работе предиктора объект <strong>не выходил за пределы региона интереса</strong>.</p>
 </section>
 <section id="id7">
 <h2>Пример использования программных функций библиотеки для предварительной обработки изображений (автоматическая коррекция контраста и яркости, исправление геометрических искажений)<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
-<p>123763</p>
+<p>Пример использования функций модуля размещён в папке examples/imgpreprocessing/ библиотеки.</p>
+<p>Для подготовки входных параметров функции предобработки <code class="docutils literal notranslate"><span class="pre">preprocessingImage()</span></code> производится загрузка исходного изображения:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">imageIn</span><span class="p">;</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">imageOut</span><span class="p">;</span>
+<span class="n">imageIn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">&quot;./files/seabed.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_COLOR</span><span class="p">);</span>
+<span class="n">imageOut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">imageIn</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">writeLog</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> imageIn channels = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">imageIn</span><span class="p">.</span><span class="n">channels</span><span class="p">()));</span>
+</pre></div>
+</div>
+<p>Формируется список применяемых методов предобработки:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">mrcv</span><span class="o">::</span><span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">&gt;</span><span class="w"> </span><span class="n">metodImagePerProcessinBrightnessContrast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">mrcv</span><span class="o">::</span><span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">::</span><span class="n">NOISE_FILTERING_01_MEDIAN_FILTER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mrcv</span><span class="o">::</span><span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">::</span><span class="n">BALANCE_CONTRAST_10_LAB_CLAHE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mrcv</span><span class="o">::</span><span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">::</span><span class="n">SHARPENING_02</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mrcv</span><span class="o">::</span><span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">::</span><span class="n">BRIGHTNESS_LEVEL_DOWN</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mrcv</span><span class="o">::</span><span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">::</span><span class="n">NONE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mrcv</span><span class="o">::</span><span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">::</span><span class="n">CORRECTION_GEOMETRIC_DEFORMATION</span><span class="p">,</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Далее, применяется функция предобработки:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">preprocessingImage</span><span class="p">(</span><span class="n">imageOut</span><span class="p">,</span><span class="w"> </span><span class="n">metodImagePerProcessin</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;./files/fileCameraParameters.xml&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Сохранение результата в файл:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">String</span><span class="w"> </span><span class="n">imageOutputFilePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;./files/outImages/test.png&quot;</span><span class="p">;</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">imwrite</span><span class="p">(</span><span class="n">imageOutputFilePath</span><span class="p">,</span><span class="w"> </span><span class="n">imageOut</span><span class="p">);</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">writeLog</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> результат преодобработки сохранён: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">imageOutputFilePath</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Отображение результатов на экране:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">CoefShowWindow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">resize</span><span class="p">(</span><span class="n">imageIn</span><span class="p">,</span><span class="w"> </span><span class="n">imageIn</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Size</span><span class="p">(</span><span class="kt">double</span><span class="p">(</span><span class="n">imageIn</span><span class="p">.</span><span class="n">cols</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">CoefShowWindow</span><span class="p">),</span>
+<span class="w">                                      </span><span class="kt">double</span><span class="p">(</span><span class="n">imageIn</span><span class="p">.</span><span class="n">rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">CoefShowWindow</span><span class="p">)),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">INTER_LINEAR</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">resize</span><span class="p">(</span><span class="n">imageOut</span><span class="p">,</span><span class="w"> </span><span class="n">imageOut</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Size</span><span class="p">(</span><span class="kt">double</span><span class="p">(</span><span class="n">imageOut</span><span class="p">.</span><span class="n">cols</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">CoefShowWindow</span><span class="p">),</span>
+<span class="w">                                        </span><span class="kt">double</span><span class="p">(</span><span class="n">imageOut</span><span class="p">.</span><span class="n">rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">CoefShowWindow</span><span class="p">)),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">INTER_LINEAR</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">&quot;imageIn&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">WINDOW_AUTOSIZE</span><span class="p">);</span>
+<span class="n">imshow</span><span class="p">(</span><span class="s">&quot;imageIn&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">imageIn</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">&quot;imageOut&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">WINDOW_AUTOSIZE</span><span class="p">);</span>
+<span class="n">imshow</span><span class="p">(</span><span class="s">&quot;imageOut&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">imageOut</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Результаты предобработки подводных изображений:</p>
+<a class="reference internal image-reference" href="../_images/preprocessing.jpg"><img alt="Исходное изображение, результат предобработки" class="align-center" src="../_images/preprocessing.jpg" style="width: 200px;" />
+</a>
+<p>Пример фрагмента log-файла во время запуска примера:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>16:59:43 | INFO |  === НОВЫЙ ЗАПУСК ===
+16:59:43 | INFO | загружено изображение: ./files/img02.jfif :: 960x600x3
+16:59:43 | INFO | imageIn.channels = 3
+16:59:43 | INFO | NOISE_FILTERING_01_MEDIAN_FILTER, state = 0
+16:59:43 | INFO | BALANCE_CONTRAST_10_LAB_CLAHE, state = 0
+16:59:43 | INFO | SHARPENING_02, state = 0
+16:59:43 | INFO | BRIGHTNESS_LEVEL_DOWN, state = 0
+16:59:43 | INFO | CORRECTION_GEOMETRIC_DEFORMATION, state = 0
+16:59:43 | INFO | Предобработка изображения завершена (успешно)
+16:59:43 | INFO | результат предобработки сохранён: ./files/img02.jfif
+</pre></div>
+</div>
 </section>
 <section id="d-3d">
 <h2>Пример использования программных функций библиотеки для компьютерного стереозрения для определения координат 3D точек в сегментах идентифицированных объектов и восстановления 3D сцены по двумерным изображениям<a class="headerlink" href="#d-3d" title="Link to this heading"></a></h2>
+<p>Пример использования функций модуля размещён в папке examples/3dscene библиотеки.</p>
 <ul class="simple">
 <li><p>L1000.bmp, R1000.bmp – набор исходных изображений;</p></li>
 <li><p>(66a)_(960p)_NewCamStereoModule_Air.xml – xml-файл с параметрами камеры.</p></li>
@@ -234,80 +644,967 @@
 </section>
 <section id="id8">
 <h2>Пример использования программных функций библиотеки для служебных утилит работы с видеокамерами, в т.ч. калибровка (одиночная камера и стереокамера)<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
-<p>1231236</p>
+<p>Пример использования функций модуля представлен в папках:
+<code class="docutils literal notranslate"><span class="pre">examples/recordvideo</span></code>, <code class="docutils literal notranslate"><span class="pre">examples/calibration</span></code> и <code class="docutils literal notranslate"><span class="pre">examples/disparitymap</span></code>.</p>
+<p>Пример логирования</p>
+<p>Функция логирования создает файл с расширением <code class="docutils literal notranslate"><span class="pre">*.log</span></code> в одноимённой папке <code class="docutils literal notranslate"><span class="pre">log</span></code>,
+которая создается автоматически в корневой директории. Имя файла формируется как <code class="docutils literal notranslate"><span class="pre">dd-mm-yyyy.log</span></code>.</p>
+<p>Типы сообщений:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">LOGTYPE</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">DEBUG</span><span class="p">,</span><span class="w">      </span><span class="c1">// Отладка        DEBG</span>
+<span class="w">    </span><span class="n">ERROR</span><span class="p">,</span><span class="w">      </span><span class="c1">// Ошибка         ERRR</span>
+<span class="w">    </span><span class="n">EXCEPTION</span><span class="p">,</span><span class="w">  </span><span class="c1">// Исключение     EXCP</span>
+<span class="w">    </span><span class="n">INFO</span><span class="p">,</span><span class="w">       </span><span class="c1">// Информация     INFO</span>
+<span class="w">    </span><span class="n">WARNING</span><span class="w">     </span><span class="c1">// Предупреждение WARN</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Примеры вызова логирования:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv</span><span class="o">::</span><span class="n">writeLog</span><span class="p">(</span><span class="s">&quot;Create folder: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rightFramePath</span><span class="p">.</span><span class="n">u8string</span><span class="p">());</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">writeLog</span><span class="p">(</span><span class="s">&quot;Can&#39;t open the camera ID = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">rightCameraID</span><span class="p">),</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">LOGTYPE</span><span class="o">::</span><span class="n">ERROR</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Пример содержимого лог-файла:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>16:48:21 | DEBG | Images count: 5
+16:48:21 | INFO | Path to images: calibration_images
+16:48:21 | DEBG | Chessboard columns count: 9
+16:48:21 | DEBG | Chessboard rows count: 6
+16:48:21 | INFO | Square size: 20.100000
+16:58:47 | INFO | Path to file: c:\SourceCode\code-ai-400393\build\examples\calibr
+</pre></div>
+</div>
+<p>Пример записи видео</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">videoThread</span><span class="p">(</span><span class="n">mrcv</span><span class="o">::</span><span class="n">recordVideo</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sarganCV&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">CODEC</span><span class="o">::</span><span class="n">XVID</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="nf">counterThread</span><span class="p">(</span><span class="n">consoleCounter</span><span class="p">);</span>
+<span class="n">videoThread</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="n">counterThread</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>После выполнения будут созданы файлы вида: <code class="docutils literal notranslate"><span class="pre">sarganCV_12102024_000124.avi</span></code>.</p>
+<p>Пример калибровки камеры</p>
+<p>Параметры задаются в файле <code class="docutils literal notranslate"><span class="pre">config.dat</span></code>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">image_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">50</span>
+<span class="na">folder_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;calibration_images&quot;</span>
+<span class="na">keypoints_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9</span>
+<span class="na">keypoints_r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">6</span>
+<span class="na">square_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">24</span>
+</pre></div>
+</div>
+<p>После калибровки создается файл <code class="docutils literal notranslate"><span class="pre">calibration.xml</span></code> и сохраняются изображения в папках <code class="docutils literal notranslate"><span class="pre">L</span></code> и <code class="docutils literal notranslate"><span class="pre">R</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0.png
+1.png
+...
+N.png
+</pre></div>
+</div>
+<p>На рисунке А.4.14 представлен процесс интерактивной калибровки:</p>
+<a class="reference internal image-reference" href="../_images/figure410.jpg"><img alt="../_images/figure410.jpg" src="../_images/figure410.jpg" style="width: 100%;" />
+</a>
+<p>(а) – консольный вывод приложения;</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure410a.jpg"><img alt="../_images/figure410a.jpg" src="../_images/figure410a.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure410b.jpg"><img alt="../_images/figure410b.jpg" src="../_images/figure410b.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p>б)                                      в)</p>
+<p>Рисунок А.4.14 – Процесс интерактивной калибровки камеры:
+(б) – захват калибровочного шаблона левой камерой;
+(в) – захват шаблона правой камерой.</p>
+<p>Пример построения карты диспаратности</p>
+<p>Вызов функции:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv</span><span class="o">::</span><span class="n">disparityMap</span><span class="p">(</span>
+<span class="w">    </span><span class="n">disparitymap</span><span class="p">,</span><span class="w"> </span><span class="n">imageLeft</span><span class="p">,</span><span class="w"> </span><span class="n">imageRight</span><span class="p">,</span>
+<span class="w">    </span><span class="n">minDisparity</span><span class="p">,</span><span class="w"> </span><span class="n">numDisparities</span><span class="p">,</span><span class="w"> </span><span class="n">blockSize</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span>
+<span class="w">    </span><span class="n">disparityType</span><span class="p">,</span><span class="w"> </span><span class="n">colorMap</span><span class="p">,</span>
+<span class="w">    </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Параметры функции:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">disparitymap</span></code> – выходная карта (<code class="docutils literal notranslate"><span class="pre">cv::Mat</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">imageLeft</span></code>, <code class="docutils literal notranslate"><span class="pre">imageRight</span></code> – входные изображения;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">minDisparity</span></code> – рекомендовано <code class="docutils literal notranslate"><span class="pre">16</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numDisparities</span></code> – рекомендовано <code class="docutils literal notranslate"><span class="pre">160</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lambda</span></code>, <code class="docutils literal notranslate"><span class="pre">sigma</span></code> – параметры фильтрации (<code class="docutils literal notranslate"><span class="pre">sigma</span></code> ≈ <code class="docutils literal notranslate"><span class="pre">15</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">disparityType</span></code> – варианты: <code class="docutils literal notranslate"><span class="pre">ALL</span></code>, <code class="docutils literal notranslate"><span class="pre">BASIC_DISPARITY</span></code>, <code class="docutils literal notranslate"><span class="pre">BASIC_HEATMAP</span></code>, <code class="docutils literal notranslate"><span class="pre">FILTERED_DISPARITY</span></code>, <code class="docutils literal notranslate"><span class="pre">FILTERED_HEATMAP</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">colorMap</span></code> – например: <code class="docutils literal notranslate"><span class="pre">cv::COLORMAP_JET</span></code>, <code class="docutils literal notranslate"><span class="pre">VIRIDIS</span></code>, <code class="docutils literal notranslate"><span class="pre">TURBO</span></code>, <code class="docutils literal notranslate"><span class="pre">HOT</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">saveToFile</span></code> – сохранять ли карту;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">showImages</span></code> – отображать ли окна.</p></li>
+</ul>
+<p>Результаты работы представлены на рисунке А.4.15:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure410a1.jpg"><img alt="../_images/figure410a1.jpg" src="../_images/figure410a1.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure410a2.jpg"><img alt="../_images/figure410a2.jpg" src="../_images/figure410a2.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../_images/figure410a3.jpg"><img alt="../_images/figure410a3.jpg" src="../_images/figure410a3.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure410a4.jpg"><img alt="../_images/figure410a4.jpg" src="../_images/figure410a4.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure410a5.jpg"><img alt="../_images/figure410a5.jpg" src="../_images/figure410a5.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure410a6.jpg"><img alt="../_images/figure410a6.jpg" src="../_images/figure410a6.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p>а) LEFT  б) RIGHT    в) BASIC_DISPARITY  г) BASIC_HEATMAP    д) FILTERED_DISPARITY  е) FILTERED_HEATMAP</p>
+<p>Рисунок А.4.15 – Построение карты диспаратности:
+(а) – левое изображение;
+(б) – правое изображение;
+(в) – карта в оттенках серого;
+(г) – цветная карта (TURBO);
+(д) – отфильтрованная карта в сером;
+(е) – отфильтрованная цветная карта.</p>
+<p><strong>Примечание:</strong>
+Параметры карты должны быть настроены под конкретную стереопару.
+При использовании значений по умолчанию возможна потеря детализации.</p>
 </section>
 <section id="id9">
 <h2>Пример использования программных функций библиотеки для автоматического создания датасетов для обучения нейросети<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
-<p>34534535</p>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/imgcollection</span></code> библиотеки.
+Для запуска примера необходимо использовать основную функцию:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">getImagesFromYandex</span>
+</pre></div>
+</div>
+<p>Описание параметров</p>
+<p>Функция принимает следующие входные параметры:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">std::string</span> <span class="pre">queryString</span></code> – строка поискового запроса;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">minWidth</span></code> – минимальная ширина изображения;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">minHeight</span></code> – минимальная высота изображения;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::string</span> <span class="pre">templateName</span></code> – шаблон имени файла;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::string</span> <span class="pre">outputFolder</span></code> – путь к папке для сохранения изображений;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">separateDataset</span></code> – разделить выборку по папкам (<code class="docutils literal notranslate"><span class="pre">true</span></code>/<code class="docutils literal notranslate"><span class="pre">false</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">trainsetPercentage</span></code> – процент изображений для тренировочного набора;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">countFoto</span></code> – максимальное количество изображений;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">money</span></code> – режим использования API (платный/бесплатный);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::string</span> <span class="pre">key</span></code> – ключ доступа Yandex Cloud;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::string</span> <span class="pre">secretKey</span></code> – секретный ключ Yandex Cloud.</p></li>
+</ul>
+<p>Пример вызова функции:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">getImagesFromYandex</span><span class="p">(</span>
+<span class="w">    </span><span class="n">queryString</span><span class="p">,</span>
+<span class="w">    </span><span class="n">minWidth</span><span class="p">,</span>
+<span class="w">    </span><span class="n">minHeight</span><span class="p">,</span>
+<span class="w">    </span><span class="n">templateName</span><span class="p">,</span>
+<span class="w">    </span><span class="n">outputFolder</span><span class="p">,</span>
+<span class="w">    </span><span class="n">separateDataset</span><span class="p">,</span>
+<span class="w">    </span><span class="n">trainsetPercentage</span><span class="p">,</span>
+<span class="w">    </span><span class="n">countFoto</span><span class="p">,</span>
+<span class="w">    </span><span class="n">money</span><span class="p">,</span>
+<span class="w">    </span><span class="n">key</span><span class="p">,</span>
+<span class="w">    </span><span class="n">secretKey</span>
+<span class="p">);</span>
+</pre></div>
+</div>
 </section>
 <section id="id10">
 <h2>Пример использования программных функций библиотеки для интеллектуальной сегментации объектов интереса на изображениях<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
-<p>3453453457</p>
+<p>Пример использования функций модуля размещен в папках <code class="docutils literal notranslate"><span class="pre">examples/segmentationtest</span></code> и <code class="docutils literal notranslate"><span class="pre">examples/segmentationtrain</span></code> библиотеки.
+В папке <code class="docutils literal notranslate"><span class="pre">file</span></code> находятся необходимые входные данные:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">test</span></code> – изображения для проверки правильности обучения сети;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">train</span></code> – изображения для обучения сети;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weights</span></code> – файлы с весами обученной модели.</p></li>
+</ul>
+<p>Для подготовки набора данных использовались <strong>полигональные аннотации произвольной формы в формате VOC</strong>.
+Тестовые данные были размечены с использованием программы <a class="reference external" href="https://www.labelme.io/">Labelme</a>.</p>
+<p>Пример размеченного файла (формат <code class="docutils literal notranslate"><span class="pre">.json</span></code>):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4.5.7&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;flags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">  </span><span class="nt">&quot;shapes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ship&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;points&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">[</span><span class="mf">158.83582089552237</span><span class="p">,</span><span class="w"> </span><span class="mf">831.3134328358209</span><span class="p">],</span>
+<span class="w">        </span><span class="err">...</span>
+<span class="w">        </span><span class="p">[</span><span class="mf">164.8059701492537</span><span class="p">,</span><span class="w"> </span><span class="mf">871.6119402985074</span><span class="p">]</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;group_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;shape_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;polygon&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;flags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Обучение модели</p>
+<p>Для обучения модели используется функция:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Train</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">learningRate</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">epochs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">batchSize</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">train_valPath</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">imageType</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">savePath</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Параметры метода Train:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">learningRate</span></code> – скорость обучения;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epochs</span></code> – количество эпох;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batchSize</span></code> – размер батча;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">train_valPath</span></code> – путь к изображениям;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">imageType</span></code> – тип изображений (напр., <code class="docutils literal notranslate"><span class="pre">.jpg</span></code>, <code class="docutils literal notranslate"><span class="pre">.png</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">savePath</span></code> – путь к сохранению весов модели.</p></li>
+</ul>
+<p>Прогнозирование</p>
+<p>Для выполнения сегментации используется функция <code class="docutils literal notranslate"><span class="pre">Predict</span></code>.
+Пример вызова:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">segmentor</span><span class="p">.</span><span class="n">Initialize</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w"> </span><span class="mi">320</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;background&quot;</span><span class="p">,</span><span class="s">&quot;ship&quot;</span><span class="p">},</span><span class="w"> </span><span class="s">&quot;resnet34&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;../weights/resnet34.pt&quot;</span><span class="p">);</span>
+<span class="n">segmentor</span><span class="p">.</span><span class="n">LoadWeight</span><span class="p">(</span><span class="s">&quot;../weights/segmentor.pt&quot;</span><span class="p">);</span>
+<span class="n">segmentor</span><span class="p">.</span><span class="n">Predict</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ship&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Результат</strong> – маска изображения, в которой <strong>по пикселям</strong> определяется наличие объекта.</p>
+<p>Оценка качества</p>
+<p>Для количественной оценки эффективности методов сегментации использовалась <strong>Dice Coefficient Loss</strong>,
+которая показала результат:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Dice Score: 0.92%
+</pre></div>
+</div>
 </section>
 <section id="d">
 <h2>Пример использования программных функций библиотеки для реализации модифицированного алгоритма выделения связных компонент для кластеризации облака 3D точек<a class="headerlink" href="#d" title="Link to this heading"></a></h2>
-<p>678678678</p>
+<p><em>Реализует алгоритмы кластеризации 3D-точек на основе данных стереокамер.</em></p>
+<p><strong>Загрузка данных</strong></p>
+<p><em>Загружает данные для кластеризации из файла.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">DenseStereo</span><span class="o">::</span><span class="n">loadDataFromFile</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Выполнение кластеризации</strong></p>
+<p><em>Выполняет кластеризацию загруженных данных.</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">DenseStereo</span><span class="o">::</span><span class="n">makeClustering</span><span class="p">()</span>
+</pre></div>
+</div>
 </section>
 <section id="id11">
 <h2>Пример использования программных функций библиотеки для предварительной обработки изображений для модуля аугментации данных<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
-<p>0890893</p>
+<p>Модуль включает три основных этапа обработки данных: загрузку изображений, указание методов аугментации, сохранение результатов преобразования.
+На первом этапе осуществляется загрузка входных изображений в вектор с использованием функции <code class="docutils literal notranslate"><span class="pre">cv::imread</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">inputImagesAugmetation</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">inputImagesAugmetation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">&quot;files</span><span class="se">\\</span><span class="s">img0.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_COLOR</span><span class="p">);</span>
+<span class="n">inputImagesAugmetation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">&quot;files</span><span class="se">\\</span><span class="s">img1.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_COLOR</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="n">inputImagesAugmetation</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">&quot;files</span><span class="se">\\</span><span class="s">img9.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_COLOR</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>На этапе задания методов аугментации задаются названия методов, которые будут применяться к входным изображениям. В качестве методов преобразования могут выступать: поворот изображения на 45, 90, 270 или 315 градусов; зеркальное отображение по горизонтали, вертикали или по обоим направлениям.
+Ниже приведены методы аугментации изображений:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">&gt;</span><span class="w"> </span><span class="n">augmetationMethod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">ROTATE_IMAGE_90</span><span class="p">,</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">FLIP_HORIZONTAL</span><span class="p">,</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">FLIP_VERTICAL</span><span class="p">,</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">ROTATE_IMAGE_45</span><span class="p">,</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">ROTATE_IMAGE_315</span><span class="p">,</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">ROTATE_IMAGE_270</span><span class="p">,</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">FLIP_HORIZONTAL_AND_VERTICAL</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>Далее осуществляется вызов функции аугментации в формате</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">augmetation</span><span class="p">(</span><span class="n">inputImagesAugmetation</span><span class="p">,</span><span class="w"> </span><span class="n">outputImagesAugmetation</span><span class="p">,</span><span class="w"> </span><span class="n">augmetationMethod</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>После выполнения всех операций, модифицированные изображения сохраняются на диск с использованием функции <code class="docutils literal notranslate"><span class="pre">cv::imwrite(ss.str(),</span> <span class="pre">resultImage)</span></code></p>
+<p>Результат работы функции аугментации :</p>
+<a class="inline-images reference internal image-reference" href="../_images/augmentation1.jpg"><img alt="Пример результата обработки" class="inline-images" src="../_images/augmentation1.jpg" style="width: 200px;" />
+</a>
+<a class="reference internal image-reference" href="../_images/augmentation2.jpg"><img alt="Пример результата обработки" src="../_images/augmentation2.jpg" style="width: 200px;" />
+</a>
+<a class="reference internal image-reference" href="../_images/augmentation3.jpg"><img alt="Пример результата обработки" src="../_images/augmentation3.jpg" style="width: 200px;" />
+</a>
 </section>
 <section id="id12">
 <h2>Пример использования программных функций библиотеки для полуавтоматической разметки для аугментации данных с помощью нейронной сети<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
-<p>3457563</p>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/objcourse</span></code> библиотеки.
+В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся необходимые входные данные для демонстрации работы:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">images</span></code> – папка с датасетом для обучения автоэнкодера;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">result</span></code> – папка для сохранения результатов работы;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ship.onnx</span></code> – обученная модель в формате YOLOv5;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ship.names</span></code> – текстовый файл с именами классов.</p></li>
+</ul>
+<p>Генерация изображения</p>
+<p>Функция генерации изображения, выдающая итоговый тензор, вызывается следующим образом:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">gentensor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">neuralNetworkAugmentationAsTensor</span><span class="p">(</span>
+<span class="w">    </span><span class="n">imagePath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mf">3E-4</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Чтобы получить изображение после выполнения в виде объекта <code class="docutils literal notranslate"><span class="pre">cv::Mat</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">genImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">neuralNetworkAugmentationAsMat</span><span class="p">(</span>
+<span class="w">    </span><span class="n">imagePath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mf">3E-4</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong></p>
+<ul class="simple">
+<li><p>путь к изображению;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">height</span></code>, <code class="docutils literal notranslate"><span class="pre">width</span></code> – размеры изображения;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">200</span></code> – размерность скрытого пространства;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> – размерность латентного пространства;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3000</span></code> – размер пакета;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">32</span></code> – количество итераций;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3E-4</span></code> – коэффициент скорости обучения.</p></li>
+</ul>
+<p>Результат работы функции приведен на рисунке А.4.20:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure415a.jpg"><img alt="../_images/figure415a.jpg" class="align-center" src="../_images/figure415a.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure415b.jpg"><img alt="../_images/figure415b.jpg" class="align-center" src="../_images/figure415b.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Рисунок А.4.20 – Сгенерированное изображение после работы функции</p>
+<p>Полуавтоматическая разметка</p>
+<p>Функция полуавтоматической разметки вызывается следующим образом:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv</span><span class="o">::</span><span class="n">semiAutomaticLabeler</span><span class="p">(</span>
+<span class="w">    </span><span class="n">colorGenImage</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span>
+<span class="w">    </span><span class="n">resultPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">modelPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">classPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">()</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Параметры:</strong></p>
+<ul class="simple">
+<li><p>цветное изображение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">height</span></code>, <code class="docutils literal notranslate"><span class="pre">width</span></code> – размеры изображения;</p></li>
+<li><p>путь к папке для сохранения результата;</p></li>
+<li><p>путь к модели и классам YOLO.</p></li>
+</ul>
+<p>Также доступна перегрузка функции для работы с уже сохранённым изображением:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv</span><span class="o">::</span><span class="n">semiAutomaticLabeler</span><span class="p">(</span>
+<span class="w">    </span><span class="n">colorGenImage</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span>
+<span class="w">    </span><span class="n">resultPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">modelPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">classPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">()</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>После выполнения в папке <code class="docutils literal notranslate"><span class="pre">result</span></code> будет файл с разметкой <strong>в формате YOLO</strong> и изображение с нанесённой меткой.</p>
+<p>Результат работы функции приведён на рисунке А.4.21:</p>
+<p>Рисунок А.4.21 – Размеченное изображение после работы функции</p>
+<p><strong>Содержание файла разметки:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0 0.435937 0.422656 0.825 0.807813
+</pre></div>
+</div>
+<p>Первое значение – номер класса,
+остальные четыре – координаты (x, y, width, height) в относительных значениях.</p>
+<p>Фрагмент технического лога</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>22:56:28 | INFO | Loaded Images: 21
+22:56:29 | INFO | Training...
+22:57:18 | INFO | Training is DONE!
+22:57:18 | INFO | Encoding...
+22:57:18 | INFO | Decoding...
+22:57:18 | INFO | Generated image is DONE!
+22:58:55 | INFO | Confidences: 0.508250
+22:58:55 | INFO | Inference time: 0.455822
+22:58:56 | INFO | Labeling image is DONE!
+</pre></div>
+</div>
+<p>Из текста лога видно, что время обнаружения составило <strong>0.45 сек.</strong></p>
 </section>
 <section id="id13">
 <h2>Пример использования программных функций библиотеки для утилиты обработки и визуальной разметки изображений модуля аугментации данных<a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
-<p>2342346</p>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/labeler</span></code> библиотеки.</p>
+<p>Код, вызывающий утилиту разметки, представлен ниже:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">inputDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;images&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// Папка с изображениями</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">outputDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;labels&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Папка для сохранения разметки</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">YOLOv5LabelerProcessing</span><span class="p">(</span><span class="n">inputDir</span><span class="p">,</span><span class="w"> </span><span class="n">outputDir</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Результат работы функции показан на рисунке А.4.22:</p>
+<img alt="Размеченное изображение после работы функции" class="align-center" src="../_images/figure416.jpg" />
+<p>Рисунок А.4.22 – Размеченное изображение после работы функции</p>
+<p>При запуске кода появляется интерактивное окно для мультиклассовой разметки изображений с возможностью сохранения и корректировки данных.</p>
 </section>
 <section id="id14">
 <h2>Пример использования программных функций библиотеки для генерации новых изображений для формирования обучающей выборки нейросетевого модуля аугментации данных<a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
-<p>42342356</p>
+<p>Для демонстрации работы библиотеки был реализован тестовый сценарий, обрабатывающий 10 исходных изображений. Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/augmentation</span></code> библиотеки.</p>
+<p>Генерация аугментированных изображений обеспечивается тестовой программой, представленной ниже:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Тест пакетной аугментации</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">BatchAugmentationConfig</span><span class="w"> </span><span class="n">config</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">keep_original</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">total_output_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">random_seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+
+<span class="n">config</span><span class="p">.</span><span class="n">method_weights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">{</span><span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">FLIP_HORIZONTAL</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">ROTATE_IMAGE_90</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">BRIGHTNESS_CONTRAST_ADJUST</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">PERSPECTIVE_WARP</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="n">mrcv</span><span class="o">::</span><span class="n">AUGMENTATION_METHOD</span><span class="o">::</span><span class="n">COLOR_JITTER</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">},</span>
+<span class="p">};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">batchOutput</span><span class="p">;</span>
+<span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">batchAugmentation</span><span class="p">(</span><span class="n">inputImagesCopy</span><span class="p">,</span><span class="w"> </span><span class="n">batchOutput</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;files&quot;</span><span class="w"> </span><span class="n">FILE_SEPARATOR</span><span class="w"> </span><span class="s">&quot;batch_output&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>В результате выполнения было создано 100 новых изображений (включая 10 оригиналов). Распределение методов:</p>
+<ul class="simple">
+<li><p>20% горизонтальных отражений,</p></li>
+<li><p>20% поворотов на 90°,</p></li>
+<li><p>30% коррекций яркости/контраста,</p></li>
+<li><p>20% перспективных искажений,</p></li>
+<li><p>10% цветовых вариаций.</p></li>
+</ul>
+<p>Среднее время обработки составило около 15 мс на изображение (Intel Core i7-9700K).</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure417a1.jpg"><img alt="../_images/figure417a1.jpg" class="align-center" src="../_images/figure417a1.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure417a2.jpg"><img alt="../_images/figure417a2.jpg" class="align-center" src="../_images/figure417a2.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../_images/figure417a3.jpg"><img alt="../_images/figure417a3.jpg" class="align-center" src="../_images/figure417a3.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure417a4.jpg"><img alt="../_images/figure417a4.jpg" class="align-center" src="../_images/figure417a4.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure417a5.jpg"><img alt="../_images/figure417a5.jpg" class="align-center" src="../_images/figure417a5.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure417a6.jpg"><img alt="../_images/figure417a6.jpg" class="align-center" src="../_images/figure417a6.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Подписи к изображениям:</strong>
+- Верхний ряд: color_jitter
+- Средний ряд: brightness
+- Нижний ряд: perspective_transform</p>
+<p>Рисунок А.4.23 – Часть результатов пакетной аугментации</p>
+<p>В результате был автоматически сгенерирован лог-файл с детализацией операций. Менее подробный вывод о вероятностном распределении методов приведен ниже:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Batch</span> <span class="n">augmentation</span> <span class="n">completed</span><span class="o">.</span> <span class="n">Total</span><span class="p">:</span> <span class="mi">90</span> <span class="n">images</span><span class="o">.</span>
+  <span class="n">brightness</span><span class="p">:</span> <span class="mi">27</span> <span class="n">images</span> <span class="p">(</span><span class="mi">30</span><span class="o">%</span><span class="p">)</span>
+  <span class="n">color_jitter</span><span class="p">:</span> <span class="mi">9</span> <span class="n">images</span> <span class="p">(</span><span class="mi">10</span><span class="o">%</span><span class="p">)</span>
+  <span class="n">flip_h</span><span class="p">:</span> <span class="mi">18</span> <span class="n">images</span> <span class="p">(</span><span class="mi">20</span><span class="o">%</span><span class="p">)</span>
+  <span class="n">perspective</span><span class="p">:</span> <span class="mi">18</span> <span class="n">images</span> <span class="p">(</span><span class="mi">20</span><span class="o">%</span><span class="p">)</span>
+  <span class="n">rotate_90</span><span class="p">:</span> <span class="mi">18</span> <span class="n">images</span> <span class="p">(</span><span class="mi">20</span><span class="o">%</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Визуальный анализ результатов подтвердил сохранение семантического содержания изображений, естественность примененных преобразований, отсутствие артефактов обработки.</p>
+<p>Реализованная библиотека позволяет преобразовывать исходные изображения в их вариации с различными типами аугментации, что значительно увеличивает объем и разнообразие обучающих данных. Это особенно важно для глубокого обучения, где качество моделей напрямую зависит от репрезентативности тренировочного набора.</p>
+<p>Архитектурные решения обеспечивают:</p>
+<ul class="simple">
+<li><p>простоту добавления новых методов,</p></li>
+<li><p>возможность комбинирования методов,</p></li>
+<li><p>высокую производительность благодаря оптимизациям OpenCV,</p></li>
+<li><p>надежность за счет комплексной обработки ошибок и валидации параметров.</p></li>
+</ul>
 </section>
 <section id="id15">
 <h2>Пример использования программных функций библиотеки для комплексирования данных, поступающих от сенсоров различных видов<a class="headerlink" href="#id15" title="Link to this heading"></a></h2>
-<p>65363456</p>
+<p>Пример использования модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/sensorsfusion</span></code> библиотеки.</p>
+<p>В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся входные данные для демонстрации работы функции:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/Images/L_ГГ_ММ_ДД_ЧЧ_ММ_СС.png</span></code> – изображения, поступившие с системы технического зрения подводного аппарата;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">imuLog.csv</span></code> – файл с данными от инерциальных датчиков подводного аппарата;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usblLog.csv</span></code> – файл с данными от USBL модема;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fuseData.yaml</span></code> – итоговый файл с объединёнными данными.</p></li>
+</ul>
+<p>Основной метод <code class="docutils literal notranslate"><span class="pre">fuseSensorData</span></code> библиотеки принимает на вход пути к данным с указанных сенсоров, путь к директории для сохранения изображений, а также путь и имя файла, в который будут сохранены итоговые векторы. Последний параметр – флаг визуализации, при установленном значении выводится изображение с меткой и информацией о расположении устройства.</p>
+<p>Пример вызова метода:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">fuseSensorData</span><span class="p">(</span>
+<span class="w">    </span><span class="n">usblDataPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">imuDataPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">datasetPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">fuseTupleSavePath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span>
+<span class="w">    </span><span class="nb">true</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Тестирование производилось на собранных в рамках натурных испытаний данных.</p>
+<p>Формат данных с USBL-модема представлен следующим образом:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">18</span> <span class="mi">15</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mi">01</span> <span class="n">X</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="n">Y</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="n">Z</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="n">Azimuth</span><span class="p">(</span><span class="n">deg</span><span class="p">)</span> <span class="n">Local_depth</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="n">Remote_depth</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="n">Propagation_time</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">rs</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="n">rh</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">18</span> <span class="mi">15</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mi">36</span> <span class="mf">1.846667</span> <span class="mf">26.369645</span> <span class="mf">2.460589</span> <span class="mf">4.000000</span> <span class="mf">0.000000</span> <span class="mf">2.000000</span> <span class="mf">0.017699</span> <span class="mf">26.548500</span> <span class="mf">26.473059</span>
+</pre></div>
+</div>
+<p>Формат данных с IMU:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Date</span><span class="p">,</span><span class="n">AccelX</span><span class="p">,</span><span class="n">AccelY</span><span class="p">,</span><span class="n">AccelZ</span><span class="p">,</span><span class="n">GyroX</span><span class="p">,</span><span class="n">GyroY</span><span class="p">,</span><span class="n">GyroZ</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">18</span> <span class="mi">15</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mi">01</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">9.80</span><span class="p">,</span><span class="mf">0.001</span><span class="p">,</span><span class="mf">0.002</span><span class="p">,</span><span class="mf">0.0003</span>
+</pre></div>
+</div>
+<p>Комплексированные данные имеют следующее представление:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">timestamp</span><span class="p">:</span> <span class="mi">1739882496000</span>
+<span class="n">accel</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">9.8100000000000005</span><span class="p">]</span>
+<span class="n">gyro</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0011000000000000001</span><span class="p">,</span> <span class="mf">0.0020999999999999999</span><span class="p">,</span> <span class="mf">0.00020000000000000001</span><span class="p">]</span>
+<span class="n">position</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">relativeCoords</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.8466670000000001</span><span class="p">,</span> <span class="mf">26.369644999999998</span><span class="p">,</span> <span class="mf">2.4605890000000001</span><span class="p">]</span>
+<span class="n">azimuth</span><span class="p">:</span> <span class="mi">4</span>
+<span class="n">localDepth</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">remoteDepth</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">propagationTime</span><span class="p">:</span> <span class="mf">0.0176989995</span>
+<span class="n">rs</span><span class="p">:</span> <span class="mf">26.5485001</span>
+<span class="n">rh</span><span class="p">:</span> <span class="mf">26.4730587</span>
+<span class="n">image</span><span class="p">:</span> <span class="n">L_25</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">18_15</span><span class="o">-</span><span class="mi">41</span><span class="o">-</span><span class="mf">41.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>На рисунке А.4.24 представлена визуализация результата с нанесённой меткой:</p>
+<img alt="Визуализация результата работы функции" class="align-center" src="../_images/figure418.jpg" />
+<p>Рисунок А.4.24 – Визуализация результата</p>
 </section>
 <section id="id16">
 <h2>Пример использования программных функций библиотеки для формирования вектора признаков по данным, поступающим от сенсоров различных видов<a class="headerlink" href="#id16" title="Link to this heading"></a></h2>
-<p>867585</p>
+<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/extractfeature</span></code> библиотеки.</p>
+<p>В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> представлены выборки с объединёнными данными и изображениями от системы технического зрения:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/Images/L_ГГ_ММ_ДД_ЧЧ_ММ_СС.png</span></code> – изображения с системы технического зрения (СТЗ);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fuseData.yaml</span></code> – объединённые данные с нескольких сенсоров;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">extractedData.yaml</span></code> – файл с итоговыми векторами признаков.</p></li>
+</ul>
+<p>Для выполнения основных функций модуля используется вызов метода <code class="docutils literal notranslate"><span class="pre">extractFeatureVector</span></code>, как показано ниже.</p>
+<p>В качестве входных данных функция принимает:</p>
+<ul class="simple">
+<li><p>путь к файлу с объединёнными данными,</p></li>
+<li><p>путь к директории изображений,</p></li>
+<li><p>директорию для сохранения итогового вектора.</p></li>
+</ul>
+<p>Пример вызова функции:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">extractFeatureVector</span><span class="p">(</span>
+<span class="w">    </span><span class="n">fuseTupleSavePath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">datasetPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">extracedFeaturesPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">()</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Ниже приведён фрагмент технического лога библиотеки при работе указанных функций:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">12</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">27</span> <span class="o">|</span> <span class="n">INFO</span> <span class="o">|</span> <span class="n">Loaded</span> <span class="mi">90</span> <span class="n">fused</span> <span class="n">data</span> <span class="n">entries</span> <span class="kn">from</span><span class="w"> </span><span class="nn">YAML</span>
+<span class="mi">12</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">30</span> <span class="o">|</span> <span class="n">INFO</span> <span class="o">|</span> <span class="n">Saved</span> <span class="mi">90</span> <span class="n">feature</span> <span class="n">vectors</span> <span class="n">to</span> <span class="o">~</span>\<span class="n">mrcv</span>\<span class="n">build</span>\<span class="n">examples</span>\<span class="n">extractfeature</span>\<span class="n">files</span>\<span class="n">extractedData</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+<p>Пример вектора извлечённых признаков:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">features</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.500923336</span><span class="p">,</span> <span class="mf">0.513184786</span><span class="p">,</span> <span class="mf">0.501230299</span><span class="p">,</span> <span class="mf">0.0111111114</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.00200000009</span><span class="p">,</span> <span class="mf">0.0176989995</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.500500023</span><span class="p">,</span> <span class="mf">0.990500093</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.500175059</span><span class="p">,</span> <span class="mf">0.500334203</span><span class="p">,</span> <span class="mf">0.500031829</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0898506716</span><span class="p">,</span> <span class="mf">0.172127262</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mf">1.3717422e-06</span><span class="p">,</span> <span class="mf">2.55976875e-06</span><span class="p">]</span>
+</pre></div>
+</div>
 </section>
 <section id="id17">
 <h2>Пример использования программных функций библиотеки для интеграции функций библиотеки для системы технического зрения морского робототехнического комплекса с одиночной камерой<a class="headerlink" href="#id17" title="Link to this heading"></a></h2>
-<p>2345</p>
+<p>Для демонстрации работы библиотеки реализован тестовый сценарий, в котором происходит:</p>
+<ul class="simple">
+<li><p>захват изображения с камеры,</p></li>
+<li><p>предобработка,</p></li>
+<li><p>детекция объекта,</p></li>
+<li><p>получение маски,</p></li>
+<li><p>определение курса на объект.</p></li>
+</ul>
+<p>Для визуализации работы библиотеки в примере выводятся все последовательные этапы обработки, как показано на рис. А.4.25.</p>
+<img alt="Результаты работы модуля" class="align-center" src="../_images/figure420.jpg" />
+<p>Рисунок А.4.25 – Результаты работы модуля</p>
+<p>Инициализация модуля осуществляется с помощью конструктора:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv_vision</span><span class="o">::</span><span class="n">VisionModule</span><span class="w"> </span><span class="nf">vision_module</span><span class="p">(</span>
+<span class="w">    </span><span class="n">model_path</span><span class="p">,</span>
+<span class="w">    </span><span class="n">class_path</span><span class="p">,</span>
+<span class="w">    </span><span class="n">segmentor_weights</span><span class="p">,</span>
+<span class="w">    </span><span class="n">camera_params</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Входные параметры конструктора:</p>
+<ul class="simple">
+<li><p><strong>model_path</strong> (const std::string&amp;) – путь к файлу модели детекции объектов;</p></li>
+<li><p><strong>class_path</strong> (const std::string&amp;) – путь к файлу с названиями классов для детекции;</p></li>
+<li><p><strong>segmentor_weights</strong> (const std::string&amp;) – путь к файлу весов сегментатора;</p></li>
+<li><p><strong>camera_params</strong> (const std::string&amp;) – путь к файлу с параметрами калибровки камеры (матрица камеры, коэффициенты искажений).</p></li>
+</ul>
 </section>
 <section id="id18">
 <h2>Пример использования программных функций библиотеки для интеграции функций библиотеки для системы технического зрения морского робототехнического комплекса со стереокамерой<a class="headerlink" href="#id18" title="Link to this heading"></a></h2>
-<p>123124</p>
+<p>Для демонстрации работы библиотеки был реализован тестовый сценарий, в котором происходит захват изображения с двух камер, производится предобработка, детекция объекта, получение маски, определение курса на объект и построение карты диспаратности. Для визуализации работы библиотеки в примере сделан вывод всех последовательных этапов обработки как это показано на рис. А.4.26.</p>
+<img alt="Результаты работы модуля" class="align-center" src="../_images/figure421.jpg" />
+<p>Рисунок А.4.26 – Результаты работы модуля</p>
+<p>Для инициализации модуля используется конструктор:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv_vision</span><span class="o">::</span><span class="n">StereoVisionModule</span><span class="w"> </span><span class="nf">stereo_vision_module</span><span class="p">(</span>
+<span class="w">    </span><span class="n">model_path</span><span class="p">,</span>
+<span class="w">    </span><span class="n">class_path</span><span class="p">,</span>
+<span class="w">    </span><span class="n">segmentor_weights</span><span class="p">,</span>
+<span class="w">    </span><span class="n">stereo_params</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Входные параметры модуля:
+– model_path (const std::string&amp;) – путь к файлу модели детекции объектов.
+– class_path (const std::string&amp;) – путь к файлу с названиями классов для детекции.
+– segmentor_weights (const std::string&amp;) – путь к файлу весов сегментатора.
+– stereo_params (const std::string&amp;) – путь к файлу с параметрами калибровки камеры (матрица камеры, коэффициенты искажений).</p>
 </section>
 <section id="id19">
 <h2>Пример использования программных функций библиотеки для определения пространственного расположения объектов интереса<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
-<p>234742</p>
+<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/3dscene</span></code> библиотеки. В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся необходимые входные данные для демонстрации работы функции:</p>
+<ol class="arabic simple">
+<li><p>Видео файлы (камера движется, меняя ракурс, снимая объекты интереса под разными углами и на разном расстоянии):</p></li>
+</ol>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">String</span><span class="w"> </span><span class="n">videoPathCamera01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;./files/SV_01_left_20.mp4&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// путь к видео файлу камера 01</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">String</span><span class="w"> </span><span class="n">videoPathCamera02</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;./files/SV_02_right_20.mp4&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// путь к видео файлу камера 02</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Путь к файлу параметров модели камеры:</p></li>
+</ol>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pathToFileCameraParametrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;./files/(66a)_(960p)_NewCamStereoModule_Air.xml&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Файлы модели нейронной сети для обнаружения и распознания объектов:</p></li>
+</ol>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">filePathModelYoloNeuralNet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;./files/NeuralNet/yolov5n-seg.onnx&quot;</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">filePathClasses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;./files/NeuralNet/yolov5.names&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Обработка данных выполняется для каждого кадра видео последовательности.</p>
+<p>Вывод результата работы примера программы производится в виде записи видео файлов и диагностической информации в лог-файле:</p>
+<ul class="simple">
+<li><p><strong>DisparityMap.mp4</strong> – видео файл с результатами построения карты диспаратности для поиска 3D точек сцены.</p></li>
+<li><p><strong>3dSceene.mp4</strong> – видео файл с результатами поиска 3D точек сцены.</p></li>
+<li><p><strong>Result.mp4</strong> – видео файл с результатами обнаружения и распознания объектов и результатами определения координат 3D точек в сегментах идентифицированных объектов.</p></li>
+<li><p><strong>ResultPrimitives.mp4</strong> – видео файл с результатами оценки параметров и формы идентифицированных объектов в виде прорисовки проекций примитивов.</p></li>
+</ul>
+<img alt="Карта диспаратности" class="align-center" src="../_images/figure422a.jpg" />
+<p>Рисунок А.4.27 – Видео файл с результатами построения карты диспаратности</p>
+<img alt="3D точки сцены" class="align-center" src="../_images/figure422b.jpg" />
+<p>Рисунок А.4.28 – Видео файл с результатами поиска 3D точек сцены</p>
+<img alt="Обнаружение объектов" class="align-center" src="../_images/figure422c.jpg" />
+<p>Рисунок А.4.29 – Видео файл с результатами обнаружения и распознания объектов и результатами определения координат 3D точек в сегментах идентифицированных объектов</p>
+<img alt="Примитивы" class="align-center" src="../_images/figure422d.jpg" />
+<p>Рисунок А.4.30 – Видео файл с результатами оценки параметров и формы идентифицированных объектов в виде прорисовки проекций примитивов</p>
+<p>Ниже приведён фрагмент из log-файла библиотеки во время запуска примера использования:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>18:23:42 | INFO | === НОВЫЙ ЗАПУСК ===
+18:23:43 | INFO | 1.1 Чтение видео из файла Камера 01 (успешно)
+18:23:43 | INFO |     количество кадров файла Камера 01 =  324
+...
+18:31:29 | INFO | 11. Прорисовка примитивов идентифицированных объектов заданной формы  (успешно)
+18:31:30 | INFO | 11.2 Запись результирующего видео примитивов (успешно)
+</pre></div>
+</div>
 </section>
 <section id="id20">
 <h2>Пример использования программных функций библиотеки для реализации алгоритма оценки параметров идентифицированных объектов заданной формы<a class="headerlink" href="#id20" title="Link to this heading"></a></h2>
-<p>12345gh</p>
+<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/3dscene</span></code> библиотеки. В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся необходимые входные данные для демонстрации работы функции:
+<code class="docutils literal notranslate"><span class="pre">L1000.bmp</span></code>, <code class="docutils literal notranslate"><span class="pre">R1000.bmp</span></code> – набор исходных изображений;
+<code class="docutils literal notranslate"><span class="pre">(66a)_(960p)_NewCamStereoModule_Air.xml</span></code> – xml-файл с параметрами камеры.</p>
+<p>В примере использованы функции библиотеки для предыдущих задач:</p>
+<ol class="arabic simple">
+<li><p><strong>Функция предобработки изображений</strong>:
+<code class="docutils literal notranslate"><span class="pre">preprocessingImage()</span></code> – функции предварительной обработки изображений (автоматическая коррекция контраста и яркости, резкости).</p></li>
+<li><p><strong>Функция получения облаков 3D точек обнаруженных объектов по исходным изображениям</strong>:
+<code class="docutils literal notranslate"><span class="pre">find3dPointsInObjectsSegments()</span></code> – функции для определения координат 3D точек в сегментах идентифицированных объектов и восстановления 3D сцены по двумерным изображениям.</p></li>
+</ol>
+<p>После получения облаков 3D точек объектов используются описанные выше функции для решения задачи оценки параметров идентифицированных объектов заданной формы:
+<code class="docutils literal notranslate"><span class="pre">detectObjectPrimitives()</span></code>
+<code class="docutils literal notranslate"><span class="pre">drawPrimitives()</span></code></p>
+<p>Затем в примере реализован вывод результатов в виде изображений (через функцию библиотеки <code class="docutils literal notranslate"><span class="pre">showImage()</span></code>) и данных в лог-файле.
+Вывод результата работы примера программы представлен на рис. А.4.31 – А.4.34:</p>
+<img alt="Экспериментальный стенд" class="align-center" src="../_images/figure423a.jpg" />
+<p>Рисунок А.4.31 – Фотография экспериментального стенда и стереопара со стереокамеры</p>
+<img alt="Обнаруженные объекты по z" class="align-center" src="../_images/figure423b.jpg" />
+<p>Рисунок А.4.32 – Результат обнаружения объектов с координатой по z (по дальности)</p>
+<img alt="3D сцена и облака точек" class="align-center" src="../_images/figure423c.jpg" />
+<p>Рисунок А.4.33 – 3D сцена и облака 3D точек обнаруженных объектов</p>
+<img alt="Проекции примитивов" class="align-center" src="../_images/figure423d.jpg" />
+<p>Рисунок А.4.34 – Изображение обнаруженных объектов и изображения с проекциями примитивов объектов</p>
+<p>Ниже приведён фрагмент из log-файла библиотеки во время запуска примера использования:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>13:36:51 | INFO | === НОВЫЙ ЗАПУСК ===
+13:36:51 | INFO | 1. Загрузка изображений из файла (успешно)
+13:36:51 | INFO |     загружено изображение: ./files/L1000.bmp :: 960x600x3
+...
+13:36:53 | INFO | 6.5 Проекция 3D сцены на 2D изображение для вывода на экран (успешно)
+</pre></div>
+</div>
+<p>На рис. А.4.31 – А.4.34 и из текста лога можно сделать вывод, что осуществлена оценка параметров идентифицированных объектов заданной формы.</p>
 </section>
 <section id="id21">
 <h2>Пример использования программных функций библиотеки для предварительной обработки изображений (удаление шумов, морфологическая обработка)<a class="headerlink" href="#id21" title="Link to this heading"></a></h2>
-<p>gdfsg2</p>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/morphologyImage</span></code> библиотеки. В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся необходимые входные данные для демонстрации работы функции:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">closing.png</span></code> – пример изображения для наглядной демонстрации морфологического замыкания;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gradient.png</span></code> – пример для наглядной демонстрации выделения границ объектов на изображении;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j.png</span></code> – пример изображения для наглядной демонстрации морфологической эрозии;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">opening.png</span></code> – пример изображения для наглядной демонстрации морфологического размыкания.</p></li>
+</ul>
+<p>В качестве выходных данных функция создает файл <code class="docutils literal notranslate"><span class="pre">out.png</span></code>, которое является результирующим изображением.
+Примеры работающих алгоритмов обработки изображений представлены на рис. А.4.35.</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure424a1.jpg"><img alt="../_images/figure424a1.jpg" src="../_images/figure424a1.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure424a2.jpg"><img alt="../_images/figure424a2.jpg" src="../_images/figure424a2.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+<tr class="row-even"><td><p>Изображение до обработки</p></td>
+<td><p>Изображение после применения морфологического размыкания</p></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure424a3.jpg"><img alt="../_images/figure424a3.jpg" src="../_images/figure424a3.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure424a4.jpg"><img alt="../_images/figure424a4.jpg" src="../_images/figure424a4.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+<tr class="row-even"><td><p>Изображение до обработки</p></td>
+<td><p>Изображение после применения морфологического градиента</p></td>
+</tr>
+</tbody>
+</table>
+<p>Рисунок А.4.35 – Демонстрация работы алгоритмов морфологической обработки</p>
+<p>Для запуска примера необходимо использовать основную функцию <code class="docutils literal notranslate"><span class="pre">morphologyImage</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">morphologyImage</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">METOD_MORF</span><span class="o">::</span><span class="n">OPEN</span><span class="p">,</span><span class="w"> </span><span class="n">morph_size</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>В качестве входных параметров функция принимает параметры:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cv::Mat</span> <span class="pre">image</span></code> – исходное изображение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::string</span> <span class="pre">out</span></code> – путь для нового файла;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mrcv::METOD_MORF</span> <span class="pre">metod</span></code> – метод преобразования;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">morph_size</span></code> – размер преобразования;</p></li>
+</ul>
+<p>Результатом работы функции будет создан новый файл изображения с примененными морфологическими преобразованиями.</p>
 </section>
 <section id="id22">
 <h2>Пример использования программных функций библиотеки для анализа изображений для выявления изменения состояния подводных археологических объектов<a class="headerlink" href="#id22" title="Link to this heading"></a></h2>
-<p>sadfas2</p>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/compareImages</span></code> библиотеки. В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся два тестовых файла для демонстрации работы функции.</p>
+<p>В качестве входных данных функция возвращает значение в процентном соотношении, насколько эти два изображения идентичны. Для запуска примера необходимо использовать основную функцию <code class="docutils literal notranslate"><span class="pre">compareImages</span></code>.</p>
+<p>В качестве входных параметров функция принимает параметры:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cv::Mat</span> <span class="pre">img1</span></code> – первое изображение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv::Mat</span> <span class="pre">img2</span></code> – второе изображение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">methodCompare</span></code> – метод сравнения.</p></li>
+</ul>
+<p>Пример использования функции:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">compareImages</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span><span class="w"> </span><span class="n">img2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Результатом работы функции будет дан числовой ответ от 0 до 1:</p>
+<p><strong>Диапазон выходных значений:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code> – полная корреляция (гистограммы идентичны);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code> – отсутствие линейной зависимости.</p></li>
+</ul>
+<p>На рис. А.4.36 представлены тестовые изображения, использовавшиеся для тестирования работы функции.</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure425a.jpg"><img alt="../_images/figure425a.jpg" src="../_images/figure425a.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure425b.jpg"><img alt="../_images/figure425b.jpg" src="../_images/figure425b.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+<tr class="row-even"><td><p>Исходное изображение</p></td>
+<td><p>Измененное изображение</p></td>
+</tr>
+</tbody>
+</table>
+<p>Рисунок А.4.36 – Исходные изображения для тестирования функции сравнения изображений</p>
+<p>Результат работы алгоритма показал коэффициент корреляции <strong>0.94</strong> схожести.</p>
 </section>
 <section id="id23">
 <h2>Пример использования программных функций библиотеки для реализации алгоритма оценки геометрических размеров (габаритов) видимой части идентифицированных объектов<a class="headerlink" href="#id23" title="Link to this heading"></a></h2>
-<p>safasdf</p>
+<p>В соответствии со структурой информационного кадра облака 3D точек в качестве входных данных использовались файлы в текстовом формате, в котором данные разделены с помощью табуляции. Фрагмент файла с данными приведен на рис. А.4.38.</p>
+<img alt="Исходный файл облака 3D точек" class="align-center" src="../_images/figure426a.jpg" />
+<p>Рисунок А.4.38 – Исходный файл с данными облака 3D точек</p>
+<p>Для загрузки данных из облака 3D точек и парсинга данных в соответствующие структуры использовалась функция</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">* @brief Загрузка данных облака 3D точек для расчета геометрии объекта</span>
+<span class="cm">* @param pathtofile - полный путь к файлу с данными</span>
+<span class="cm">* @param cluster - номер кластера для выборки (по умолчанию = 0)</span>
+<span class="cm">* @param rows - количество строк cvMat объекта (по умолчанию = 0)</span>
+<span class="cm">* @param cols - количество столбцов cvMat объекта (по умолчанию = 0)</span>
+<span class="cm">* @param norm - флаг нормализации данных, если true, данные будут нормализованы (по умолчанию = false)</span>
+<span class="cm">* @return std::vector&lt;Cloud3DItem&gt; вектор точек 3D облака</span>
+<span class="cm">*/</span>
+<span class="n">MRCV_EXPORT</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Cloud3DItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">geometryLoadData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pathtofile</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cluster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Выход функции – это вектор значений в формате структуры Cloud3DItem, имеющей вид:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Cloud3DItem</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">U</span><span class="p">;</span><span class="w">      </span><span class="c1">// Координата X на изображении</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">V</span><span class="p">;</span><span class="w">      </span><span class="c1">// Координата Y на изображении</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">X</span><span class="p">;</span><span class="w">   </span><span class="c1">// Координата X в пространстве</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">Y</span><span class="p">;</span><span class="w">   </span><span class="c1">// Координата Y в пространстве</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">Z</span><span class="p">;</span><span class="w">   </span><span class="c1">// Координата X в пространстве</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">R</span><span class="p">;</span><span class="w">      </span><span class="c1">// Цвет токчи R</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">G</span><span class="p">;</span><span class="w">      </span><span class="c1">// Цвет токчи G</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">B</span><span class="p">;</span><span class="w">      </span><span class="c1">// Цвет токчи B</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">C</span><span class="p">;</span><span class="w">      </span><span class="c1">// Номер кластера</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Непосредственный расчет геометрических размеров (габаритов) видимой части идентифицированного объекта осуществляется с помощью функции geometryCalculateSize</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">* @brief Вычисление геометрических характеристик объекта, заданного облаком 3D-точек</span>
+<span class="cm">* @param std::vector&lt;Cloud3DItem&gt; cloud3D - облако 3D-точек объекта</span>
+<span class="cm">* @param double* l - длина bounding box</span>
+<span class="cm">* @param double* w - ширина bounding box</span>
+<span class="cm">* @param double* h - высота bounding box</span>
+<span class="cm">* @param double* length - длина осевой линии</span>
+<span class="cm">* @param double* width - ширина осевой линии</span>
+<span class="cm">* @param double* distance - растояние от камеры до центра масс объекта</span>
+<span class="cm">* @return int - код ошибки {0 - нет ошибок}</span>
+<span class="cm">*/</span>
+<span class="n">MRCV_EXPORT</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">geometryCalculateSize</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Cloud3DItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cloud3D</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">distance</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Пример вызова функций приведен ниже, соответствующий пример использования расположен в папке <code class="docutils literal notranslate"><span class="pre">examples/geometry/main.cpp</span></code></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Путь к файлу с данными</span>
+<span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">path</span><span class="w"> </span><span class="n">currentPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">current_path</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">path</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;points3D.dat&quot;</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">path</span><span class="w"> </span><span class="n">pathToFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentPath</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="s">&quot;data&quot;</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">fileName</span><span class="p">;</span>
+
+<span class="c1">// Загрузка исходных данных</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">mrcv</span><span class="o">::</span><span class="n">Cloud3DItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cloud3D</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">geometryLoadData</span><span class="p">(</span><span class="n">pathToFile</span><span class="p">.</span><span class="n">string</span><span class="p">(),</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+
+<span class="c1">// Рассчет геометрии точек</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="p">,</span><span class="w"> </span><span class="n">H</span><span class="p">,</span><span class="w"> </span><span class="n">Length</span><span class="p">,</span><span class="w"> </span><span class="n">Width</span><span class="p">,</span><span class="w"> </span><span class="n">Distance</span><span class="p">;</span>
+<span class="n">mrcv</span><span class="o">::</span><span class="n">geometryCalculateSize</span><span class="p">(</span><span class="n">cloud3D</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">W</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">H</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Length</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Width</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Distance</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Результат работы функции приведен на рис. А.4.39 – А.4.40</p>
+<img alt="Консольный вывод" class="align-center" src="../_images/figure426b.jpg" />
+<p>Рисунок А.4.39 – Консольный вывод расчетных значений оценки геометрических размеров (габаритов) объекта интереса</p>
+<img alt="Bounding box объекта" class="align-center" src="../_images/figure426c.jpg" />
+<p>Рисунок А.4.40 – Визуализация параллелепипеда, в который может быть вписано облако точек объекта интереса</p>
+<p>В случае, если объект интереса представляет из себя вытянутую фигуру (например фрагмент трубы подводного газопровода), как это показано на рис. А.4.41, оценку размеров нужно делать на основании значений параметров <code class="docutils literal notranslate"><span class="pre">length</span></code> и <code class="docutils literal notranslate"><span class="pre">width</span></code>.</p>
+<img alt="Bounding box трубы" class="align-center" src="../_images/figure426d.jpg" />
+<p>Рисунок А.4.41 – Визуализация параллелепипеда, для облака точек фрагмента трубы подводного газопровода</p>
+<p>Серия экспериментов определения геометрических габаритов эталонных объектов с помощью разработанных функций, проведённых в опытовом бассейне, показала, что точность определения геометрических размеров варьировалась в диапазоне 90–95%.</p>
 </section>
 <section id="arm">
 <h2>Пример использования адаптированных программные функций библиотеки для детекции и идентификации объектов с использованием процессоров ARM<a class="headerlink" href="#arm" title="Link to this heading"></a></h2>
-<p>fasdfasdf</p>
+<p>Пример использования модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/autodetector</span></code> библиотеки. В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся входные данные для демонстрации работы функции:
+- <code class="docutils literal notranslate"><span class="pre">autodetector.pt</span></code> – обученная модель в формате YOLO4_tiny;
+- <code class="docutils literal notranslate"><span class="pre">voc_classes.txt</span></code> – текстовый файл с именами классов объектов интереса;
+- изображения в формате <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> для обучения и валидации модели;
+- файлы меток классов к изображениям в формате <code class="docutils literal notranslate"><span class="pre">.xml</span></code>.</p>
+<p>Для выполнения основных функций модуля используются вызовы методов класса <code class="docutils literal notranslate"><span class="pre">Detector</span></code>, как это показано ниже. Сперва необходимо объявление экземпляра класса:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">detector</span> <span class="o">=</span> <span class="n">mrcv</span><span class="o">.</span><span class="n">Detector</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>после чего вызывается метод:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">detector</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">nameListPath</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>для инициализации модели.</p>
+<p>В качестве входных данных функция инициализации принимает следующие аргументы:
+- <code class="docutils literal notranslate"><span class="pre">width</span> <span class="pre">×</span> <span class="pre">height</span></code> – разрешение входящего в модель изображения после масштабирования;
+- <code class="docutils literal notranslate"><span class="pre">nameListPath</span></code> – путь к текстовому файлу с именами классов объектов интереса.</p>
+<p>Основной метод <code class="docutils literal notranslate"><span class="pre">AutoTrain</span></code> библиотеки принимает на вход путь к обучающей и валидационной выборкам, тип изображения в этих (например, <code class="docutils literal notranslate"><span class="pre">.jpg</span></code>, <code class="docutils literal notranslate"><span class="pre">.png</span></code> и другие), векторы значений гиперпараметров: количества эпох, размеров батча, скорости обучения, а также путь к предварительно обученной и сохранению итоговой моделей.</p>
+<p>Пример использования методов:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">Detector</span>
+
+<span class="c1"># Пути к файлам</span>
+<span class="n">images_path</span> <span class="o">=</span> <span class="s2">&quot;vae/files/images&quot;</span>         <span class="c1"># Папка с изображениями (.jpg)</span>
+<span class="n">names_path</span> <span class="o">=</span> <span class="s2">&quot;vae/files/xml&quot;</span>             <span class="c1"># Путь для меток классов</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;vae/files/autodetector.pt&quot;</span> <span class="c1"># Путь к обученной модели YOLO4_tiny</span>
+<span class="n">class_path</span> <span class="o">=</span> <span class="s2">&quot;vae/files/voc_classes.txt&quot;</span> <span class="c1"># Путь к файлу с именами классов</span>
+
+<span class="n">detector</span> <span class="o">=</span> <span class="n">mrcv</span><span class="o">.</span><span class="n">Detector</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="mi">416</span><span class="p">,</span> <span class="mi">416</span><span class="p">,</span> <span class="n">class_path</span><span class="p">)</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">AutoTrain</span><span class="p">(</span>
+    <span class="n">images_path</span><span class="p">,</span>        <span class="c1"># Папка с изображениями и метками</span>
+    <span class="s2">&quot;.jpg&quot;</span><span class="p">,</span>             <span class="c1"># Расширение изображений</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>       <span class="c1"># Количество эпох</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>             <span class="c1"># Размер батча</span>
+    <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">1.0e-4</span><span class="p">],</span>    <span class="c1"># Скорость обучения</span>
+    <span class="n">model_path</span><span class="p">,</span>         <span class="c1"># Путь к предобученной модели</span>
+    <span class="n">names_path</span>          <span class="c1"># Путь для сохранения итоговой модели</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="cuda">
 <h2>Пример использования адаптированных программных функций библиотеки для детекции и идентификации объектов с использованием технологии CUDA<a class="headerlink" href="#cuda" title="Link to this heading"></a></h2>
-<p>sadfsadfasd
-.fg</p>
+<p>Пример использования модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/autodetector</span></code> библиотеки. В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся входные данные для демонстрации работы функции:
+- <code class="docutils literal notranslate"><span class="pre">autodetector.pt</span></code> – обученная модель в формате YOLO4_tiny;
+- <code class="docutils literal notranslate"><span class="pre">voc_classes.txt</span></code> – текстовый файл с именами классов объектов интереса;
+- изображения в формате <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> для обучения и валидации модели;
+- файлы меток классов к изображениям в формате <code class="docutils literal notranslate"><span class="pre">.xml</span></code>.</p>
+<p>Для выполнения основных функций модуля используются вызовы методов класса <code class="docutils literal notranslate"><span class="pre">mrcv::Detector</span></code>, как это показано ниже. Сперва необходимо объявление экземпляра класса:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv</span><span class="o">::</span><span class="n">Detector</span><span class="w"> </span><span class="n">detector</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>после чего вызывается метод:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">detector</span><span class="p">.</span><span class="n">InitializeCuda</span><span class="p">(</span><span class="n">devID</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">nameListPath</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>для инициализации модели.</p>
+<p><strong>Входные параметры метода инициализации:</strong>
+- <code class="docutils literal notranslate"><span class="pre">devID</span></code> – ID устройства, на котором будет исполняться функционал модели. <code class="docutils literal notranslate"><span class="pre">ID</span> <span class="pre">&lt;</span> <span class="pre">0</span></code> – исполнение на CPU, <code class="docutils literal notranslate"><span class="pre">ID</span> <span class="pre">&gt;=</span> <span class="pre">0</span></code> – исполнение на GPU с выбором конкретного устройства согласно его ID в системе;
+- <code class="docutils literal notranslate"><span class="pre">width</span> <span class="pre">×</span> <span class="pre">height</span></code> – разрешение входящего в модель изображения после масштабирования;
+- <code class="docutils literal notranslate"><span class="pre">nameListPath</span></code> – путь к текстовому файлу с именами классов объектов интереса.</p>
+<p>Основной метод <code class="docutils literal notranslate"><span class="pre">AutoTrain</span></code> библиотеки принимает на вход:
+- путь к обучающей и валидационной выборкам,
+- тип изображения (например, <code class="docutils literal notranslate"><span class="pre">.jpg</span></code>, <code class="docutils literal notranslate"><span class="pre">.png</span></code> и др.),
+- векторы значений гиперпараметров: количества эпох, размеров батча, скорости обучения,
+- путь к предварительно обученной модели,
+- путь для сохранения итоговой модели.</p>
+<p>Пример использования методов:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv</span><span class="o">::</span><span class="n">Detector</span><span class="w"> </span><span class="n">detector</span><span class="p">;</span>
+<span class="n">detector</span><span class="p">.</span><span class="n">InitializeCuda</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">416</span><span class="p">,</span><span class="w"> </span><span class="mi">416</span><span class="p">,</span><span class="w"> </span><span class="n">vocClassesPath</span><span class="p">.</span><span class="n">string</span><span class="p">());</span>
+<span class="n">detector</span><span class="p">.</span><span class="n">AutoTrain</span><span class="p">(</span>
+<span class="w">    </span><span class="n">datasetPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span><span class="w">      </span><span class="c1">// Путь к обучающему датасету</span>
+<span class="w">    </span><span class="s">&quot;.jpg&quot;</span><span class="p">,</span><span class="w">                      </span><span class="c1">// Тип изображений</span>
+<span class="w">    </span><span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">},</span><span class="w">                </span><span class="c1">// Количество эпох</span>
+<span class="w">    </span><span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">},</span><span class="w">                      </span><span class="c1">// Размер батча</span>
+<span class="w">    </span><span class="p">{</span><span class="mf">0.001</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0E-4F</span><span class="p">},</span><span class="w">            </span><span class="c1">// Скорость обучения</span>
+<span class="w">    </span><span class="n">pretrainedModelPath</span><span class="p">.</span><span class="n">u8string</span><span class="p">(),</span><span class="w">  </span><span class="c1">// Путь к предобученной модели</span>
+<span class="w">    </span><span class="n">modelSavePath</span><span class="p">.</span><span class="n">u8string</span><span class="p">()</span><span class="w">         </span><span class="c1">// Путь сохранения итоговой модели</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Адаптация функций библиотеки под CUDA позволила достичь <strong>ускорения вычислений до 6–8 раз</strong> по сравнению с выполнением на CPU, обеспечив выполнение требований технического задания.
+<strong>Рекомендуется</strong> использовать видеокарты с объёмом памяти не менее <strong>8 ГБ</strong> и <strong>регулярно обновлять зависимости</strong> для поддержки новых версий CUDA.</p>
 </section>
 </section>
 
