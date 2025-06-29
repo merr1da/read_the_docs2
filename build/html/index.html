@@ -144,16 +144,17 @@
 <li><a class="reference internal" href="#id67">Пример использования детектирования объектов</a></li>
 <li><a class="reference internal" href="#id68">Пример использования предобработки изображений</a></li>
 <li><a class="reference internal" href="#id69">Программные функции библиотеки для подсчета количества объектов интереса по данным видеопотока в реальном масштабе времени и определения курса роботизированного аппарата на объект интереса</a></li>
-<li><a class="reference internal" href="#id70">Пример использования модуля 3D сцены</a></li>
+<li><a class="reference internal" href="#d-3d">4.9     Программные функции библиотеки для компьютерного стереозрения для определения координат 3D точек в сегментах идентифицированных объектов и восстановления 3D сцены по двумерным изображениям</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id71">Руководство для контрибьюторов</a><ul>
-<li><a class="reference internal" href="#id72">Получение исходного кода</a></li>
-<li><a class="reference internal" href="#id73">Необходимые зависимости</a></li>
-<li><a class="reference internal" href="#id74">Настройка сборки</a></li>
-<li><a class="reference internal" href="#id75">Оформление изменений</a></li>
-<li><a class="reference internal" href="#id76">Репорты об ошибках</a></li>
-<li><a class="reference internal" href="#id77">Рекомендации по контрибьюции</a></li>
+<li><a class="reference internal" href="#id70">Руководство для контрибьюторов</a><ul>
+<li><a class="reference internal" href="#id71">Получение исходного кода</a></li>
+<li><a class="reference internal" href="#id72">Необходимые зависимости</a></li>
+<li><a class="reference internal" href="#id73">Настройка сборки</a></li>
+<li><a class="reference internal" href="#python-mrcv">Инструкция по установке python версии библиотеки mrcv</a></li>
+<li><a class="reference internal" href="#id74">Оформление изменений</a></li>
+<li><a class="reference internal" href="#id75">Репорты об ошибках</a></li>
+<li><a class="reference internal" href="#id76">Рекомендации по контрибьюции</a></li>
 </ul>
 </li>
 </ul>
@@ -1403,8 +1404,8 @@
 <p>Метод <code class="docutils literal notranslate"><span class="pre">getObjectCourse</span></code> принимает кадр видеофрейма, разрешение камеры по горизонтали (в пикселях) и угол обзора камеры,
 возвращая угловую поправку на текущий курс с учетом знака смещения.</p>
 </section>
-<section id="id70">
-<h2>Пример использования модуля 3D сцены<a class="headerlink" href="#id70" title="Link to this heading"></a></h2>
+<section id="d-3d">
+<h2>4.9     Программные функции библиотеки для компьютерного стереозрения для определения координат 3D точек в сегментах идентифицированных объектов и восстановления 3D сцены по двумерным изображениям<a class="headerlink" href="#d-3d" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>L1000.bmp, R1000.bmp – набор исходных изображений;</p></li>
 <li><p>(66a)_(960p)_NewCamStereoModule_Air.xml – xml-файл с параметрами камеры.</p></li>
@@ -1454,21 +1455,21 @@
 </div>
 </section>
 </section>
-<section id="id71">
-<h1>Руководство для контрибьюторов<a class="headerlink" href="#id71" title="Link to this heading"></a></h1>
+<section id="id70">
+<h1>Руководство для контрибьюторов<a class="headerlink" href="#id70" title="Link to this heading"></a></h1>
 <p>Это руководство предназначено для разработчиков и пользователей, желающих внести вклад в развитие библиотеки <strong>Marine Robotics Computer Vision (MRCV)</strong>. Ниже представлены инструкции по установке зависимостей, сборке проекта и рекомендации по работе с CUDA.</p>
 <p>Датасет изображений для работы с библиотекой доступен по ссылке:</p>
 <p><a class="reference external" href="https://disk.yandex.ru/d/TxReQ9J6PAo9Nw">code-ai-400393-image-dataset.7z</a></p>
-<section id="id72">
-<h2>Получение исходного кода<a class="headerlink" href="#id72" title="Link to this heading"></a></h2>
+<section id="id71">
+<h2>Получение исходного кода<a class="headerlink" href="#id71" title="Link to this heading"></a></h2>
 <p>Исходный код библиотеки доступен на внутреннем репозитории. Клонируйте проект:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/valabsoft/code-ai-400393.git
 <span class="nb">cd</span><span class="w"> </span>mrcv
 </pre></div>
 </div>
 </section>
-<section id="id73">
-<h2>Необходимые зависимости<a class="headerlink" href="#id73" title="Link to this heading"></a></h2>
+<section id="id72">
+<h2>Необходимые зависимости<a class="headerlink" href="#id72" title="Link to this heading"></a></h2>
 <p>Для корректной работы библиотеки на <strong>Windows</strong> все необходимые зависимости должны быть установлены и размещены следующим образом:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>C:\
 ├───libtorch-12.4
@@ -1484,8 +1485,8 @@
 <li><p>C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\</p></li>
 </ul>
 </section>
-<section id="id74">
-<h2>Настройка сборки<a class="headerlink" href="#id74" title="Link to this heading"></a></h2>
+<section id="id73">
+<h2>Настройка сборки<a class="headerlink" href="#id73" title="Link to this heading"></a></h2>
 <p>В корневом <cite>CMakeLists.txt</cite> проекта имеется флаг:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">option</span><span class="p">(</span><span class="s">USE_CUDA</span><span class="w"> </span><span class="s2">&quot;Use CUDA Build&quot;</span><span class="w"> </span><span class="s">OFF</span><span class="p">)</span>
 </pre></div>
@@ -1518,8 +1519,66 @@ cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </
 </div>
 <p>При необходимости, скопируйте <cite>*.dll</cite> из используемой версии OpenCV или LibTorch в папку с исполняемыми файлами.</p>
 </section>
-<section id="id75">
-<h2>Оформление изменений<a class="headerlink" href="#id75" title="Link to this heading"></a></h2>
+<section id="python-mrcv">
+<h2>Инструкция по установке python версии библиотеки mrcv<a class="headerlink" href="#python-mrcv" title="Link to this heading"></a></h2>
+<p>Проверьте, установлен ли Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>Если Python отсутствует, установите его:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span>
+</pre></div>
+</div>
+<p>Для клонирования репозитория с GitHub потребуется Git:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>Если Git не установлен, выполните:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">git</span>
+</pre></div>
+</div>
+<p>Склонируйте репозиторий с ветки developer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">-</span><span class="n">b</span> <span class="n">developer</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">valabsoft</span><span class="o">/</span><span class="n">code</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="mf">400393.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Это создаст локальную копию репозитория на вашем устройстве.</p>
+<p>Перейдите в локальный репозиторий:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">code</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="mi">400393</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<p>Рекомендуется использовать виртуальное окружение для изоляции зависимостей:</p>
+<p>Создайте виртуальное окружение с именем venv:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span>
+</pre></div>
+</div>
+<p>Активируйте окружение:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+<p>После этого в терминале появится (venv), что указывает на активное окружение.</p>
+<p>В директории есть файл requirements.txt с необходимыми библиотеками:</p>
+<p>Если файл находится в корневой директории:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Установите вашу библиотеку:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>Перейдите в директорию с примерами</p>
+<p>В директории есть папка examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">python</span><span class="o">/</span><span class="n">examples</span>
+</pre></div>
+</div>
+<p>Выберите папку модуля и запустите пример. Убедитесь, что в папке примера есть файлы с которыми будет работать пример:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">python</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">comparing</span><span class="o">/</span>
+<span class="n">python</span> <span class="n">comparing</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="id74">
+<h2>Оформление изменений<a class="headerlink" href="#id74" title="Link to this heading"></a></h2>
 <p>Перед отправкой изменений:</p>
 <ol class="arabic simple">
 <li><p><strong>Форкните репозиторий</strong> и создайте отдельную ветку для каждой задачи.</p></li>
@@ -1536,8 +1595,8 @@ cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </
 - добавили вас в <cite>CHANGELOG.md</cite> (если он есть).</p></li>
 </ol>
 </section>
-<section id="id76">
-<h2>Репорты об ошибках<a class="headerlink" href="#id76" title="Link to this heading"></a></h2>
+<section id="id75">
+<h2>Репорты об ошибках<a class="headerlink" href="#id75" title="Link to this heading"></a></h2>
 <p>Перед отправкой:</p>
 <ul class="simple">
 <li><p>Обновитесь до последней версии библиотеки.</p></li>
@@ -1552,8 +1611,8 @@ cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </
 <li><p>Включите логи и команды запуска.</p></li>
 </ul>
 </section>
-<section id="id77">
-<h2>Рекомендации по контрибьюции<a class="headerlink" href="#id77" title="Link to this heading"></a></h2>
+<section id="id76">
+<h2>Рекомендации по контрибьюции<a class="headerlink" href="#id76" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Пишите понятный и документированный код.</p></li>
 <li><p>Используйте стиль оформления, принятый в библиотеке.</p></li>
