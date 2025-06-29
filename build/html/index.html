@@ -171,7 +171,19 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#python">Демонстрационные примеры на Python</a><ul>
-<li><a class="reference internal" href="#objcourse-py">Скрипт objcourse.py: определение курса на объект</a></li>
+<li><a class="reference internal" href="#objcourse-py">Описание скрипта objcourse.py: определение курса на объект</a></li>
+<li><a class="reference internal" href="#yolov5-py">Описание скрипта <code class="docutils literal notranslate"><span class="pre">yolov5.py</span></code></a></li>
+<li><a class="reference internal" href="#roi-py">Описание Скрипта <code class="docutils literal notranslate"><span class="pre">roi.py</span></code></a></li>
+<li><a class="reference internal" href="#vae-py">Описание для скрипта <code class="docutils literal notranslate"><span class="pre">vae.py</span></code></a></li>
+<li><a class="reference internal" href="#segmentation-py">Описание для скрипта <code class="docutils literal notranslate"><span class="pre">segmentation.py</span></code></a></li>
+<li><a class="reference internal" href="#clustering-py">Описание для скрипта <code class="docutils literal notranslate"><span class="pre">clustering.py</span></code></a></li>
+<li><a class="reference internal" href="#disparity-py">Описание для скрипта <code class="docutils literal notranslate"><span class="pre">disparity.py</span></code></a></li>
+<li><a class="reference internal" href="#dscene-py">Описание для скрипта <code class="docutils literal notranslate"><span class="pre">3dscene.py</span></code></a></li>
+<li><a class="reference internal" href="#imgpreprocessing-py">Описание для скрипта <code class="docutils literal notranslate"><span class="pre">imgpreprocessing.py</span></code></a></li>
+<li><a class="reference internal" href="#comparing-py">Описание для скрипта <code class="docutils literal notranslate"><span class="pre">comparing.py</span></code></a></li>
+<li><a class="reference internal" href="#detectorautotrain-py">Описание для скрипта <code class="docutils literal notranslate"><span class="pre">detectorautotrain.py</span></code></a></li>
+<li><a class="reference internal" href="#augmentation-py">Описание для скрипта <code class="docutils literal notranslate"><span class="pre">augmentation.py</span></code></a></li>
+<li><a class="reference internal" href="#morphologyimage-py">Описание для скрипта <code class="docutils literal notranslate"><span class="pre">morphologyimage.py</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#id90">Руководство для контрибьюторов</a><ul>
@@ -2775,7 +2787,7 @@ N.png
 <section id="python">
 <h1>Демонстрационные примеры на Python<a class="headerlink" href="#python" title="Link to this heading"></a></h1>
 <section id="objcourse-py">
-<h2>Скрипт objcourse.py: определение курса на объект<a class="headerlink" href="#objcourse-py" title="Link to this heading"></a></h2>
+<h2>Описание скрипта objcourse.py: определение курса на объект<a class="headerlink" href="#objcourse-py" title="Link to this heading"></a></h2>
 <p>Скрипт <code class="docutils literal notranslate"><span class="pre">objcourse.py</span></code> демонстрирует использование класса <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code> для подсчета количества объектов интереса на изображении и расчета углового курса на объект. Этот класс предназначен для задач, связанных с обнаружением объектов и навигацией роботизированных систем, таких как подводные или надводные аппараты.</p>
 <p>Класс <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code> инициализируется с путями к файлу модели (в формате <code class="docutils literal notranslate"><span class="pre">ONNX</span></code>) и файлу с именами классов, определяющими, какие объекты могут быть обнаружены. Метод <code class="docutils literal notranslate"><span class="pre">get_object_count</span></code> принимает изображение в формате <code class="docutils literal notranslate"><span class="pre">cv::Mat</span></code> и возвращает количество обнаруженных объектов. Метод <code class="docutils literal notranslate"><span class="pre">get_object_course</span></code> вычисляет угловую поправку курса на объект с учетом горизонтального разрешения камеры (в пикселях) и угла обзора камеры (в градусах). Если на изображении обнаружено несколько объектов, курс рассчитывается на объект с максимальной площадью.</p>
 <p>Методы используют предварительно обученную модель (например, основанную на архитектуре <code class="docutils literal notranslate"><span class="pre">YOLOv5</span></code>), что обеспечивает высокую точность обнаружения. Логирование в коде фиксирует пути к файлам и результаты работы методов, что упрощает отладку и контроль выполнения.</p>
@@ -2832,6 +2844,584 @@ N.png
 </pre></div>
 </div>
 <p>В данном случае обнаружен один объект, а курсовая невязка составила 17 градусов вправо относительно центра кадра.</p>
+</section>
+<section id="yolov5-py">
+<h2>Описание скрипта <code class="docutils literal notranslate"><span class="pre">yolov5.py</span></code><a class="headerlink" href="#yolov5-py" title="Link to this heading"></a></h2>
+<p>Предоставляет утилиты для работы с моделями YOLOv5 — популярной архитектуры для обнаружения объектов, отличающейся высокой скоростью и точностью. Эти функции предназначены для подготовки данных и конфигураций, необходимых для обучения или использования моделей YOLOv5.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">yolov5_labeler_processing</span></code>: обрабатывает изображения или аннотации, принимая пути к входному и выходному каталогам. Используется для подготовки данных в формате, совместимом с YOLOv5.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yolov5_generate_config</span></code>: генерирует конфигурационный файл (например, <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code>), указывая тип модели (например, <code class="docutils literal notranslate"><span class="pre">YOLOv5s</span></code>), путь к файлу и количество классов.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yolov5_generate_hyperparameters</span></code>: создаёт файл гиперпараметров (например, <code class="docutils literal notranslate"><span class="pre">hyperparameters.yaml</span></code>), определяя параметры обучения, такие как размер изображения и другие настройки.</p></li>
+</ul>
+<p>Эти функции упрощают настройку моделей YOLOv5 для специфических задач обнаружения объектов, таких как классификация кораблей или других объектов интереса.</p>
+<p>Пример использования</p>
+<p>Пример показывает, как использовать утилиты для подготовки данных и конфигураций:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">yolov5_labeler_processing</span><span class="p">,</span>
+    <span class="n">yolov5_generate_config</span><span class="p">,</span>
+    <span class="n">yolov5_generate_hyperparameters</span><span class="p">,</span>
+    <span class="n">YOLOv5Model</span>
+<span class="p">)</span>
+
+<span class="c1"># Обработка данных для маркировки</span>
+<span class="n">yolov5_labeler_processing</span><span class="p">(</span><span class="s2">&quot;path/to/input/dir&quot;</span><span class="p">,</span> <span class="s2">&quot;path/to/output/dir&quot;</span><span class="p">)</span>
+
+<span class="c1"># Генерация конфигурационного файла</span>
+<span class="n">yolov5_generate_config</span><span class="p">(</span><span class="n">YOLOv5Model</span><span class="o">.</span><span class="n">YOLOv5s</span><span class="p">,</span> <span class="s2">&quot;config.yaml&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Генерация файла гиперпараметров</span>
+<span class="n">yolov5_generate_hyperparameters</span><span class="p">(</span><span class="n">YOLOv5Model</span><span class="o">.</span><span class="n">YOLOv5s</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="s2">&quot;hyperparameters.yaml&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>В этом примере:</p>
+<ul class="simple">
+<li><p>Обрабатываются данные из входного каталога и сохраняются в выходной.</p></li>
+<li><p>Создаётся конфигурация для модели YOLOv5s с 10 классами.</p></li>
+<li><p>Генерируются гиперпараметры для обучения с разрешением изображения 640×640.</p></li>
+</ul>
+</section>
+<section id="roi-py">
+<h2>Описание Скрипта <code class="docutils literal notranslate"><span class="pre">roi.py</span></code><a class="headerlink" href="#roi-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">roi.py</span></code> реализует систему предсказания движения объекта и оптимизации области интереса (ROI) для эффективного отслеживания. Используются классы <code class="docutils literal notranslate"><span class="pre">Predictor</span></code> и <code class="docutils literal notranslate"><span class="pre">Optimizer</span></code>.</p>
+<ul class="simple">
+<li><p>Класс <code class="docutils literal notranslate"><span class="pre">Predictor</span></code>: обучается на основе LSTM-сети для предсказания следующей позиции объекта по его предыдущим координатам. Метод <code class="docutils literal notranslate"><span class="pre">train_lstm_net</span></code> обучает модель, а <code class="docutils literal notranslate"><span class="pre">predict_next_coordinate</span></code> возвращает прогнозируемую позицию.</p></li>
+<li><p>Класс <code class="docutils literal notranslate"><span class="pre">Optimizer</span></code>: оптимизирует размер ROI, анализируя движение объекта и отклонение предсказаний, чтобы минимизировать вычислительные затраты, сохраняя объект в кадре.</p></li>
+</ul>
+<p>Код симулирует движение объекта, генерируя координаты, обучает предиктор, а затем в реальном времени предсказывает позиции и корректирует ROI. Это полезно для систем слежения, таких как видеонаблюдение или автономное вождение.</p>
+<p>Пример использования</p>
+<p>Ниже приведён пример, демонстрирующий обучение предиктора и оптимизацию ROI:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">Predictor</span><span class="p">,</span> <span class="n">Optimizer</span><span class="p">,</span> <span class="n">generate_coordinates</span><span class="p">,</span> <span class="n">extract_roi</span><span class="p">,</span> <span class="n">to_point</span>
+
+<span class="c1"># Инициализация параметров</span>
+<span class="n">img_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1440</span><span class="p">,</span> <span class="mi">1080</span><span class="p">)</span>
+<span class="n">predictor_train_points_num</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">object_size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">layers_num</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">predictor</span> <span class="o">=</span> <span class="n">Predictor</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">layers_num</span><span class="p">,</span> <span class="n">predictor_train_points_num</span><span class="p">,</span> <span class="n">img_size</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">Optimizer</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>
+
+<span class="c1"># Генерация координат для обучения</span>
+<span class="n">coordinates</span> <span class="o">=</span> <span class="p">[</span><span class="n">generate_coordinates</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">img_size</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">predictor_train_points_num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+<span class="c1"># Обучение предиктора</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">train_lstm_net</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+
+<span class="c1"># Симуляция и визуализация ROI</span>
+<span class="n">img_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">img_size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">img_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">255</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">real_coordinate</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">predicted_coordinate</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">predict_next_coordinate</span><span class="p">()</span>
+<span class="n">roi_size</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">optimize_roi_size</span><span class="p">(</span>
+    <span class="n">real_coordinate</span><span class="p">,</span>
+    <span class="n">predicted_coordinate</span><span class="p">,</span>
+    <span class="n">object_size</span><span class="p">,</span>
+    <span class="n">predictor</span><span class="o">.</span><span class="n">get_moving_average_deviation</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="p">)</span>
+<span class="n">roi</span> <span class="o">=</span> <span class="n">extract_roi</span><span class="p">(</span><span class="n">img_r</span><span class="p">,</span> <span class="n">to_point</span><span class="p">(</span><span class="n">predicted_coordinate</span><span class="p">),</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">roi_size</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">roi_size</span><span class="p">)))</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;ROI Example translating to Пример ROI&quot;</span><span class="p">,</span> <span class="n">roi</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>В данном примере:</p>
+<ul class="simple">
+<li><p>Обучается предиктор для предсказания координат объекта.</p></li>
+<li><p>Предсказывается следующая позиция объекта.</p></li>
+<li><p>Оптимизируется размер области интереса (ROI).</p></li>
+<li><p>Визуализируется полученная область на изображении.</p></li>
+</ul>
+</section>
+<section id="vae-py">
+<h2>Описание для скрипта <code class="docutils literal notranslate"><span class="pre">vae.py</span></code><a class="headerlink" href="#vae-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">vae.py</span></code> демонстрирует использование вариационного автоэнкодера (VAE) для генерации синтетических изображений и их полуавтоматической маркировки. VAE — это генеративная модель, создающая данные, подобные обучающему набору.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">neural_network_augmentation_as_mat</span></code>: генерирует аугментированное изображение на основе входных данных.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">semi_automatic_labeler_image</span></code>: использует модель (например, ONNX) для автоматической маркировки сгенерированного изображения.</p></li>
+</ul>
+<p>Этот подход расширяет набор данных для задач машинного обучения, где исходных данных недостаточно, например, для обнаружения кораблей.</p>
+<p>Пример использования</p>
+<p>Ниже приведён пример генерации и маркировки изображения:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">neural_network_augmentation_as_mat</span><span class="p">,</span> <span class="n">semi_automatic_labeler_image</span>
+
+<span class="n">images_path</span> <span class="o">=</span> <span class="s2">&quot;vae/files/images&quot;</span>
+<span class="n">result_path</span> <span class="o">=</span> <span class="s2">&quot;vae/files/result&quot;</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;vae/files/ship.onnx&quot;</span>
+<span class="n">class_path</span> <span class="o">=</span> <span class="s2">&quot;vae/files/ship.names&quot;</span>
+
+<span class="n">height</span> <span class="o">=</span> <span class="mi">640</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mi">640</span>
+
+<span class="c1"># Генерация изображения</span>
+<span class="n">genImage</span> <span class="o">=</span> <span class="n">neural_network_augmentation_as_mat</span><span class="p">(</span><span class="n">images_path</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mf">3E-4</span><span class="p">)</span>
+
+<span class="c1"># Преобразование и сохранение</span>
+<span class="n">colorGenImage</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">genImage</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2BGR</span><span class="p">)</span>
+<span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result_path</span><span class="p">,</span> <span class="s2">&quot;generated.jpg&quot;</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">colorGenImage</span><span class="p">)</span>
+
+<span class="c1"># Маркировка</span>
+<span class="n">semi_automatic_labeler_image</span><span class="p">(</span><span class="n">colorGenImage</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="n">result_path</span><span class="p">,</span> <span class="n">model_path</span><span class="p">,</span> <span class="n">class_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>В этом примере:</p>
+<ul class="simple">
+<li><p>Генерируется изображение размером 640×640.</p></li>
+<li><p>Преобразуется в цветное изображение и сохраняется.</p></li>
+<li><p>Выполняется полуавтоматическая маркировка с использованием модели.</p></li>
+</ul>
+</section>
+<section id="segmentation-py">
+<h2>Описание для скрипта <code class="docutils literal notranslate"><span class="pre">segmentation.py</span></code><a class="headerlink" href="#segmentation-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">segmentation.py</span></code> реализует сегментацию изображений с использованием класса <code class="docutils literal notranslate"><span class="pre">Segmentor</span></code>. Сегментация разделяет изображение на регионы, выделяя объекты (например, корабли) от фона.</p>
+<p>Класс <code class="docutils literal notranslate"><span class="pre">Segmentor</span></code> инициализируется с параметрами: количеством классов, размерами изображения, именами классов, архитектурой и путями к весам. Метод <code class="docutils literal notranslate"><span class="pre">predict</span></code> выполняет сегментацию для указанного класса (например, <code class="docutils literal notranslate"><span class="pre">&quot;ship&quot;</span></code>).</p>
+<p>Эта функциональность важна для задач локализации объектов и анализа сцены, где требуется пиксельная точность.</p>
+<p>Пример использования</p>
+<p>Ниже приведён пример сегментации изображения:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">Segmentor</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+
+<span class="n">image_path</span> <span class="o">=</span> <span class="s2">&quot;segmentation/file/images/test/43.jpg&quot;</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Не удалось загрузить изображение: </span><span class="si">{</span><span class="n">image_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Создание и инициализация сегментатора</span>
+<span class="n">segmentor</span> <span class="o">=</span> <span class="n">Segmentor</span><span class="p">()</span>
+<span class="n">segmentor</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;background&quot;</span><span class="p">,</span> <span class="s2">&quot;ship&quot;</span><span class="p">],</span> <span class="s2">&quot;resnet34&quot;</span><span class="p">,</span> <span class="s2">&quot;segmentation/file/weights/resnet34.pt&quot;</span><span class="p">)</span>
+<span class="n">segmentor</span><span class="o">.</span><span class="n">load_weight</span><span class="p">(</span><span class="s2">&quot;segmentation/file/weights/segmentor.pt&quot;</span><span class="p">)</span>
+
+<span class="c1"># Выполнение сегментации</span>
+<span class="n">segmentor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s2">&quot;ship&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>В этом примере:</p>
+<ul class="simple">
+<li><p>Загружается изображение.</p></li>
+<li><p>Инициализируется сегментатор с указанными параметрами.</p></li>
+<li><p>Выполняется предсказание маски для класса <code class="docutils literal notranslate"><span class="pre">&quot;ship&quot;</span></code>.</p></li>
+</ul>
+</section>
+<section id="clustering-py">
+<h2>Описание для скрипта <code class="docutils literal notranslate"><span class="pre">clustering.py</span></code><a class="headerlink" href="#clustering-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">clustering.py</span></code> демонстрирует использование класса <code class="docutils literal notranslate"><span class="pre">DenseStereo</span></code> для выполнения кластеризации данных, загруженных из файла. Кластеризация — это процесс группировки данных по сходству, что полезно для анализа больших наборов данных, например, в задачах обработки изображений или анализа сцен.</p>
+<p>Класс <code class="docutils literal notranslate"><span class="pre">DenseStereo</span></code> инициализируется, после чего данные загружаются из указанного файла с помощью метода <code class="docutils literal notranslate"><span class="pre">load_data_from_file</span></code>. Затем метод <code class="docutils literal notranslate"><span class="pre">make_clustering</span></code> выполняет кластеризацию загруженных данных.</p>
+<p>Эта функциональность применима в задачах анализа стереоизображений, таких как группировка пикселей по диспаратности или другим характеристикам.</p>
+<p>Пример использования</p>
+<p>Ниже приведён пример загрузки данных и выполнения кластеризации:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">DenseStereo</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="n">data_path</span> <span class="o">=</span> <span class="s2">&quot;files/claster.dat&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Основная функция для выполнения кластеризации.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dense_stereo</span> <span class="o">=</span> <span class="n">DenseStereo</span><span class="p">()</span>  <span class="c1"># Замените на актуальную инициализацию</span>
+    <span class="n">dense_stereo</span><span class="o">.</span><span class="n">load_data_from_file</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+    <span class="n">dense_stereo</span><span class="o">.</span><span class="n">make_clustering</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">freeze_support</span>
+    <span class="n">freeze_support</span><span class="p">()</span>  <span class="c1"># Для поддержки замороженных исполняемых файлов</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>В этом примере создаётся экземпляр класса <code class="docutils literal notranslate"><span class="pre">DenseStereo</span></code>, данные загружаются из файла <code class="docutils literal notranslate"><span class="pre">files/claster.dat</span></code>, и выполняется кластеризация с использованием метода <code class="docutils literal notranslate"><span class="pre">make_clustering</span></code>.</p>
+</section>
+<section id="disparity-py">
+<h2>Описание для скрипта <code class="docutils literal notranslate"><span class="pre">disparity.py</span></code><a class="headerlink" href="#disparity-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">disparity.py</span></code> демонстрирует построение карты диспаратности для стереопары изображений с использованием функции <code class="docutils literal notranslate"><span class="pre">disparity_map</span></code>.
+Карта диспаратности — это изображение, в котором каждый пиксель отражает разницу в положении соответствующего пикселя между левым и правым стереоизображениями, что позволяет оценить глубину сцены.</p>
+<p>Функция <code class="docutils literal notranslate"><span class="pre">disparity_map</span></code> принимает левое и правое стереоизображения, параметры алгоритма (например, минимальную и максимальную диспаратность, размер блока), тип диспаратности и цветовую карту для визуализации. В примере используется тип <code class="docutils literal notranslate"><span class="pre">DisparityType.ALL</span></code> для генерации всех доступных типов карт диспаратности.</p>
+<p>Эта функциональность полезна в задачах стереозрения, таких как реконструкция 3D-сцен или оценка глубины.</p>
+<p>Пример использования</p>
+<p>Ниже пример загрузки стереопары, вычисления карты диспаратности и её отображения:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">disparity_map</span>
+
+<span class="c1"># Определение перечисления для типов диспаратности</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DisparityType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">BASIC_DISPARITY</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">BASIC_HEATMAP</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">FILTERED_DISPARITY</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">FILTERED_HEATMAP</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">ALL</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># Пути к изображениям</span>
+<span class="n">file_image_left</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;files&quot;</span><span class="p">,</span> <span class="s2">&quot;example_left.jpg&quot;</span><span class="p">)</span>
+<span class="n">file_image_right</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;files&quot;</span><span class="p">,</span> <span class="s2">&quot;example_right.jpg&quot;</span><span class="p">)</span>
+
+<span class="n">current_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">path_image_left</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_path</span><span class="p">,</span> <span class="n">file_image_left</span><span class="p">)</span>
+<span class="n">path_image_right</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_path</span><span class="p">,</span> <span class="n">file_image_right</span><span class="p">)</span>
+
+<span class="c1"># Загрузка изображений</span>
+<span class="n">image_left</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">path_image_left</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_COLOR</span><span class="p">)</span>
+<span class="n">image_right</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">path_image_right</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_COLOR</span><span class="p">)</span>
+
+<span class="c1"># Параметры функции</span>
+<span class="n">min_disparity</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">num_disparities</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="n">block_size</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">lambda_val</span> <span class="o">=</span> <span class="mf">5000.0</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">color_map</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLORMAP_TURBO</span>
+<span class="n">disparity_type</span> <span class="o">=</span> <span class="n">DisparityType</span><span class="o">.</span><span class="n">ALL</span>
+
+<span class="c1"># Проверка загрузки изображений</span>
+<span class="k">if</span> <span class="n">image_left</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">image_right</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ошибка: Не удалось загрузить одно или оба изображения&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Создание пустого массива для результата</span>
+<span class="n">disparity_map_output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">image_left</span><span class="p">)</span>
+
+<span class="c1"># Построение карты диспаратности</span>
+<span class="n">disparity_map</span><span class="p">(</span><span class="n">disparity_map_output</span><span class="p">,</span> <span class="n">image_left</span><span class="p">,</span> <span class="n">image_right</span><span class="p">,</span> <span class="n">min_disparity</span><span class="p">,</span> <span class="n">num_disparities</span><span class="p">,</span>
+              <span class="n">block_size</span><span class="p">,</span> <span class="n">lambda_val</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">disparity_type</span><span class="p">,</span> <span class="n">color_map</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Отображение результата</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s2">&quot;MRCV Disparity Map translating to Карта диспаратности MRCV&quot;</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_AUTOSIZE</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;MRCV Disparity Map translating to Карта диспаратности MRCV&quot;</span><span class="p">,</span> <span class="n">disparity_map_output</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>В этом примере загружаются левое и правое стереоизображения, вычисляется карта диспаратности с заданными параметрами, и результат отображается.</p>
+</section>
+<section id="dscene-py">
+<h2>Описание для скрипта <code class="docutils literal notranslate"><span class="pre">3dscene.py</span></code><a class="headerlink" href="#dscene-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">3dscene.py</span></code> демонстрирует использование функции <code class="docutils literal notranslate"><span class="pre">find_3d_points_in_objects_segments</span></code> для определения 3D-точек в сегментах объектов на стереопаре изображений. Эта функция выполняет реконструкцию 3D-координат точек, принадлежащих объектам интереса, что полезно для задач 3D-реконструкции и анализа сцен.</p>
+<p>Пример загружает стереопару изображений и параметры камеры, обрабатывает их для получения 3D-точек и выводит результаты, включая изображение с центрами 3D-сегментов, проекцию 3D-сцены и маски объектов.</p>
+<p>Эта функциональность применима в задачах автономной навигации, робототехники и компьютерного зрения.</p>
+<p>Пример использования</p>
+<p>Пример демонстрирует загрузку данных, обработку и отображение результатов:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_camera_stereo_parameters_from_file</span><span class="p">,</span> \
+    <span class="n">write_log</span><span class="p">,</span> \
+    <span class="n">METOD_DISPARITY</span><span class="p">,</span> \
+    <span class="n">find_3d_points_in_objects_segments</span><span class="p">,</span> \
+    <span class="n">show_image</span><span class="p">,</span> \
+    <span class="n">save_in_file_3d_points_in_objects_segments</span><span class="p">,</span> \
+    <span class="n">show_disparity_map</span><span class="p">,</span> \
+    <span class="n">converting_undistort_rectify</span><span class="p">,</span> \
+    <span class="n">making_stereo_pair</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">write_log</span><span class="p">(</span><span class="s2">&quot;=== НОВЫЙ ЗАПУСК ===&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Загрузка изображений</span>
+    <span class="n">input_image_camera01</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;./files/L1000.bmp&quot;</span><span class="p">)</span>
+    <span class="n">input_image_camera02</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;./files/R1000.bmp&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">input_image_camera01</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">input_image_camera02</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">write_log</span><span class="p">(</span><span class="s2">&quot;Не удалось загрузить изображения&quot;</span><span class="p">,</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="n">write_log</span><span class="p">(</span><span class="s2">&quot;1. Загрузка изображений из файла (успешно)&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Загрузка параметров камеры</span>
+    <span class="n">camera_parameters</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">read_camera_stereo_parameters_from_file</span><span class="p">(</span>
+        <span class="s2">&quot;./files/(66a)_(960p)_NewCamStereoModule_Air.xml&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">write_log</span><span class="p">(</span><span class="s2">&quot;2. Загрузка параметров стереокамеры из файла (успешно)&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Инициализация параметров</span>
+    <span class="n">settings_metod_disparity</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;metodDisparity&#39;</span><span class="p">:</span> <span class="n">METOD_DISPARITY</span><span class="o">.</span><span class="n">MODE_SGBM</span><span class="p">}</span>
+    <span class="n">limit_out_points</span> <span class="o">=</span> <span class="mi">8000</span>
+    <span class="n">limits_outlier_area</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">4.0e3</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.0e3</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mf">4.0e3</span><span class="p">,</span> <span class="mf">4.0e3</span><span class="p">,</span> <span class="mf">3.0e3</span><span class="p">]</span>
+    <span class="n">file_path_model_yolo_neural_net</span> <span class="o">=</span> <span class="s2">&quot;./files/NeuralNet/yolov5n-seg.onnx&quot;</span>
+    <span class="n">file_path_classes</span> <span class="o">=</span> <span class="s2">&quot;./files/NeuralNet/yolov5.names&quot;</span>
+    <span class="n">parameters_3d_scene</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;angX&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;angY&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span> <span class="s1">&#39;angZ&#39;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span>
+        <span class="s1">&#39;tX&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="s1">&#39;tY&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s1">&#39;tZ&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">600</span><span class="p">,</span>
+        <span class="s1">&#39;dZ&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="mf">1.0</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Обработка изображений</span>
+    <span class="n">output_image</span><span class="p">,</span> <span class="n">output_image_3d_scene</span><span class="p">,</span> <span class="n">points_3d</span><span class="p">,</span> <span class="n">reply_masks</span><span class="p">,</span> <span class="n">disparity_map</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">find_3d_points_in_objects_segments</span><span class="p">(</span>
+        <span class="n">input_image_camera01</span><span class="p">,</span> <span class="n">input_image_camera02</span><span class="p">,</span> <span class="n">camera_parameters</span><span class="p">,</span>
+        <span class="n">settings_metod_disparity</span><span class="p">,</span> <span class="n">limit_out_points</span><span class="p">,</span> <span class="n">limits_outlier_area</span><span class="p">,</span>
+        <span class="n">file_path_model_yolo_neural_net</span><span class="p">,</span> <span class="n">file_path_classes</span><span class="p">,</span> <span class="n">parameters_3d_scene</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Отображение результатов</span>
+    <span class="n">foto_experimental_stand</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;./files/experimantalStand.jpg&quot;</span><span class="p">)</span>
+    <span class="n">show_image</span><span class="p">(</span><span class="n">foto_experimental_stand</span><span class="p">,</span> <span class="s2">&quot;fotoExperimantalStand translating to Фото экспериментального стенда&quot;</span><span class="p">)</span>
+
+    <span class="n">output_stereo_pair</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">making_stereo_pair</span><span class="p">(</span><span class="n">input_image_camera01</span><span class="p">,</span> <span class="n">input_image_camera02</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">show_image</span><span class="p">(</span><span class="n">output_stereo_pair</span><span class="p">,</span> <span class="s2">&quot;SourceStereoImage translating to Исходное стереоизображение&quot;</span><span class="p">)</span>
+        <span class="n">write_log</span><span class="p">(</span><span class="s2">&quot;4.2 Отображение исходного изображения (успешно)&quot;</span><span class="p">)</span>
+
+    <span class="n">input_image_camera01_remap</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">converting_undistort_rectify</span><span class="p">(</span>
+        <span class="n">input_image_camera01</span><span class="p">,</span> <span class="n">camera_parameters</span><span class="p">[</span><span class="s1">&#39;map11&#39;</span><span class="p">],</span> <span class="n">camera_parameters</span><span class="p">[</span><span class="s1">&#39;map12&#39;</span><span class="p">])</span>
+    <span class="n">input_image_camera02_remap</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">converting_undistort_rectify</span><span class="p">(</span>
+        <span class="n">input_image_camera02</span><span class="p">,</span> <span class="n">camera_parameters</span><span class="p">[</span><span class="s1">&#39;map21&#39;</span><span class="p">],</span> <span class="n">camera_parameters</span><span class="p">[</span><span class="s1">&#39;map22&#39;</span><span class="p">])</span>
+    <span class="n">output_stereo_pair_remap</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">making_stereo_pair</span><span class="p">(</span><span class="n">input_image_camera01_remap</span><span class="p">,</span> <span class="n">input_image_camera02_remap</span><span class="p">)</span>
+    <span class="n">show_image</span><span class="p">(</span><span class="n">output_stereo_pair_remap</span><span class="p">,</span> <span class="s2">&quot;outputStereoPairRemap translating to Исправленная стереопара&quot;</span><span class="p">)</span>
+
+    <span class="n">show_disparity_map</span><span class="p">(</span><span class="n">disparity_map</span><span class="p">,</span> <span class="s2">&quot;disparityMap translating to Карта диспаратности&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">qs</span><span class="p">,</span> <span class="n">mask</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reply_masks</span><span class="p">):</span>
+        <span class="n">show_image</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;replyMasks </span><span class="si">{</span><span class="n">qs</span><span class="si">}</span><span class="s2"> translating to Маски ответа </span><span class="si">{</span><span class="n">qs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">write_log</span><span class="p">(</span><span class="s2">&quot;4.5 Отображение бинарных изображений сегментов (успешно)&quot;</span><span class="p">)</span>
+
+    <span class="n">path_to_file</span> <span class="o">=</span> <span class="s2">&quot;./files/3DPointsInObjectsSegments.txt&quot;</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">save_in_file_3d_points_in_objects_segments</span><span class="p">(</span><span class="n">points_3d</span><span class="p">,</span> <span class="n">path_to_file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">write_log</span><span class="p">(</span><span class="s2">&quot;4.6 Сохранение 3D-точек в текстовый файл (успешно)&quot;</span><span class="p">)</span>
+
+    <span class="n">show_image</span><span class="p">(</span><span class="n">output_image</span><span class="p">,</span> <span class="s2">&quot;outputImage translating to Выходное изображение&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">show_image</span><span class="p">(</span><span class="n">output_image_3d_scene</span><span class="p">,</span> <span class="s2">&quot;outputImage3dSceene translating to Проекция 3D-сцены&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+    <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Описание
+В этом примере загружаются стереопара изображений и параметры камеры, выполняется обработка для получения 3D-точек, и результаты визуализируются с использованием различных функций отображения.</p>
+</section>
+<section id="imgpreprocessing-py">
+<h2>Описание для скрипта <code class="docutils literal notranslate"><span class="pre">imgpreprocessing.py</span></code><a class="headerlink" href="#imgpreprocessing-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">imgpreprocessing.py</span></code> демонстрирует использование класса <code class="docutils literal notranslate"><span class="pre">MRCV</span></code> для предварительной обработки изображений с применением различных методов, таких как фильтрация шума, балансировка контраста и повышение резкости. Предобработка изображений — важный этап в задачах компьютерного зрения для улучшения качества изображений перед анализом.</p>
+<p>Пример загружает изображение, определяет список методов предобработки и применяет их с помощью метода <code class="docutils literal notranslate"><span class="pre">preprocessingImage</span></code>. Результат сохраняется в файл и отображается.</p>
+<p>Эта функциональность полезна для подготовки изображений к последующему анализу, например, для обнаружения объектов или сегментации.</p>
+<p>Пример использования</p>
+<p>Пример показывает загрузку изображения, применение предобработки и сохранение результата:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">MRCV</span><span class="p">,</span> <span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="p">,</span> <span class="n">LOGTYPE</span>
+
+<span class="c1"># Создание выходной директории</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;./files/outImages&quot;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Логирование уже настроено в mrcv.py</span>
+<span class="n">MRCV</span><span class="o">.</span><span class="n">writeLog</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="n">MRCV</span><span class="o">.</span><span class="n">writeLog</span><span class="p">(</span><span class="s2">&quot; === НОВЫЙ ЗАПУСК === &quot;</span><span class="p">)</span>
+
+<span class="c1"># Загрузка изображения</span>
+<span class="n">imageInputFilePath</span> <span class="o">=</span> <span class="s2">&quot;./files/img02.jfif&quot;</span>
+<span class="n">imageIn</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">imageInputFilePath</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_COLOR</span><span class="p">)</span>
+<span class="n">imageOut</span> <span class="o">=</span> <span class="n">imageIn</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">if</span> <span class="n">imageIn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="k">if</span> <span class="n">imageIn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">MRCV</span><span class="o">.</span><span class="n">writeLog</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    загружено изображение: </span><span class="si">{</span><span class="n">imageInputFilePath</span><span class="si">}</span><span class="s2"> :: &quot;</span>
+                  <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">imageIn</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">imageIn</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">imageIn</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">MRCV</span><span class="o">.</span><span class="n">writeLog</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    не удалось загрузить изображение: </span><span class="si">{</span><span class="n">imageInputFilePath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">LOGTYPE</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Определение методов предобработки</span>
+<span class="n">methodImagePreProcessingBrightnessContrast</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">.</span><span class="n">NOISE_FILTERING_01_MEDIAN_FILTER</span><span class="p">,</span>
+    <span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">.</span><span class="n">BALANCE_CONTRAST_10_LAB_CLAHE</span><span class="p">,</span>
+    <span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">.</span><span class="n">SHARPENING_02</span><span class="p">,</span>
+    <span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">.</span><span class="n">BRIGHTNESS_LEVEL_DOWN</span><span class="p">,</span>
+    <span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">.</span><span class="n">NONE</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1"># Предобработка изображения</span>
+<span class="n">state</span><span class="p">,</span> <span class="n">imageOut</span> <span class="o">=</span> <span class="n">MRCV</span><span class="o">.</span><span class="n">preprocessingImage</span><span class="p">(</span>
+    <span class="n">imageOut</span><span class="p">,</span> <span class="n">methodImagePreProcessingBrightnessContrast</span><span class="p">,</span> <span class="s2">&quot;./files/camera-parameters.xml&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">MRCV</span><span class="o">.</span><span class="n">writeLog</span><span class="p">(</span><span class="s2">&quot; Предобработка изображения завершена (успешно)&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">MRCV</span><span class="o">.</span><span class="n">writeLog</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; preprocessingImage, state = </span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">LOGTYPE</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+
+<span class="c1"># Сохранение выходного изображения</span>
+<span class="n">imageOutputFilePath</span> <span class="o">=</span> <span class="s2">&quot;./files/outImages/test.png&quot;</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">imageOutputFilePath</span><span class="p">,</span> <span class="n">imageOut</span><span class="p">)</span>
+<span class="n">MRCV</span><span class="o">.</span><span class="n">writeLog</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> результат предобработки сохранён: </span><span class="si">{</span><span class="n">imageOutputFilePath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Отображение изображений</span>
+<span class="n">CoefShowWindow</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">imageIn</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">imageIn</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fx</span><span class="o">=</span><span class="n">CoefShowWindow</span><span class="p">,</span> <span class="n">fy</span><span class="o">=</span><span class="n">CoefShowWindow</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">INTER_LINEAR</span><span class="p">)</span>
+<span class="n">imageOut</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">imageOut</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fx</span><span class="o">=</span><span class="n">CoefShowWindow</span><span class="p">,</span> <span class="n">fy</span><span class="o">=</span><span class="n">CoefShowWindow</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">INTER_LINEAR</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s2">&quot;imageIn translating to Входное изображение&quot;</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_AUTOSIZE</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;imageIn translating to Входное изображение&quot;</span><span class="p">,</span> <span class="n">imageIn</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s2">&quot;imageOut translating to Выходное изображение&quot;</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_AUTOSIZE</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;imageOut translating to Выходное изображение&quot;</span><span class="p">,</span> <span class="n">imageOut</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Описание
+В этом примере загружается изображение, выполняется предобработка с использованием указанных методов, а результат сохраняется и отображается.</p>
+</section>
+<section id="comparing-py">
+<h2>Описание для скрипта <code class="docutils literal notranslate"><span class="pre">comparing.py</span></code><a class="headerlink" href="#comparing-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">comparing.py</span></code> демонстрирует использование функции <code class="docutils literal notranslate"><span class="pre">compare_images</span></code> для сравнения двух изображений и вычисления их сходства. Эта функция полезна для задач, таких как обнаружение дубликатов изображений, контроль качества или анализ изменений.</p>
+<p>Функция <code class="docutils literal notranslate"><span class="pre">compare_images</span></code> принимает два изображения и возвращает показатель сходства, указывающий, насколько они похожи.</p>
+<p>Пример использования</p>
+<p>Пример показывает загрузку двух изображений и вычисление их сходства:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">compare_images</span>
+
+<span class="c1"># Путь к папке с изображениями</span>
+<span class="n">image_dir</span> <span class="o">=</span> <span class="s2">&quot;files&quot;</span>
+<span class="n">current_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_path</span><span class="p">,</span> <span class="n">image_dir</span><span class="p">)</span>
+
+<span class="c1"># Загрузка изображений</span>
+<span class="n">img1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="s2">&quot;1.png&quot;</span><span class="p">))</span>
+<span class="n">img2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="s2">&quot;2.png&quot;</span><span class="p">))</span>
+
+<span class="c1"># Проверка, что изображения загружены</span>
+<span class="k">if</span> <span class="n">img1</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">img2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ошибка: Не удалось загрузить одно или оба изображения.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Сравнение изображений</span>
+<span class="n">similarity</span> <span class="o">=</span> <span class="n">compare_images</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Сходство: </span><span class="si">{</span><span class="n">similarity</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Описание</p>
+<p>В этом примере загружаются два изображения, и их сходство вычисляется и выводится с использованием функции <code class="docutils literal notranslate"><span class="pre">compare_images</span></code>.</p>
+</section>
+<section id="detectorautotrain-py">
+<h2>Описание для скрипта <code class="docutils literal notranslate"><span class="pre">detectorautotrain.py</span></code><a class="headerlink" href="#detectorautotrain-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">detectorautotrain.py</span></code> демонстрирует использование класса <code class="docutils literal notranslate"><span class="pre">Detector</span></code> для автоматического обучения детектора объектов. Этот класс позволяет инициализировать детектор с определёнными параметрами и запускать процесс обучения на предоставленном наборе данных.</p>
+<p>Метод <code class="docutils literal notranslate"><span class="pre">auto_train</span></code> принимает путь к набору данных, расширение файлов изображений, списки эпох, размеров пакета и скоростей обучения, а также пути к предварительно обученной модели и месту сохранения обученной модели. Это автоматизирует обучение с различными гиперпараметрами.</p>
+<p>Данная функциональность полезна для задач обнаружения объектов, таких как идентификация кораблей или других объектов интереса.</p>
+<p>Пример использования</p>
+<p>Пример показывает инициализацию детектора и запуск автоматического обучения:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">Detector</span>
+
+<span class="n">voc_classes_path</span> <span class="o">=</span> <span class="s2">&quot;files/onwater/voc_classes.txt&quot;</span>
+<span class="n">dataset_path</span> <span class="o">=</span> <span class="s2">&quot;files/onwater/&quot;</span>
+<span class="n">pretrained_model_path</span> <span class="o">=</span> <span class="s2">&quot;files/onwater_autodetector.pt&quot;</span>
+<span class="n">model_save_path</span> <span class="o">=</span> <span class="s2">&quot;files/yolo4_tiny.pt&quot;</span>
+
+<span class="n">detector</span> <span class="o">=</span> <span class="n">Detector</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="mi">416</span><span class="p">,</span> <span class="mi">416</span><span class="p">,</span> <span class="n">voc_classes_path</span><span class="p">)</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">auto_train</span><span class="p">(</span>
+    <span class="n">dataset_path</span><span class="p">,</span>
+    <span class="s2">&quot;.jpg&quot;</span><span class="p">,</span>
+    <span class="n">epochs_list</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+    <span class="n">batch_sizes</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+    <span class="n">learning_rates</span><span class="o">=</span><span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">],</span>
+    <span class="n">pretrained_path</span><span class="o">=</span><span class="n">pretrained_model_path</span><span class="p">,</span>
+    <span class="n">save_path</span><span class="o">=</span><span class="n">model_save_path</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Описание</p>
+<p>В этом примере создаётся экземпляр класса <code class="docutils literal notranslate"><span class="pre">Detector</span></code>, инициализируется с параметрами, и запускается автоматическое обучение на наборе данных с различными гиперпараметрами.</p>
+</section>
+<section id="augmentation-py">
+<h2>Описание для скрипта <code class="docutils literal notranslate"><span class="pre">augmentation.py</span></code><a class="headerlink" href="#augmentation-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">augmentation.py</span></code> демонстрирует использование функций <code class="docutils literal notranslate"><span class="pre">augmentation</span></code> и <code class="docutils literal notranslate"><span class="pre">batch_augmentation</span></code> для применения различных методов аугментации к изображениям.</p>
+<p>Аугментация изображений — это метод увеличения размера набора данных путём создания изменённых копий изображений, что улучшает обобщающую способность моделей машинного обучения.</p>
+<p>Функция <code class="docutils literal notranslate"><span class="pre">augmentation</span></code> принимает список изображений и методы аугментации, возвращая аугментированные изображения. Функция <code class="docutils literal notranslate"><span class="pre">batch_augmentation</span></code> выполняет аугментацию в пакетном режиме с конфигурацией, указывающей, сохранять ли оригиналы, общее количество выходных изображений и веса для различных методов.</p>
+<p>Данная функциональность полезна для подготовки данных в задачах компьютерного зрения, таких как обучение детекторов объектов.</p>
+<p>Пример использования</p>
+<p>Пример показывает применение аугментации к изображениям:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">AugmentationMethod</span><span class="p">,</span> <span class="n">BatchAugmentationConfig</span><span class="p">,</span> <span class="n">augmentation</span><span class="p">,</span> <span class="n">batch_augmentation</span>
+
+<span class="n">input_images</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;files&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;img</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.jpg&quot;</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_COLOR</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">img</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ошибка: Не удалось загрузить изображение по пути </span><span class="si">{</span><span class="n">img_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">input_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+<span class="c1"># Создание копии входных изображений</span>
+<span class="n">input_images_copy</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">input_images</span><span class="p">]</span>
+
+<span class="c1"># Определение методов аугментации</span>
+<span class="n">augmentation_methods</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">AugmentationMethod</span><span class="o">.</span><span class="n">ROTATE_IMAGE_90</span><span class="p">,</span>
+    <span class="n">AugmentationMethod</span><span class="o">.</span><span class="n">FLIP_HORIZONTAL</span><span class="p">,</span>
+    <span class="n">AugmentationMethod</span><span class="o">.</span><span class="n">FLIP_VERTICAL</span><span class="p">,</span>
+    <span class="n">AugmentationMethod</span><span class="o">.</span><span class="n">ROTATE_IMAGE_45</span><span class="p">,</span>
+    <span class="n">AugmentationMethod</span><span class="o">.</span><span class="n">ROTATE_IMAGE_315</span><span class="p">,</span>
+    <span class="n">AugmentationMethod</span><span class="o">.</span><span class="n">ROTATE_IMAGE_270</span><span class="p">,</span>
+    <span class="n">AugmentationMethod</span><span class="o">.</span><span class="n">FLIP_HORIZONTAL_AND_VERTICAL</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1"># Выполнение аугментации</span>
+<span class="n">state</span><span class="p">,</span> <span class="n">output_images</span> <span class="o">=</span> <span class="n">augmentation</span><span class="p">(</span><span class="n">input_images</span><span class="p">,</span> <span class="n">augmentation_methods</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">state</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ошибка: Аугментация завершилась с кодом </span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Конфигурация пакетной аугментации</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">BatchAugmentationConfig</span><span class="p">()</span>
+<span class="n">config</span><span class="o">.</span><span class="n">keep_original</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">config</span><span class="o">.</span><span class="n">total_output_count</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">config</span><span class="o">.</span><span class="n">random_seed</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">config</span><span class="o">.</span><span class="n">method_weights</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">AugmentationMethod</span><span class="o">.</span><span class="n">FLIP_HORIZONTAL</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">AugmentationMethod</span><span class="o">.</span><span class="n">ROTATE_IMAGE_90</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">AugmentationMethod</span><span class="o">.</span><span class="n">BRIGHTNESS_CONTRAST_ADJUST</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">AugmentationMethod</span><span class="o">.</span><span class="n">PERSPECTIVE_WARP</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">AugmentationMethod</span><span class="o">.</span><span class="n">COLOR_JITTER</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Выполнение пакетной аугментации</span>
+<span class="n">state</span><span class="p">,</span> <span class="n">batch_output</span> <span class="o">=</span> <span class="n">batch_augmentation</span><span class="p">(</span>
+    <span class="n">input_images_copy</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">,</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;files&quot;</span><span class="p">,</span> <span class="s2">&quot;batch_output&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">if</span> <span class="n">state</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ошибка: Пакетная аугментация завершилась с кодом: </span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Описание</p>
+<p>В этом примере загружаются изображения, применяются различные методы аугментации, и выполняется пакетная аугментация с заданной конфигурацией.</p>
+</section>
+<section id="morphologyimage-py">
+<h2>Описание для скрипта <code class="docutils literal notranslate"><span class="pre">morphologyimage.py</span></code><a class="headerlink" href="#morphologyimage-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">morphologyimage.py</span></code> демонстрирует использование функции <code class="docutils literal notranslate"><span class="pre">morphology_image</span></code> для применения морфологических операций к изображению.</p>
+<p>Морфологические операции, такие как открытие, закрытие, эрозия и дилатация, используются для обработки бинарных или полутоновых изображений, помогая в сегментации, удалении шума и выделении структур.</p>
+<p>Функция <code class="docutils literal notranslate"><span class="pre">morphology_image</span></code> принимает изображение, путь для сохранения результата, тип морфологической операции и размер ядра. В примере используется операция <code class="docutils literal notranslate"><span class="pre">METOD_MORF.OPEN</span></code> для удаления мелких объектов и шума.</p>
+<p>Данная функциональность полезна для предобработки изображений перед анализом, например, для выделения объектов интереса.</p>
+<p>Пример использования</p>
+<p>Пример показывает применение морфологической операции к изображению:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">morphology_image</span><span class="p">,</span> <span class="n">METOD_MORF</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">image_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;files&quot;</span><span class="p">)</span>
+<span class="n">current_path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="n">image_path</span> <span class="o">=</span> <span class="n">current_path</span> <span class="o">/</span> <span class="n">image_file</span>
+<span class="n">input_image</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">image_path</span> <span class="o">/</span> <span class="s2">&quot;opening.png&quot;</span><span class="p">)</span>
+<span class="n">output_image</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">image_path</span> <span class="o">/</span> <span class="s2">&quot;out.png&quot;</span><span class="p">)</span>
+
+<span class="n">morph_size</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Чтение изображения в градациях серого</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+
+<span class="c1"># Проверка успешности загрузки изображения</span>
+<span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Не удалось открыть или найти изображение&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">morphology_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">output_image</span><span class="p">,</span> <span class="n">METOD_MORF</span><span class="o">.</span><span class="n">OPEN</span><span class="p">,</span> <span class="n">morph_size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Описание</p>
+<p>В этом примере загружается полутоновое изображение, применяется морфологическая операция открытия с размером ядра 1, и результат сохраняется.</p>
 </section>
 </section>
 <section id="id90">
