@@ -44,117 +44,123 @@
               <!-- Local TOC -->
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">Marine Robotics Computer Vision</a></li>
-<li><a class="reference internal" href="#id1">Описание служебных структур</a><ul>
-<li><a class="reference internal" href="#id2">Перечисления:</a></li>
-<li><a class="reference internal" href="#id3">Структуры:</a></li>
+<li><a class="reference internal" href="#id1">Дополнительные ссылки</a></li>
+<li><a class="reference internal" href="#id2">Рекомедуемая минимальная конфигурация</a></li>
+<li><a class="reference internal" href="#id3">Описание служебных структур</a><ul>
+<li><a class="reference internal" href="#id4">Перечисления:</a></li>
+<li><a class="reference internal" href="#id5">Структуры:</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id4">Модуль служебных функций</a><ul>
-<li><a class="reference internal" href="#id5">Функции работы с изображениями</a></li>
-<li><a class="reference internal" href="#id6">Функции работы с видео</a></li>
-<li><a class="reference internal" href="#id7">Функции калибровки камер</a></li>
-<li><a class="reference internal" href="#id8">Функции логирования</a></li>
-<li><a class="reference internal" href="#id9">Функции работы с изображениями из интернета</a></li>
-<li><a class="reference internal" href="#id10">Функции построения карты диспаратности</a></li>
+<li><a class="reference internal" href="#id6">Модуль служебных функций</a><ul>
+<li><a class="reference internal" href="#id7">Функции работы с изображениями</a></li>
+<li><a class="reference internal" href="#id8">Функции работы с видео</a></li>
+<li><a class="reference internal" href="#id9">Функции калибровки камер</a></li>
+<li><a class="reference internal" href="#id10">Функции логирования</a></li>
+<li><a class="reference internal" href="#id11">Функции работы с изображениями из интернета</a></li>
+<li><a class="reference internal" href="#id12">Функции построения карты диспаратности</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id11">Модуль аугментации</a><ul>
-<li><a class="reference internal" href="#id12">Функция поворота изображения</a></li>
-<li><a class="reference internal" href="#id13">Функция отражения изображения</a></li>
-<li><a class="reference internal" href="#id14">Функция аугментации изображений</a></li>
-<li><a class="reference internal" href="#id15">Поддерживаемые методы аугментации:</a></li>
+<li><a class="reference internal" href="#id13">Модуль аугментации</a><ul>
+<li><a class="reference internal" href="#id14">Функция поворота изображения</a></li>
+<li><a class="reference internal" href="#id15">Функция отражения изображения</a></li>
+<li><a class="reference internal" href="#id16">Функция аугментации изображений</a></li>
+<li><a class="reference internal" href="#id17">Поддерживаемые методы аугментации:</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id16">Модуль кластеризации</a><ul>
-<li><a class="reference internal" href="#id17">Загрузка данных из файла</a></li>
-<li><a class="reference internal" href="#id18">Кластеризация загруженных данных</a></li>
-<li><a class="reference internal" href="#id19">Печать информации о кластерах</a></li>
+<li><a class="reference internal" href="#id18">Модуль кластеризации</a><ul>
+<li><a class="reference internal" href="#id19">Загрузка данных из файла</a></li>
+<li><a class="reference internal" href="#id20">Кластеризация загруженных данных</a></li>
+<li><a class="reference internal" href="#id21">Печать информации о кластерах</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id20">Модуль сравнения изображений</a><ul>
-<li><a class="reference internal" href="#id21">Сравнение изображений</a></li>
+<li><a class="reference internal" href="#id22">Модуль сравнения изображений</a><ul>
+<li><a class="reference internal" href="#id23">Сравнение изображений</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id22">Модуль детекции изображений</a><ul>
-<li><a class="reference internal" href="#id23">Инициализация детектора</a></li>
-<li><a class="reference internal" href="#id24">Загрузка предобученной модели</a></li>
-<li><a class="reference internal" href="#id25">Обучение модели</a></li>
-<li><a class="reference internal" href="#id26">Автоматический подбор гиперпараметров</a></li>
-<li><a class="reference internal" href="#id27">Предсказание и визуализация</a><ul>
-<li><a class="reference internal" href="#id28">Валидация модели</a></li>
+<li><a class="reference internal" href="#id24">Модуль детекции изображений</a><ul>
+<li><a class="reference internal" href="#id25">Инициализация детектора</a></li>
+<li><a class="reference internal" href="#id26">Загрузка предобученной модели</a></li>
+<li><a class="reference internal" href="#id27">Обучение модели</a></li>
+<li><a class="reference internal" href="#id28">Автоматический подбор гиперпараметров</a></li>
+<li><a class="reference internal" href="#id29">Предсказание и визуализация</a><ul>
+<li><a class="reference internal" href="#id30">Валидация модели</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id29">Модуль предварительной обработки изображений</a><ul>
-<li><a class="reference internal" href="#id30">Функция создания изображения с сообщением об ошибке</a></li>
-<li><a class="reference internal" href="#id31">Коррекция яркости изображения</a></li>
-<li><a class="reference internal" href="#id32">Увеличение резкости (метод Лапласа)</a></li>
-<li><a class="reference internal" href="#id33">Увеличение резкости (метод Гаусса)</a></li>
-<li><a class="reference internal" href="#id34">Основная функция предварительной обработки</a></li>
-<li><a class="reference internal" href="#id35">Увеличение контраста изображения</a></li>
-<li><a class="reference internal" href="#id36">Балансировка контраста</a></li>
-<li><a class="reference internal" href="#id37">Расширение контраста</a></li>
+<li><a class="reference internal" href="#id31">Модуль предварительной обработки изображений</a><ul>
+<li><a class="reference internal" href="#id32">Функция создания изображения с сообщением об ошибке</a></li>
+<li><a class="reference internal" href="#id33">Коррекция яркости изображения</a></li>
+<li><a class="reference internal" href="#id34">Увеличение резкости (метод Лапласа)</a></li>
+<li><a class="reference internal" href="#id35">Увеличение резкости (метод Гаусса)</a></li>
+<li><a class="reference internal" href="#id36">Основная функция предварительной обработки</a></li>
+<li><a class="reference internal" href="#id37">Увеличение контраста изображения</a></li>
+<li><a class="reference internal" href="#id38">Балансировка контраста</a></li>
+<li><a class="reference internal" href="#id39">Расширение контраста</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id38">Модуль морфологических преобразований</a><ul>
-<li><a class="reference internal" href="#id39">Основная функция морфологических преобразований</a></li>
-<li><a class="reference internal" href="#id40">Функция морфологического открытия</a></li>
-<li><a class="reference internal" href="#id41">Функция морфологического закрытия</a></li>
-<li><a class="reference internal" href="#id42">Функция морфологического градиента</a></li>
-<li><a class="reference internal" href="#id43">Функция морфологической эрозии</a></li>
-<li><a class="reference internal" href="#id44">Функция морфологического расширения</a></li>
+<li><a class="reference internal" href="#id40">Модуль морфологических преобразований</a><ul>
+<li><a class="reference internal" href="#id41">Основная функция морфологических преобразований</a></li>
+<li><a class="reference internal" href="#id42">Функция морфологического открытия</a></li>
+<li><a class="reference internal" href="#id43">Функция морфологического закрытия</a></li>
+<li><a class="reference internal" href="#id44">Функция морфологического градиента</a></li>
+<li><a class="reference internal" href="#id45">Функция морфологической эрозии</a></li>
+<li><a class="reference internal" href="#id46">Функция морфологического расширения</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id45">Модуль расчета курса объекта</a><ul>
+<li><a class="reference internal" href="#id47">Модуль расчета курса объекта</a><ul>
 <li><a class="reference internal" href="#objcourse">Класс ObjCourse</a></li>
-<li><a class="reference internal" href="#id46">Инициализация нейронной сети</a></li>
-<li><a class="reference internal" href="#id47">Основной процесс обработки</a></li>
-<li><a class="reference internal" href="#id48">Расчет курса</a></li>
-<li><a class="reference internal" href="#id49">Предобработка изображения</a></li>
-<li><a class="reference internal" href="#id50">Постобработка результатов</a></li>
-<li><a class="reference internal" href="#id51">Отрисовка меток</a></li>
+<li><a class="reference internal" href="#id48">Инициализация нейронной сети</a></li>
+<li><a class="reference internal" href="#id49">Основной процесс обработки</a></li>
+<li><a class="reference internal" href="#id50">Расчет курса</a></li>
+<li><a class="reference internal" href="#id51">Предобработка изображения</a></li>
+<li><a class="reference internal" href="#id52">Постобработка результатов</a></li>
+<li><a class="reference internal" href="#id53">Отрисовка меток</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id52">Модуль сегментации изображений</a><ul>
+<li><a class="reference internal" href="#id54">Модуль сегментации изображений</a><ul>
 <li><a class="reference internal" href="#fpn">Архитектура FPN</a></li>
 <li><a class="reference internal" href="#segmentor">Класс Segmentor</a></li>
-<li><a class="reference internal" href="#id53">Вспомогательные классы</a></li>
-<li><a class="reference internal" href="#id54">Функции потерь</a></li>
+<li><a class="reference internal" href="#id55">Вспомогательные классы</a></li>
+<li><a class="reference internal" href="#id56">Функции потерь</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#d">Модуль создания 3D сцен</a><ul>
-<li><a class="reference internal" href="#id55">Формирование стереопары</a></li>
-<li><a class="reference internal" href="#id56">Построение карты диспаратности</a></li>
-<li><a class="reference internal" href="#id57">Сегментация объектов</a></li>
-<li><a class="reference internal" href="#id58">Визуализация 3D сцены</a></li>
-<li><a class="reference internal" href="#id59">Сохранение результатов</a></li>
+<li><a class="reference internal" href="#id57">Формирование стереопары</a></li>
+<li><a class="reference internal" href="#id58">Построение карты диспаратности</a></li>
+<li><a class="reference internal" href="#id59">Сегментация объектов</a></li>
+<li><a class="reference internal" href="#id60">Визуализация 3D сцены</a></li>
+<li><a class="reference internal" href="#id61">Сохранение результатов</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#yolov5">Модуль работы с YOLOv5</a><ul>
-<li><a class="reference internal" href="#id60">Интерактивная разметка данных</a></li>
-<li><a class="reference internal" href="#id61">Генерация конфигурации модели</a></li>
-<li><a class="reference internal" href="#id62">Генерация гиперпараметров</a></li>
+<li><a class="reference internal" href="#id62">Интерактивная разметка данных</a></li>
+<li><a class="reference internal" href="#id63">Генерация конфигурации модели</a></li>
+<li><a class="reference internal" href="#id64">Генерация гиперпараметров</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id63">Демонстрационные примеры</a><ul>
-<li><a class="reference internal" href="#id64">Пример использования аугментации изображений</a></li>
-<li><a class="reference internal" href="#id65">Пример использования кластеризации</a></li>
-<li><a class="reference internal" href="#id66">Пример использования модуля работы с YOLOv5</a></li>
-<li><a class="reference internal" href="#id67">Пример использования детектирования объектов</a></li>
-<li><a class="reference internal" href="#id68">Пример использования предобработки изображений</a></li>
-<li><a class="reference internal" href="#id69">Программные функции библиотеки для подсчета количества объектов интереса по данным видеопотока в реальном масштабе времени и определения курса роботизированного аппарата на объект интереса</a></li>
+<li><a class="reference internal" href="#id65">Демонстрационные примеры</a><ul>
+<li><a class="reference internal" href="#id66">Пример использования аугментации изображений</a></li>
+<li><a class="reference internal" href="#id67">Пример использования кластеризации</a></li>
+<li><a class="reference internal" href="#id68">Пример использования модуля работы с YOLOv5</a></li>
+<li><a class="reference internal" href="#id69">Пример использования детектирования объектов</a></li>
+<li><a class="reference internal" href="#id70">Пример использования предобработки изображений</a></li>
+<li><a class="reference internal" href="#id71">Программные функции библиотеки для подсчета количества объектов интереса по данным видеопотока в реальном масштабе времени и определения курса роботизированного аппарата на объект интереса</a></li>
 <li><a class="reference internal" href="#d-3d">4.9     Программные функции библиотеки для компьютерного стереозрения для определения координат 3D точек в сегментах идентифицированных объектов и восстановления 3D сцены по двумерным изображениям</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id70">Руководство для контрибьюторов</a><ul>
-<li><a class="reference internal" href="#id71">Получение исходного кода</a></li>
-<li><a class="reference internal" href="#id72">Необходимые зависимости</a></li>
-<li><a class="reference internal" href="#id73">Настройка сборки</a></li>
+<li><a class="reference internal" href="#python">Демонстрационные примеры на Python</a><ul>
+<li><a class="reference internal" href="#objcourse-py">Скрипт objcourse.py: определение курса на объект</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id72">Руководство для контрибьюторов</a><ul>
+<li><a class="reference internal" href="#id73">Получение исходного кода</a></li>
+<li><a class="reference internal" href="#id74">Необходимые зависимости</a></li>
+<li><a class="reference internal" href="#id75">Настройка сборки</a></li>
 <li><a class="reference internal" href="#python-mrcv">Инструкция по установке python версии библиотеки mrcv</a></li>
-<li><a class="reference internal" href="#id74">Оформление изменений</a></li>
-<li><a class="reference internal" href="#id75">Репорты об ошибках</a></li>
-<li><a class="reference internal" href="#id76">Рекомендации по контрибьюции</a></li>
+<li><a class="reference internal" href="#id76">Оформление изменений</a></li>
+<li><a class="reference internal" href="#id77">Репорты об ошибках</a></li>
+<li><a class="reference internal" href="#id78">Рекомендации по контрибьюции</a></li>
 </ul>
 </li>
 </ul>
@@ -204,10 +210,40 @@
 <p>Проект выполнен при грантовой поддержке Фонда содействия развитию малых форм предприятий в научно-технической сфере.</p>
 </section>
 <section id="id1">
-<h1>Описание служебных структур<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>Ниже приведены основные структуры, перечисления и параметры, используемые в библиотеке Marine Robotics Computer Vision для хранения данных, настройки алгоритмов и конфигурации камер.</p>
+<h1>Дополнительные ссылки<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Репозиторий проекта: <a class="reference external" href="https://github.com/valabsoft/code-ai-400393">https://github.com/valabsoft/code-ai-400393</a></p></li>
+<li><p>Датасет изображений: <a class="reference external" href="https://huggingface.co/saigon-89/code-ai-400393">https://huggingface.co/saigon-89/code-ai-400393</a></p></li>
+<li><p>Страница проекта: <a class="reference external" href="https://vasoftlab.ru/mrcv/">https://vasoftlab.ru/mrcv/</a></p></li>
+</ul>
+</section>
 <section id="id2">
-<h2>Перечисления:<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<h1>Рекомедуемая минимальная конфигурация<a class="headerlink" href="#id2" title="Link to this heading"></a></h1>
+<p>Для использования библиотеки рекомендуются следующие конфигурации аппаратных средств и операционных систем.</p>
+<p>Мини-компьютер</p>
+<ul class="simple">
+<li><p>процессор: AMD Ryzen 7 5800H</p></li>
+<li><p>количество ядер/потоков: 8/16</p></li>
+<li><p>частота базовая/boost: 3.2 ГГц / 4.4 ГГц</p></li>
+<li><p>оперативная память DDR4: 16 ГБ</p></li>
+<li><p>видеокарта: NVIDIA GeForce RTX4070 12 ГБ</p></li>
+<li><p>ОС: Linux Ubuntu 22.04</p></li>
+</ul>
+<p>Одноплатный компьютер</p>
+<ul class="simple">
+<li><p>процессор: ARM Cortex A78AE v8.2 64-разрядный, 1.5 МБ L2 + 4 МБ L3, 1.5 ГГц</p></li>
+<li><p>количество ядер/потоков: 6</p></li>
+<li><p>частота базовая: 1.5 ГГц</p></li>
+<li><p>оперативная память DDR4: 8 ГБ</p></li>
+<li><p>видеокарта: NVIDIA Ampere с 1024 ядрами и 32 ядрами Tensor, 625 МГц, 4 ГБ</p></li>
+<li><p>ОС: Linux Ubuntu 18.04</p></li>
+</ul>
+</section>
+<section id="id3">
+<h1>Описание служебных структур<a class="headerlink" href="#id3" title="Link to this heading"></a></h1>
+<p>Ниже приведены основные структуры, перечисления и параметры, используемые в библиотеке Marine Robotics Computer Vision для хранения данных, настройки алгоритмов и конфигурации камер.</p>
+<section id="id4">
+<h2>Перечисления:<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p><strong>enum class METOD_MORF</strong> — методы морфологических преобразований:
 - <cite>OPEN</cite>, <cite>CLOSE</cite>, <cite>GRADIENT</cite>, <cite>ERODE</cite>, <cite>DILAT</cite></p>
 <p><strong>enum class CODEC</strong> — поддерживаемые видео-кодеки:
@@ -227,8 +263,8 @@
 <p><strong>enum class DISPARITY_TYPE</strong> — типы выходных данных по диспаратности:
 - <cite>ALL</cite>, <cite>BASIC_DISPARITY</cite>, <cite>BASIC_HEATMAP</cite>, и др.</p>
 </section>
-<section id="id3">
-<h2>Структуры:<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="id5">
+<h2>Структуры:<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <p><strong>cameraParameters</strong> — параметры одной камеры</p>
 <p><strong>cameraStereoParameters</strong> — параметры стерео-камеры</p>
 <p><strong>pointsData</strong> — структура данных для хранения облака точек и их проекций</p>
@@ -239,11 +275,11 @@
 <p><strong>settingsMetodDisparity</strong> — параметры алгоритма расчёта карты диспаратности</p>
 </section>
 </section>
-<section id="id4">
-<h1>Модуль служебных функций<a class="headerlink" href="#id4" title="Link to this heading"></a></h1>
+<section id="id6">
+<h1>Модуль служебных функций<a class="headerlink" href="#id6" title="Link to this heading"></a></h1>
 <p><em>В данном модуле реализованы вспомогательные функции для работы с изображениями, видео, калибровкой камер и логированием.</em></p>
-<section id="id5">
-<h2>Функции работы с изображениями<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<section id="id7">
+<h2>Функции работы с изображениями<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
 <p><strong>Функция сравнения изображений</strong></p>
 <p><em>Сравнивает два изображения и возвращает процент различий.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">compareImages</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">img1</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">img2</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">methodCompare</span><span class="p">)</span>
@@ -267,8 +303,8 @@
 - <code class="docutils literal notranslate"><span class="pre">metod</span></code> - тип морфологической операции (OPEN, CLOSE, GRADIENT, ERODE, DILAT)
 - <code class="docutils literal notranslate"><span class="pre">morph_size</span></code> - размер ядра преобразования</p>
 </section>
-<section id="id6">
-<h2>Функции работы с видео<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<section id="id8">
+<h2>Функции работы с видео<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
 <p><strong>Запись видеопотока</strong></p>
 <p><em>Записывает видео с камеры в файл.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">recordVideo</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">cameraID</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">recorderInterval</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fileName</span><span class="p">,</span><span class="w"> </span><span class="n">CODEC</span><span class="w"> </span><span class="n">codec</span><span class="p">)</span>
@@ -281,8 +317,8 @@
 - <code class="docutils literal notranslate"><span class="pre">codec</span></code> - используемый кодек (XVID, MJPG, mp4v, h265)</p>
 <p><strong>Возвращает:</strong> код результата (0 - успех)</p>
 </section>
-<section id="id7">
-<h2>Функции калибровки камер<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<section id="id9">
+<h2>Функции калибровки камер<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
 <p><strong>Калибровка одиночной камеры</strong></p>
 <p><em>Выполняет калибровку одной камеры по изображениям шахматной доски.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">cameraCalibrationMono</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">images</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pathToImages</span><span class="p">,</span>
@@ -318,8 +354,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">chessboardSquareSize</span></code> - размер клетки в мм</p></li>
 </ul>
 </section>
-<section id="id8">
-<h2>Функции логирования<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<section id="id10">
+<h2>Функции логирования<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
 <p><strong>Запись в лог-файл</strong></p>
 <p><em>Записывает сообщение в лог-файл с указанием типа.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">writeLog</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">logText</span><span class="p">,</span><span class="w"> </span><span class="n">LOGTYPE</span><span class="w"> </span><span class="n">logType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOGTYPE</span><span class="o">::</span><span class="n">INFO</span><span class="p">)</span>
@@ -342,8 +378,8 @@
 </ul>
 <p><strong>Возвращает:</strong> строку с уникальным именем файла</p>
 </section>
-<section id="id9">
-<h2>Функции работы с изображениями из интернета<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+<section id="id11">
+<h2>Функции работы с изображениями из интернета<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
 <p><strong>Загрузка изображений с Яндекса</strong></p>
 <p><em>Скачивает изображения по запросу из Яндекс.Картинок.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">getImagesFromYandex</span><span class="p">(</span>
@@ -374,8 +410,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>, <code class="docutils literal notranslate"><span class="pre">secretKey</span></code> - ключи API</p></li>
 </ul>
 </section>
-<section id="id10">
-<h2>Функции построения карты диспаратности<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<section id="id12">
+<h2>Функции построения карты диспаратности<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
 <p><strong>Построение карты диспаратности</strong></p>
 <p><em>Строит карту диспаратности для стереопары изображений.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">disparityMap</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageLeft</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageRight</span><span class="p">,</span>
@@ -400,11 +436,11 @@
 <p><strong>Возвращает:</strong> код результата (0 - успех)</p>
 </section>
 </section>
-<section id="id11">
-<h1>Модуль аугментации<a class="headerlink" href="#id11" title="Link to this heading"></a></h1>
+<section id="id13">
+<h1>Модуль аугментации<a class="headerlink" href="#id13" title="Link to this heading"></a></h1>
 <p><em>В модуле представлены функции, позволяющие выполнять базовые трансформации изображений, включая поворот, отражение, а также массовую аугментацию.</em></p>
-<section id="id12">
-<h2>Функция поворота изображения<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<section id="id14">
+<h2>Функция поворота изображения<a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
 <p><em>Поворачивает изображение на определённый угол с использованием центральной точки.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">rotateImage</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageInput</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageOutput</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">angle</span><span class="p">)</span>
 </pre></div>
@@ -423,8 +459,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> — неизвестная ошибка.</p></li>
 </ul>
 </section>
-<section id="id13">
-<h2>Функция отражения изображения<a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
+<section id="id15">
+<h2>Функция отражения изображения<a class="headerlink" href="#id15" title="Link to this heading"></a></h2>
 <p><em>Отражает изображение по горизонтали, вертикали или обеим осям.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">flipImage</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageInput</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageOutput</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flipCode</span><span class="p">)</span>
 </pre></div>
@@ -446,8 +482,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> — неизвестная ошибка.</p></li>
 </ul>
 </section>
-<section id="id14">
-<h2>Функция аугментации изображений<a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
+<section id="id16">
+<h2>Функция аугментации изображений<a class="headerlink" href="#id16" title="Link to this heading"></a></h2>
 <p><em>Выполняет аугментацию набора входных изображений с использованием заданных методов и сохраняет результаты в директорию.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">augmetation</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">inputImagesAugmetation</span><span class="p">,</span>
 <span class="w">                      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">outputImagesAugmetation</span><span class="p">,</span>
@@ -466,8 +502,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> — исключение (OpenCV или файловой системы, или неизвестная ошибка).</p></li>
 </ul>
 </section>
-<section id="id15">
-<h2>Поддерживаемые методы аугментации:<a class="headerlink" href="#id15" title="Link to this heading"></a></h2>
+<section id="id17">
+<h2>Поддерживаемые методы аугментации:<a class="headerlink" href="#id17" title="Link to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AUGMENTATION_METHOD</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">NONE</span><span class="p">,</span>
 <span class="w">    </span><span class="n">FLIP_HORIZONTAL</span><span class="p">,</span>
@@ -484,11 +520,11 @@
 <p>Каждому из методов соответствует операция трансформации изображения с возможностью сохранения результата на диск.</p>
 </section>
 </section>
-<section id="id16">
-<h1>Модуль кластеризации<a class="headerlink" href="#id16" title="Link to this heading"></a></h1>
+<section id="id18">
+<h1>Модуль кластеризации<a class="headerlink" href="#id18" title="Link to this heading"></a></h1>
 <p><em>В данном модуле реализованы алгоритмы кластеризации 3D-точек, полученных из данных стереокамер. Модуль основан на расчёте евклидовых расстояний между точками и оценке их взаимной близости.</em></p>
-<section id="id17">
-<h2>Загрузка данных из файла<a class="headerlink" href="#id17" title="Link to this heading"></a></h2>
+<section id="id19">
+<h2>Загрузка данных из файла<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
 <p><em>Загружает координаты 3D-точек из текстового файла и сохраняет их во внутреннюю структуру данных.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">DenseStereo</span><span class="o">::</span><span class="n">loadDataFromFile</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
@@ -497,8 +533,8 @@
 - <code class="docutils literal notranslate"><span class="pre">filename</span></code> — путь к текстовому файлу с координатами.</p>
 <p><strong>Назначение:</strong> очищает внутренние данные и заполняет список <code class="docutils literal notranslate"><span class="pre">xyz</span></code> из файла.</p>
 </section>
-<section id="id18">
-<h2>Кластеризация загруженных данных<a class="headerlink" href="#id18" title="Link to this heading"></a></h2>
+<section id="id20">
+<h2>Кластеризация загруженных данных<a class="headerlink" href="#id20" title="Link to this heading"></a></h2>
 <p><em>Выполняет кластеризацию точек в 3D пространстве на основе расстояний между ними.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">DenseStereo</span><span class="o">::</span><span class="n">makeClustering</span><span class="p">()</span>
 </pre></div>
@@ -514,8 +550,8 @@
 - <code class="docutils literal notranslate"><span class="pre">IDX</span></code> — вектор, содержащий индексы кластеров для каждой точки.</p>
 <p><strong>Промежуточные структуры:</strong> используются многопоточность, нормализация, логические маски.</p>
 </section>
-<section id="id19">
-<h2>Печать информации о кластерах<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
+<section id="id21">
+<h2>Печать информации о кластерах<a class="headerlink" href="#id21" title="Link to this heading"></a></h2>
 <p><em>Формирует и записывает в лог информацию о результатах кластеризации.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">DenseStereo</span><span class="o">::</span><span class="n">printClusters</span><span class="p">()</span>
 </pre></div>
@@ -529,11 +565,11 @@
 - <code class="docutils literal notranslate"><span class="pre">vuxyzrgb.xyz</span></code> — координаты исходных точек.</p>
 </section>
 </section>
-<section id="id20">
-<h1>Модуль сравнения изображений<a class="headerlink" href="#id20" title="Link to this heading"></a></h1>
+<section id="id22">
+<h1>Модуль сравнения изображений<a class="headerlink" href="#id22" title="Link to this heading"></a></h1>
 <p><em>Модуль предназначен для сравнения двух изображений с использованием различных методов. Поддерживаются два режима: сравнение по HSV-гистограммам и по L2-норме между изображениями.</em></p>
-<section id="id21">
-<h2>Сравнение изображений<a class="headerlink" href="#id21" title="Link to this heading"></a></h2>
+<section id="id23">
+<h2>Сравнение изображений<a class="headerlink" href="#id23" title="Link to this heading"></a></h2>
 <p><em>Выполняет сравнение двух изображений с помощью выбранного метода и возвращает степень их различия.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">compareImages</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">img1</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">img2</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">methodCompare</span><span class="p">)</span>
 </pre></div>
@@ -569,11 +605,11 @@
 </ul>
 </section>
 </section>
-<section id="id22">
-<h1>Модуль детекции изображений<a class="headerlink" href="#id22" title="Link to this heading"></a></h1>
+<section id="id24">
+<h1>Модуль детекции изображений<a class="headerlink" href="#id24" title="Link to this heading"></a></h1>
 <p><em>Модуль реализует полную архитектуру сверточной нейронной сети YOLO для задач детекции объектов. Предусмотрены функции обучения, валидации, предсказания, загрузки весов, работы с аннотациями, подготовки датасета, и визуализации результатов.</em></p>
-<section id="id23">
-<h2>Инициализация детектора<a class="headerlink" href="#id23" title="Link to this heading"></a></h2>
+<section id="id25">
+<h2>Инициализация детектора<a class="headerlink" href="#id25" title="Link to this heading"></a></h2>
 <p><em>Задает параметры устройства, загружает список меток и подготавливает модель для работы.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">Detector</span><span class="o">::</span><span class="n">Initialize</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">gpuID</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">nameListPath</span><span class="p">)</span>
 </pre></div>
@@ -587,16 +623,16 @@
 </ul>
 <p><strong>Назначение:</strong> загружает имена классов, настраивает вычислительное устройство и инициализирует модель <code class="docutils literal notranslate"><span class="pre">YoloBody_tiny</span></code>.</p>
 </section>
-<section id="id24">
-<h2>Загрузка предобученной модели<a class="headerlink" href="#id24" title="Link to this heading"></a></h2>
+<section id="id26">
+<h2>Загрузка предобученной модели<a class="headerlink" href="#id26" title="Link to this heading"></a></h2>
 <p><em>Загружает веса модели из заданного файла.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">Detector</span><span class="o">::</span><span class="n">LoadPretrained</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pretrainedPath</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Назначение:</strong> частично загружает веса, исключая выходные слои <code class="docutils literal notranslate"><span class="pre">yolo_head</span></code>, и копирует параметры в текущую модель.</p>
 </section>
-<section id="id25">
-<h2>Обучение модели<a class="headerlink" href="#id25" title="Link to this heading"></a></h2>
+<section id="id27">
+<h2>Обучение модели<a class="headerlink" href="#id27" title="Link to this heading"></a></h2>
 <p><em>Обучает модель на обучающем датасете.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">Detector</span><span class="o">::</span><span class="n">Train</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">trainValPath</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">imageType</span><span class="p">,</span>
 <span class="w">                          </span><span class="kt">int</span><span class="w"> </span><span class="n">numEpochs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">batchSize</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">learningRate</span><span class="p">,</span>
@@ -617,8 +653,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">YoloBody_tiny</span></code> — модель YOLO.</p></li>
 </ul>
 </section>
-<section id="id26">
-<h2>Автоматический подбор гиперпараметров<a class="headerlink" href="#id26" title="Link to this heading"></a></h2>
+<section id="id28">
+<h2>Автоматический подбор гиперпараметров<a class="headerlink" href="#id28" title="Link to this heading"></a></h2>
 <p><em>Выполняет автоматический перебор комбинаций параметров обучения и выбирает наилучшие.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">Detector</span><span class="o">::</span><span class="n">AutoTrain</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">trainValPath</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">imageType</span><span class="p">,</span>
 <span class="w">                              </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">epochsList</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">batchSizes</span><span class="p">,</span>
@@ -628,8 +664,8 @@
 </div>
 <p><strong>Назначение:</strong> выбирает комбинацию <code class="docutils literal notranslate"><span class="pre">epochs</span></code>, <code class="docutils literal notranslate"><span class="pre">batchSize</span></code> и <code class="docutils literal notranslate"><span class="pre">learningRate</span></code> с минимальной ошибкой на валидации.</p>
 </section>
-<section id="id27">
-<h2>Предсказание и визуализация<a class="headerlink" href="#id27" title="Link to this heading"></a></h2>
+<section id="id29">
+<h2>Предсказание и визуализация<a class="headerlink" href="#id29" title="Link to this heading"></a></h2>
 <p><em>Выполняет предсказание объектов на изображении и сохраняет визуализацию.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">Detector</span><span class="o">::</span><span class="n">Predict</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">show</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">confThresh</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">nmsThresh</span><span class="p">)</span>
 </pre></div>
@@ -652,8 +688,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">nonMaximumSuppression</span></code> — удаление пересекающихся боксов,</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">showBbox</span></code> — отображение результатов детекции.</p></li>
 </ul>
-<section id="id28">
-<h3>Валидация модели<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<section id="id30">
+<h3>Валидация модели<a class="headerlink" href="#id30" title="Link to this heading"></a></h3>
 <p><em>Оценивает модель на отложенном датасете и возвращает среднюю ошибку.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">Detector</span><span class="o">::</span><span class="n">Validate</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">valDataPath</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">imageType</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">batchSize</span><span class="p">)</span>
 </pre></div>
@@ -662,11 +698,11 @@
 </section>
 </section>
 </section>
-<section id="id29">
-<h1>Модуль предварительной обработки изображений<a class="headerlink" href="#id29" title="Link to this heading"></a></h1>
+<section id="id31">
+<h1>Модуль предварительной обработки изображений<a class="headerlink" href="#id31" title="Link to this heading"></a></h1>
 <p><em>Данный модуль содержит функции для предварительной обработки изображений, включая коррекцию яркости, контраста, резкости, фильтрацию шумов и геометрическую коррекцию.</em></p>
-<section id="id30">
-<h2>Функция создания изображения с сообщением об ошибке<a class="headerlink" href="#id30" title="Link to this heading"></a></h2>
+<section id="id32">
+<h2>Функция создания изображения с сообщением об ошибке<a class="headerlink" href="#id32" title="Link to this heading"></a></h2>
 <p><em>Создаёт изображение с текстом ошибки для отображения при возникновении проблем.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">getErrorImage</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">textError</span><span class="p">)</span>
 </pre></div>
@@ -678,8 +714,8 @@
 <p><strong>Возвращаемое значение:</strong>
 - Изображение размером 600x960 с текстом ошибки.</p>
 </section>
-<section id="id31">
-<h2>Коррекция яркости изображения<a class="headerlink" href="#id31" title="Link to this heading"></a></h2>
+<section id="id33">
+<h2>Коррекция яркости изображения<a class="headerlink" href="#id33" title="Link to this heading"></a></h2>
 <p><em>Применяет гамма-коррекцию для изменения яркости изображения.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">changeImageBrightness</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageInput</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageOutput</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">gamma</span><span class="p">)</span>
 </pre></div>
@@ -697,8 +733,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> - необработанное исключение</p></li>
 </ul>
 </section>
-<section id="id32">
-<h2>Увеличение резкости (метод Лапласа)<a class="headerlink" href="#id32" title="Link to this heading"></a></h2>
+<section id="id34">
+<h2>Увеличение резкости (метод Лапласа)<a class="headerlink" href="#id34" title="Link to this heading"></a></h2>
 <p><em>Увеличивает резкость изображения с использованием оператора Лапласа.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">sharpeningImage01</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageInput</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageOutput</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">gainFactorHighFrequencyComponent</span><span class="p">)</span>
 </pre></div>
@@ -714,8 +750,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> - необработанное исключение</p></li>
 </ul>
 </section>
-<section id="id33">
-<h2>Увеличение резкости (метод Гаусса)<a class="headerlink" href="#id33" title="Link to this heading"></a></h2>
+<section id="id35">
+<h2>Увеличение резкости (метод Гаусса)<a class="headerlink" href="#id35" title="Link to this heading"></a></h2>
 <p><em>Увеличивает резкость изображения с использованием размытия по Гауссу.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">sharpeningImage02</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageInput</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageOutput</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Size</span><span class="w"> </span><span class="n">filterSize</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">sigmaFilter</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">gainFactorHighFrequencyComponent</span><span class="p">)</span>
 </pre></div>
@@ -727,8 +763,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">gainFactorHighFrequencyComponent</span></code> - коэффициент усиления высокочастотных компонент.</p></li>
 </ul>
 </section>
-<section id="id34">
-<h2>Основная функция предварительной обработки<a class="headerlink" href="#id34" title="Link to this heading"></a></h2>
+<section id="id36">
+<h2>Основная функция предварительной обработки<a class="headerlink" href="#id36" title="Link to this heading"></a></h2>
 <p><em>Применяет последовательность методов обработки к изображению согласно переданному списку.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">preprocessingImage</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">mrcv</span><span class="o">::</span><span class="n">METOD_IMAGE_PERPROCESSIN</span><span class="o">&gt;</span><span class="w"> </span><span class="n">metodImagePerProcessing</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">pathToFileCameraParametrs</span><span class="p">)</span>
 </pre></div>
@@ -748,8 +784,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">pathToFileCameraParametrs</span></code> - путь к файлу параметров камеры для геометрической коррекции.</p></li>
 </ul>
 </section>
-<section id="id35">
-<h2>Увеличение контраста изображения<a class="headerlink" href="#id35" title="Link to this heading"></a></h2>
+<section id="id37">
+<h2>Увеличение контраста изображения<a class="headerlink" href="#id37" title="Link to this heading"></a></h2>
 <p><em>Применяет различные методы увеличения контраста в разных цветовых пространствах.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">increaseImageContrast</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageInput</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageOutput</span><span class="p">,</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">METOD_INCREASE_IMAGE_CONTRAST</span><span class="w"> </span><span class="n">metodIncreaseContrast</span><span class="p">,</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">COLOR_MODEL</span><span class="w"> </span><span class="n">colorSpace</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">clipLimitCLAHE</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Size</span><span class="w"> </span><span class="n">gridSizeCLAHE</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">percentContrastBalance</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">mContrastExtantion</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">eContrastExtantion</span><span class="p">)</span>
 </pre></div>
@@ -769,8 +805,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">CM_RGB</span></code></p></li>
 </ul>
 </section>
-<section id="id36">
-<h2>Балансировка контраста<a class="headerlink" href="#id36" title="Link to this heading"></a></h2>
+<section id="id38">
+<h2>Балансировка контраста<a class="headerlink" href="#id38" title="Link to this heading"></a></h2>
 <p><em>Выполняет балансировку контраста изображения по заданному проценту.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">contrastBalancing</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">planeArray</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span>
 </pre></div>
@@ -780,8 +816,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">percent</span></code> - процент обрезки гистограммы (0-100).</p></li>
 </ul>
 </section>
-<section id="id37">
-<h2>Расширение контраста<a class="headerlink" href="#id37" title="Link to this heading"></a></h2>
+<section id="id39">
+<h2>Расширение контраста<a class="headerlink" href="#id39" title="Link to this heading"></a></h2>
 <p><em>Применяет нелинейное преобразование для расширения динамического диапазона.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">contrastExtantion</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">planeArray</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
 </pre></div>
@@ -793,11 +829,11 @@
 </ul>
 </section>
 </section>
-<section id="id38">
-<h1>Модуль морфологических преобразований<a class="headerlink" href="#id38" title="Link to this heading"></a></h1>
+<section id="id40">
+<h1>Модуль морфологических преобразований<a class="headerlink" href="#id40" title="Link to this heading"></a></h1>
 <p><em>Данный модуль содержит функции для выполнения морфологических операций над изображениями, включая открытие, закрытие, эрозию, расширение и градиент.</em></p>
-<section id="id39">
-<h2>Основная функция морфологических преобразований<a class="headerlink" href="#id39" title="Link to this heading"></a></h2>
+<section id="id41">
+<h2>Основная функция морфологических преобразований<a class="headerlink" href="#id41" title="Link to this heading"></a></h2>
 <p><em>Применяет выбранную морфологическую операцию к изображению.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">morphologyImage</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">METOD_MORF</span><span class="w"> </span><span class="n">metod</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">morph_size</span><span class="p">)</span>
 </pre></div>
@@ -817,8 +853,8 @@
 <p><strong>Возвращаемое значение:</strong>
 - 0 - успешное выполнение</p>
 </section>
-<section id="id40">
-<h2>Функция морфологического открытия<a class="headerlink" href="#id40" title="Link to this heading"></a></h2>
+<section id="id42">
+<h2>Функция морфологического открытия<a class="headerlink" href="#id42" title="Link to this heading"></a></h2>
 <p><em>Выполняет операцию открытия (эрозия с последующим расширением).</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">openingMorphological</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">element</span><span class="p">)</span>
 </pre></div>
@@ -828,29 +864,29 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">element</span></code> - структурный элемент для операции</p></li>
 </ul>
 </section>
-<section id="id41">
-<h2>Функция морфологического закрытия<a class="headerlink" href="#id41" title="Link to this heading"></a></h2>
+<section id="id43">
+<h2>Функция морфологического закрытия<a class="headerlink" href="#id43" title="Link to this heading"></a></h2>
 <p><em>Выполняет операцию закрытия (расширение с последующей эрозией).</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">closingMorphological</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">element</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="id42">
-<h2>Функция морфологического градиента<a class="headerlink" href="#id42" title="Link to this heading"></a></h2>
+<section id="id44">
+<h2>Функция морфологического градиента<a class="headerlink" href="#id44" title="Link to this heading"></a></h2>
 <p><em>Выполняет операцию морфологического градиента (разница между расширением и эрозией).</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">gradientMorphological</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">element</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="id43">
-<h2>Функция морфологической эрозии<a class="headerlink" href="#id43" title="Link to this heading"></a></h2>
+<section id="id45">
+<h2>Функция морфологической эрозии<a class="headerlink" href="#id45" title="Link to this heading"></a></h2>
 <p><em>Выполняет операцию эрозии (сужение светлых областей).</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">erodeMorphological</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">element</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="id44">
-<h2>Функция морфологического расширения<a class="headerlink" href="#id44" title="Link to this heading"></a></h2>
+<section id="id46">
+<h2>Функция морфологического расширения<a class="headerlink" href="#id46" title="Link to this heading"></a></h2>
 <p><em>Выполняет операцию расширения (расширение светлых областей).</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">dilationMorphological</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">element</span><span class="p">)</span>
 </pre></div>
@@ -869,15 +905,15 @@
 </ul>
 </section>
 </section>
-<section id="id45">
-<h1>Модуль расчета курса объекта<a class="headerlink" href="#id45" title="Link to this heading"></a></h1>
+<section id="id47">
+<h1>Модуль расчета курса объекта<a class="headerlink" href="#id47" title="Link to this heading"></a></h1>
 <p><em>Данный модуль реализует функционал для детекции объектов и расчета курса движения относительно обнаруженных целей с использованием нейронных сетей.</em></p>
 <section id="objcourse">
 <h2>Класс ObjCourse<a class="headerlink" href="#objcourse" title="Link to this heading"></a></h2>
 <p><strong>Основные функции:</strong></p>
 </section>
-<section id="id46">
-<h2>Инициализация нейронной сети<a class="headerlink" href="#id46" title="Link to this heading"></a></h2>
+<section id="id48">
+<h2>Инициализация нейронной сети<a class="headerlink" href="#id48" title="Link to this heading"></a></h2>
 <p><em>Загружает модель нейронной сети и файл с классами объектов.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">ObjCourse</span><span class="o">::</span><span class="n">initNN</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pathToModel</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">pathToClasses</span><span class="p">)</span>
 </pre></div>
@@ -890,8 +926,8 @@
 - ENETDOWN - ошибка загрузки модели
 - ENOENT - ошибка загрузки файла классов</p>
 </section>
-<section id="id47">
-<h2>Основной процесс обработки<a class="headerlink" href="#id47" title="Link to this heading"></a></h2>
+<section id="id49">
+<h2>Основной процесс обработки<a class="headerlink" href="#id49" title="Link to this heading"></a></h2>
 <p><em>Выполняет полный цикл обработки изображения: предобработку, детекцию и постобработку.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">ObjCourse</span><span class="o">::</span><span class="n">mainProcess</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">img</span><span class="p">)</span>
 </pre></div>
@@ -899,8 +935,8 @@
 <p><strong>Возвращаемое значение:</strong>
 - Обработанное изображение с отмеченными объектами</p>
 </section>
-<section id="id48">
-<h2>Расчет курса<a class="headerlink" href="#id48" title="Link to this heading"></a></h2>
+<section id="id50">
+<h2>Расчет курса<a class="headerlink" href="#id50" title="Link to this heading"></a></h2>
 <p><em>Определяет угол между центром кадра и обнаруженным объектом.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">ObjCourse</span><span class="o">::</span><span class="n">getObjectCourse</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">frameWidth</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">cameraAngle</span><span class="p">)</span>
 </pre></div>
@@ -913,22 +949,22 @@
 - Угол отклонения объекта от центра (в градусах)</p>
 <p><strong>Вспомогательные функции:</strong></p>
 </section>
-<section id="id49">
-<h2>Предобработка изображения<a class="headerlink" href="#id49" title="Link to this heading"></a></h2>
+<section id="id51">
+<h2>Предобработка изображения<a class="headerlink" href="#id51" title="Link to this heading"></a></h2>
 <p><em>Подготавливает изображение для подачи в нейронную сеть.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ObjCourse</span><span class="o">::</span><span class="n">preProcess</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">dnn</span><span class="o">::</span><span class="n">Net</span><span class="o">&amp;</span><span class="w"> </span><span class="n">net</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="id50">
-<h2>Постобработка результатов<a class="headerlink" href="#id50" title="Link to this heading"></a></h2>
+<section id="id52">
+<h2>Постобработка результатов<a class="headerlink" href="#id52" title="Link to this heading"></a></h2>
 <p><em>Анализирует выход нейронной сети и выделяет обнаруженные объекты.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">ObjCourse</span><span class="o">::</span><span class="n">postProcess</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">outputs</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">classNames</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="id51">
-<h2>Отрисовка меток<a class="headerlink" href="#id51" title="Link to this heading"></a></h2>
+<section id="id53">
+<h2>Отрисовка меток<a class="headerlink" href="#id53" title="Link to this heading"></a></h2>
 <p><em>Добавляет подписи к обнаруженным объектам на изображении.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">ObjCourse</span><span class="o">::</span><span class="n">drawLabel</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">top</span><span class="p">)</span>
 </pre></div>
@@ -943,8 +979,8 @@
 </ul>
 </section>
 </section>
-<section id="id52">
-<h1>Модуль сегментации изображений<a class="headerlink" href="#id52" title="Link to this heading"></a></h1>
+<section id="id54">
+<h1>Модуль сегментации изображений<a class="headerlink" href="#id54" title="Link to this heading"></a></h1>
 <p><em>Модуль реализует функционал семантической сегментации изображений с использованием архитектуры FPN (Feature Pyramid Network) на базе предобученных моделей ResNet.</em></p>
 <section id="fpn">
 <h2>Архитектура FPN<a class="headerlink" href="#fpn" title="Link to this heading"></a></h2>
@@ -1007,8 +1043,8 @@
 - <code class="docutils literal notranslate"><span class="pre">image</span></code> - входное изображение
 - <code class="docutils literal notranslate"><span class="pre">which_class</span></code> - имя класса для визуализации</p>
 </section>
-<section id="id53">
-<h2>Вспомогательные классы<a class="headerlink" href="#id53" title="Link to this heading"></a></h2>
+<section id="id55">
+<h2>Вспомогательные классы<a class="headerlink" href="#id55" title="Link to this heading"></a></h2>
 <p><strong>SegDataset</strong>
 <em>Класс для работы с данными сегментации</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SegDataset</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">torch</span><span class="o">::</span><span class="n">data</span><span class="o">::</span><span class="n">Dataset</span><span class="o">&lt;</span><span class="n">SegDataset</span><span class="o">&gt;</span>
@@ -1026,8 +1062,8 @@
 <p><strong>Методы:</strong>
 - <code class="docutils literal notranslate"><span class="pre">Resize</span></code> - изменение размера изображения и маски</p>
 </section>
-<section id="id54">
-<h2>Функции потерь<a class="headerlink" href="#id54" title="Link to this heading"></a></h2>
+<section id="id56">
+<h2>Функции потерь<a class="headerlink" href="#id56" title="Link to this heading"></a></h2>
 <p><strong>DiceLoss</strong></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">DiceLoss</span><span class="p">(</span><span class="n">torch</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="n">torch</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">classNum</span><span class="p">)</span>
 </pre></div>
@@ -1041,8 +1077,8 @@
 <section id="d">
 <h1>Модуль создания 3D сцен<a class="headerlink" href="#d" title="Link to this heading"></a></h1>
 <p><em>Модуль предоставляет функционал для обработки стереоизображений, построения 3D сцен и работы с облаками точек. Включает методы калибровки, построения карт диспаратности, сегментации объектов и визуализации.</em></p>
-<section id="id55">
-<h2>Формирование стереопары<a class="headerlink" href="#id55" title="Link to this heading"></a></h2>
+<section id="id57">
+<h2>Формирование стереопары<a class="headerlink" href="#id57" title="Link to this heading"></a></h2>
 <p><em>Объединяет изображения с двух камер в единое изображение для обработки.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">makingStereoPair</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">inputImageCamera01</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">inputImageCamera02</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">outputStereoPair</span><span class="p">)</span>
 </pre></div>
@@ -1066,8 +1102,8 @@
 <li><p>Поддержка разных размеров входных изображений</p></li>
 </ul>
 </section>
-<section id="id56">
-<h2>Построение карты диспаратности<a class="headerlink" href="#id56" title="Link to this heading"></a></h2>
+<section id="id58">
+<h2>Построение карты диспаратности<a class="headerlink" href="#id58" title="Link to this heading"></a></h2>
 <p><em>Вычисляет карту различий между стереоизображениями.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">find3dPointsADS</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">inputImageCamera01</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">inputImageCamera02</span><span class="p">,</span>
 <span class="w">    </span><span class="n">mrcv</span><span class="o">::</span><span class="n">pointsData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">points3D</span><span class="p">,</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">settingsMetodDisparity</span><span class="o">&amp;</span><span class="w"> </span><span class="n">settingsMetodDisparity</span><span class="p">,</span>
@@ -1088,8 +1124,8 @@
 <li><p>Поддержка различных цветовых карт</p></li>
 </ul>
 </section>
-<section id="id57">
-<h2>Сегментация объектов<a class="headerlink" href="#id57" title="Link to this heading"></a></h2>
+<section id="id59">
+<h2>Сегментация объектов<a class="headerlink" href="#id59" title="Link to this heading"></a></h2>
 <p><em>Обнаружение и сегментация объектов нейронной сетью.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">detectingSegmentsNeuralNet</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageInput</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imageOutput</span><span class="p">,</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">replyMasks</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">filePathToModelYoloNeuralNet</span><span class="p">,</span>
@@ -1104,8 +1140,8 @@
 <li><p>Морфологическая постобработка масок</p></li>
 </ul>
 </section>
-<section id="id58">
-<h2>Визуализация 3D сцены<a class="headerlink" href="#id58" title="Link to this heading"></a></h2>
+<section id="id60">
+<h2>Визуализация 3D сцены<a class="headerlink" href="#id60" title="Link to this heading"></a></h2>
 <p><em>Проецирование 3D точек на 2D изображение.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">getImage3dSceene</span><span class="p">(</span><span class="n">mrcv</span><span class="o">::</span><span class="n">pointsData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">points3D</span><span class="p">,</span>
 <span class="w">    </span><span class="n">mrcv</span><span class="o">::</span><span class="n">parameters3dSceene</span><span class="o">&amp;</span><span class="w"> </span><span class="n">parameters3dSceene</span><span class="p">,</span>
@@ -1121,8 +1157,8 @@
 <li><p>Расстояние до центра (dZ)</p></li>
 </ul>
 </section>
-<section id="id59">
-<h2>Сохранение результатов<a class="headerlink" href="#id59" title="Link to this heading"></a></h2>
+<section id="id61">
+<h2>Сохранение результатов<a class="headerlink" href="#id61" title="Link to this heading"></a></h2>
 <p><em>Экспорт данных о 3D точках.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">saveInFile3dPointsInObjectsSegments</span><span class="p">(</span><span class="n">pointsData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">points3D</span><span class="p">,</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">String</span><span class="w"> </span><span class="n">pathToFile</span><span class="p">)</span>
@@ -1139,8 +1175,8 @@
 <section id="yolov5">
 <h1>Модуль работы с YOLOv5<a class="headerlink" href="#yolov5" title="Link to this heading"></a></h1>
 <p><em>Модуль предоставляет инструменты для работы с моделями YOLOv5, включая интерактивную разметку данных, генерацию конфигурационных файлов и настройку гиперпараметров.</em></p>
-<section id="id60">
-<h2>Интерактивная разметка данных<a class="headerlink" href="#id60" title="Link to this heading"></a></h2>
+<section id="id62">
+<h2>Интерактивная разметка данных<a class="headerlink" href="#id62" title="Link to this heading"></a></h2>
 <p><em>Инструмент для создания разметки объектов на изображениях в формате YOLO.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">YOLOv5LabelerProcessing</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">inputDir</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">outputDir</span><span class="p">)</span>
 </pre></div>
@@ -1161,8 +1197,8 @@
 <li><p>Автоматическое сохранение в YOLO-формате (нормализованные координаты)</p></li>
 </ul>
 </section>
-<section id="id61">
-<h2>Генерация конфигурации модели<a class="headerlink" href="#id61" title="Link to this heading"></a></h2>
+<section id="id63">
+<h2>Генерация конфигурации модели<a class="headerlink" href="#id63" title="Link to this heading"></a></h2>
 <p><em>Создание конфигурационного файла модели YOLOv5 в формате YAML.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">YOLOv5GenerateConfig</span><span class="p">(</span><span class="n">YOLOv5Model</span><span class="w"> </span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">outputFile</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -1183,8 +1219,8 @@
 <li><p>Количество классов (nc)</p></li>
 </ul>
 </section>
-<section id="id62">
-<h2>Генерация гиперпараметров<a class="headerlink" href="#id62" title="Link to this heading"></a></h2>
+<section id="id64">
+<h2>Генерация гиперпараметров<a class="headerlink" href="#id64" title="Link to this heading"></a></h2>
 <p><em>Создание файла с оптимальными гиперпараметрами для обучения.</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">mrcv</span><span class="o">::</span><span class="n">YOLOv5GenerateHyperparameters</span><span class="p">(</span><span class="n">YOLOv5Model</span><span class="w"> </span><span class="n">model</span><span class="p">,</span>
 <span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">imgWidth</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">imgHeight</span><span class="p">,</span>
@@ -1208,10 +1244,10 @@
 </ul>
 </section>
 </section>
-<section id="id63">
-<h1>Демонстрационные примеры<a class="headerlink" href="#id63" title="Link to this heading"></a></h1>
-<section id="id64">
-<h2>Пример использования аугментации изображений<a class="headerlink" href="#id64" title="Link to this heading"></a></h2>
+<section id="id65">
+<h1>Демонстрационные примеры<a class="headerlink" href="#id65" title="Link to this heading"></a></h1>
+<section id="id66">
+<h2>Пример использования аугментации изображений<a class="headerlink" href="#id66" title="Link to this heading"></a></h2>
 <p>Модуль включает три основных этапа обработки данных: загрузку изображений, указание методов аугментации, сохранение результатов преобразования.
 На первом этапе осуществляется загрузка входных изображений в вектор с использованием функции <code class="docutils literal notranslate"><span class="pre">cv::imread</span></code>.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">inputImagesAugmetation</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
@@ -1246,8 +1282,8 @@
 <a class="reference internal image-reference" href="_images/augmentation3.jpg"><img alt="Пример результата обработки" src="_images/augmentation3.jpg" style="width: 200px;" />
 </a>
 </section>
-<section id="id65">
-<h2>Пример использования кластеризации<a class="headerlink" href="#id65" title="Link to this heading"></a></h2>
+<section id="id67">
+<h2>Пример использования кластеризации<a class="headerlink" href="#id67" title="Link to this heading"></a></h2>
 <p><em>Реализует алгоритмы кластеризации 3D-точек на основе данных стереокамер.</em></p>
 <p><strong>Загрузка данных</strong></p>
 <p><em>Загружает данные для кластеризации из файла.</em></p>
@@ -1260,8 +1296,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id66">
-<h2>Пример использования модуля работы с YOLOv5<a class="headerlink" href="#id66" title="Link to this heading"></a></h2>
+<section id="id68">
+<h2>Пример использования модуля работы с YOLOv5<a class="headerlink" href="#id68" title="Link to this heading"></a></h2>
 <p><em>Генерация конфигурационного файла для YOLOv5s с 80 классами представлена ниже</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">try</span>
 <span class="p">{</span>
@@ -1285,8 +1321,8 @@
 <code class="docutils literal notranslate"><span class="pre">fl_gamma:</span> <span class="pre">0.17004397181410924</span></code>
 Здесь можно заметить обозначенные ранее параметры, которые необходимы для обучения моделей детекторов и классификаторов <em>YOLOv5</em>.</p>
 </section>
-<section id="id67">
-<h2>Пример использования детектирования объектов<a class="headerlink" href="#id67" title="Link to this heading"></a></h2>
+<section id="id69">
+<h2>Пример использования детектирования объектов<a class="headerlink" href="#id69" title="Link to this heading"></a></h2>
 <p><em>Реализует функционал для автоматического обучения детектора объектов.</em></p>
 <p><strong>Инициализация детектора</strong></p>
 <p><em>Инициализирует детектор с заданными параметрами.</em></p>
@@ -1312,8 +1348,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id68">
-<h2>Пример использования предобработки изображений<a class="headerlink" href="#id68" title="Link to this heading"></a></h2>
+<section id="id70">
+<h2>Пример использования предобработки изображений<a class="headerlink" href="#id70" title="Link to this heading"></a></h2>
 <p>Для подготовки входных параметров функции предобработки <code class="docutils literal notranslate"><span class="pre">preprocessingImage()</span></code> производится загрузка исходного изображения:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">imageIn</span><span class="p">;</span>
 <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">imageOut</span><span class="p">;</span>
@@ -1373,8 +1409,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id69">
-<h2>Программные функции библиотеки для подсчета количества объектов интереса по данным видеопотока в реальном масштабе времени и определения курса роботизированного аппарата на объект интереса<a class="headerlink" href="#id69" title="Link to this heading"></a></h2>
+<section id="id71">
+<h2>Программные функции библиотеки для подсчета количества объектов интереса по данным видеопотока в реальном масштабе времени и определения курса роботизированного аппарата на объект интереса<a class="headerlink" href="#id71" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>ship.bmp – кадр видеоряда с объектом интереса на изображении;</p></li>
 <li><p>ship.onnx – обученная модель в формате YOLO5;</p></li>
@@ -1455,21 +1491,83 @@
 </div>
 </section>
 </section>
-<section id="id70">
-<h1>Руководство для контрибьюторов<a class="headerlink" href="#id70" title="Link to this heading"></a></h1>
+<section id="python">
+<h1>Демонстрационные примеры на Python<a class="headerlink" href="#python" title="Link to this heading"></a></h1>
+<section id="objcourse-py">
+<h2>Скрипт objcourse.py: определение курса на объект<a class="headerlink" href="#objcourse-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">objcourse.py</span></code> демонстрирует использование класса <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code> для подсчета количества объектов интереса на изображении и расчета углового курса на объект. Этот класс предназначен для задач, связанных с обнаружением объектов и навигацией роботизированных систем, таких как подводные или надводные аппараты.</p>
+<p>Класс <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code> инициализируется с путями к файлу модели (в формате <code class="docutils literal notranslate"><span class="pre">ONNX</span></code>) и файлу с именами классов, определяющими, какие объекты могут быть обнаружены. Метод <code class="docutils literal notranslate"><span class="pre">get_object_count</span></code> принимает изображение в формате <code class="docutils literal notranslate"><span class="pre">cv::Mat</span></code> и возвращает количество обнаруженных объектов. Метод <code class="docutils literal notranslate"><span class="pre">get_object_course</span></code> вычисляет угловую поправку курса на объект с учетом горизонтального разрешения камеры (в пикселях) и угла обзора камеры (в градусах). Если на изображении обнаружено несколько объектов, курс рассчитывается на объект с максимальной площадью.</p>
+<p>Методы используют предварительно обученную модель (например, основанную на архитектуре <code class="docutils literal notranslate"><span class="pre">YOLOv5</span></code>), что обеспечивает высокую точность обнаружения. Логирование в коде фиксирует пути к файлам и результаты работы методов, что упрощает отладку и контроль выполнения.</p>
+<p>Эта функциональность применима в задачах поиска объектов (например, кораблей) и автоматического управления роботизированными аппаратами для сопровождения цели.</p>
+<p>Пример использования</p>
+<p>Пример демонстрирует создание экземпляра класса <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code>, загрузку изображения, подсчет объектов и расчет курса:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">ObjCourse</span>
+
+<span class="c1"># Настройка логирования</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Пути к файлам</span>
+<span class="n">model_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;files/ship.onnx&quot;</span><span class="p">)</span>
+<span class="n">class_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;files/ship.names&quot;</span><span class="p">)</span>
+<span class="n">ship_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;files/ship.bmp&quot;</span><span class="p">)</span>
+
+<span class="n">current_path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="n">current_path</span> <span class="o">/</span> <span class="n">model_file</span>
+<span class="n">class_path</span> <span class="o">=</span> <span class="n">current_path</span> <span class="o">/</span> <span class="n">class_file</span>
+<span class="n">ship_path</span> <span class="o">=</span> <span class="n">current_path</span> <span class="o">/</span> <span class="n">ship_file</span>
+
+<span class="c1"># Создание экземпляра класса</span>
+<span class="n">objcourse</span> <span class="o">=</span> <span class="n">ObjCourse</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">model_path</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">class_path</span><span class="p">))</span>
+
+<span class="c1"># Загрузка изображения</span>
+<span class="n">frame_ship</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ship_path</span><span class="p">),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_COLOR</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">frame_ship</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load image: </span><span class="si">{</span><span class="n">ship_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Подсчет объектов</span>
+<span class="n">obj_count</span> <span class="o">=</span> <span class="n">objcourse</span><span class="o">.</span><span class="n">get_object_count</span><span class="p">(</span><span class="n">frame_ship</span><span class="p">)</span>
+
+<span class="c1"># Расчет курса</span>
+<span class="n">obj_angle</span> <span class="o">=</span> <span class="n">objcourse</span><span class="o">.</span><span class="n">get_object_course</span><span class="p">(</span><span class="n">frame_ship</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+
+<span class="c1"># Вывод результатов</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Файл модели: </span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Файл классов: </span><span class="si">{</span><span class="n">class_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Входное изображение: </span><span class="si">{</span><span class="n">ship_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Обнаружено объектов: </span><span class="si">{</span><span class="n">obj_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Курс на цель в градусах: </span><span class="si">{</span><span class="n">obj_angle</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Пример вывода</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2024-10-01 10:00:00 - Файл модели: /path/to/files/ship.onnx
+2024-10-01 10:00:00 - Файл классов: /path/to/files/ship.names
+2024-10-01 10:00:00 - Входное изображение: /path/to/files/ship.bmp
+2024-10-01 10:00:00 - Обнаружено объектов: 1
+2024-10-01 10:00:00 - Курс на цель в градусах: 17.0
+</pre></div>
+</div>
+<p>В данном случае обнаружен один объект, а курсовая невязка составила 17 градусов вправо относительно центра кадра.</p>
+</section>
+</section>
+<section id="id72">
+<h1>Руководство для контрибьюторов<a class="headerlink" href="#id72" title="Link to this heading"></a></h1>
 <p>Это руководство предназначено для разработчиков и пользователей, желающих внести вклад в развитие библиотеки <strong>Marine Robotics Computer Vision (MRCV)</strong>. Ниже представлены инструкции по установке зависимостей, сборке проекта и рекомендации по работе с CUDA.</p>
 <p>Датасет изображений для работы с библиотекой доступен по ссылке:</p>
 <p><a class="reference external" href="https://disk.yandex.ru/d/TxReQ9J6PAo9Nw">code-ai-400393-image-dataset.7z</a></p>
-<section id="id71">
-<h2>Получение исходного кода<a class="headerlink" href="#id71" title="Link to this heading"></a></h2>
+<section id="id73">
+<h2>Получение исходного кода<a class="headerlink" href="#id73" title="Link to this heading"></a></h2>
 <p>Исходный код библиотеки доступен на внутреннем репозитории. Клонируйте проект:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/valabsoft/code-ai-400393.git
 <span class="nb">cd</span><span class="w"> </span>mrcv
 </pre></div>
 </div>
 </section>
-<section id="id72">
-<h2>Необходимые зависимости<a class="headerlink" href="#id72" title="Link to this heading"></a></h2>
+<section id="id74">
+<h2>Необходимые зависимости<a class="headerlink" href="#id74" title="Link to this heading"></a></h2>
 <p>Для корректной работы библиотеки на <strong>Windows</strong> все необходимые зависимости должны быть установлены и размещены следующим образом:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>C:\
 ├───libtorch-12.4
@@ -1485,8 +1583,8 @@
 <li><p>C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\</p></li>
 </ul>
 </section>
-<section id="id73">
-<h2>Настройка сборки<a class="headerlink" href="#id73" title="Link to this heading"></a></h2>
+<section id="id75">
+<h2>Настройка сборки<a class="headerlink" href="#id75" title="Link to this heading"></a></h2>
 <p>В корневом <cite>CMakeLists.txt</cite> проекта имеется флаг:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">option</span><span class="p">(</span><span class="s">USE_CUDA</span><span class="w"> </span><span class="s2">&quot;Use CUDA Build&quot;</span><span class="w"> </span><span class="s">OFF</span><span class="p">)</span>
 </pre></div>
@@ -1577,8 +1675,8 @@ cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </
 </pre></div>
 </div>
 </section>
-<section id="id74">
-<h2>Оформление изменений<a class="headerlink" href="#id74" title="Link to this heading"></a></h2>
+<section id="id76">
+<h2>Оформление изменений<a class="headerlink" href="#id76" title="Link to this heading"></a></h2>
 <p>Перед отправкой изменений:</p>
 <ol class="arabic simple">
 <li><p><strong>Форкните репозиторий</strong> и создайте отдельную ветку для каждой задачи.</p></li>
@@ -1595,8 +1693,8 @@ cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </
 - добавили вас в <cite>CHANGELOG.md</cite> (если он есть).</p></li>
 </ol>
 </section>
-<section id="id75">
-<h2>Репорты об ошибках<a class="headerlink" href="#id75" title="Link to this heading"></a></h2>
+<section id="id77">
+<h2>Репорты об ошибках<a class="headerlink" href="#id77" title="Link to this heading"></a></h2>
 <p>Перед отправкой:</p>
 <ul class="simple">
 <li><p>Обновитесь до последней версии библиотеки.</p></li>
@@ -1611,8 +1709,8 @@ cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </
 <li><p>Включите логи и команды запуска.</p></li>
 </ul>
 </section>
-<section id="id76">
-<h2>Рекомендации по контрибьюции<a class="headerlink" href="#id76" title="Link to this heading"></a></h2>
+<section id="id78">
+<h2>Рекомендации по контрибьюции<a class="headerlink" href="#id78" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Пишите понятный и документированный код.</p></li>
 <li><p>Используйте стиль оформления, принятый в библиотеке.</p></li>

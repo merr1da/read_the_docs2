@@ -22,7 +22,8 @@ Marine Robotics Computer Vision
 
 Проект выполнен при грантовой поддержке Фонда содействия развитию малых форм предприятий в научно-технической сфере.
 
-
+.. include:: modules/AdditionalLinks.rst
+.. include:: modules/RecommendedSystemRequirements.rst
 .. include:: modules/ServiceStructuresDescriprion.rst
 .. include:: modules/ServiceFunctionsModule.rst
 .. include:: modules/AugmentationModule.rst
@@ -36,4 +37,5 @@ Marine Robotics Computer Vision
 .. include:: modules/3DsceneCreationModule.rst
 .. include:: modules/YOLOv5Module.rst
 .. include:: modules/DemonstrationExamples.rst
+.. include:: modules/DemonstrationExamplesPython.rst
 .. include:: modules/ContributingGuide.rst

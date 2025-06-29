@@ -1,0 +1,167 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Демонстрационные примеры на Python &mdash; Marine Robotics Computer Vision  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ea7bc319" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marine Robotics Computer Vision
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Демонстрационные примеры на Python</a><ul>
+<li><a class="reference internal" href="#objcourse-py">Скрипт objcourse.py: определение курса на объект</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marine Robotics Computer Vision</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Демонстрационные примеры на Python</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/DemonstrationExamplesPython.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python">
+<h1>Демонстрационные примеры на Python<a class="headerlink" href="#python" title="Link to this heading"></a></h1>
+<section id="objcourse-py">
+<h2>Скрипт objcourse.py: определение курса на объект<a class="headerlink" href="#objcourse-py" title="Link to this heading"></a></h2>
+<p>Скрипт <code class="docutils literal notranslate"><span class="pre">objcourse.py</span></code> демонстрирует использование класса <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code> для подсчета количества объектов интереса на изображении и расчета углового курса на объект. Этот класс предназначен для задач, связанных с обнаружением объектов и навигацией роботизированных систем, таких как подводные или надводные аппараты.</p>
+<p>Класс <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code> инициализируется с путями к файлу модели (в формате <code class="docutils literal notranslate"><span class="pre">ONNX</span></code>) и файлу с именами классов, определяющими, какие объекты могут быть обнаружены. Метод <code class="docutils literal notranslate"><span class="pre">get_object_count</span></code> принимает изображение в формате <code class="docutils literal notranslate"><span class="pre">cv::Mat</span></code> и возвращает количество обнаруженных объектов. Метод <code class="docutils literal notranslate"><span class="pre">get_object_course</span></code> вычисляет угловую поправку курса на объект с учетом горизонтального разрешения камеры (в пикселях) и угла обзора камеры (в градусах). Если на изображении обнаружено несколько объектов, курс рассчитывается на объект с максимальной площадью.</p>
+<p>Методы используют предварительно обученную модель (например, основанную на архитектуре <code class="docutils literal notranslate"><span class="pre">YOLOv5</span></code>), что обеспечивает высокую точность обнаружения. Логирование в коде фиксирует пути к файлам и результаты работы методов, что упрощает отладку и контроль выполнения.</p>
+<p>Эта функциональность применима в задачах поиска объектов (например, кораблей) и автоматического управления роботизированными аппаратами для сопровождения цели.</p>
+<p>Пример использования</p>
+<p>Пример демонстрирует создание экземпляра класса <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code>, загрузку изображения, подсчет объектов и расчет курса:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mrcv</span><span class="w"> </span><span class="kn">import</span> <span class="n">ObjCourse</span>
+
+<span class="c1"># Настройка логирования</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Пути к файлам</span>
+<span class="n">model_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;files/ship.onnx&quot;</span><span class="p">)</span>
+<span class="n">class_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;files/ship.names&quot;</span><span class="p">)</span>
+<span class="n">ship_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;files/ship.bmp&quot;</span><span class="p">)</span>
+
+<span class="n">current_path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="n">current_path</span> <span class="o">/</span> <span class="n">model_file</span>
+<span class="n">class_path</span> <span class="o">=</span> <span class="n">current_path</span> <span class="o">/</span> <span class="n">class_file</span>
+<span class="n">ship_path</span> <span class="o">=</span> <span class="n">current_path</span> <span class="o">/</span> <span class="n">ship_file</span>
+
+<span class="c1"># Создание экземпляра класса</span>
+<span class="n">objcourse</span> <span class="o">=</span> <span class="n">ObjCourse</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">model_path</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">class_path</span><span class="p">))</span>
+
+<span class="c1"># Загрузка изображения</span>
+<span class="n">frame_ship</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ship_path</span><span class="p">),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_COLOR</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">frame_ship</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load image: </span><span class="si">{</span><span class="n">ship_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Подсчет объектов</span>
+<span class="n">obj_count</span> <span class="o">=</span> <span class="n">objcourse</span><span class="o">.</span><span class="n">get_object_count</span><span class="p">(</span><span class="n">frame_ship</span><span class="p">)</span>
+
+<span class="c1"># Расчет курса</span>
+<span class="n">obj_angle</span> <span class="o">=</span> <span class="n">objcourse</span><span class="o">.</span><span class="n">get_object_course</span><span class="p">(</span><span class="n">frame_ship</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+
+<span class="c1"># Вывод результатов</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Файл модели: </span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Файл классов: </span><span class="si">{</span><span class="n">class_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Входное изображение: </span><span class="si">{</span><span class="n">ship_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Обнаружено объектов: </span><span class="si">{</span><span class="n">obj_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Курс на цель в градусах: </span><span class="si">{</span><span class="n">obj_angle</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Пример вывода</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2024-10-01 10:00:00 - Файл модели: /path/to/files/ship.onnx
+2024-10-01 10:00:00 - Файл классов: /path/to/files/ship.names
+2024-10-01 10:00:00 - Входное изображение: /path/to/files/ship.bmp
+2024-10-01 10:00:00 - Обнаружено объектов: 1
+2024-10-01 10:00:00 - Курс на цель в градусах: 17.0
+</pre></div>
+</div>
+<p>В данном случае обнаружен один объект, а курсовая невязка составила 17 градусов вправо относительно центра кадра.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Author.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
