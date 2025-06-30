@@ -260,8 +260,8 @@
 </section>
 <section id="id2">
 <h1>Рекомедуемая минимальная конфигурация<a class="headerlink" href="#id2" title="Link to this heading"></a></h1>
-<p>Для использования библиотеки рекомендуются следующие конфигурации аппаратных средств и операционных систем.</p>
-<p>Мини-компьютер</p>
+<p>Для использования библиотеки рекомендуются следующие конфигурации аппаратных средств и операционных систем:</p>
+<p><strong>Мини-компьютер</strong></p>
 <ul class="simple">
 <li><p>процессор: AMD Ryzen 7 5800H</p></li>
 <li><p>количество ядер/потоков: 8/16</p></li>
@@ -270,7 +270,7 @@
 <li><p>видеокарта: NVIDIA GeForce RTX4070 12 ГБ</p></li>
 <li><p>ОС: Linux Ubuntu 22.04</p></li>
 </ul>
-<p>Одноплатный компьютер</p>
+<p><strong>Одноплатный компьютер</strong></p>
 <ul class="simple">
 <li><p>процессор: ARM Cortex A78AE v8.2 64-разрядный, 1.5 МБ L2 + 4 МБ L3, 1.5 ГГц</p></li>
 <li><p>количество ядер/потоков: 6</p></li>
@@ -279,6 +279,19 @@
 <li><p>видеокарта: NVIDIA Ampere с 1024 ядрами и 32 ядрами Tensor, 625 МГц, 4 ГБ</p></li>
 <li><p>ОС: Linux Ubuntu 18.04</p></li>
 </ul>
+<p><strong>Одноплатный компьютер (без CUDA)</strong></p>
+<ul class="simple">
+<li><p>процессор: Broadcom BCM2712 2.4GHz, четыре ядра 64-bit Arm Cortex-A76 CPU, с графическим расширением, 512 КБ на ядро уровня L2 кэш и 2 МБ уровня L3 кэш</p></li>
+<li><p>количество ядер/потоков: 4</p></li>
+<li><p>частота базовая: 2.4 ГГц</p></li>
+<li><p>оперативная память LPDDR4X: 8 ГБ</p></li>
+<li><p>видеокарта: VideoCore VII GPU с поддержкой OpenGL ES 3.1, Vulkan 1.2, декодирование HEVC 4Kp60, 256 МБ</p></li>
+<li><p>ОС: Linux Ubuntu 22.04</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>В случае использования одноплатного компьютера с архитектурой ARM, для полноценной работы всех функций библиотеки, не рекомендуется использование конфигураций, не поддерживающих технологию CUDA. Для таких конфигураций рекомендуется использование только Python-версии библиотеки.</p>
+</div>
 </section>
 <section id="id3">
 <h1>Описание служебных структур<a class="headerlink" href="#id3" title="Link to this heading"></a></h1>
@@ -1289,8 +1302,8 @@
 <h1>Демонстрационные примеры<a class="headerlink" href="#id65" title="Link to this heading"></a></h1>
 <section id="id66">
 <h2>Программные функции библиотеки для подсчета количества объектов интереса по данным видеопотока в реальном масштабе времени и определения курса роботизированного аппарата на объект интереса<a class="headerlink" href="#id66" title="Link to this heading"></a></h2>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/objcourse</span></code> библиотеки. В папке files находятся необходимые входные данные для демонстрации работы функции:</p>
 <ul class="simple">
-<li><p>ship.bmp – кадр видеоряда с объектом интереса на изображении;</p></li>
 <li><p>ship.onnx – обученная модель в формате YOLO5;</p></li>
 <li><p>ship.names – текстовый файл с именами классов объектов интереса.</p></li>
 </ul>
@@ -1320,6 +1333,7 @@
 </section>
 <section id="id67">
 <h2>Пример использования программных функций библиотеки для автоматической настройки параметров обучения нейросети с архитектурой YOLOv5<a class="headerlink" href="#id67" title="Link to this heading"></a></h2>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/configuration</span></code> библиотеки.</p>
 <p><em>Генерация конфигурационного файла для YOLOv5s с 80 классами представлена ниже</em></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">try</span>
 <span class="p">{</span>
@@ -1398,8 +1412,8 @@
 </section>
 <section id="id69">
 <h2>Пример использования программных функций библиотеки для автоматического обучения нейронной сети для детекции и идентификации объектов<a class="headerlink" href="#id69" title="Link to this heading"></a></h2>
-<p>Пример использования модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/autodetector</span></code> библиотеки.
-В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся входные данные для демонстрации работы функции:</p>
+<p>Пример использования модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/autodetector</span></code> библиотеки.</p>
+<p>В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся входные данные для демонстрации работы функции:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">autodetector.pt</span></code> – обученная модель в формате YOLO4_tiny;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">voc_classes.txt</span></code> – текстовый файл с именами классов объектов интереса;</p></li>
@@ -1526,8 +1540,8 @@ Epoch: 29, Valid Loss: 0.136483
 </section>
 <section id="id70">
 <h2>Пример использования программных функций библиотеки для детектирования аварийной ситуации технологического объекта<a class="headerlink" href="#id70" title="Link to this heading"></a></h2>
-<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/emergency_detector</span></code> библиотеки.
-В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> представлены выборки с данными о повреждёнными трубами (<code class="docutils literal notranslate"><span class="pre">pipes</span></code>).
+<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/emergency_detector</span></code> библиотеки.</p>
+<p>В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> представлены выборки с данными о повреждёнными трубами (<code class="docutils literal notranslate"><span class="pre">pipes</span></code>).
 Из выборки взяты изображения для демонстрации работы функции. В той же директории находятся входные данные:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pipes/test/burst_augment_56_blur45_jpg.rf.714ba15fef8cf1f9ebcc19bbdb07dd2a.jpg</span></code> – изображение с повреждённым объектом;</p></li>
@@ -1716,7 +1730,7 @@ Epoch: 29, Valid Loss: 0.136483
 </section>
 <section id="id72">
 <h2>Пример использования программных функций библиотеки для предварительной обработки изображений (автоматическая коррекция контраста и яркости, исправление геометрических искажений)<a class="headerlink" href="#id72" title="Link to this heading"></a></h2>
-<p>Пример использования функций модуля размещён в папке examples/imgpreprocessing/ библиотеки.</p>
+<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/imgpreprocessing/</span></code> библиотеки.</p>
 <p>Для подготовки входных параметров функции предобработки <code class="docutils literal notranslate"><span class="pre">preprocessingImage()</span></code> производится загрузка исходного изображения:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">imageIn</span><span class="p">;</span>
 <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">imageOut</span><span class="p">;</span>
@@ -1778,7 +1792,7 @@ Epoch: 29, Valid Loss: 0.136483
 </section>
 <section id="d-3d">
 <h2>Пример использования программных функций библиотеки для компьютерного стереозрения для определения координат 3D точек в сегментах идентифицированных объектов и восстановления 3D сцены по двумерным изображениям<a class="headerlink" href="#d-3d" title="Link to this heading"></a></h2>
-<p>Пример использования функций модуля размещён в папке examples/3dscene библиотеки.</p>
+<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/3dscene</span></code> библиотеки.</p>
 <ul class="simple">
 <li><p>L1000.bmp, R1000.bmp – набор исходных изображений;</p></li>
 <li><p>(66a)_(960p)_NewCamStereoModule_Air.xml – xml-файл с параметрами камеры.</p></li>
@@ -1973,8 +1987,8 @@ N.png
 </section>
 <section id="id74">
 <h2>Пример использования программных функций библиотеки для автоматического создания датасетов для обучения нейросети<a class="headerlink" href="#id74" title="Link to this heading"></a></h2>
-<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/imgcollection</span></code> библиотеки.
-Для запуска примера необходимо использовать основную функцию:</p>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/imgcollection</span></code> библиотеки.</p>
+<p>Для запуска примера необходимо использовать основную функцию:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">getImagesFromYandex</span>
 </pre></div>
 </div>
@@ -2012,8 +2026,8 @@ N.png
 </section>
 <section id="id75">
 <h2>Пример использования программных функций библиотеки для интеллектуальной сегментации объектов интереса на изображениях<a class="headerlink" href="#id75" title="Link to this heading"></a></h2>
-<p>Пример использования функций модуля размещен в папках <code class="docutils literal notranslate"><span class="pre">examples/segmentationtest</span></code> и <code class="docutils literal notranslate"><span class="pre">examples/segmentationtrain</span></code> библиотеки.
-В папке <code class="docutils literal notranslate"><span class="pre">file</span></code> находятся необходимые входные данные:</p>
+<p>Пример использования функций модуля размещен в папках <code class="docutils literal notranslate"><span class="pre">examples/segmentationtest</span></code> и <code class="docutils literal notranslate"><span class="pre">examples/segmentationtrain</span></code> библиотеки.</p>
+<p>В папке <code class="docutils literal notranslate"><span class="pre">file</span></code> находятся необходимые входные данные:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">test</span></code> – изображения для проверки правильности обучения сети;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">train</span></code> – изображения для обучения сети;</p></li>
@@ -2073,6 +2087,7 @@ N.png
 </section>
 <section id="id76">
 <h2>Пример использования программных функций библиотеки для реализации модифицированного алгоритма выделения связных компонент для кластеризации облака 3D точек<a class="headerlink" href="#id76" title="Link to this heading"></a></h2>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/clustering</span></code> библиотеки.</p>
 <p><em>Реализует алгоритмы кластеризации 3D-точек на основе данных стереокамер.</em></p>
 <p><strong>Загрузка данных</strong></p>
 <p><em>Загружает данные для кластеризации из файла.</em></p>
@@ -2087,6 +2102,7 @@ N.png
 </section>
 <section id="id77">
 <h2>Пример использования программных функций библиотеки для предварительной обработки изображений для модуля аугментации данных<a class="headerlink" href="#id77" title="Link to this heading"></a></h2>
+<p>Пример использования функций модуля размещен в папке examples/augmentation библиотеки. Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/augmentation</span></code> библиотеки.</p>
 <p>Модуль включает три основных этапа обработки данных: загрузку изображений, указание методов аугментации, сохранение результатов преобразования.
 На первом этапе осуществляется загрузка входных изображений в вектор с использованием функции <code class="docutils literal notranslate"><span class="pre">cv::imread</span></code>.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">inputImagesAugmetation</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
@@ -2123,8 +2139,8 @@ N.png
 </section>
 <section id="id78">
 <h2>Пример использования программных функций библиотеки для полуавтоматической разметки для аугментации данных с помощью нейронной сети<a class="headerlink" href="#id78" title="Link to this heading"></a></h2>
-<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/objcourse</span></code> библиотеки.
-В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся необходимые входные данные для демонстрации работы:</p>
+<p>Пример использования функций модуля размещен в папке <code class="docutils literal notranslate"><span class="pre">examples/objcourse</span></code> библиотеки.</p>
+<p>В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся необходимые входные данные для демонстрации работы:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">images</span></code> – папка с датасетом для обучения автоэнкодера;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">result</span></code> – папка для сохранения результатов работы;</p></li>
@@ -2406,6 +2422,7 @@ N.png
 </section>
 <section id="id83">
 <h2>Пример использования программных функций библиотеки для интеграции функций библиотеки для системы технического зрения морского робототехнического комплекса с одиночной камерой<a class="headerlink" href="#id83" title="Link to this heading"></a></h2>
+<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/visionmodule</span></code> библиотеки.</p>
 <p>Для демонстрации работы библиотеки реализован тестовый сценарий, в котором происходит:</p>
 <ul class="simple">
 <li><p>захват изображения с камеры,</p></li>
@@ -2436,6 +2453,7 @@ N.png
 </section>
 <section id="id84">
 <h2>Пример использования программных функций библиотеки для интеграции функций библиотеки для системы технического зрения морского робототехнического комплекса со стереокамерой<a class="headerlink" href="#id84" title="Link to this heading"></a></h2>
+<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/stereovisionmodule</span></code> библиотеки.</p>
 <p>Для демонстрации работы библиотеки был реализован тестовый сценарий, в котором происходит захват изображения с двух камер, производится предобработка, детекция объекта, получение маски, определение курса на объект и построение карты диспаратности. Для визуализации работы библиотеки в примере сделан вывод всех последовательных этапов обработки как это показано на рис. А.4.26.</p>
 <img alt="Результаты работы модуля" class="align-center" src="_images/figure421.jpg" />
 <p>Рисунок А.4.26 – Результаты работы модуля</p>
@@ -2505,8 +2523,8 @@ N.png
 </section>
 <section id="id86">
 <h2>Пример использования программных функций библиотеки для реализации алгоритма оценки параметров идентифицированных объектов заданной формы<a class="headerlink" href="#id86" title="Link to this heading"></a></h2>
-<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/3dscene</span></code> библиотеки. В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся необходимые входные данные для демонстрации работы функции:
-<code class="docutils literal notranslate"><span class="pre">L1000.bmp</span></code>, <code class="docutils literal notranslate"><span class="pre">R1000.bmp</span></code> – набор исходных изображений;
+<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/3dscene</span></code> библиотеки. В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся необходимые входные данные для демонстрации работы функции:</p>
+<p><code class="docutils literal notranslate"><span class="pre">L1000.bmp</span></code>, <code class="docutils literal notranslate"><span class="pre">R1000.bmp</span></code> – набор исходных изображений;
 <code class="docutils literal notranslate"><span class="pre">(66a)_(960p)_NewCamStereoModule_Air.xml</span></code> – xml-файл с параметрами камеры.</p>
 <p>В примере использованы функции библиотеки для предыдущих задач:</p>
 <ol class="arabic simple">
@@ -2635,6 +2653,7 @@ N.png
 </section>
 <section id="id89">
 <h2>Пример использования программных функций библиотеки для реализации алгоритма оценки геометрических размеров (габаритов) видимой части идентифицированных объектов<a class="headerlink" href="#id89" title="Link to this heading"></a></h2>
+<p>Пример использования функций модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/geometry</span></code> библиотеки.</p>
 <p>В соответствии со структурой информационного кадра облака 3D точек в качестве входных данных использовались файлы в текстовом формате, в котором данные разделены с помощью табуляции. Фрагмент файла с данными приведен на рис. А.4.38.</p>
 <img alt="Исходный файл облака 3D точек" class="align-center" src="_images/figure426a.jpg" />
 <p>Рисунок А.4.38 – Исходный файл с данными облака 3D точек</p>
@@ -2707,11 +2726,13 @@ N.png
 </section>
 <section id="arm">
 <h2>Пример использования адаптированных программные функций библиотеки для детекции и идентификации объектов с использованием процессоров ARM<a class="headerlink" href="#arm" title="Link to this heading"></a></h2>
-<p>Пример использования модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/autodetector</span></code> библиотеки. В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся входные данные для демонстрации работы функции:
-- <code class="docutils literal notranslate"><span class="pre">autodetector.pt</span></code> – обученная модель в формате YOLO4_tiny;
-- <code class="docutils literal notranslate"><span class="pre">voc_classes.txt</span></code> – текстовый файл с именами классов объектов интереса;
-- изображения в формате <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> для обучения и валидации модели;
-- файлы меток классов к изображениям в формате <code class="docutils literal notranslate"><span class="pre">.xml</span></code>.</p>
+<p>Пример использования модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/autodetector</span></code> библиотеки. В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся входные данные для демонстрации работы функции:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">autodetector.pt</span></code> – обученная модель в формате YOLO4_tiny;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">voc_classes.txt</span></code> – текстовый файл с именами классов объектов интереса;</p></li>
+<li><p>изображения в формате <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> для обучения и валидации модели;</p></li>
+<li><p>файлы меток классов к изображениям в формате <code class="docutils literal notranslate"><span class="pre">.xml</span></code>.</p></li>
+</ul>
 <p>Для выполнения основных функций модуля используются вызовы методов класса <code class="docutils literal notranslate"><span class="pre">Detector</span></code>, как это показано ниже. Сперва необходимо объявление экземпляра класса:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">detector</span> <span class="o">=</span> <span class="n">mrcv</span><span class="o">.</span><span class="n">Detector</span><span class="p">()</span>
 </pre></div>
@@ -2750,11 +2771,13 @@ N.png
 </section>
 <section id="cuda">
 <h2>Пример использования адаптированных программных функций библиотеки для детекции и идентификации объектов с использованием технологии CUDA<a class="headerlink" href="#cuda" title="Link to this heading"></a></h2>
-<p>Пример использования модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/autodetector</span></code> библиотеки. В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся входные данные для демонстрации работы функции:
-- <code class="docutils literal notranslate"><span class="pre">autodetector.pt</span></code> – обученная модель в формате YOLO4_tiny;
-- <code class="docutils literal notranslate"><span class="pre">voc_classes.txt</span></code> – текстовый файл с именами классов объектов интереса;
-- изображения в формате <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> для обучения и валидации модели;
-- файлы меток классов к изображениям в формате <code class="docutils literal notranslate"><span class="pre">.xml</span></code>.</p>
+<p>Пример использования модуля размещён в папке <code class="docutils literal notranslate"><span class="pre">examples/autodetector</span></code> библиотеки. В папке <code class="docutils literal notranslate"><span class="pre">files</span></code> находятся входные данные для демонстрации работы функции:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">autodetector.pt</span></code> – обученная модель в формате YOLO4_tiny;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">voc_classes.txt</span></code> – текстовый файл с именами классов объектов интереса;</p></li>
+<li><p>изображения в формате <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> для обучения и валидации модели;</p></li>
+<li><p>файлы меток классов к изображениям в формате <code class="docutils literal notranslate"><span class="pre">.xml</span></code>.</p></li>
+</ul>
 <p>Для выполнения основных функций модуля используются вызовы методов класса <code class="docutils literal notranslate"><span class="pre">mrcv::Detector</span></code>, как это показано ниже. Сперва необходимо объявление экземпляра класса:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mrcv</span><span class="o">::</span><span class="n">Detector</span><span class="w"> </span><span class="n">detector</span><span class="p">;</span>
 </pre></div>
