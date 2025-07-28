@@ -876,7 +876,7 @@
 
 Пример размеченного файла (формат ``.json``):
 
-.. code-block:: json
+.. code-block:: text
 
     {
       "version": "4.5.7",

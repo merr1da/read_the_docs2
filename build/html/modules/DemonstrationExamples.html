@@ -838,23 +838,23 @@ N.png
 <p>Для подготовки набора данных использовались <strong>полигональные аннотации произвольной формы в формате VOC</strong>.
 Тестовые данные были размечены с использованием программы <a class="reference external" href="https://www.labelme.io/">Labelme</a>.</p>
 <p>Пример размеченного файла (формат <code class="docutils literal notranslate"><span class="pre">.json</span></code>):</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4.5.7&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;flags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
-<span class="w">  </span><span class="nt">&quot;shapes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ship&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;points&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">[</span><span class="mf">158.83582089552237</span><span class="p">,</span><span class="w"> </span><span class="mf">831.3134328358209</span><span class="p">],</span>
-<span class="w">        </span><span class="err">...</span>
-<span class="w">        </span><span class="p">[</span><span class="mf">164.8059701492537</span><span class="p">,</span><span class="w"> </span><span class="mf">871.6119402985074</span><span class="p">]</span>
-<span class="w">      </span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;group_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;shape_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;polygon&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;flags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{
+  &quot;version&quot;: &quot;4.5.7&quot;,
+  &quot;flags&quot;: {},
+  &quot;shapes&quot;: [
+    {
+      &quot;label&quot;: &quot;ship&quot;,
+      &quot;points&quot;: [
+        [158.83582089552237, 831.3134328358209],
+        ...
+        [164.8059701492537, 871.6119402985074]
+      ],
+      &quot;group_id&quot;: null,
+      &quot;shape_type&quot;: &quot;polygon&quot;,
+      &quot;flags&quot;: {}
+    }
+  ]
+}
 </pre></div>
 </div>
 <p>Обучение модели</p>

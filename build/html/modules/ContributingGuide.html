@@ -46,10 +46,8 @@
 <li><a class="reference internal" href="#">Руководство для контрибьюторов</a><ul>
 <li><a class="reference internal" href="#id2">Получение исходного кода</a></li>
 <li><a class="reference internal" href="#id3">Необходимые зависимости</a></li>
-<li><a class="reference internal" href="#id4">Настройка сборки</a><ul>
+<li><a class="reference internal" href="#id4">Настройка сборки</a></li>
 <li><a class="reference internal" href="#cuda">Сборка с CUDA</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#python-mrcv">Инструкция по установке python версии библиотеки mrcv</a></li>
 <li><a class="reference internal" href="#id5">Оформление изменений</a></li>
 <li><a class="reference internal" href="#id6">Репорты об ошибках</a></li>
@@ -123,8 +121,9 @@
 <li><p><cite>OFF</cite> — сборка без поддержки CUDA. Используются OpenCV и LibTorch для CPU. CUDA-функции не будут доступны.</p></li>
 <li><p><cite>ON</cite> — сборка с поддержкой CUDA. Используются OpenCV с модулями CUDA и LibTorch для CUDA. CUDA-функции активны в пространстве имён <cite>mrcv::</cite>.</p></li>
 </ul>
+</section>
 <section id="cuda">
-<h3>Сборка с CUDA<a class="headerlink" href="#cuda" title="Link to this heading"></a></h3>
+<h2>Сборка с CUDA<a class="headerlink" href="#cuda" title="Link to this heading"></a></h2>
 <p>Для включения поддержки CUDA необходимо:</p>
 <ol class="arabic simple">
 <li><p>Установить:</p>
@@ -147,7 +146,6 @@ cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </
 </pre></div>
 </div>
 <p>При необходимости, скопируйте <cite>*.dll</cite> из используемой версии OpenCV или LibTorch в папку с исполняемыми файлами.</p>
-</section>
 </section>
 <section id="python-mrcv">
 <h2>Инструкция по установке python версии библиотеки mrcv<a class="headerlink" href="#python-mrcv" title="Link to this heading"></a></h2>

@@ -198,10 +198,11 @@
 <li><a class="reference internal" href="#id95">Получение исходного кода</a></li>
 <li><a class="reference internal" href="#id96">Необходимые зависимости</a></li>
 <li><a class="reference internal" href="#id97">Настройка сборки</a></li>
+<li><a class="reference internal" href="#id98">Сборка с CUDA</a></li>
 <li><a class="reference internal" href="#python-mrcv">Инструкция по установке python версии библиотеки mrcv</a></li>
-<li><a class="reference internal" href="#id98">Оформление изменений</a></li>
-<li><a class="reference internal" href="#id99">Репорты об ошибках</a></li>
-<li><a class="reference internal" href="#id100">Рекомендации по контрибьюции</a></li>
+<li><a class="reference internal" href="#id99">Оформление изменений</a></li>
+<li><a class="reference internal" href="#id100">Репорты об ошибках</a></li>
+<li><a class="reference internal" href="#id101">Рекомендации по контрибьюции</a></li>
 </ul>
 </li>
 </ul>
@@ -2036,23 +2037,23 @@ N.png
 <p>Для подготовки набора данных использовались <strong>полигональные аннотации произвольной формы в формате VOC</strong>.
 Тестовые данные были размечены с использованием программы <a class="reference external" href="https://www.labelme.io/">Labelme</a>.</p>
 <p>Пример размеченного файла (формат <code class="docutils literal notranslate"><span class="pre">.json</span></code>):</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4.5.7&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;flags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
-<span class="w">  </span><span class="nt">&quot;shapes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ship&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;points&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">[</span><span class="mf">158.83582089552237</span><span class="p">,</span><span class="w"> </span><span class="mf">831.3134328358209</span><span class="p">],</span>
-<span class="w">        </span><span class="err">...</span>
-<span class="w">        </span><span class="p">[</span><span class="mf">164.8059701492537</span><span class="p">,</span><span class="w"> </span><span class="mf">871.6119402985074</span><span class="p">]</span>
-<span class="w">      </span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;group_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;shape_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;polygon&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;flags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{
+  &quot;version&quot;: &quot;4.5.7&quot;,
+  &quot;flags&quot;: {},
+  &quot;shapes&quot;: [
+    {
+      &quot;label&quot;: &quot;ship&quot;,
+      &quot;points&quot;: [
+        [158.83582089552237, 831.3134328358209],
+        ...
+        [164.8059701492537, 871.6119402985074]
+      ],
+      &quot;group_id&quot;: null,
+      &quot;shape_type&quot;: &quot;polygon&quot;,
+      &quot;flags&quot;: {}
+    }
+  ]
+}
 </pre></div>
 </div>
 <p>Обучение модели</p>
@@ -3709,6 +3710,9 @@ C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\
 <li><p><cite>OFF</cite> — сборка без поддержки CUDA. Используются OpenCV и LibTorch для CPU. CUDA-функции не будут доступны.</p></li>
 <li><p><cite>ON</cite> — сборка с поддержкой CUDA. Используются OpenCV с модулями CUDA и LibTorch для CUDA. CUDA-функции активны в пространстве имён <cite>mrcv::</cite>.</p></li>
 </ul>
+</section>
+<section id="id98">
+<h2>Сборка с CUDA<a class="headerlink" href="#id98" title="Link to this heading"></a></h2>
 <p>Для включения поддержки CUDA необходимо:</p>
 <ol class="arabic simple">
 <li><p>Установить:</p>
@@ -3790,8 +3794,8 @@ cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </
 </pre></div>
 </div>
 </section>
-<section id="id98">
-<h2>Оформление изменений<a class="headerlink" href="#id98" title="Link to this heading"></a></h2>
+<section id="id99">
+<h2>Оформление изменений<a class="headerlink" href="#id99" title="Link to this heading"></a></h2>
 <p>Перед отправкой изменений:</p>
 <ol class="arabic simple">
 <li><p><strong>Форкните репозиторий</strong> и создайте отдельную ветку для каждой задачи.</p></li>
@@ -3808,8 +3812,8 @@ cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </
 - добавили вас в <cite>CHANGELOG.md</cite> (если он есть).</p></li>
 </ol>
 </section>
-<section id="id99">
-<h2>Репорты об ошибках<a class="headerlink" href="#id99" title="Link to this heading"></a></h2>
+<section id="id100">
+<h2>Репорты об ошибках<a class="headerlink" href="#id100" title="Link to this heading"></a></h2>
 <p>Перед отправкой:</p>
 <ul class="simple">
 <li><p>Обновитесь до последней версии библиотеки.</p></li>
@@ -3824,8 +3828,8 @@ cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </
 <li><p>Включите логи и команды запуска.</p></li>
 </ul>
 </section>
-<section id="id100">
-<h2>Рекомендации по контрибьюции<a class="headerlink" href="#id100" title="Link to this heading"></a></h2>
+<section id="id101">
+<h2>Рекомендации по контрибьюции<a class="headerlink" href="#id101" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Пишите понятный и документированный код.</p></li>
 <li><p>Используйте стиль оформления, принятый в библиотеке.</p></li>
