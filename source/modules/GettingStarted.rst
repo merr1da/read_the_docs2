@@ -95,6 +95,155 @@
 
 - После успешной сборки выполнить сборку конфигурации «INSTALL».
 
+Для операционной системы Linux (Ubuntu) без поддержки CUDA
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Установить зависимости с помощью набора команд**
+
+  .. code-block:: console
+
+     sudo apt update
+     sudo apt install build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+     sudo apt install libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev
+
+**Установить библиотеку yaml-cpp**
+
+  .. code-block:: console
+
+     git clone https://github.com/jbeder/yaml-cpp.git
+     cd yaml-cpp
+     cmake .
+     make
+     sudo make install
+
+**Установить библиотеку LibTorch**
+
+Перейти по ссылке https://pytorch.org/get-started/locally/ и скачать необходимую версию.
+
+.. image:: /_static/libtorch.jpg
+     :alt: Выбор версии PyTorch
+
+На момент создания инструкции актуальна ссылка https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.7.1%2Bcpu.zip
+
+При необходимости установить **unzip** и **wget** с помощью набора команд
+
+.. code-block:: console
+
+   sudo apt install unzip
+   sudo apt install wget
+
+Распаковать архив libtorch с помощью команды
+
+.. code-block:: console
+   
+   sudo unzip /path/to/libtorch-library.zip -d /opt/
+
+Добавить путь к libtorch в динамический компоновщик с помощью команды
+
+.. code-block:: console
+
+   sudo sh -c "echo '/opt/libtorch/lib' >> /etc/ld.so.conf.d/libtorch.conf"
+   sudo ldconfig
+
+Добавить пути к заголовочным файлам и библиотекам в файл ~/.bashrc для этого:
+1. Открыть файл с помощью команды
+
+.. code-block:: console
+
+   sudo nano ~/.bashrc
+
+2. Добавить текст в конец файла
+
+.. code-block:: console
+
+   export TORCH_INCLUDE=/opt/libtorch/include
+   export TORCH_LIB=/opt/libtorch/lib
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TORCH_LIB
+   export CPATH=$CPATH:$TORCH_INCLUDE
+   export Torch_DIR=/opt/libtorch/share/cmake/Torch
+
+3. Сохранить (Ctrl + O, Ctrl + X) и активировать изменения
+
+.. code-block:: console
+
+   source ~/.bashrc
+
+Убедиться в правильности установки можно используя инструкцию https://docs.pytorch.org/cppdocs/installing.html
+
+**Установка OpenCV**
+
+Перейти в домашнюю папку и выполнить команды
+
+.. code-block:: console
+
+   git clone https://github.com/opencv/opencv.git -b "4.10.0"
+   git clone https://github.com/opencv/opencv_contrib.git -b "4.10.0"
+   mkdir -p opencv/build && cd opencv/build
+
+Сборка проекта осуществляется в папке build. При возникновении ошибок необходимо очистить папки build и .cache
+Далее, установить значения параметров сборки и запустить сборку, после завершения установить библиотеку:
+
+.. code-block:: console
+   
+   cmake -D CMAKE_BUILD_TYPE=Release \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      ..
+
+
+.. code-block:: console
+   
+   make -j$(nproc)
+   sudo make install
+
+**Установка библиотеки mrcv**
+
+Клонировать исходный код библиотеки с помощью команды:
+
+.. code-block:: console
+   
+   git clone https://github.com/valabsoft/code-ai-400393.git
+
+Отключить флаг сборки с поддержкой CUDA. Для этого в корневом CMakeLists.txt установить значение соответствующего флага:
+
+.. code-block:: console
+   
+   option(USE_CUDA "Use CUDA Build" OFF)
+
+Выполнить набор команд
+
+.. code-block:: console
+   
+   cd code-ai-400393
+   mkdir  build
+   сd build
+   cmake ..
+   make
+   sudo make install
+   sudo ldconfig -v
+
+Библиотека установлена, для проверки можно воспользоваться примерами из папки build/examples.
+
+**Запуск примеров**
+
+Запуск демонстрационного примера augmentation (остальные примеры запускаются по аналогии)
+
+1. Перейти в папку *build/examples* любым удобным способом
+
+2. Выбрать папку примера
+
+.. code-block:: console
+   
+   cd augmentation
+
+3. Скопировать папку *files* из *examples/augmentation* в *build/examples/augmentation*
+
+4. Запустить исполняемый файл
+
+.. code-block:: console
+   
+   ./mrcv-augmentation
+
 Для операционной системы Linux (Ubuntu)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

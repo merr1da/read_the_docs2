@@ -189,6 +189,7 @@
 <li><a class="reference internal" href="#id90">Подготовка к работе</a><ul>
 <li><a class="reference internal" href="#id91">Установка и настройка зависимостей</a></li>
 <li><a class="reference internal" href="#windows">Для операционной системы Windows</a></li>
+<li><a class="reference internal" href="#linux-ubuntu-cuda">Для операционной системы Linux (Ubuntu) без поддержки CUDA</a></li>
 <li><a class="reference internal" href="#linux-ubuntu">Для операционной системы Linux (Ubuntu)</a></li>
 <li><a class="reference internal" href="#id92">Установка и первоначальная настройка библиотеки</a></li>
 <li><a class="reference internal" href="#id93">Подготовка данных для тестирования</a></li>
@@ -3543,6 +3544,122 @@ N.png
 </li>
 <li><p>После успешной сборки выполнить сборку конфигурации «INSTALL».</p></li>
 </ul>
+</section>
+<section id="linux-ubuntu-cuda">
+<h2>Для операционной системы Linux (Ubuntu) без поддержки CUDA<a class="headerlink" href="#linux-ubuntu-cuda" title="Link to this heading"></a></h2>
+<p><strong>Установить зависимости с помощью набора команд</strong></p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt update</span>
+<span class="go">sudo apt install build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev</span>
+<span class="go">sudo apt install libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Установить библиотеку yaml-cpp</strong></p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/jbeder/yaml-cpp.git</span>
+<span class="go">cd yaml-cpp</span>
+<span class="go">cmake .</span>
+<span class="go">make</span>
+<span class="go">sudo make install</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Установить библиотеку LibTorch</strong></p>
+<p>Перейти по ссылке <a class="reference external" href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a> и скачать необходимую версию.</p>
+<img alt="Выбор версии PyTorch" src="_images/libtorch.jpg" />
+<p>На момент создания инструкции актуальна ссылка <a class="reference external" href="https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.7.1%2Bcpu.zip">https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.7.1%2Bcpu.zip</a></p>
+<p>При необходимости установить <strong>unzip</strong> и <strong>wget</strong> с помощью набора команд</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt install unzip</span>
+<span class="go">sudo apt install wget</span>
+</pre></div>
+</div>
+<p>Распаковать архив libtorch с помощью команды</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo unzip /path/to/libtorch-library.zip -d /opt/</span>
+</pre></div>
+</div>
+<p>Добавить путь к libtorch в динамический компоновщик с помощью команды</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo sh -c &quot;echo &#39;/opt/libtorch/lib&#39; &gt;&gt; /etc/ld.so.conf.d/libtorch.conf&quot;</span>
+<span class="go">sudo ldconfig</span>
+</pre></div>
+</div>
+<p>Добавить пути к заголовочным файлам и библиотекам в файл ~/.bashrc для этого:
+1. Открыть файл с помощью команды</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo nano ~/.bashrc</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Добавить текст в конец файла</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export TORCH_INCLUDE=/opt/libtorch/include</span>
+<span class="go">export TORCH_LIB=/opt/libtorch/lib</span>
+<span class="go">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TORCH_LIB</span>
+<span class="go">export CPATH=$CPATH:$TORCH_INCLUDE</span>
+<span class="go">export Torch_DIR=/opt/libtorch/share/cmake/Torch</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Сохранить (Ctrl + O, Ctrl + X) и активировать изменения</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source ~/.bashrc</span>
+</pre></div>
+</div>
+<p>Убедиться в правильности установки можно используя инструкцию <a class="reference external" href="https://docs.pytorch.org/cppdocs/installing.html">https://docs.pytorch.org/cppdocs/installing.html</a></p>
+<p><strong>Установка OpenCV</strong></p>
+<p>Перейти в домашнюю папку и выполнить команды</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/opencv/opencv.git -b &quot;4.10.0&quot;</span>
+<span class="go">git clone https://github.com/opencv/opencv_contrib.git -b &quot;4.10.0&quot;</span>
+<span class="go">mkdir -p opencv/build &amp;&amp; cd opencv/build</span>
+</pre></div>
+</div>
+<p>Сборка проекта осуществляется в папке build. При возникновении ошибок необходимо очистить папки build и .cache
+Далее, установить значения параметров сборки и запустить сборку, после завершения установить библиотеку:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cmake -D CMAKE_BUILD_TYPE=Release \</span>
+<span class="go">   -D CMAKE_INSTALL_PREFIX=/usr/local \</span>
+<span class="go">   -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \</span>
+<span class="go">   ..</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make -j$(nproc)</span>
+<span class="go">sudo make install</span>
+</pre></div>
+</div>
+<p><strong>Установка библиотеки mrcv</strong></p>
+<p>Клонировать исходный код библиотеки с помощью команды:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/valabsoft/code-ai-400393.git</span>
+</pre></div>
+</div>
+<p>Отключить флаг сборки с поддержкой CUDA. Для этого в корневом CMakeLists.txt установить значение соответствующего флага:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">option(USE_CUDA &quot;Use CUDA Build&quot; OFF)</span>
+</pre></div>
+</div>
+<p>Выполнить набор команд</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd code-ai-400393</span>
+<span class="go">mkdir  build</span>
+<span class="go">сd build</span>
+<span class="go">cmake ..</span>
+<span class="go">make</span>
+<span class="go">sudo make install</span>
+<span class="go">sudo ldconfig -v</span>
+</pre></div>
+</div>
+<p>Библиотека установлена, для проверки можно воспользоваться примерами из папки build/examples.</p>
+<p><strong>Запуск примеров</strong></p>
+<p>Запуск демонстрационного примера augmentation (остальные примеры запускаются по аналогии)</p>
+<ol class="arabic simple">
+<li><p>Перейти в папку <em>build/examples</em> любым удобным способом</p></li>
+<li><p>Выбрать папку примера</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd augmentation</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Скопировать папку <em>files</em> из <em>examples/augmentation</em> в <em>build/examples/augmentation</em></p></li>
+<li><p>Запустить исполняемый файл</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./mrcv-augmentation</span>
+</pre></div>
+</div>
 </section>
 <section id="linux-ubuntu">
 <h2>Для операционной системы Linux (Ubuntu)<a class="headerlink" href="#linux-ubuntu" title="Link to this heading"></a></h2>
