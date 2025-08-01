@@ -4,10 +4,10 @@
 Установка и настройка зависимостей
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Для работы с библиотекой используется версия OpenCV 4.10 с CUDA 12.4, которая должна быть предварительно собрана и установлена на исполняемой платформе с операционными системами Windows или Linux. Для сборки должна быть использована версия CMake не ниже 3.14.
+Для работы с библиотекой используется версия OpenCV 4.10, которая должна быть предварительно собрана и установлена на исполняемой платформе с операционными системами Windows или Linux. Для поддержки CUDA сборка OpenCV должна проводиться с установленными CUDA 12.4 и cuDNN 9.3. Для сборки должна быть использована версия CMake не ниже 3.14. Также для работы с библиотекой требуется libtorch 2.4.0. При этом сборка с CUDA или без определяется установочным пакетом от разработчиков libtorch.
 
 Для операционной системы Windows
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 Необходимо выполнить следующий ряд действий:
 
@@ -36,12 +36,12 @@
      (https://download.pytorch.org/libtorch/cpu/libtorch-win-shared-with-deps-2.4.0%2Bcpu.zip)
   
   6. CUDA Toolkit 12.4  
-     (https://developer.nvidia.com/cuda-12-4-0-download-archive)
+     (доступ по ссылке https://developer.nvidia.com/cuda-12-4-0-download-archive)
   
   7. cuDNN 9.3.0  
-     (https://developer.nvidia.com/cudnn-9-3-0-download-archive?target_os=Windows&target_arch=x86_64)  
-     Скачать версию Tarball, распаковать архив с папками bin, include, lib и скопировать их в папку установки CUDA 12.4  
-     По умолчанию:  
+     (доступ по ссылке https://developer.nvidia.com/cudnn-9-3-0-download-archive?target_os=Windows&target_arch=x86_64)  
+     Необходимо скачать версию Tarball, будет загружен архив с тремя папками: bin, include, lib. Их нужно скопировать в папку установки CUDA Toolkit 12.4.
+     Путь по умолчанию:  
      ``C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4``.
   
   8. nvToolsExt (NVTX)
@@ -61,7 +61,7 @@
      :alt: Окно выбора компилятора
 
 - В полях «where is the source code» и «where is the build binaries» указать пути к папке с исходниками OpenCV и созданной папке build.  
-  Например, папка ``install`` содержит собранные материалы библиотеки.
+  Например, папка ``install`` содержит собранные материалы библиотеки OpenCV и экстра модулей.
 
   .. image:: /_static/directory_selection.jpg
      :alt: Окно выбора каталога
@@ -74,9 +74,9 @@
   - ``OPENCV_EXTRA_MODULES_PATH`` -> ``D:/ваш путь к собранной библиотеке/opencv_contrib/modules``
   - Отметить галочкой ``WITH_CUDA``
   
-  **Примечание:** Если переменные отсутствуют, включите пункт Advanced.
+  **Примечание:** Если переменные отсутствуют в перечне, нужно поставить галочку в пункте Advanced.
 
-- Нажать Configure повторно и выставить дополнительные параметры:
+- Нажать Configure и выставить дополнительные параметры:
 
   - Отметить ``CUDA_FAST_MATH``, ``OPENCV_DNN_CUDA``, ``ENABLE_FAST_MATH``, ``WITH_OPENGL``
   - Снять галочки с ``WITH_NVCUVENC``, ``WITH_NVCUVID``, ``WITH_VTK``
@@ -87,7 +87,7 @@
     - ``CUDNN_INCLUDE_DIR`` -> путь к папке ``include`` cuDNN
 
 - Нажать Generate.
-- После генерации нажать Open Project для открытия Visual Studio.
+- После генерации нажать Open Project для запуска проекта Visual Studio.
 - В обозревателе решений Visual Studio в папке CMakeTargets нажать правой кнопкой на ALL_BUILD и выбрать «Собрать».
 
   .. image:: /_static/solution_explorer.jpg
@@ -96,63 +96,82 @@
 - После успешной сборки выполнить сборку конфигурации «INSTALL».
 
 Для операционной системы Linux (Ubuntu) без поддержки CUDA
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------------
+
+Необходимо выполнить следующий ряд действий:
 
 **Установить зависимости с помощью набора команд**
 
   .. code-block:: console
 
      sudo apt update
-     sudo apt install build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-     sudo apt install libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev
+     sudo apt install -y unzip wget curl build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-dev
+
 
 **Установить библиотеку yaml-cpp**
 
   .. code-block:: console
 
+     cd ~
      git clone https://github.com/jbeder/yaml-cpp.git
      cd yaml-cpp
      cmake .
-     make
+     make -j$(nproc)
      sudo make install
+
+**Установить библиотеку OpenCV**
+
+Выполнить команды:
+
+.. code-block:: console
+
+   cd ~
+   git clone https://github.com/opencv/opencv.git -b "4.10.0"
+   git clone https://github.com/opencv/opencv_contrib.git -b "4.10.0"
+   mkdir -p opencv/build && cd opencv/build
+   cmake -D CMAKE_BUILD_TYPE=Release \
+         -D CMAKE_INSTALL_PREFIX=/usr/local \
+         -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+         ..
+   sudo make -j$(nproc)
+   sudo make install
+
+Сборка осуществляется в папке build. При возникновении ошибок необходимо очистить папки build и .cache.
 
 **Установить библиотеку LibTorch**
 
-Перейти по ссылке https://pytorch.org/get-started/locally/ и скачать необходимую версию.
+Скачать соответсвующий архив с библиотекой:
 
-.. image:: /_static/libtorch.jpg
-     :alt: Выбор версии PyTorch
+  .. code-block:: console
 
-На момент создания инструкции актуальна ссылка https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.7.1%2Bcpu.zip
+     cd ~
+     curl -L "https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.4.0%2Bcpu.zip" -o libtorch-library.zip
 
-При необходимости установить **unzip** и **wget** с помощью набора команд
-
-.. code-block:: console
-
-   sudo apt install unzip
-   sudo apt install wget
-
-Распаковать архив libtorch с помощью команды
+Распаковать архив libtorch-library.zip с помощью команды:
 
 .. code-block:: console
    
-   sudo unzip /path/to/libtorch-library.zip -d /opt/
+   sudo unzip -o libtorch-library.zip -d /opt/
 
 Добавить путь к libtorch в динамический компоновщик с помощью команды
 
 .. code-block:: console
 
    sudo sh -c "echo '/opt/libtorch/lib' >> /etc/ld.so.conf.d/libtorch.conf"
-   sudo ldconfig
 
-Добавить пути к заголовочным файлам и библиотекам в файл ~/.bashrc для этого:
-1. Открыть файл с помощью команды
+Обновить кэш динамического компоновщика с помощью команды:
 
 .. code-block:: console
 
-   sudo nano ~/.bashrc
+   sudo ldconfig
 
-2. Добавить текст в конец файла
+Добавить путь к заголовочным файлам и библиотекам в переменные окружения, отредактировав файл ~/.bashrc, открыв его при помощи команды
+
+.. code-block:: console
+
+   sudo nano  ~/.bashrc
+
+и записав конец следующие строки:
 
 .. code-block:: console
 
@@ -162,69 +181,472 @@
    export CPATH=$CPATH:$TORCH_INCLUDE
    export Torch_DIR=/opt/libtorch/share/cmake/Torch
 
-3. Сохранить (Ctrl + O, Ctrl + X) и активировать изменения
+затем сохранив (Ctrl + O, Ctrl + X) необходимо активировать изменения при помощи команды
 
 .. code-block:: console
 
    source ~/.bashrc
 
-Убедиться в правильности установки можно используя инструкцию https://docs.pytorch.org/cppdocs/installing.html
+Убедиться в правильности установки можно используя инструкцию https://docs.pytorch.org/cppdocs/installing.html.
+При нехватке системных ресурсов при сборке рекомендуется запускать сборку через make без указания параметра -j.
 
-**Установка OpenCV**
+Для операционной системы Linux (Ubuntu) с CUDA
+----------------------------------------------
 
-Перейти в домашнюю папку и выполнить команды
+Необходимо выполнить следующий ряд действий:
 
-.. code-block:: console
+**Установить зависимости с помощью набора команд**
 
-   git clone https://github.com/opencv/opencv.git -b "4.10.0"
-   git clone https://github.com/opencv/opencv_contrib.git -b "4.10.0"
-   mkdir -p opencv/build && cd opencv/build
+  .. code-block:: console
 
-Сборка проекта осуществляется в папке build. При возникновении ошибок необходимо очистить папки build и .cache
-Далее, установить значения параметров сборки и запустить сборку, после завершения установить библиотеку:
-
-.. code-block:: console
-   
-   cmake -D CMAKE_BUILD_TYPE=Release \
-      -D CMAKE_INSTALL_PREFIX=/usr/local \
-      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-      ..
+   sudo apt update
+   sudo apt install -y unzip wget curl build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-dev
 
 
-.. code-block:: console
-   
+**Установить библиотеку yaml-cpp**
+
+  .. code-block:: console
+
+   cd ~
+   git clone https://github.com/jbeder/yaml-cpp.git
+   cd yaml-cpp
+   cmake .
    make -j$(nproc)
    sudo make install
 
-**Установка библиотеки mrcv**
+**Установить CUDA Toolkit 12.4**
 
-Клонировать исходный код библиотеки с помощью команды:
+  .. code-block:: console
+
+      cd ~
+      wget https://developer.download.nvidia.com/compute/cuda/12.4.0/local_installers/cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb
+      sudo dpkg -i cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb
+      sudo cp /var/cuda-repo-ubuntu2204-12-4-local/cuda-*-keyring.gpg /usr/share/keyrings/
+      sudo apt-get update
+      sudo apt-get -y install cuda-toolkit-12-4
+
+**Установить cuDNN 9.3**
+
+  .. code-block:: console
+
+      cd ~
+      wget https://developer.download.nvidia.com/compute/cudnn/9.3.0/local_installers/cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb
+      sudo dpkg -i cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb
+      sudo cp /var/cudnn-local-repo-ubuntu2204-9.3.0/cudnn-*-keyring.gpg /usr/share/keyrings/
+      sudo apt-get update
+      sudo apt-get -y install cudnn
+
+**Установить библиотеку OpenCV**
+
+Выполнить команды:
 
 .. code-block:: console
-   
-   git clone https://github.com/valabsoft/code-ai-400393.git
 
-Отключить флаг сборки с поддержкой CUDA. Для этого в корневом CMakeLists.txt установить значение соответствующего флага:
-
-.. code-block:: console
-   
-   option(USE_CUDA "Use CUDA Build" OFF)
-
-Выполнить набор команд
-
-.. code-block:: console
-   
-   cd code-ai-400393
-   mkdir  build
-   сd build
-   cmake ..
-   make
+   cd ~
+   git clone https://github.com/opencv/opencv.git -b "4.10.0"
+   git clone https://github.com/opencv/opencv_contrib.git -b "4.10.0"
+   mkdir -p opencv/build && cd opencv/build
+   sudo cmake .. \
+      -D CMAKE_INSTALL_PREFIX=/usr/local/ \
+      -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 \
+      -D ENABLE_FAST_MATH=ON \
+      -D CUDA_FAST_MATH=ON \
+      -D WITH_CUBLAS=ON \
+      -D WITH_CUDA=ON \
+      -D WITH_CUDNN=ON \
+      -D CUDA_ARCH_BIN=8.6 \
+      -D WITH_OPENGL=ON \
+      -D BUILD_opencv_cudacodec=ON \
+      -D BUILD_opencv_world=OFF \
+      -D OPENCV_GENERATE_PKGCONFIG=ON \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D CMAKE_CONFIGURATION_TYPES=Release
+   sudo make -j$(nproc)
    sudo make install
-   sudo ldconfig -v
 
-Библиотека установлена, для проверки можно воспользоваться примерами из папки build/examples.
+Сборка осуществляется в папке build. При возникновении ошибок необходимо очистить папки build и .cache.
 
-**Запуск примеров**
+**Установить библиотеку LibTorch**
+
+Скачать соответсвующий архив с библиотекой:
+
+  .. code-block:: console
+
+   cd ~
+   curl -L "https://download.pytorch.org/libtorch/cu124/libtorch-cxx11-abi-shared-with-deps-2.4.0%2Bcu124.zip" -o libtorch-library.zip
+
+Распаковать архив libtorch-library.zip с помощью команды:
+
+.. code-block:: console
+   
+   sudo unzip -o libtorch-library.zip -d /opt/
+
+Добавить путь к libtorch в динамический компоновщик с помощью команды
+
+.. code-block:: console
+
+   sudo sh -c "echo '/opt/libtorch/lib' >> /etc/ld.so.conf.d/libtorch.conf"
+
+Обновить кэш динамического компоновщика с помощью команды:
+
+.. code-block:: console
+
+   sudo ldconfig
+
+Добавить путь к заголовочным файлам и библиотекам в переменные окружения, отредактировав файл ~/.bashrc, открыв его при помощи команды
+
+.. code-block:: console
+
+   sudo nano  ~/.bashrc
+
+и записав конец следующие строки:
+
+.. code-block:: console
+
+   export TORCH_INCLUDE=/opt/libtorch/include
+   export TORCH_LIB=/opt/libtorch/lib
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TORCH_LIB
+   export CPATH=$CPATH:$TORCH_INCLUDE
+   export Torch_DIR=/opt/libtorch/share/cmake/Torch
+
+затем сохранив (Ctrl + O, Ctrl + X) необходимо активировать изменения при помощи команды
+
+.. code-block:: console
+
+   source ~/.bashrc
+
+Убедиться в правильности установки можно используя инструкцию https://docs.pytorch.org/cppdocs/installing.html.
+При нехватке системных ресурсов при сборке рекомендуется запускать сборку через make без указания параметра -j.
+
+Установка и первоначальная настройка библиотеки
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Для операционной системы Windows
+--------------------------------
+
+Для установки библиотеки необходимо выполнить следующие действия:
+
+- Клонировать актуальную версию проекта, используя команды:
+
+  .. code-block:: console
+  
+     cd ~
+     git clone --branch main https://github.com/valabsoft/code-ai-400393.git
+
+- Установить зависимости (CUDA Toolkit 12.4 и cuDNN 9.3) библиотеки, указанные в `Установка и настройка зависимостей`_: libtorch, OpenCV, yaml-cpp (отображены рекомендованные пути для ОС Windows):
+
+  .. code-block:: text
+  
+     C:\
+     ├───libtorch-12.4
+     ├───libtorch-12.4-cuda
+     ├───opencv-4.10.0-build
+     ├───opencv-4.10.0-build-cuda
+     └───yaml-cpp
+
+- Для корректной работы библиотеки под управлением операционной системы Windows необходимо прописать системные пути в переменные окружения:
+
+  .. code-block:: text
+  
+      C:\opencv-4.10.0-build\install\x64\vc17\bin\
+      C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\
+
+-	Настроить сборку, установив ключ поддержки CUDA. Для этого отредактировать CMakeLists.txt проекта
+
+  .. code-block:: text
+
+      option(USE_CUDA "Use CUDA Build" OFF)
+
+   Флаг ON/OFF определяет режим сборки библиотеки:
+   OFF – сборка без поддержки CUDA. Используются OpenCV и LibTorch для CPU. CUDA-функции не будут доступны.
+   ON — сборка с поддержкой CUDA. Используются OpenCV с модулями CUDA и LibTorch для CUDA. CUDA-функции активны в пространстве имен mrcv.
+
+- Для включения поддержки CUDA необходимо:
+   -	установить CUDA Toolkit 12.4;
+   -	загрузить архив (Tarball) cuDNN, содержащий папки bin, lib и include и копировать их в каталог установки CUDA Toolkit;
+   -	выполнить сборку и установку проекта согласно инструкциям далее;
+   -	запустить проект от имени администратора и открыть mrcv как локальную папку;
+   -	выбрать конфигурацию сборки dev-win;
+   -	в разделе «сборка» выбрать «Собрать проект»;
+   -	после успешной сборки в разделе «сборка» выбрать «Установить mrcv».
+
+Для операционной системы Linux (Ubuntu) без поддержки CUDA
+----------------------------------------------------------
+
+Для установки библиотеки необходимо выполнить следующие действия:
+
+- Клонировать актуальную версию проекта, используя команды:
+
+  .. code-block:: console
+  
+     cd ~
+     git clone --branch main https://github.com/valabsoft/code-ai-400393.git
+
+- Установить библиотеки, указанные в `Установка и настройка зависимостей`_
+
+- Выполнить команды:
+
+  .. code-block:: console
+
+      cd ~/code-ai-400393
+      mkdir -p build && cd build
+      cmake ..
+      make -j$(nproc)
+      sudo make install
+      sudo ldconfig -v
+
+Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого создайте файл:
+
+  .. code-block:: console
+
+      cd ~
+      nano install_cpu.sh
+
+Вставьте следующее содержимое в файл:
+
+  .. code-block:: shell
+
+      #!/bin/bash
+
+      set -e
+
+      sudo apt update
+      sudo apt install -y unzip wget curl build-essential cmake git \
+         libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev \
+         libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-dev
+
+      cd ~
+      if [ ! -d yaml-cpp ]; then
+         git clone https://github.com/jbeder/yaml-cpp.git
+      fi
+      cd yaml-cpp
+      cmake .
+      make -j$(nproc)
+      sudo make install
+
+      cd ~
+      if [ ! -f libtorch-library.zip ]; then
+         curl -L "https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.4.0%2Bcpu.zip" -o libtorch-library.zip
+      fi
+      sudo unzip -o libtorch-library.zip -d /opt/
+
+      TORCH_CONF="/etc/ld.so.conf.d/libtorch.conf"
+      if ! grep -q "/opt/libtorch/lib" "$TORCH_CONF" 2>/dev/null; then
+         echo "/opt/libtorch/lib" | sudo tee "$TORCH_CONF"
+         sudo ldconfig
+      fi
+
+      BASHRC="$HOME/.bashrc"
+      ENV_MARK="# BEGIN TORCH ENV"
+      if ! grep -q "$ENV_MARK" "$BASHRC"; then
+         echo "$ENV_MARK" >> "$BASHRC"
+         echo "export TORCH_INCLUDE=/opt/libtorch/include" >> "$BASHRC"
+         echo "export TORCH_LIB=/opt/libtorch/lib" >> "$BASHRC"
+         echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:\$TORCH_LIB" >> "$BASHRC"
+         echo "export CPATH=\$CPATH:\$TORCH_INCLUDE" >> "$BASHRC"
+         echo "export Torch_DIR=/opt/libtorch/share/cmake/Torch" >> "$BASHRC"
+         echo "# END TORCH ENV" >> "$BASHRC"
+      fi
+
+      source "$BASHRC"
+
+      cd ~
+      if [ ! -d opencv ]; then
+         git clone https://github.com/opencv/opencv.git -b "4.10.0"
+      fi
+      if [ ! -d opencv_contrib ]; then
+         git clone https://github.com/opencv/opencv_contrib.git -b "4.10.0"
+      fi
+      mkdir -p opencv/build && cd opencv/build
+
+      cmake -D CMAKE_BUILD_TYPE=Release \
+            -D CMAKE_INSTALL_PREFIX=/usr/local \
+            -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+            ..
+
+      sudo make -j$(nproc)
+      sudo make install
+      sudo ldconfig
+
+      cd ~
+      if [ ! -d code-ai-400393 ]; then
+         git clone --branch main https://github.com/valabsoft/code-ai-400393.git
+      fi
+      cd code-ai-400393
+      mkdir -p build && cd build
+
+      cmake ..
+      make -j$(nproc)
+      sudo make install
+      sudo ldconfig -v
+
+Сохраните содержимое файла Ctrl + O и закройте файл Ctrl + X. Затем сделайте файл исполняемым:
+
+  .. code-block:: console
+
+      chmod +x install_cpu.sh
+
+Запустите скрипт:
+
+   .. code-block:: console
+
+      ./install_cpu.sh
+
+Для операционной системы Linux (Ubuntu) с CUDA
+----------------------------------------------
+
+Для установки библиотеки необходимо выполнить следующие действия:
+
+- Клонировать актуальную версию проекта, используя команды:
+
+  .. code-block:: console
+  
+     cd ~
+     git clone --branch main https://github.com/valabsoft/code-ai-400393.git
+
+- Установить библиотеки, указанные в `Установка и настройка зависимостей`_
+
+- Выполнить команды:
+
+  .. code-block:: console
+
+      cd ~/code-ai-400393
+      sed -i 's/option(USE_CUDA "Use CUDA Build" OFF)/option(USE_CUDA "Use CUDA Build" ON)/' CMakeLists.txt
+      mkdir -p build && cd build
+      sudo cmake -DCMAKE_CUDA_COMPILER:PATH=/usr/local/cuda/bin/nvcc ..
+      make -j$(nproc)
+      sudo make install
+      sudo ldconfig -v
+
+Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого создайте файл:
+
+  .. code-block:: console
+
+      cd ~
+      nano install_cuda.sh
+
+Вставьте следующее содержимое в файл:
+
+  .. code-block:: shell
+
+      #!/bin/bash
+
+      set -e
+
+      sudo apt update
+      sudo apt install -y unzip wget curl build-essential cmake git \
+         libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev \
+         libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-dev
+
+      cd ~
+      if [ ! -d yaml-cpp ]; then
+         git clone https://github.com/jbeder/yaml-cpp.git
+      fi
+      cd yaml-cpp
+      cmake .
+      make -j$(nproc)
+      sudo make install
+
+      cd ~
+      if [ ! -f cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb ]; then
+      wget https://developer.download.nvidia.com/compute/cuda/12.4.0/local_installers/cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb
+      fi
+      sudo dpkg -i cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb
+      sudo cp /var/cuda-repo-ubuntu2204-12-4-local/cuda-*-keyring.gpg /usr/share/keyrings/
+      sudo apt-get update
+      sudo apt-get -y install cuda-toolkit-12-4
+
+      cd ~
+      if [ ! -f cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb ]; then
+      wget https://developer.download.nvidia.com/compute/cudnn/9.3.0/local_installers/cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb
+      fi
+      sudo dpkg -i cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb
+      sudo cp /var/cudnn-local-repo-ubuntu2204-9.3.0/cudnn-*-keyring.gpg /usr/share/keyrings/
+      sudo apt-get update
+      sudo apt-get -y install cudnn
+
+      cd ~
+      if [ ! -d opencv ]; then
+         git clone https://github.com/opencv/opencv.git -b "4.10.0"
+      fi
+      if [ ! -d opencv_contrib ]; then
+         git clone https://github.com/opencv/opencv_contrib.git -b "4.10.0"
+      fi
+      mkdir -p opencv/build && cd opencv/build
+
+      sudo cmake .. \
+         -D CMAKE_INSTALL_PREFIX=/usr/local/ \
+         -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 \
+         -D ENABLE_FAST_MATH=ON \
+         -D CUDA_FAST_MATH=ON \
+         -D WITH_CUBLAS=ON \
+         -D WITH_CUDA=ON \
+         -D WITH_CUDNN=ON \
+         -D CUDA_ARCH_BIN=8.6 \
+         -D WITH_OPENGL=ON \
+         -D BUILD_opencv_cudacodec=ON \
+         -D BUILD_opencv_world=OFF \
+         -D OPENCV_GENERATE_PKGCONFIG=ON \
+         -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+         -D CMAKE_CONFIGURATION_TYPES=Release
+
+      sudo make -j$(nproc)
+      sudo make install
+      sudo ldconfig
+
+      cd ~
+      if [ ! -f libtorch-library.zip ]; then
+         curl -L "https://download.pytorch.org/libtorch/cu124/libtorch-cxx11-abi-shared-with-deps-2.4.0%2Bcu124.zip" -o libtorch-library.zip
+      fi
+      sudo unzip -o libtorch-library.zip -d /opt/
+
+      TORCH_CONF="/etc/ld.so.conf.d/libtorch.conf"
+      if ! grep -q "/opt/libtorch/lib" "$TORCH_CONF" 2>/dev/null; then
+         echo "/opt/libtorch/lib" | sudo tee "$TORCH_CONF"
+         sudo ldconfig
+      fi
+
+      BASHRC="$HOME/.bashrc"
+      ENV_MARK="# BEGIN TORCH ENV"
+      if ! grep -q "$ENV_MARK" "$BASHRC"; then
+         echo "$ENV_MARK" >> "$BASHRC"
+         echo "export TORCH_INCLUDE=/opt/libtorch/include" >> "$BASHRC"
+         echo "export TORCH_LIB=/opt/libtorch/lib" >> "$BASHRC"
+         echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:\$TORCH_LIB" >> "$BASHRC"
+         echo "export CPATH=\$CPATH:\$TORCH_INCLUDE" >> "$BASHRC"
+         echo "export Torch_DIR=/opt/libtorch/share/cmake/Torch" >> "$BASHRC"
+         echo "# END TORCH ENV" >> "$BASHRC"
+      fi
+
+      source "$BASHRC"
+
+      cd ~
+      if [ ! -d code-ai-400393 ]; then
+         git clone --branch main https://github.com/valabsoft/code-ai-400393.git
+      fi
+      cd code-ai-400393
+      sed -i 's/option(USE_CUDA "Use CUDA Build" OFF)/option(USE_CUDA "Use CUDA Build" ON)/' CMakeLists.txt
+      mkdir -p build && cd build
+
+      sudo cmake -DCMAKE_CUDA_COMPILER:PATH=/usr/local/cuda/bin/nvcc ..
+      sudo make -j$(nproc)
+      sudo make install
+      sudo ldconfig -v
+
+Сохраните содержимое файла Ctrl + O и закройте файл Ctrl + X. Затем сделайте файл исполняемым:
+
+  .. code-block:: console
+
+      chmod +x install_cuda.sh
+
+Запустите скрипт:
+
+   .. code-block:: console
+      
+      ./install_cuda.sh
+
+Запуск примеров библиотеки
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Запуск демонстрационного примера augmentation (остальные примеры запускаются по аналогии)
 
@@ -243,124 +665,6 @@
 .. code-block:: console
    
    ./mrcv-augmentation
-
-Для операционной системы Linux (Ubuntu)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Установить зависимости:
-
-  .. code-block:: console
-  
-     sudo apt update
-     sudo apt install build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-     sudo apt install libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev
-
-- Установить yaml-cpp:
-
-  .. code-block:: console
-  
-     git clone https://github.com/jbeder/yaml-cpp.git
-     cd yaml-cpp
-     cmake .
-     make
-     sudo make install
-
-- Установить LibTorch 2.4.0 с поддержкой CUDA 12.4 или без поддержки CUDA:
-
-  1. Распаковать архив libtorch:
-
-     .. code-block:: console
-     
-        unzip /path/to/libtorch-library.zip -d /opt/
-  
-  2. Добавить путь к libtorch в динамический компоновщик:
-
-     .. code-block:: console
-     
-        sudo sh -c "echo '/opt/libtorch/lib' >> /etc/ld.so.conf.d/libtorch.conf"
-        sudo ldconfig
-  
-  3. Добавить пути к заголовочным файлам и библиотекам в файл ``~/.bashrc``:
-
-     .. code-block:: bash
-     
-        export TORCH_INCLUDE=/opt/libtorch/include
-        export TORCH_LIB=/opt/libtorch/lib
-        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TORCH_LIB
-        export CPATH=$CPATH:$TORCH_INCLUDE
-        export Torch_DIR=/opt/libtorch/share/cmake/Torch
-
-- Установить CUDA Toolkit 12.4 и cuDNN 9.3:
-
-  .. code-block:: console
-  
-     wget https://developer.download.nvidia.com/compute/cudnn/9.3.0/local_installers/cudnn-local-repo-cross-aarch64-ubuntu2204-9.3.0_1.0-1_all.deb
-     sudo dpkg -i cudnn-local-repo-cross-aarch64-ubuntu2204-9.3.0_1.0-1_all.deb
-     sudo cp /var/cudnn-local-repo-cross-aarch64-ubuntu2204-9.3.0/cudnn-*-keyring.gpg /usr/share/keyrings/
-     sudo apt-get update
-     sudo apt-get -y install cudnn-cross-aarch64
-
-- Клонировать исходники OpenCV:
-
-  .. code-block:: console
-  
-     git clone https://github.com/opencv/opencv.git -b "4.10.0"
-     git clone https://github.com/opencv/opencv_contrib.git -b "4.10.0"
-     mkdir -p opencv/build && cd opencv/build
-
-- Выполнить сборку и установку с CUDA:
-
-  .. code-block:: console
-  
-     cmake -D CMAKE_BUILD_TYPE=Release \
-           -D CMAKE_INSTALL_PREFIX=/usr/local \
-           -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-           -D WITH_CUDA=ON \
-           -D OPENCV_DNN_CUDA=ON \
-           -D CUDA_ARCH_BIN=7.5 \
-           -D CUDA_ARCH_PTX= \
-           ..
-     make -j$(nproc)
-     sudo make install
-
-Установка и первоначальная настройка библиотеки
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Клонировать проект:
-
-  .. code-block:: console
-  
-     git clone https://github.com/valabsoft/code-ai-400393.git
-     cd code-ai-400393/mrcv
-
-- Установить библиотеки (пример для Windows):
-
-  .. code-block:: text
-  
-     C:\
-     ├───libtorch-12.4
-     ├───libtorch-12.4-cuda
-     ├───opencv-4.10.0-build
-     ├───opencv-4.10.0-build-cuda
-     └───yaml-cpp
-
-- Добавить в переменные окружения системные пути:
-
-  Для Windows:
-
-  .. code-block:: text
-  
-     C:\opencv-4.10.0-build\install\x64\vc17\bin\
-     C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\
-
-  Для Linux:
-
-  .. code-block:: text
-  
-     /usr/local/include/opencv4/
-     /usr/local/lib
-
-- Настроить сборку, указав путь к установленным библиотекам и включить необходимые флаги в CMakeLists.txt.
 
 Подготовка данных для тестирования
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
