@@ -1,22 +1,74 @@
 Подготовка к работе
 ===================
 
-Установка и настройка зависимостей
+Зависимости библиотеки
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Для работы с библиотекой используется версия OpenCV 4.10, которая должна быть предварительно собрана и установлена на исполняемой платформе с операционными системами Windows или Linux. Для поддержки CUDA сборка OpenCV должна проводиться с установленными CUDA 12.4 и cuDNN 9.3. Для сборки должна быть использована версия CMake не ниже 3.14. Также для работы с библиотекой требуется libtorch 2.4.0. При этом сборка с CUDA или без определяется установочным пакетом от разработчиков libtorch.
+Для работы с библиотекой используется версия *OpenCV 4.10*, которая должна быть предварительно собрана и установлена на исполняемой платформе с операционными системами Windows или Linux. Для поддержки CUDA сборка OpenCV должна проводиться с установленными *CUDA 12.4* и *cuDNN 9.3*. Для сборки должна быть использована версия *CMake* не ниже 3.14. Также для работы с библиотекой требуется *libtorch 2.4.0*. При этом сборка с CUDA или без определяется установочным пакетом от разработчиков *libtorch*.
 
-Для операционной системы Windows
---------------------------------
+Установка и первоначальная настройка библиотеки
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Необходимо выполнить следующий ряд действий:
+Для операционной системы Windows (сокращенная версия)
+-----------------------------------------------------
+
+Для установки библиотеки необходимо выполнить следующие действия:
+
+- Клонировать актуальную версию проекта, используя команды:
+
+  .. code-block:: console
+  
+     cd ~
+     git clone --branch main https://github.com/valabsoft/code-ai-400393.git
+
+- Установить зависимости (CUDA Toolkit 12.4 и cuDNN 9.3) библиотеки, указанные в разделе `Зависимости библиотеки`_: libtorch, OpenCV, yaml-cpp (отображены рекомендованные пути для ОС Windows):
+
+  .. code-block:: text
+  
+     C:\
+     ├───libtorch-12.4
+     ├───libtorch-12.4-cuda
+     ├───opencv-4.10.0-build
+     ├───opencv-4.10.0-build-cuda
+     └───yaml-cpp
+
+- Для корректной работы библиотеки под управлением операционной системы Windows необходимо прописать системные пути в переменные окружения:
+
+  .. code-block:: text
+  
+      C:\opencv-4.10.0-build\install\x64\vc17\bin\
+      C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\
+
+-	Настроить сборку, установив ключ поддержки CUDA. Для этого отредактировать CMakeLists.txt проекта
+
+  .. code-block:: text
+
+      option(USE_CUDA "Use CUDA Build" OFF)
+
+   Флаг ON/OFF определяет режим сборки библиотеки:
+   OFF – сборка без поддержки CUDA. Используются OpenCV и LibTorch для CPU. CUDA-функции не будут доступны.
+   ON — сборка с поддержкой CUDA. Используются OpenCV с модулями CUDA и LibTorch для CUDA. CUDA-функции активны в пространстве имен mrcv.
+
+- Для включения поддержки CUDA необходимо:
+   -	установить CUDA Toolkit 12.4;
+   -	загрузить архив (Tarball) cuDNN, содержащий папки bin, lib и include и копировать их в каталог установки CUDA Toolkit;
+   -	выполнить сборку и установку проекта согласно инструкциям далее;
+   -	запустить проект от имени администратора и открыть mrcv как локальную папку;
+   -	выбрать конфигурацию сборки dev-win;
+   -	в разделе «сборка» выбрать «Собрать проект»;
+   -	после успешной сборки в разделе «сборка» выбрать «Установить mrcv».
+
+Для операционной системы Windows (расширенная версия)
+-----------------------------------------------------
+
+Для установки библиотеки необходимо выполнить следующие действия:
 
 - Установить необходимые компоненты:
   
   1. CMake GUI 3.30.0-rc4  
   2. Git Bash  
   3. Visual Studio 2022 Community Edition  
-  4. yaml-cpp:
+  4. yaml-cpp
   
      .. code-block:: console
      
@@ -60,13 +112,13 @@
   .. image:: /_static/compiler_selection.jpg
      :alt: Окно выбора компилятора
 
-- В полях «where is the source code» и «where is the build binaries» указать пути к папке с исходниками OpenCV и созданной папке build.  
+- В полях **Where is the source code** и **Where is the build binaries** указать пути к папке с исходниками OpenCV и созданной папке build.  
   Например, папка ``install`` содержит собранные материалы библиотеки OpenCV и экстра модулей.
 
   .. image:: /_static/directory_selection.jpg
      :alt: Окно выбора каталога
 
-- Нажать Configure.
+- Нажать **Configure**.
 - После успешного конфигурирования найти и выставить параметры:
 
   - ``CMAKE_INSTALL_PREFIX`` -> ``D:/ваш путь к собранной библиотеке/cvcuda``
@@ -76,7 +128,7 @@
   
   **Примечание:** Если переменные отсутствуют в перечне, нужно поставить галочку в пункте Advanced.
 
-- Нажать Configure и выставить дополнительные параметры:
+- Нажать **Configure** и выставить дополнительные параметры:
 
   - Отметить ``CUDA_FAST_MATH``, ``OPENCV_DNN_CUDA``, ``ENABLE_FAST_MATH``, ``WITH_OPENGL``
   - Снять галочки с ``WITH_NVCUVENC``, ``WITH_NVCUVID``, ``WITH_VTK``
@@ -86,17 +138,17 @@
     - ``CUDNN_LIBRARY`` -> путь к файлу ``cudnn.lib``
     - ``CUDNN_INCLUDE_DIR`` -> путь к папке ``include`` cuDNN
 
-- Нажать Generate.
-- После генерации нажать Open Project для запуска проекта Visual Studio.
-- В обозревателе решений Visual Studio в папке CMakeTargets нажать правой кнопкой на ALL_BUILD и выбрать «Собрать».
+- Нажать **Generate**.
+- После генерации нажать **Open Project** для запуска проекта Visual Studio.
+- В обозревателе решений Visual Studio в папке CMakeTargets нажать правой кнопкой на **ALL_BUILD** и выбрать **Build**.
 
   .. image:: /_static/solution_explorer.jpg
      :alt: Окно обозревателя решений
 
-- После успешной сборки выполнить сборку конфигурации «INSTALL».
+- После успешной сборки выполнить сборку конфигурации **INSTALL**.
 
-Для операционной системы Linux (Ubuntu) без поддержки CUDA
-----------------------------------------------------------
+Для операционной системы Linux (Ubuntu) без поддержки CUDA (пошаговая версия)
+-----------------------------------------------------------------------------
 
 Необходимо выполнить следующий ряд действий:
 
@@ -190,139 +242,8 @@
 Убедиться в правильности установки можно используя инструкцию https://docs.pytorch.org/cppdocs/installing.html.
 При нехватке системных ресурсов при сборке рекомендуется запускать сборку через make без указания параметра -j.
 
-Для операционной системы Linux (Ubuntu) с CUDA
-----------------------------------------------
-
-Необходимо выполнить следующий ряд действий:
-
-**Установить зависимости с помощью набора команд**
-
-  .. code-block:: console
-
-   sudo apt update
-   sudo apt install -y unzip wget curl build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-dev
-
-
-**Установить библиотеку yaml-cpp**
-
-  .. code-block:: console
-
-   cd ~
-   git clone https://github.com/jbeder/yaml-cpp.git
-   cd yaml-cpp
-   cmake .
-   make -j$(nproc)
-   sudo make install
-
-**Установить CUDA Toolkit 12.4**
-
-  .. code-block:: console
-
-      cd ~
-      wget https://developer.download.nvidia.com/compute/cuda/12.4.0/local_installers/cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb
-      sudo dpkg -i cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb
-      sudo cp /var/cuda-repo-ubuntu2204-12-4-local/cuda-*-keyring.gpg /usr/share/keyrings/
-      sudo apt-get update
-      sudo apt-get -y install cuda-toolkit-12-4
-
-**Установить cuDNN 9.3**
-
-  .. code-block:: console
-
-      cd ~
-      wget https://developer.download.nvidia.com/compute/cudnn/9.3.0/local_installers/cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb
-      sudo dpkg -i cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb
-      sudo cp /var/cudnn-local-repo-ubuntu2204-9.3.0/cudnn-*-keyring.gpg /usr/share/keyrings/
-      sudo apt-get update
-      sudo apt-get -y install cudnn
-
-**Установить библиотеку OpenCV**
-
-Выполнить команды:
-
-.. code-block:: console
-
-   cd ~
-   git clone https://github.com/opencv/opencv.git -b "4.10.0"
-   git clone https://github.com/opencv/opencv_contrib.git -b "4.10.0"
-   mkdir -p opencv/build && cd opencv/build
-   sudo cmake .. \
-      -D CMAKE_INSTALL_PREFIX=/usr/local/ \
-      -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 \
-      -D ENABLE_FAST_MATH=ON \
-      -D CUDA_FAST_MATH=ON \
-      -D WITH_CUBLAS=ON \
-      -D WITH_CUDA=ON \
-      -D WITH_CUDNN=ON \
-      -D CUDA_ARCH_BIN=8.6 \
-      -D WITH_OPENGL=ON \
-      -D BUILD_opencv_cudacodec=ON \
-      -D BUILD_opencv_world=OFF \
-      -D OPENCV_GENERATE_PKGCONFIG=ON \
-      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-      -D CMAKE_CONFIGURATION_TYPES=Release
-   sudo make -j$(nproc)
-   sudo make install
-
-Сборка осуществляется в папке build. При возникновении ошибок необходимо очистить папки build и .cache.
-
-**Установить библиотеку LibTorch**
-
-Скачать соответсвующий архив с библиотекой:
-
-  .. code-block:: console
-
-   cd ~
-   curl -L "https://download.pytorch.org/libtorch/cu124/libtorch-cxx11-abi-shared-with-deps-2.4.0%2Bcu124.zip" -o libtorch-library.zip
-
-Распаковать архив libtorch-library.zip с помощью команды:
-
-.. code-block:: console
-   
-   sudo unzip -o libtorch-library.zip -d /opt/
-
-Добавить путь к libtorch в динамический компоновщик с помощью команды
-
-.. code-block:: console
-
-   sudo sh -c "echo '/opt/libtorch/lib' >> /etc/ld.so.conf.d/libtorch.conf"
-
-Обновить кэш динамического компоновщика с помощью команды:
-
-.. code-block:: console
-
-   sudo ldconfig
-
-Добавить путь к заголовочным файлам и библиотекам в переменные окружения, отредактировав файл ~/.bashrc, открыв его при помощи команды
-
-.. code-block:: console
-
-   sudo nano  ~/.bashrc
-
-и записав конец следующие строки:
-
-.. code-block:: console
-
-   export TORCH_INCLUDE=/opt/libtorch/include
-   export TORCH_LIB=/opt/libtorch/lib
-   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TORCH_LIB
-   export CPATH=$CPATH:$TORCH_INCLUDE
-   export Torch_DIR=/opt/libtorch/share/cmake/Torch
-
-затем сохранив (Ctrl + O, Ctrl + X) необходимо активировать изменения при помощи команды
-
-.. code-block:: console
-
-   source ~/.bashrc
-
-Убедиться в правильности установки можно используя инструкцию https://docs.pytorch.org/cppdocs/installing.html.
-При нехватке системных ресурсов при сборке рекомендуется запускать сборку через make без указания параметра -j.
-
-Установка и первоначальная настройка библиотеки
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Для операционной системы Windows
---------------------------------
+Для операционной системы Linux (Ubuntu) без поддержки CUDA (версия с помощью скрипта)
+-------------------------------------------------------------------------------------
 
 Для установки библиотеки необходимо выполнить следующие действия:
 
@@ -333,58 +254,9 @@
      cd ~
      git clone --branch main https://github.com/valabsoft/code-ai-400393.git
 
-- Установить зависимости (CUDA Toolkit 12.4 и cuDNN 9.3) библиотеки, указанные в `Установка и настройка зависимостей`_: libtorch, OpenCV, yaml-cpp (отображены рекомендованные пути для ОС Windows):
+- Установить библиотеки, указанные в разделе `Зависимости библиотеки`_
 
-  .. code-block:: text
-  
-     C:\
-     ├───libtorch-12.4
-     ├───libtorch-12.4-cuda
-     ├───opencv-4.10.0-build
-     ├───opencv-4.10.0-build-cuda
-     └───yaml-cpp
-
-- Для корректной работы библиотеки под управлением операционной системы Windows необходимо прописать системные пути в переменные окружения:
-
-  .. code-block:: text
-  
-      C:\opencv-4.10.0-build\install\x64\vc17\bin\
-      C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\
-
--	Настроить сборку, установив ключ поддержки CUDA. Для этого отредактировать CMakeLists.txt проекта
-
-  .. code-block:: text
-
-      option(USE_CUDA "Use CUDA Build" OFF)
-
-   Флаг ON/OFF определяет режим сборки библиотеки:
-   OFF – сборка без поддержки CUDA. Используются OpenCV и LibTorch для CPU. CUDA-функции не будут доступны.
-   ON — сборка с поддержкой CUDA. Используются OpenCV с модулями CUDA и LibTorch для CUDA. CUDA-функции активны в пространстве имен mrcv.
-
-- Для включения поддержки CUDA необходимо:
-   -	установить CUDA Toolkit 12.4;
-   -	загрузить архив (Tarball) cuDNN, содержащий папки bin, lib и include и копировать их в каталог установки CUDA Toolkit;
-   -	выполнить сборку и установку проекта согласно инструкциям далее;
-   -	запустить проект от имени администратора и открыть mrcv как локальную папку;
-   -	выбрать конфигурацию сборки dev-win;
-   -	в разделе «сборка» выбрать «Собрать проект»;
-   -	после успешной сборки в разделе «сборка» выбрать «Установить mrcv».
-
-Для операционной системы Linux (Ubuntu) без поддержки CUDA
-----------------------------------------------------------
-
-Для установки библиотеки необходимо выполнить следующие действия:
-
-- Клонировать актуальную версию проекта, используя команды:
-
-  .. code-block:: console
-  
-     cd ~
-     git clone --branch main https://github.com/valabsoft/code-ai-400393.git
-
-- Установить библиотеки, указанные в `Установка и настройка зависимостей`_
-
-- Выполнить команды:
+- Выполнить команды
 
   .. code-block:: console
 
@@ -395,14 +267,14 @@
       sudo make install
       sudo ldconfig -v
 
-Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого создайте файл:
+Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого нужно создать файл с помощью последовательности команд
 
   .. code-block:: console
 
       cd ~
       nano install_cpu.sh
 
-Вставьте следующее содержимое в файл:
+Вставить код, предстваленный ниже, в файл
 
   .. code-block:: shell
 
@@ -480,20 +352,149 @@
       sudo make install
       sudo ldconfig -v
 
-Сохраните содержимое файла Ctrl + O и закройте файл Ctrl + X. Затем сделайте файл исполняемым:
+Сохранить содержимое файла *Ctrl + O* и закрыть файл *Ctrl + X*. Сделать файл исполняемым с помощью команды
 
   .. code-block:: console
 
       chmod +x install_cpu.sh
 
-Запустите скрипт:
+Запустить скрипт
 
    .. code-block:: console
 
       ./install_cpu.sh
 
-Для операционной системы Linux (Ubuntu) с CUDA
-----------------------------------------------
+
+Для операционной системы Linux (Ubuntu) с поддержкой CUDA (пошаговая версия)
+----------------------------------------------------------------------------
+
+Необходимо выполнить следующий ряд действий:
+
+**Установить зависимости с помощью набора команд**
+
+  .. code-block:: console
+
+   sudo apt update
+   sudo apt install -y unzip wget curl build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-dev
+
+
+**Установить библиотеку yaml-cpp**
+
+  .. code-block:: console
+
+   cd ~
+   git clone https://github.com/jbeder/yaml-cpp.git
+   cd yaml-cpp
+   cmake .
+   make -j$(nproc)
+   sudo make install
+
+**Установить CUDA Toolkit 12.4**
+
+  .. code-block:: console
+
+      cd ~
+      wget https://developer.download.nvidia.com/compute/cuda/12.4.0/local_installers/cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb
+      sudo dpkg -i cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb
+      sudo cp /var/cuda-repo-ubuntu2204-12-4-local/cuda-*-keyring.gpg /usr/share/keyrings/
+      sudo apt-get update
+      sudo apt-get -y install cuda-toolkit-12-4
+
+**Установить cuDNN 9.3**
+
+  .. code-block:: console
+
+      cd ~
+      wget https://developer.download.nvidia.com/compute/cudnn/9.3.0/local_installers/cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb
+      sudo dpkg -i cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb
+      sudo cp /var/cudnn-local-repo-ubuntu2204-9.3.0/cudnn-*-keyring.gpg /usr/share/keyrings/
+      sudo apt-get update
+      sudo apt-get -y install cudnn
+
+**Установить библиотеку OpenCV**
+
+Выполнить последовательность команд
+
+.. code-block:: console
+
+   cd ~
+   git clone https://github.com/opencv/opencv.git -b "4.10.0"
+   git clone https://github.com/opencv/opencv_contrib.git -b "4.10.0"
+   mkdir -p opencv/build && cd opencv/build
+   sudo cmake .. \
+      -D CMAKE_INSTALL_PREFIX=/usr/local/ \
+      -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 \
+      -D ENABLE_FAST_MATH=ON \
+      -D CUDA_FAST_MATH=ON \
+      -D WITH_CUBLAS=ON \
+      -D WITH_CUDA=ON \
+      -D WITH_CUDNN=ON \
+      -D CUDA_ARCH_BIN=8.6 \
+      -D WITH_OPENGL=ON \
+      -D BUILD_opencv_cudacodec=ON \
+      -D BUILD_opencv_world=OFF \
+      -D OPENCV_GENERATE_PKGCONFIG=ON \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D CMAKE_CONFIGURATION_TYPES=Release
+   sudo make -j$(nproc)
+   sudo make install
+
+Сборка осуществляется в папке build. При возникновении ошибок необходимо очистить папки build и .cache.
+
+**Установить библиотеку LibTorch**
+
+Скачать соответсвующий архив с библиотекой
+
+  .. code-block:: console
+
+   cd ~
+   curl -L "https://download.pytorch.org/libtorch/cu124/libtorch-cxx11-abi-shared-with-deps-2.4.0%2Bcu124.zip" -o libtorch-library.zip
+
+Распаковать архив libtorch-library.zip с помощью команды
+
+.. code-block:: console
+   
+   sudo unzip -o libtorch-library.zip -d /opt/
+
+Добавить путь к libtorch в динамический компоновщик с помощью команды
+
+.. code-block:: console
+
+   sudo sh -c "echo '/opt/libtorch/lib' >> /etc/ld.so.conf.d/libtorch.conf"
+
+Обновить кэш динамического компоновщика с помощью команды
+
+.. code-block:: console
+
+   sudo ldconfig
+
+Добавить путь к заголовочным файлам и библиотекам в переменные окружения, отредактировав файл ~/.bashrc, открыв его при помощи команды
+
+.. code-block:: console
+
+   sudo nano  ~/.bashrc
+
+и записать в конец файла следующие строки
+
+.. code-block:: console
+
+   export TORCH_INCLUDE=/opt/libtorch/include
+   export TORCH_LIB=/opt/libtorch/lib
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TORCH_LIB
+   export CPATH=$CPATH:$TORCH_INCLUDE
+   export Torch_DIR=/opt/libtorch/share/cmake/Torch
+
+Сохранить изменения *Ctrl + O* и закрыть файл *Ctrl + X*. Активировать изменения с помощью команды
+
+.. code-block:: console
+
+   source ~/.bashrc
+
+Убедиться в правильности установки можно используя инструкцию https://docs.pytorch.org/cppdocs/installing.html.
+При нехватке системных ресурсов при сборке рекомендуется запускать сборку через make без указания параметра -j.
+
+Для операционной системы Linux (Ubuntu) с поддержкой CUDA (версия с помощью скрипта)
+------------------------------------------------------------------------------------
 
 Для установки библиотеки необходимо выполнить следующие действия:
 
@@ -504,9 +505,9 @@
      cd ~
      git clone --branch main https://github.com/valabsoft/code-ai-400393.git
 
-- Установить библиотеки, указанные в `Установка и настройка зависимостей`_
+- Установить библиотеки, указанные в разделе `Зависимости библиотеки`_
 
-- Выполнить команды:
+- Выполнить последовательность команд
 
   .. code-block:: console
 
@@ -518,14 +519,15 @@
       sudo make install
       sudo ldconfig -v
 
-Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого создайте файл:
+Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт.
+Для этого необходимо создать файл с помощью команды
 
   .. code-block:: console
 
       cd ~
       nano install_cuda.sh
 
-Вставьте следующее содержимое в файл:
+В созданный файл вставить содержимое, представленное ниже
 
   .. code-block:: shell
 
@@ -633,17 +635,129 @@
       sudo make install
       sudo ldconfig -v
 
-Сохраните содержимое файла Ctrl + O и закройте файл Ctrl + X. Затем сделайте файл исполняемым:
+Сохранить содержимое файла *Ctrl + O* и закрыть файл *Ctrl + X*.
+
+Сделать файл исполняемым с помощью последовательности команд
 
   .. code-block:: console
 
       chmod +x install_cuda.sh
 
-Запустите скрипт:
+Запустить скрипт
 
    .. code-block:: console
       
       ./install_cuda.sh
+
+Инструкция по установке Python версии библиотеки mrcv
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Минимальная версия Python для работы с библиотекой - 3.10.
+
+Проверить, установлен ли Python
+
+    python3 --version
+
+Если Python отсутствует, установить с помощью команды
+
+    sudo apt-get update
+    sudo apt-get install python3
+
+Проверить, установлена ли поддержка Git
+
+    git --version
+
+Если Git не установлен, установить с помощью команды
+
+    sudo apt-get install git
+
+Клонировать репозиторий кода из ветки **main**
+
+    git clone --branch main https://github.com/valabsoft/code-ai-400393.git
+
+Локальная копия репозитория создана на вашем устройстве.
+
+Перейти в локальную копию репозитория на устройстве
+
+    cd code-ai-400393/python
+
+Рекомендуется использовать виртуальное окружение для изоляции зависимостей. Для этого необходимо выполнить следующие действия.
+
+Создайте виртуальное окружение с именем *venv*
+
+    python3 -m venv venv
+
+Активировать окружение
+
+    source venv/bin/activate
+
+После этого в терминале появится *venv*, что указывает на активное окружение.
+
+В директории есть файл requirements.txt с необходимыми библиотеками:
+
+Если файл находится в корневой директории, выполнить команду
+
+    pip install -r requirements.txt
+
+Установите библиотеку с помощью команды
+
+    pip install -e .
+
+Перейти в директорию с примерами с помощью команды
+
+    cd python/examples
+
+Выбрать папку модуля и запустить пример. Предварительно убедиться, что в папке присутствуют файлы, использующиеся в качестве исходных данных
+
+    cd python/examples/comparing/
+    python comparing.py
+
+
+Подготовка данных для работы с примерами
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+При знакомстве с библиотекой mrcv, после изучения состава модулей библиотеки, рекомендуется обратиться к демонстрационным примерам. Все примеры библиотеки снабжены необходимыми файлами, которые используются в качестве входных данных. После сборки примера рекомендуется скопировать в папку сборки примера папку *files* из репозитория кода. После копирования исходных данных выполнить запуски примера.
+
+*Пример*
+
+Демонстрация работы функций модуля сегментации (для операционной системы Windows).
+Код примера находится в папке *code-ai-400393\\examples\\segmentationtest*
+
+Порядок работы:
+
+- Собрать исполняемый файл примера. В случае успешной сборки, исполняемый файл примера будет создан в папке *code-ai-400393\\build\\examples\\segmentationtest*
+
+- Скопировать папку *files* с исходными данными из папки *code-ai-400393\\examples\\segmentationtest\\files* в папку *code-ai-400393\\build\\examples\\segmentationtest\\files*
+
+- Запустить исполняемый файл примера *mrcv-segmentationtest.exe*
+
+- В результате работы функции будет открыто два окна с исходным изображением и с изображением, полученным в результате работы функции сегмнетации
+
+*Исходное изображение*
+
+  .. image:: /_static/seg-source.jpg
+     :alt: Исходное изображение
+
+*Результат работы функции*
+
+  .. image:: /_static/seg-prediction.jpg
+     :alt: Исходное изображение
+
+- После работы с исходными данными примера по-умолчанию, внести изменения в код примера, указав собственные входные данные или настройки параметров функции
+
+*Например*
+
+Изменить путь к исходному файлу с изображением
+
+.. code-block:: cpp
+
+   segmentor.Predict(image, "ship", true);
+
+или отключить показ окон, изменив параметры функции
+
+.. code-block:: cpp
+
+   segmentor.Predict(image, "ship", false);
 
 Запуск примеров библиотеки
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -665,19 +779,3 @@
 .. code-block:: console
    
    ./mrcv-augmentation
-
-Подготовка данных для тестирования
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Подготовить входные изображения и видео для тестирования алгоритмов.
-- Организовать структуру папок для удобства:
-
-  .. code-block:: text
-  
-     ├── data
-     │   ├── images
-     │   └── videos
-
-- Проверить доступность и корректность данных.
-- Настроить параметры конфигурации тестов, если это необходимо.
-

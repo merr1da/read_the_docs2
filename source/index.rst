@@ -36,7 +36,7 @@ Marine Robotics Computer Vision
 .. include:: modules/ImageSegmentationModule.rst
 .. include:: modules/3DsceneCreationModule.rst
 .. include:: modules/YOLOv5Module.rst
+.. include:: modules/GettingStarted.rst
 .. include:: modules/DemonstrationExamples.rst
 .. include:: modules/DemonstrationExamplesPython.rst
-.. include:: modules/GettingStarted.rst
 .. include:: modules/ContributingGuide.rst

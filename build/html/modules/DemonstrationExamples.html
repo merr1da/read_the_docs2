@@ -1,22 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Демонстрационные примеры &mdash; Marine Robotics Computer Vision  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ea7bc319" />
+
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -117,7 +117,8 @@
 <p>Тестирование проводилось на синтетическом изображении — модели кадра видеопотока, содержащего объект интереса.
 Режим отображения меток используется только в режиме отладки при включенном флаге <code class="docutils literal notranslate"><span class="pre">IS_DEBUG_LOG_ENABLED</span></code>.</p>
 <p>Результат работы детектора:</p>
-<a class="reference internal image-reference" href="../_images/objcourse_result.jpg"><img alt="Тестовое изображение с результатом работы" src="../_images/objcourse_result.jpg" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="../_images/objcourse_result.jpg"><img alt="Тестовое изображение с результатом работы" src="../_images/objcourse_result.jpg" style="width: 200px;" />
+</a>
 <p>Для выполнения основных функций модуля используются вызовы методов класса <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code>, как показано ниже.
 Подразумевается, что тестовое изображение предварительно загружено в переменную <code class="docutils literal notranslate"><span class="pre">cv::Mat</span> <span class="pre">frameShip</span></code>.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Подсчет объектов</span>
@@ -441,13 +442,15 @@ Epoch: 29, Valid Loss: 0.136483
 <p>Пример предсказания положения для траекторий синуса и окружности представлены на рисунке А.4.4:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure462.jpg"><img alt="../_images/figure462.jpg" class="align-center" src="../_images/figure462.jpg" style="width: 100%;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure462.jpg"><img alt="../_images/figure462.jpg" class="align-center" src="../_images/figure462.jpg" style="width: 100%;" />
+</a>
 </td>
-<td><a class="reference internal image-reference" href="../_images/figure462a.jpg"><img alt="../_images/figure462a.jpg" class="align-center" src="../_images/figure462a.jpg" style="width: 100%;" /></a>
+<td><a class="reference internal image-reference" href="../_images/figure462a.jpg"><img alt="../_images/figure462a.jpg" class="align-center" src="../_images/figure462a.jpg" style="width: 100%;" />
+</a>
 </td>
 </tr>
 </tbody>
@@ -507,13 +510,15 @@ Epoch: 29, Valid Loss: 0.136483
 Полученный ROI представлен на рисунке А.4.5:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure472.jpg"><img alt="../_images/figure472.jpg" class="align-center" src="../_images/figure472.jpg" style="width: 100%;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure472.jpg"><img alt="../_images/figure472.jpg" class="align-center" src="../_images/figure472.jpg" style="width: 100%;" />
+</a>
 </td>
-<td><a class="reference internal image-reference" href="../_images/figure472a.jpg"><img alt="../_images/figure472a.jpg" class="align-center" src="../_images/figure472a.jpg" style="width: 100%;" /></a>
+<td><a class="reference internal image-reference" href="../_images/figure472a.jpg"><img alt="../_images/figure472a.jpg" class="align-center" src="../_images/figure472a.jpg" style="width: 100%;" />
+</a>
 </td>
 </tr>
 </tbody>
@@ -571,7 +576,8 @@ Epoch: 29, Valid Loss: 0.136483
 </pre></div>
 </div>
 <p>Результаты предобработки подводных изображений:</p>
-<a class="reference internal image-reference" href="../_images/preprocessing.jpg"><img alt="Исходное изображение, результат предобработки" class="align-center" src="../_images/preprocessing.jpg" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="../_images/preprocessing.jpg"><img alt="Исходное изображение, результат предобработки" class="align-center" src="../_images/preprocessing.jpg" style="width: 200px;" />
+</a>
 <p>Пример фрагмента log-файла во время запуска примера:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>16:59:43 | INFO |  === НОВЫЙ ЗАПУСК ===
 16:59:43 | INFO | загружено изображение: ./files/img02.jfif :: 960x600x3
@@ -611,11 +617,16 @@ Epoch: 29, Valid Loss: 0.136483
 </pre></div>
 </div>
 <p><strong>Результаты работы</strong></p>
-<a class="reference internal image-reference" href="../_images/figure10_1.jpg"><img alt="Фотография экспериментального стенда и стереопара со стереокамеры" src="../_images/figure10_1.jpg" style="width: 200px;" /></a>
-<a class="reference internal image-reference" href="../_images/figure10_2.jpg"><img alt="Карта диспаратности и бинарные маски сегментов" src="../_images/figure10_2.jpg" style="width: 200px;" /></a>
-<a class="reference internal image-reference" href="../_images/figure10_3.jpg"><img alt="Результат обнаружения объектов с координатой по Z" src="../_images/figure10_3.jpg" style="width: 200px;" /></a>
-<a class="inline-images reference internal image-reference" href="../_images/figure10_4.jpg"><img alt="Изображения 3D сцены" class="inline-images" src="../_images/figure10_4.jpg" style="width: 200px;" /></a>
-<a class="reference internal image-reference" href="../_images/figure10_5.jpg"><img alt="Изображения 3D сцены" src="../_images/figure10_5.jpg" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="../_images/figure10_1.jpg"><img alt="Фотография экспериментального стенда и стереопара со стереокамеры" src="../_images/figure10_1.jpg" style="width: 200px;" />
+</a>
+<a class="reference internal image-reference" href="../_images/figure10_2.jpg"><img alt="Карта диспаратности и бинарные маски сегментов" src="../_images/figure10_2.jpg" style="width: 200px;" />
+</a>
+<a class="reference internal image-reference" href="../_images/figure10_3.jpg"><img alt="Результат обнаружения объектов с координатой по Z" src="../_images/figure10_3.jpg" style="width: 200px;" />
+</a>
+<a class="inline-images reference internal image-reference" href="../_images/figure10_4.jpg"><img alt="Изображения 3D сцены" class="inline-images" src="../_images/figure10_4.jpg" style="width: 200px;" />
+</a>
+<a class="reference internal image-reference" href="../_images/figure10_5.jpg"><img alt="Изображения 3D сцены" src="../_images/figure10_5.jpg" style="width: 200px;" />
+</a>
 <p><strong>Фрагмент лог-файла</strong></p>
 <p>Ниже приведён фрагмент из лог-файла библиотеки во время запуска примера использования:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>14:51:16 | INFO | === НОВЫЙ ЗАПУСК ===
@@ -689,17 +700,20 @@ N.png
 </pre></div>
 </div>
 <p>На рисунке А.4.14 представлен процесс интерактивной калибровки:</p>
-<a class="reference internal image-reference" href="../_images/figure410.jpg"><img alt="../_images/figure410.jpg" src="../_images/figure410.jpg" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/figure410.jpg"><img alt="../_images/figure410.jpg" src="../_images/figure410.jpg" style="width: 100%;" />
+</a>
 <p>(а) – консольный вывод приложения;</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure410a.jpg"><img alt="../_images/figure410a.jpg" src="../_images/figure410a.jpg" style="width: 100%;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure410a.jpg"><img alt="../_images/figure410a.jpg" src="../_images/figure410a.jpg" style="width: 100%;" />
+</a>
 </td>
-<td><a class="reference internal image-reference" href="../_images/figure410b.jpg"><img alt="../_images/figure410b.jpg" src="../_images/figure410b.jpg" style="width: 100%;" /></a>
+<td><a class="reference internal image-reference" href="../_images/figure410b.jpg"><img alt="../_images/figure410b.jpg" src="../_images/figure410b.jpg" style="width: 100%;" />
+</a>
 </td>
 </tr>
 </tbody>
@@ -734,23 +748,29 @@ N.png
 <p>Результаты работы представлены на рисунке А.4.15:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure410a1.jpg"><img alt="../_images/figure410a1.jpg" src="../_images/figure410a1.jpg" style="width: 100%;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure410a1.jpg"><img alt="../_images/figure410a1.jpg" src="../_images/figure410a1.jpg" style="width: 100%;" />
+</a>
 </td>
-<td><a class="reference internal image-reference" href="../_images/figure410a2.jpg"><img alt="../_images/figure410a2.jpg" src="../_images/figure410a2.jpg" style="width: 100%;" /></a>
-</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../_images/figure410a3.jpg"><img alt="../_images/figure410a3.jpg" src="../_images/figure410a3.jpg" style="width: 100%;" /></a>
-</td>
-<td><a class="reference internal image-reference" href="../_images/figure410a4.jpg"><img alt="../_images/figure410a4.jpg" src="../_images/figure410a4.jpg" style="width: 100%;" /></a>
+<td><a class="reference internal image-reference" href="../_images/figure410a2.jpg"><img alt="../_images/figure410a2.jpg" src="../_images/figure410a2.jpg" style="width: 100%;" />
+</a>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure410a5.jpg"><img alt="../_images/figure410a5.jpg" src="../_images/figure410a5.jpg" style="width: 100%;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../_images/figure410a3.jpg"><img alt="../_images/figure410a3.jpg" src="../_images/figure410a3.jpg" style="width: 100%;" />
+</a>
 </td>
-<td><a class="reference internal image-reference" href="../_images/figure410a6.jpg"><img alt="../_images/figure410a6.jpg" src="../_images/figure410a6.jpg" style="width: 100%;" /></a>
+<td><a class="reference internal image-reference" href="../_images/figure410a4.jpg"><img alt="../_images/figure410a4.jpg" src="../_images/figure410a4.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure410a5.jpg"><img alt="../_images/figure410a5.jpg" src="../_images/figure410a5.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure410a6.jpg"><img alt="../_images/figure410a6.jpg" src="../_images/figure410a6.jpg" style="width: 100%;" />
+</a>
 </td>
 </tr>
 </tbody>
@@ -912,9 +932,12 @@ N.png
 </div>
 <p>После выполнения всех операций, модифицированные изображения сохраняются на диск с использованием функции <code class="docutils literal notranslate"><span class="pre">cv::imwrite(ss.str(),</span> <span class="pre">resultImage)</span></code></p>
 <p>Результат работы функции аугментации :</p>
-<a class="inline-images reference internal image-reference" href="../_images/augmentation1.jpg"><img alt="Пример результата обработки" class="inline-images" src="../_images/augmentation1.jpg" style="width: 200px;" /></a>
-<a class="reference internal image-reference" href="../_images/augmentation2.jpg"><img alt="Пример результата обработки" src="../_images/augmentation2.jpg" style="width: 200px;" /></a>
-<a class="reference internal image-reference" href="../_images/augmentation3.jpg"><img alt="Пример результата обработки" src="../_images/augmentation3.jpg" style="width: 200px;" /></a>
+<a class="inline-images reference internal image-reference" href="../_images/augmentation1.jpg"><img alt="Пример результата обработки" class="inline-images" src="../_images/augmentation1.jpg" style="width: 200px;" />
+</a>
+<a class="reference internal image-reference" href="../_images/augmentation2.jpg"><img alt="Пример результата обработки" src="../_images/augmentation2.jpg" style="width: 200px;" />
+</a>
+<a class="reference internal image-reference" href="../_images/augmentation3.jpg"><img alt="Пример результата обработки" src="../_images/augmentation3.jpg" style="width: 200px;" />
+</a>
 </section>
 <section id="id12">
 <h2>Пример использования программных функций библиотеки для полуавтоматической разметки для аугментации данных с помощью нейронной сети<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
@@ -952,13 +975,15 @@ N.png
 <p>Результат работы функции приведен на рисунке А.4.20:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure415a.jpg"><img alt="../_images/figure415a.jpg" class="align-center" src="../_images/figure415a.jpg" style="width: 100%;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure415a.jpg"><img alt="../_images/figure415a.jpg" class="align-center" src="../_images/figure415a.jpg" style="width: 100%;" />
+</a>
 </td>
-<td><a class="reference internal image-reference" href="../_images/figure415b.jpg"><img alt="../_images/figure415b.jpg" class="align-center" src="../_images/figure415b.jpg" style="width: 100%;" /></a>
+<td><a class="reference internal image-reference" href="../_images/figure415b.jpg"><img alt="../_images/figure415b.jpg" class="align-center" src="../_images/figure415b.jpg" style="width: 100%;" />
+</a>
 </td>
 </tr>
 </tbody>
@@ -1061,23 +1086,29 @@ N.png
 <p>Среднее время обработки составило около 15 мс на изображение (Intel Core i7-9700K).</p>
 <table class="docutils align-center">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure417a1.jpg"><img alt="../_images/figure417a1.jpg" class="align-center" src="../_images/figure417a1.jpg" style="width: 100%;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure417a1.jpg"><img alt="../_images/figure417a1.jpg" class="align-center" src="../_images/figure417a1.jpg" style="width: 100%;" />
+</a>
 </td>
-<td><a class="reference internal image-reference" href="../_images/figure417a2.jpg"><img alt="../_images/figure417a2.jpg" class="align-center" src="../_images/figure417a2.jpg" style="width: 100%;" /></a>
-</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../_images/figure417a3.jpg"><img alt="../_images/figure417a3.jpg" class="align-center" src="../_images/figure417a3.jpg" style="width: 100%;" /></a>
-</td>
-<td><a class="reference internal image-reference" href="../_images/figure417a4.jpg"><img alt="../_images/figure417a4.jpg" class="align-center" src="../_images/figure417a4.jpg" style="width: 100%;" /></a>
+<td><a class="reference internal image-reference" href="../_images/figure417a2.jpg"><img alt="../_images/figure417a2.jpg" class="align-center" src="../_images/figure417a2.jpg" style="width: 100%;" />
+</a>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure417a5.jpg"><img alt="../_images/figure417a5.jpg" class="align-center" src="../_images/figure417a5.jpg" style="width: 100%;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../_images/figure417a3.jpg"><img alt="../_images/figure417a3.jpg" class="align-center" src="../_images/figure417a3.jpg" style="width: 100%;" />
+</a>
 </td>
-<td><a class="reference internal image-reference" href="../_images/figure417a6.jpg"><img alt="../_images/figure417a6.jpg" class="align-center" src="../_images/figure417a6.jpg" style="width: 100%;" /></a>
+<td><a class="reference internal image-reference" href="../_images/figure417a4.jpg"><img alt="../_images/figure417a4.jpg" class="align-center" src="../_images/figure417a4.jpg" style="width: 100%;" />
+</a>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure417a5.jpg"><img alt="../_images/figure417a5.jpg" class="align-center" src="../_images/figure417a5.jpg" style="width: 100%;" />
+</a>
+</td>
+<td><a class="reference internal image-reference" href="../_images/figure417a6.jpg"><img alt="../_images/figure417a6.jpg" class="align-center" src="../_images/figure417a6.jpg" style="width: 100%;" />
+</a>
 </td>
 </tr>
 </tbody>
@@ -1340,21 +1371,25 @@ N.png
 Примеры работающих алгоритмов обработки изображений представлены на рис. А.4.35.</p>
 <table class="docutils align-center">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure424a1.jpg"><img alt="../_images/figure424a1.jpg" src="../_images/figure424a1.jpg" style="width: 100%;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure424a1.jpg"><img alt="../_images/figure424a1.jpg" src="../_images/figure424a1.jpg" style="width: 100%;" />
+</a>
 </td>
-<td><a class="reference internal image-reference" href="../_images/figure424a2.jpg"><img alt="../_images/figure424a2.jpg" src="../_images/figure424a2.jpg" style="width: 100%;" /></a>
+<td><a class="reference internal image-reference" href="../_images/figure424a2.jpg"><img alt="../_images/figure424a2.jpg" src="../_images/figure424a2.jpg" style="width: 100%;" />
+</a>
 </td>
 </tr>
 <tr class="row-even"><td><p>Изображение до обработки</p></td>
 <td><p>Изображение после применения морфологического размыкания</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure424a3.jpg"><img alt="../_images/figure424a3.jpg" src="../_images/figure424a3.jpg" style="width: 100%;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure424a3.jpg"><img alt="../_images/figure424a3.jpg" src="../_images/figure424a3.jpg" style="width: 100%;" />
+</a>
 </td>
-<td><a class="reference internal image-reference" href="../_images/figure424a4.jpg"><img alt="../_images/figure424a4.jpg" src="../_images/figure424a4.jpg" style="width: 100%;" /></a>
+<td><a class="reference internal image-reference" href="../_images/figure424a4.jpg"><img alt="../_images/figure424a4.jpg" src="../_images/figure424a4.jpg" style="width: 100%;" />
+</a>
 </td>
 </tr>
 <tr class="row-even"><td><p>Изображение до обработки</p></td>
@@ -1399,13 +1434,15 @@ N.png
 <p>На рис. А.4.36 представлены тестовые изображения, использовавшиеся для тестирования работы функции.</p>
 <table class="docutils align-center">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure425a.jpg"><img alt="../_images/figure425a.jpg" src="../_images/figure425a.jpg" style="width: 100%;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/figure425a.jpg"><img alt="../_images/figure425a.jpg" src="../_images/figure425a.jpg" style="width: 100%;" />
+</a>
 </td>
-<td><a class="reference internal image-reference" href="../_images/figure425b.jpg"><img alt="../_images/figure425b.jpg" src="../_images/figure425b.jpg" style="width: 100%;" /></a>
+<td><a class="reference internal image-reference" href="../_images/figure425b.jpg"><img alt="../_images/figure425b.jpg" src="../_images/figure425b.jpg" style="width: 100%;" />
+</a>
 </td>
 </tr>
 <tr class="row-even"><td><p>Исходное изображение</p></td>

@@ -1,22 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Подготовка к работе &mdash; Marine Robotics Computer Vision  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ea7bc319" />
+
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -44,20 +44,19 @@
               <!-- Local TOC -->
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">Подготовка к работе</a><ul>
-<li><a class="reference internal" href="#id2">Установка и настройка зависимостей</a><ul>
-<li><a class="reference internal" href="#windows">Для операционной системы Windows</a></li>
-<li><a class="reference internal" href="#linux-ubuntu-cuda">Для операционной системы Linux (Ubuntu) без поддержки CUDA</a></li>
-<li><a class="reference internal" href="#id3">Для операционной системы Linux (Ubuntu) с CUDA</a></li>
+<li><a class="reference internal" href="#id2">Зависимости библиотеки</a></li>
+<li><a class="reference internal" href="#id3">Установка и первоначальная настройка библиотеки</a><ul>
+<li><a class="reference internal" href="#windows">Для операционной системы Windows (сокращенная версия)</a></li>
+<li><a class="reference internal" href="#id4">Для операционной системы Windows (расширенная версия)</a></li>
+<li><a class="reference internal" href="#linux-ubuntu-cuda">Для операционной системы Linux (Ubuntu) без поддержки CUDA (пошаговая версия)</a></li>
+<li><a class="reference internal" href="#id5">Для операционной системы Linux (Ubuntu) без поддержки CUDA (версия с помощью скрипта)</a></li>
+<li><a class="reference internal" href="#id6">Для операционной системы Linux (Ubuntu) с поддержкой CUDA (пошаговая версия)</a></li>
+<li><a class="reference internal" href="#id7">Для операционной системы Linux (Ubuntu) с поддержкой CUDA (версия с помощью скрипта)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id4">Установка и первоначальная настройка библиотеки</a><ul>
-<li><a class="reference internal" href="#id5">Для операционной системы Windows</a></li>
-<li><a class="reference internal" href="#id6">Для операционной системы Linux (Ubuntu) без поддержки CUDA</a></li>
-<li><a class="reference internal" href="#id7">Для операционной системы Linux (Ubuntu) с CUDA</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id8">Запуск примеров библиотеки</a></li>
-<li><a class="reference internal" href="#id9">Подготовка данных для тестирования</a></li>
+<li><a class="reference internal" href="#python-mrcv">Инструкция по установке Python версии библиотеки mrcv</a></li>
+<li><a class="reference internal" href="#id8">Подготовка данных для работы с примерами</a></li>
+<li><a class="reference internal" href="#id9">Запуск примеров библиотеки</a></li>
 </ul>
 </li>
 </ul>
@@ -89,18 +88,74 @@
   <section id="id1">
 <h1>Подготовка к работе<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <section id="id2">
-<h2>Установка и настройка зависимостей<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>Для работы с библиотекой используется версия OpenCV 4.10, которая должна быть предварительно собрана и установлена на исполняемой платформе с операционными системами Windows или Linux. Для поддержки CUDA сборка OpenCV должна проводиться с установленными CUDA 12.4 и cuDNN 9.3. Для сборки должна быть использована версия CMake не ниже 3.14. Также для работы с библиотекой требуется libtorch 2.4.0. При этом сборка с CUDA или без определяется установочным пакетом от разработчиков libtorch.</p>
+<h2>Зависимости библиотеки<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>Для работы с библиотекой используется версия <em>OpenCV 4.10</em>, которая должна быть предварительно собрана и установлена на исполняемой платформе с операционными системами Windows или Linux. Для поддержки CUDA сборка OpenCV должна проводиться с установленными <em>CUDA 12.4</em> и <em>cuDNN 9.3</em>. Для сборки должна быть использована версия <em>CMake</em> не ниже 3.14. Также для работы с библиотекой требуется <em>libtorch 2.4.0</em>. При этом сборка с CUDA или без определяется установочным пакетом от разработчиков <em>libtorch</em>.</p>
+</section>
+<section id="id3">
+<h2>Установка и первоначальная настройка библиотеки<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <section id="windows">
-<h3>Для операционной системы Windows<a class="headerlink" href="#windows" title="Link to this heading"></a></h3>
-<p>Необходимо выполнить следующий ряд действий:</p>
+<h3>Для операционной системы Windows (сокращенная версия)<a class="headerlink" href="#windows" title="Link to this heading"></a></h3>
+<p>Для установки библиотеки необходимо выполнить следующие действия:</p>
+<ul>
+<li><p>Клонировать актуальную версию проекта, используя команды:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
+<span class="go">git clone --branch main https://github.com/valabsoft/code-ai-400393.git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Установить зависимости (CUDA Toolkit 12.4 и cuDNN 9.3) библиотеки, указанные в разделе <a class="reference internal" href="#id2">Зависимости библиотеки</a>: libtorch, OpenCV, yaml-cpp (отображены рекомендованные пути для ОС Windows):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\
+├───libtorch-12.4
+├───libtorch-12.4-cuda
+├───opencv-4.10.0-build
+├───opencv-4.10.0-build-cuda
+└───yaml-cpp
+</pre></div>
+</div>
+</li>
+<li><p>Для корректной работы библиотеки под управлением операционной системы Windows необходимо прописать системные пути в переменные окружения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\opencv-4.10.0-build\install\x64\vc17\bin\
+C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\
+</pre></div>
+</div>
+</li>
+<li><p>Настроить сборку, установив ключ поддержки CUDA. Для этого отредактировать CMakeLists.txt проекта</p></li>
+</ul>
+<blockquote>
+<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   option(USE_CUDA &quot;Use CUDA Build&quot; OFF)
+
+Флаг ON/OFF определяет режим сборки библиотеки:
+OFF – сборка без поддержки CUDA. Используются OpenCV и LibTorch для CPU. CUDA-функции не будут доступны.
+ON — сборка с поддержкой CUDA. Используются OpenCV с модулями CUDA и LibTorch для CUDA. CUDA-функции активны в пространстве имен mrcv.
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Для включения поддержки CUDA необходимо:</dt><dd><ul>
+<li><p>установить CUDA Toolkit 12.4;</p></li>
+<li><p>загрузить архив (Tarball) cuDNN, содержащий папки bin, lib и include и копировать их в каталог установки CUDA Toolkit;</p></li>
+<li><p>выполнить сборку и установку проекта согласно инструкциям далее;</p></li>
+<li><p>запустить проект от имени администратора и открыть mrcv как локальную папку;</p></li>
+<li><p>выбрать конфигурацию сборки dev-win;</p></li>
+<li><p>в разделе «сборка» выбрать «Собрать проект»;</p></li>
+<li><p>после успешной сборки в разделе «сборка» выбрать «Установить mrcv».</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h3>Для операционной системы Windows (расширенная версия)<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>Для установки библиотеки необходимо выполнить следующие действия:</p>
 <ul>
 <li><p>Установить необходимые компоненты:</p>
 <ol class="arabic">
 <li><p>CMake GUI 3.30.0-rc4</p></li>
 <li><p>Git Bash</p></li>
 <li><p>Visual Studio 2022 Community Edition</p></li>
-<li><p>yaml-cpp:</p>
+<li><p>yaml-cpp</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd C:\</span>
 <span class="go">git clone https://github.com/jbeder/yaml-cpp.git</span>
 <span class="go">cd yaml-cpp</span>
@@ -138,11 +193,11 @@
 <li><p>Выбрать компилятор Visual Studio 17 2022.</p>
 <img alt="Окно выбора компилятора" src="../_images/compiler_selection.jpg" />
 </li>
-<li><p>В полях «where is the source code» и «where is the build binaries» указать пути к папке с исходниками OpenCV и созданной папке build.
+<li><p>В полях <strong>Where is the source code</strong> и <strong>Where is the build binaries</strong> указать пути к папке с исходниками OpenCV и созданной папке build.
 Например, папка <code class="docutils literal notranslate"><span class="pre">install</span></code> содержит собранные материалы библиотеки OpenCV и экстра модулей.</p>
 <img alt="Окно выбора каталога" src="../_images/directory_selection.jpg" />
 </li>
-<li><p>Нажать Configure.</p></li>
+<li><p>Нажать <strong>Configure</strong>.</p></li>
 <li><p>После успешного конфигурирования найти и выставить параметры:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PREFIX</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">D:/ваш</span> <span class="pre">путь</span> <span class="pre">к</span> <span class="pre">собранной</span> <span class="pre">библиотеке/cvcuda</span></code></p></li>
@@ -152,7 +207,7 @@
 </ul>
 <p><strong>Примечание:</strong> Если переменные отсутствуют в перечне, нужно поставить галочку в пункте Advanced.</p>
 </li>
-<li><p>Нажать Configure и выставить дополнительные параметры:</p>
+<li><p>Нажать <strong>Configure</strong> и выставить дополнительные параметры:</p>
 <ul class="simple">
 <li><p>Отметить <code class="docutils literal notranslate"><span class="pre">CUDA_FAST_MATH</span></code>, <code class="docutils literal notranslate"><span class="pre">OPENCV_DNN_CUDA</span></code>, <code class="docutils literal notranslate"><span class="pre">ENABLE_FAST_MATH</span></code>, <code class="docutils literal notranslate"><span class="pre">WITH_OPENGL</span></code></p></li>
 <li><p>Снять галочки с <code class="docutils literal notranslate"><span class="pre">WITH_NVCUVENC</span></code>, <code class="docutils literal notranslate"><span class="pre">WITH_NVCUVID</span></code>, <code class="docutils literal notranslate"><span class="pre">WITH_VTK</span></code></p></li>
@@ -165,16 +220,16 @@
 </li>
 </ul>
 </li>
-<li><p>Нажать Generate.</p></li>
-<li><p>После генерации нажать Open Project для запуска проекта Visual Studio.</p></li>
-<li><p>В обозревателе решений Visual Studio в папке CMakeTargets нажать правой кнопкой на ALL_BUILD и выбрать «Собрать».</p>
+<li><p>Нажать <strong>Generate</strong>.</p></li>
+<li><p>После генерации нажать <strong>Open Project</strong> для запуска проекта Visual Studio.</p></li>
+<li><p>В обозревателе решений Visual Studio в папке CMakeTargets нажать правой кнопкой на <strong>ALL_BUILD</strong> и выбрать <strong>Build</strong>.</p>
 <img alt="Окно обозревателя решений" src="../_images/solution_explorer.jpg" />
 </li>
-<li><p>После успешной сборки выполнить сборку конфигурации «INSTALL».</p></li>
+<li><p>После успешной сборки выполнить сборку конфигурации <strong>INSTALL</strong>.</p></li>
 </ul>
 </section>
 <section id="linux-ubuntu-cuda">
-<h3>Для операционной системы Linux (Ubuntu) без поддержки CUDA<a class="headerlink" href="#linux-ubuntu-cuda" title="Link to this heading"></a></h3>
+<h3>Для операционной системы Linux (Ubuntu) без поддержки CUDA (пошаговая версия)<a class="headerlink" href="#linux-ubuntu-cuda" title="Link to this heading"></a></h3>
 <p>Необходимо выполнить следующий ряд действий:</p>
 <p><strong>Установить зависимости с помощью набора команд</strong></p>
 <blockquote>
@@ -248,119 +303,8 @@
 <p>Убедиться в правильности установки можно используя инструкцию <a class="reference external" href="https://docs.pytorch.org/cppdocs/installing.html">https://docs.pytorch.org/cppdocs/installing.html</a>.
 При нехватке системных ресурсов при сборке рекомендуется запускать сборку через make без указания параметра -j.</p>
 </section>
-<section id="id3">
-<h3>Для операционной системы Linux (Ubuntu) с CUDA<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
-<p>Необходимо выполнить следующий ряд действий:</p>
-<p><strong>Установить зависимости с помощью набора команд</strong></p>
-<blockquote>
-<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt update</span>
-<span class="go">sudo apt install -y unzip wget curl build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-dev</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p><strong>Установить библиотеку yaml-cpp</strong></p>
-<blockquote>
-<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
-<span class="go">git clone https://github.com/jbeder/yaml-cpp.git</span>
-<span class="go">cd yaml-cpp</span>
-<span class="go">cmake .</span>
-<span class="go">make -j$(nproc)</span>
-<span class="go">sudo make install</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p><strong>Установить CUDA Toolkit 12.4</strong></p>
-<blockquote>
-<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
-<span class="go">wget https://developer.download.nvidia.com/compute/cuda/12.4.0/local_installers/cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb</span>
-<span class="go">sudo dpkg -i cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb</span>
-<span class="go">sudo cp /var/cuda-repo-ubuntu2204-12-4-local/cuda-*-keyring.gpg /usr/share/keyrings/</span>
-<span class="go">sudo apt-get update</span>
-<span class="go">sudo apt-get -y install cuda-toolkit-12-4</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p><strong>Установить cuDNN 9.3</strong></p>
-<blockquote>
-<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
-<span class="go">wget https://developer.download.nvidia.com/compute/cudnn/9.3.0/local_installers/cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb</span>
-<span class="go">sudo dpkg -i cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb</span>
-<span class="go">sudo cp /var/cudnn-local-repo-ubuntu2204-9.3.0/cudnn-*-keyring.gpg /usr/share/keyrings/</span>
-<span class="go">sudo apt-get update</span>
-<span class="go">sudo apt-get -y install cudnn</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p><strong>Установить библиотеку OpenCV</strong></p>
-<p>Выполнить команды:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
-<span class="go">git clone https://github.com/opencv/opencv.git -b &quot;4.10.0&quot;</span>
-<span class="go">git clone https://github.com/opencv/opencv_contrib.git -b &quot;4.10.0&quot;</span>
-<span class="go">mkdir -p opencv/build &amp;&amp; cd opencv/build</span>
-<span class="go">sudo cmake .. \</span>
-<span class="go">   -D CMAKE_INSTALL_PREFIX=/usr/local/ \</span>
-<span class="go">   -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 \</span>
-<span class="go">   -D ENABLE_FAST_MATH=ON \</span>
-<span class="go">   -D CUDA_FAST_MATH=ON \</span>
-<span class="go">   -D WITH_CUBLAS=ON \</span>
-<span class="go">   -D WITH_CUDA=ON \</span>
-<span class="go">   -D WITH_CUDNN=ON \</span>
-<span class="go">   -D CUDA_ARCH_BIN=8.6 \</span>
-<span class="go">   -D WITH_OPENGL=ON \</span>
-<span class="go">   -D BUILD_opencv_cudacodec=ON \</span>
-<span class="go">   -D BUILD_opencv_world=OFF \</span>
-<span class="go">   -D OPENCV_GENERATE_PKGCONFIG=ON \</span>
-<span class="go">   -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \</span>
-<span class="go">   -D CMAKE_CONFIGURATION_TYPES=Release</span>
-<span class="go">sudo make -j$(nproc)</span>
-<span class="go">sudo make install</span>
-</pre></div>
-</div>
-<p>Сборка осуществляется в папке build. При возникновении ошибок необходимо очистить папки build и .cache.</p>
-<p><strong>Установить библиотеку LibTorch</strong></p>
-<p>Скачать соответсвующий архив с библиотекой:</p>
-<blockquote>
-<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
-<span class="go">curl -L &quot;https://download.pytorch.org/libtorch/cu124/libtorch-cxx11-abi-shared-with-deps-2.4.0%2Bcu124.zip&quot; -o libtorch-library.zip</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>Распаковать архив libtorch-library.zip с помощью команды:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo unzip -o libtorch-library.zip -d /opt/</span>
-</pre></div>
-</div>
-<p>Добавить путь к libtorch в динамический компоновщик с помощью команды</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo sh -c &quot;echo &#39;/opt/libtorch/lib&#39; &gt;&gt; /etc/ld.so.conf.d/libtorch.conf&quot;</span>
-</pre></div>
-</div>
-<p>Обновить кэш динамического компоновщика с помощью команды:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo ldconfig</span>
-</pre></div>
-</div>
-<p>Добавить путь к заголовочным файлам и библиотекам в переменные окружения, отредактировав файл ~/.bashrc, открыв его при помощи команды</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo nano  ~/.bashrc</span>
-</pre></div>
-</div>
-<p>и записав конец следующие строки:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export TORCH_INCLUDE=/opt/libtorch/include</span>
-<span class="go">export TORCH_LIB=/opt/libtorch/lib</span>
-<span class="go">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TORCH_LIB</span>
-<span class="go">export CPATH=$CPATH:$TORCH_INCLUDE</span>
-<span class="go">export Torch_DIR=/opt/libtorch/share/cmake/Torch</span>
-</pre></div>
-</div>
-<p>затем сохранив (Ctrl + O, Ctrl + X) необходимо активировать изменения при помощи команды</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source ~/.bashrc</span>
-</pre></div>
-</div>
-<p>Убедиться в правильности установки можно используя инструкцию <a class="reference external" href="https://docs.pytorch.org/cppdocs/installing.html">https://docs.pytorch.org/cppdocs/installing.html</a>.
-При нехватке системных ресурсов при сборке рекомендуется запускать сборку через make без указания параметра -j.</p>
-</section>
-</section>
-<section id="id4">
-<h2>Установка и первоначальная настройка библиотеки<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <section id="id5">
-<h3>Для операционной системы Windows<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<h3>Для операционной системы Linux (Ubuntu) без поддержки CUDA (версия с помощью скрипта)<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <p>Для установки библиотеки необходимо выполнить следующие действия:</p>
 <ul>
 <li><p>Клонировать актуальную версию проекта, используя команды:</p>
@@ -369,61 +313,8 @@
 </pre></div>
 </div>
 </li>
-<li><p>Установить зависимости (CUDA Toolkit 12.4 и cuDNN 9.3) библиотеки, указанные в <a class="reference internal" href="#id2">Установка и настройка зависимостей</a>: libtorch, OpenCV, yaml-cpp (отображены рекомендованные пути для ОС Windows):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\
-├───libtorch-12.4
-├───libtorch-12.4-cuda
-├───opencv-4.10.0-build
-├───opencv-4.10.0-build-cuda
-└───yaml-cpp
-</pre></div>
-</div>
-</li>
-<li><p>Для корректной работы библиотеки под управлением операционной системы Windows необходимо прописать системные пути в переменные окружения:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\opencv-4.10.0-build\install\x64\vc17\bin\
-C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\
-</pre></div>
-</div>
-</li>
-<li><p>Настроить сборку, установив ключ поддержки CUDA. Для этого отредактировать CMakeLists.txt проекта</p></li>
-</ul>
-<blockquote>
-<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   option(USE_CUDA &quot;Use CUDA Build&quot; OFF)
-
-Флаг ON/OFF определяет режим сборки библиотеки:
-OFF – сборка без поддержки CUDA. Используются OpenCV и LibTorch для CPU. CUDA-функции не будут доступны.
-ON — сборка с поддержкой CUDA. Используются OpenCV с модулями CUDA и LibTorch для CUDA. CUDA-функции активны в пространстве имен mrcv.
-</pre></div>
-</div>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Для включения поддержки CUDA необходимо:</dt><dd><ul>
-<li><p>установить CUDA Toolkit 12.4;</p></li>
-<li><p>загрузить архив (Tarball) cuDNN, содержащий папки bin, lib и include и копировать их в каталог установки CUDA Toolkit;</p></li>
-<li><p>выполнить сборку и установку проекта согласно инструкциям далее;</p></li>
-<li><p>запустить проект от имени администратора и открыть mrcv как локальную папку;</p></li>
-<li><p>выбрать конфигурацию сборки dev-win;</p></li>
-<li><p>в разделе «сборка» выбрать «Собрать проект»;</p></li>
-<li><p>после успешной сборки в разделе «сборка» выбрать «Установить mrcv».</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</section>
-<section id="id6">
-<h3>Для операционной системы Linux (Ubuntu) без поддержки CUDA<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
-<p>Для установки библиотеки необходимо выполнить следующие действия:</p>
-<ul>
-<li><p>Клонировать актуальную версию проекта, используя команды:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
-<span class="go">git clone --branch main https://github.com/valabsoft/code-ai-400393.git</span>
-</pre></div>
-</div>
-</li>
-<li><p>Установить библиотеки, указанные в <a class="reference internal" href="#id2">Установка и настройка зависимостей</a></p></li>
-<li><p>Выполнить команды:</p>
+<li><p>Установить библиотеки, указанные в разделе <a class="reference internal" href="#id2">Зависимости библиотеки</a></p></li>
+<li><p>Выполнить команды</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~/code-ai-400393</span>
 <span class="go">mkdir -p build &amp;&amp; cd build</span>
 <span class="go">cmake ..</span>
@@ -434,14 +325,14 @@ ON — сборка с поддержкой CUDA. Используются OpenC
 </div>
 </li>
 </ul>
-<p>Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого создайте файл:</p>
+<p>Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого нужно создать файл с помощью последовательности команд</p>
 <blockquote>
 <div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
 <span class="go">nano install_cpu.sh</span>
 </pre></div>
 </div>
 </div></blockquote>
-<p>Вставьте следующее содержимое в файл:</p>
+<p>Вставить код, предстваленный ниже, в файл</p>
 <blockquote>
 <div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
@@ -519,21 +410,129 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </pre></div>
 </div>
 </div></blockquote>
-<p>Сохраните содержимое файла Ctrl + O и закройте файл Ctrl + X. Затем сделайте файл исполняемым:</p>
+<p>Сохранить содержимое файла <em>Ctrl + O</em> и закрыть файл <em>Ctrl + X</em>. Сделать файл исполняемым с помощью команды</p>
 <blockquote>
 <div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">chmod +x install_cpu.sh</span>
 </pre></div>
 </div>
 </div></blockquote>
-<p>Запустите скрипт:</p>
+<p>Запустить скрипт</p>
 <blockquote>
 <div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./install_cpu.sh</span>
 </pre></div>
 </div>
 </div></blockquote>
 </section>
+<section id="id6">
+<h3>Для операционной системы Linux (Ubuntu) с поддержкой CUDA (пошаговая версия)<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>Необходимо выполнить следующий ряд действий:</p>
+<p><strong>Установить зависимости с помощью набора команд</strong></p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt update</span>
+<span class="go">sudo apt install -y unzip wget curl build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-dev</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Установить библиотеку yaml-cpp</strong></p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
+<span class="go">git clone https://github.com/jbeder/yaml-cpp.git</span>
+<span class="go">cd yaml-cpp</span>
+<span class="go">cmake .</span>
+<span class="go">make -j$(nproc)</span>
+<span class="go">sudo make install</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Установить CUDA Toolkit 12.4</strong></p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
+<span class="go">wget https://developer.download.nvidia.com/compute/cuda/12.4.0/local_installers/cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb</span>
+<span class="go">sudo dpkg -i cuda-repo-ubuntu2204-12-4-local_12.4.0-550.54.14-1_amd64.deb</span>
+<span class="go">sudo cp /var/cuda-repo-ubuntu2204-12-4-local/cuda-*-keyring.gpg /usr/share/keyrings/</span>
+<span class="go">sudo apt-get update</span>
+<span class="go">sudo apt-get -y install cuda-toolkit-12-4</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Установить cuDNN 9.3</strong></p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
+<span class="go">wget https://developer.download.nvidia.com/compute/cudnn/9.3.0/local_installers/cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb</span>
+<span class="go">sudo dpkg -i cudnn-local-repo-ubuntu2204-9.3.0_1.0-1_amd64.deb</span>
+<span class="go">sudo cp /var/cudnn-local-repo-ubuntu2204-9.3.0/cudnn-*-keyring.gpg /usr/share/keyrings/</span>
+<span class="go">sudo apt-get update</span>
+<span class="go">sudo apt-get -y install cudnn</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Установить библиотеку OpenCV</strong></p>
+<p>Выполнить последовательность команд</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
+<span class="go">git clone https://github.com/opencv/opencv.git -b &quot;4.10.0&quot;</span>
+<span class="go">git clone https://github.com/opencv/opencv_contrib.git -b &quot;4.10.0&quot;</span>
+<span class="go">mkdir -p opencv/build &amp;&amp; cd opencv/build</span>
+<span class="go">sudo cmake .. \</span>
+<span class="go">   -D CMAKE_INSTALL_PREFIX=/usr/local/ \</span>
+<span class="go">   -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 \</span>
+<span class="go">   -D ENABLE_FAST_MATH=ON \</span>
+<span class="go">   -D CUDA_FAST_MATH=ON \</span>
+<span class="go">   -D WITH_CUBLAS=ON \</span>
+<span class="go">   -D WITH_CUDA=ON \</span>
+<span class="go">   -D WITH_CUDNN=ON \</span>
+<span class="go">   -D CUDA_ARCH_BIN=8.6 \</span>
+<span class="go">   -D WITH_OPENGL=ON \</span>
+<span class="go">   -D BUILD_opencv_cudacodec=ON \</span>
+<span class="go">   -D BUILD_opencv_world=OFF \</span>
+<span class="go">   -D OPENCV_GENERATE_PKGCONFIG=ON \</span>
+<span class="go">   -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \</span>
+<span class="go">   -D CMAKE_CONFIGURATION_TYPES=Release</span>
+<span class="go">sudo make -j$(nproc)</span>
+<span class="go">sudo make install</span>
+</pre></div>
+</div>
+<p>Сборка осуществляется в папке build. При возникновении ошибок необходимо очистить папки build и .cache.</p>
+<p><strong>Установить библиотеку LibTorch</strong></p>
+<p>Скачать соответсвующий архив с библиотекой</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
+<span class="go">curl -L &quot;https://download.pytorch.org/libtorch/cu124/libtorch-cxx11-abi-shared-with-deps-2.4.0%2Bcu124.zip&quot; -o libtorch-library.zip</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Распаковать архив libtorch-library.zip с помощью команды</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo unzip -o libtorch-library.zip -d /opt/</span>
+</pre></div>
+</div>
+<p>Добавить путь к libtorch в динамический компоновщик с помощью команды</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo sh -c &quot;echo &#39;/opt/libtorch/lib&#39; &gt;&gt; /etc/ld.so.conf.d/libtorch.conf&quot;</span>
+</pre></div>
+</div>
+<p>Обновить кэш динамического компоновщика с помощью команды</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo ldconfig</span>
+</pre></div>
+</div>
+<p>Добавить путь к заголовочным файлам и библиотекам в переменные окружения, отредактировав файл ~/.bashrc, открыв его при помощи команды</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo nano  ~/.bashrc</span>
+</pre></div>
+</div>
+<p>и записать в конец файла следующие строки</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export TORCH_INCLUDE=/opt/libtorch/include</span>
+<span class="go">export TORCH_LIB=/opt/libtorch/lib</span>
+<span class="go">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TORCH_LIB</span>
+<span class="go">export CPATH=$CPATH:$TORCH_INCLUDE</span>
+<span class="go">export Torch_DIR=/opt/libtorch/share/cmake/Torch</span>
+</pre></div>
+</div>
+<p>Сохранить изменения <em>Ctrl + O</em> и закрыть файл <em>Ctrl + X</em>. Активировать изменения с помощью команды</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source ~/.bashrc</span>
+</pre></div>
+</div>
+<p>Убедиться в правильности установки можно используя инструкцию <a class="reference external" href="https://docs.pytorch.org/cppdocs/installing.html">https://docs.pytorch.org/cppdocs/installing.html</a>.
+При нехватке системных ресурсов при сборке рекомендуется запускать сборку через make без указания параметра -j.</p>
+</section>
 <section id="id7">
-<h3>Для операционной системы Linux (Ubuntu) с CUDA<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<h3>Для операционной системы Linux (Ubuntu) с поддержкой CUDA (версия с помощью скрипта)<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
 <p>Для установки библиотеки необходимо выполнить следующие действия:</p>
 <ul>
 <li><p>Клонировать актуальную версию проекта, используя команды:</p>
@@ -542,8 +541,8 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </pre></div>
 </div>
 </li>
-<li><p>Установить библиотеки, указанные в <a class="reference internal" href="#id2">Установка и настройка зависимостей</a></p></li>
-<li><p>Выполнить команды:</p>
+<li><p>Установить библиотеки, указанные в разделе <a class="reference internal" href="#id2">Зависимости библиотеки</a></p></li>
+<li><p>Выполнить последовательность команд</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~/code-ai-400393</span>
 <span class="go">sed -i &#39;s/option(USE_CUDA &quot;Use CUDA Build&quot; OFF)/option(USE_CUDA &quot;Use CUDA Build&quot; ON)/&#39; CMakeLists.txt</span>
 <span class="go">mkdir -p build &amp;&amp; cd build</span>
@@ -555,14 +554,15 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </div>
 </li>
 </ul>
-<p>Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого создайте файл:</p>
+<p>Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт.
+Для этого необходимо создать файл с помощью команды</p>
 <blockquote>
 <div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
 <span class="go">nano install_cuda.sh</span>
 </pre></div>
 </div>
 </div></blockquote>
-<p>Вставьте следующее содержимое в файл:</p>
+<p>В созданный файл вставить содержимое, представленное ниже</p>
 <blockquote>
 <div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
@@ -670,13 +670,14 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </pre></div>
 </div>
 </div></blockquote>
-<p>Сохраните содержимое файла Ctrl + O и закройте файл Ctrl + X. Затем сделайте файл исполняемым:</p>
+<p>Сохранить содержимое файла <em>Ctrl + O</em> и закрыть файл <em>Ctrl + X</em>.</p>
+<p>Сделать файл исполняемым с помощью последовательности команд</p>
 <blockquote>
 <div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">chmod +x install_cuda.sh</span>
 </pre></div>
 </div>
 </div></blockquote>
-<p>Запустите скрипт:</p>
+<p>Запустить скрипт</p>
 <blockquote>
 <div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./install_cuda.sh</span>
 </pre></div>
@@ -684,8 +685,100 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </div></blockquote>
 </section>
 </section>
+<section id="python-mrcv">
+<h2>Инструкция по установке Python версии библиотеки mrcv<a class="headerlink" href="#python-mrcv" title="Link to this heading"></a></h2>
+<p>Минимальная версия Python для работы с библиотекой - 3.10.</p>
+<p>Проверить, установлен ли Python</p>
+<blockquote>
+<div><p>python3 –version</p>
+</div></blockquote>
+<p>Если Python отсутствует, установить с помощью команды</p>
+<blockquote>
+<div><p>sudo apt-get update
+sudo apt-get install python3</p>
+</div></blockquote>
+<p>Проверить, установлена ли поддержка Git</p>
+<blockquote>
+<div><p>git –version</p>
+</div></blockquote>
+<p>Если Git не установлен, установить с помощью команды</p>
+<blockquote>
+<div><p>sudo apt-get install git</p>
+</div></blockquote>
+<p>Клонировать репозиторий кода из ветки <strong>main</strong></p>
+<blockquote>
+<div><p>git clone –branch main <a class="reference external" href="https://github.com/valabsoft/code-ai-400393.git">https://github.com/valabsoft/code-ai-400393.git</a></p>
+</div></blockquote>
+<p>Локальная копия репозитория создана на вашем устройстве.</p>
+<p>Перейти в локальную копию репозитория на устройстве</p>
+<blockquote>
+<div><p>cd code-ai-400393/python</p>
+</div></blockquote>
+<p>Рекомендуется использовать виртуальное окружение для изоляции зависимостей. Для этого необходимо выполнить следующие действия.</p>
+<p>Создайте виртуальное окружение с именем <em>venv</em></p>
+<blockquote>
+<div><p>python3 -m venv venv</p>
+</div></blockquote>
+<p>Активировать окружение</p>
+<blockquote>
+<div><p>source venv/bin/activate</p>
+</div></blockquote>
+<p>После этого в терминале появится <em>venv</em>, что указывает на активное окружение.</p>
+<p>В директории есть файл requirements.txt с необходимыми библиотеками:</p>
+<p>Если файл находится в корневой директории, выполнить команду</p>
+<blockquote>
+<div><p>pip install -r requirements.txt</p>
+</div></blockquote>
+<p>Установите библиотеку с помощью команды</p>
+<blockquote>
+<div><p>pip install -e .</p>
+</div></blockquote>
+<p>Перейти в директорию с примерами с помощью команды</p>
+<blockquote>
+<div><p>cd python/examples</p>
+</div></blockquote>
+<p>Выбрать папку модуля и запустить пример. Предварительно убедиться, что в папке присутствуют файлы, использующиеся в качестве исходных данных</p>
+<blockquote>
+<div><p>cd python/examples/comparing/
+python comparing.py</p>
+</div></blockquote>
+</section>
 <section id="id8">
-<h2>Запуск примеров библиотеки<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<h2>Подготовка данных для работы с примерами<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>При знакомстве с библиотекой mrcv, после изучения состава модулей библиотеки, рекомендуется обратиться к демонстрационным примерам. Все примеры библиотеки снабжены необходимыми файлами, которые используются в качестве входных данных. После сборки примера рекомендуется скопировать в папку сборки примера папку <em>files</em> из репозитория кода. После копирования исходных данных выполнить запуски примера.</p>
+<p><em>Пример</em></p>
+<p>Демонстрация работы функций модуля сегментации (для операционной системы Windows).
+Код примера находится в папке <em>code-ai-400393\examples\segmentationtest</em></p>
+<p>Порядок работы:</p>
+<ul class="simple">
+<li><p>Собрать исполняемый файл примера. В случае успешной сборки, исполняемый файл примера будет создан в папке <em>code-ai-400393\build\examples\segmentationtest</em></p></li>
+<li><p>Скопировать папку <em>files</em> с исходными данными из папки <em>code-ai-400393\examples\segmentationtest\files</em> в папку <em>code-ai-400393\build\examples\segmentationtest\files</em></p></li>
+<li><p>Запустить исполняемый файл примера <em>mrcv-segmentationtest.exe</em></p></li>
+<li><p>В результате работы функции будет открыто два окна с исходным изображением и с изображением, полученным в результате работы функции сегмнетации</p></li>
+</ul>
+<p><em>Исходное изображение</em></p>
+<blockquote>
+<div><img alt="Исходное изображение" src="../_images/seg-source.jpg" />
+</div></blockquote>
+<p><em>Результат работы функции</em></p>
+<blockquote>
+<div><img alt="Исходное изображение" src="../_images/seg-prediction.jpg" />
+</div></blockquote>
+<ul class="simple">
+<li><p>После работы с исходными данными примера по-умолчанию, внести изменения в код примера, указав собственные входные данные или настройки параметров функции</p></li>
+</ul>
+<p><em>Например</em></p>
+<p>Изменить путь к исходному файлу с изображением</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">segmentor</span><span class="p">.</span><span class="n">Predict</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ship&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>или отключить показ окон, изменив параметры функции</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">segmentor</span><span class="p">.</span><span class="n">Predict</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ship&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h2>Запуск примеров библиотеки<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
 <p>Запуск демонстрационного примера augmentation (остальные примеры запускаются по аналогии)</p>
 <ol class="arabic simple">
 <li><p>Перейти в папку <em>build/examples</em> любым удобным способом</p></li>
@@ -701,21 +794,6 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./mrcv-augmentation</span>
 </pre></div>
 </div>
-</section>
-<section id="id9">
-<h2>Подготовка данных для тестирования<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
-<ul>
-<li><p>Подготовить входные изображения и видео для тестирования алгоритмов.</p></li>
-<li><p>Организовать структуру папок для удобства:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>├── data
-│   ├── images
-│   └── videos
-</pre></div>
-</div>
-</li>
-<li><p>Проверить доступность и корректность данных.</p></li>
-<li><p>Настроить параметры конфигурации тестов, если это необходимо.</p></li>
-</ul>
 </section>
 </section>
 
