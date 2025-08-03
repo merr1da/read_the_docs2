@@ -114,6 +114,58 @@
 </pre></div>
 </div>
 </li>
+</ul>
+<p>Соответствующие пути должны быть прописаны во всех файлах CMakeLists.txt проекта. Для этого следуюет отредактировать конструкции вида</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>if(USE_CUDA)
+   # Добавляем макрос MRCV_CUDA_ENABLED
+   target_compile_definitions(mrcv PRIVATE MRCV_CUDA_ENABLED)
+   set(CMAKE_PREFIX_PATH &quot;C:/libtorch-12.4-cuda/Release;C:/yaml-cpp&quot;)
+   set(OpenCV_DIR &quot;C:/opencv-4.10.0-build-cuda/install&quot;)
+   if(WIN32)
+       set(Torch_DIR &quot;C:/libtorch-12.4-cuda/Release/share/cmake/Torch&quot;)
+   else()
+       set(Torch_DIR &quot;/opt/libtorch/share/cmake/Torch&quot;)
+   endif()
+   # OpenCV DIRs
+   if(WIN32)
+     set(OpenCV_INCLUDE_DIRS &quot;C:/opencv-4.10.0-build-cuda/install/include&quot;)
+     set(OpenCV_LIB_DIR &quot;C:/opencv-4.10.0-build-cuda/install/x64/vc17/lib&quot;)
+   else()
+     set(OpenCV_INCLUDE_DIRS &quot;/usr/local/include/opencv4&quot;)
+     set(OpenCV_LIB_DIR &quot;/usr/local/lib&quot;)
+   endif()
+   # Torch DIRs
+   if(WIN32)
+     set(Torch_INCLUDE_DIRS &quot;C:/libtorch-12.4-cuda/Release/include&quot;)
+     set(Torch_LIB_DIR &quot;C:/libtorch-12.4-cuda/Release/lib&quot;)
+   else()
+     set(Torch_INCLUDE_DIRS &quot;/usr/local/include/torch&quot;)
+     set(Torch_LIB_DIR &quot;/usr/local/lib&quot;)
+   endif()
+else()
+  set(CMAKE_PREFIX_PATH &quot;C:/libtorch-12.4/Release;C:/yaml-cpp&quot;)
+  set(OpenCV_DIR &quot;C:/opencv-4.10.0-build/install&quot;)
+  set(Torch_DIR &quot;C:/libtorch-12.4/Release/share/cmake/Torch&quot;)
+  # OpenCV DIRs
+  if(WIN32)
+    set(OpenCV_INCLUDE_DIRS &quot;C:/opencv-4.10.0-build/install/include&quot;)
+    set(OpenCV_LIB_DIR &quot;C:/opencv-4.10.0-build/install/x64/vc17/lib&quot;)
+  else()
+    set(OpenCV_INCLUDE_DIRS &quot;/usr/local/include/opencv4&quot;)
+    set(OpenCV_LIB_DIR &quot;/usr/local/lib&quot;)
+  endif()
+  # Torch DIRs
+  if(WIN32)
+    set(Torch_INCLUDE_DIRS &quot;C:/libtorch-12.4/Release/include&quot;)
+    set(Torch_LIB_DIR &quot;C:/libtorch-12.4/Release/lib&quot;)
+  else()
+    set(Torch_INCLUDE_DIRS &quot;/usr/local/include/torch&quot;)
+    set(Torch_LIB_DIR &quot;/usr/local/lib&quot;)
+  endif()
+endif()
+</pre></div>
+</div>
+<ul>
 <li><p>Для корректной работы библиотеки под управлением операционной системы Windows необходимо прописать системные пути в переменные окружения:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\opencv-4.10.0-build\install\x64\vc17\bin\
 C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\

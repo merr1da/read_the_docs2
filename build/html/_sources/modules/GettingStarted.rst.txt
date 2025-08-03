@@ -32,6 +32,59 @@
      ├───opencv-4.10.0-build-cuda
      └───yaml-cpp
 
+
+Соответствующие пути должны быть прописаны во всех файлах CMakeLists.txt проекта. Для этого следуюет отредактировать конструкции вида
+
+.. code-block:: text
+
+   if(USE_CUDA)
+      # Добавляем макрос MRCV_CUDA_ENABLED
+      target_compile_definitions(mrcv PRIVATE MRCV_CUDA_ENABLED)
+      set(CMAKE_PREFIX_PATH "C:/libtorch-12.4-cuda/Release;C:/yaml-cpp")
+      set(OpenCV_DIR "C:/opencv-4.10.0-build-cuda/install")
+      if(WIN32)
+    	  set(Torch_DIR "C:/libtorch-12.4-cuda/Release/share/cmake/Torch")
+      else()
+    	  set(Torch_DIR "/opt/libtorch/share/cmake/Torch")
+      endif()
+      # OpenCV DIRs
+      if(WIN32)
+        set(OpenCV_INCLUDE_DIRS "C:/opencv-4.10.0-build-cuda/install/include")
+        set(OpenCV_LIB_DIR "C:/opencv-4.10.0-build-cuda/install/x64/vc17/lib")
+      else()
+        set(OpenCV_INCLUDE_DIRS "/usr/local/include/opencv4")
+        set(OpenCV_LIB_DIR "/usr/local/lib")
+      endif()
+      # Torch DIRs
+      if(WIN32)
+        set(Torch_INCLUDE_DIRS "C:/libtorch-12.4-cuda/Release/include")
+        set(Torch_LIB_DIR "C:/libtorch-12.4-cuda/Release/lib")
+      else()
+        set(Torch_INCLUDE_DIRS "/usr/local/include/torch")
+        set(Torch_LIB_DIR "/usr/local/lib")
+      endif()
+   else()
+     set(CMAKE_PREFIX_PATH "C:/libtorch-12.4/Release;C:/yaml-cpp")
+     set(OpenCV_DIR "C:/opencv-4.10.0-build/install")
+     set(Torch_DIR "C:/libtorch-12.4/Release/share/cmake/Torch")
+     # OpenCV DIRs
+     if(WIN32)
+       set(OpenCV_INCLUDE_DIRS "C:/opencv-4.10.0-build/install/include")
+       set(OpenCV_LIB_DIR "C:/opencv-4.10.0-build/install/x64/vc17/lib")
+     else()
+       set(OpenCV_INCLUDE_DIRS "/usr/local/include/opencv4")
+       set(OpenCV_LIB_DIR "/usr/local/lib")
+     endif()
+     # Torch DIRs
+     if(WIN32)
+       set(Torch_INCLUDE_DIRS "C:/libtorch-12.4/Release/include")
+       set(Torch_LIB_DIR "C:/libtorch-12.4/Release/lib")
+     else()
+       set(Torch_INCLUDE_DIRS "/usr/local/include/torch")
+       set(Torch_LIB_DIR "/usr/local/lib")
+     endif()
+   endif()
+
 - Для корректной работы библиотеки под управлением операционной системы Windows необходимо прописать системные пути в переменные окружения:
 
   .. code-block:: text
