@@ -151,6 +151,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#python-mrcv">Инструкция по установке Python версии библиотеки mrcv</a></li>
+<li><a class="reference internal" href="#mini">Для mini-ПК</a></li>
 <li><a class="reference internal" href="#id72">Подготовка данных для работы с примерами</a></li>
 <li><a class="reference internal" href="#id73">Запуск примеров библиотеки</a></li>
 </ul>
@@ -186,7 +187,7 @@
 <li><a class="reference internal" href="#cuda">Пример использования адаптированных программных функций библиотеки для детекции и идентификации объектов с использованием технологии CUDA</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#python">Демонстрационные примеры на Python</a><ul>
+<li><a class="reference internal" href="#id99">Демонстрационные примеры на Python</a><ul>
 <li><a class="reference internal" href="#objcourse-py">Описание скрипта objcourse.py: определение курса на объект</a></li>
 <li><a class="reference internal" href="#yolov5-py">Описание скрипта <code class="docutils literal notranslate"><span class="pre">yolov5.py</span></code></a></li>
 <li><a class="reference internal" href="#roi-py">Описание Скрипта <code class="docutils literal notranslate"><span class="pre">roi.py</span></code></a></li>
@@ -202,13 +203,13 @@
 <li><a class="reference internal" href="#morphologyimage-py">Описание для скрипта <code class="docutils literal notranslate"><span class="pre">morphologyimage.py</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id99">Руководство для контрибьюторов</a><ul>
-<li><a class="reference internal" href="#id100">Получение исходного кода</a></li>
+<li><a class="reference internal" href="#id100">Руководство для контрибьюторов</a><ul>
+<li><a class="reference internal" href="#id101">Получение исходного кода</a></li>
 <li><a class="reference internal" href="#mrcv">Необходимые зависимости для установки библиотеки mrcv</a></li>
 <li><a class="reference internal" href="#windows-linux-mrcv">Инструкция по установке Windows/Linux версии библиотеки mrcv</a></li>
-<li><a class="reference internal" href="#id101">Оформление изменений</a></li>
-<li><a class="reference internal" href="#id102">Отчёты об ошибках</a></li>
-<li><a class="reference internal" href="#id103">Рекомендации по контрибьюции</a></li>
+<li><a class="reference internal" href="#id102">Оформление изменений</a></li>
+<li><a class="reference internal" href="#id103">Отчёты об ошибках</a></li>
+<li><a class="reference internal" href="#id104">Рекомендации по контрибьюции</a></li>
 </ul>
 </li>
 </ul>
@@ -1907,7 +1908,7 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </section>
 </section>
 <section id="python-mrcv">
-<h2>Инструкция по установке Python версии библиотеки mrcv<a class="headerlink" href="#python-mrcv" title="Link to this heading"></a></h2>
+<span id="mrcv-python-version"></span><h2>Инструкция по установке Python версии библиотеки mrcv<a class="headerlink" href="#python-mrcv" title="Link to this heading"></a></h2>
 <p>Минимальная версия Python для работы с библиотекой - 3.10.</p>
 <p>Проверить, установлен ли Python</p>
 <blockquote>
@@ -1963,6 +1964,10 @@ sudo apt-get install python3</p>
 <div><p>cd python/examples/comparing/
 python comparing.py</p>
 </div></blockquote>
+</section>
+<section id="mini">
+<h2>Для mini-ПК<a class="headerlink" href="#mini" title="Link to this heading"></a></h2>
+<p>Использование функций библиотеки доступно на мини-ПК типа NVIDIA Jetson, Raspberry Pi и др. Для предварительной настройки библиотеки на этом классе устройств рекомендуется воспользоваться рекомендациям, изложенными в разделе <a class="reference external" href="#mrcv-python-version">Установка Python версии</a>.</p>
 </section>
 <section id="id72">
 <h2>Подготовка данных для работы с примерами<a class="headerlink" href="#id72" title="Link to this heading"></a></h2>
@@ -3534,8 +3539,8 @@ N.png
 <strong>Рекомендуется</strong> использовать видеокарты с объёмом памяти не менее <strong>8 ГБ</strong> и <strong>регулярно обновлять зависимости</strong> для поддержки новых версий CUDA.</p>
 </section>
 </section>
-<section id="python">
-<h1>Демонстрационные примеры на Python<a class="headerlink" href="#python" title="Link to this heading"></a></h1>
+<section id="id99">
+<h1>Демонстрационные примеры на Python<a class="headerlink" href="#id99" title="Link to this heading"></a></h1>
 <section id="objcourse-py">
 <h2>Описание скрипта objcourse.py: определение курса на объект<a class="headerlink" href="#objcourse-py" title="Link to this heading"></a></h2>
 <p>Скрипт <code class="docutils literal notranslate"><span class="pre">objcourse.py</span></code> демонстрирует использование класса <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code> для подсчета количества объектов интереса на изображении и расчета углового курса на объект. Этот класс предназначен для задач, связанных с обнаружением объектов и навигацией роботизированных систем, таких как подводные или надводные аппараты.</p>
@@ -4174,16 +4179,16 @@ N.png
 <p>В этом примере загружается полутоновое изображение, применяется морфологическая операция открытия с размером ядра 1, и результат сохраняется.</p>
 </section>
 </section>
-<section id="id99">
-<h1>Руководство для контрибьюторов<a class="headerlink" href="#id99" title="Link to this heading"></a></h1>
+<section id="id100">
+<h1>Руководство для контрибьюторов<a class="headerlink" href="#id100" title="Link to this heading"></a></h1>
 <p>Это руководство предназначено для разработчиков и пользователей, желающих внести вклад в развитие библиотеки <strong>Marine Robotics Computer Vision (MRCV)</strong>. Ниже представлены инструкции по установке зависимостей, сборке проекта и рекомендации по работе с CUDA.</p>
 <p>Датасет изображений для работы с библиотекой доступен по ссылкам:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://disk.yandex.ru/d/TxReQ9J6PAo9Nw">code-ai-400393-image-dataset.7z</a></p></li>
 <li><p><a class="reference external" href="https://huggingface.co/datasets/saigon-89/code-ai-400393">code-ai-400393-huggingface</a></p></li>
 </ul>
-<section id="id100">
-<h2>Получение исходного кода<a class="headerlink" href="#id100" title="Link to this heading"></a></h2>
+<section id="id101">
+<h2>Получение исходного кода<a class="headerlink" href="#id101" title="Link to this heading"></a></h2>
 <p>Исходный код библиотеки доступен на внутреннем репозитории. Клонируйте проект:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>main<span class="w"> </span>https://github.com/valabsoft/code-ai-400393.git
 </pre></div>
@@ -4197,8 +4202,8 @@ N.png
 <h2>Инструкция по установке Windows/Linux версии библиотеки mrcv<a class="headerlink" href="#windows-linux-mrcv" title="Link to this heading"></a></h2>
 <p>Для сборки библиотеки на системах Windows или Linux (Ubuntu) необходимо воспользоваться инструкцией из раздела руководства <strong>Установка и первоначальная настройка библиотеки</strong>.</p>
 </section>
-<section id="id101">
-<h2>Оформление изменений<a class="headerlink" href="#id101" title="Link to this heading"></a></h2>
+<section id="id102">
+<h2>Оформление изменений<a class="headerlink" href="#id102" title="Link to this heading"></a></h2>
 <p>Перед отправкой изменений:</p>
 <ol class="arabic simple">
 <li><p><strong>Форкните репозиторий</strong> и создайте отдельную ветку для каждой задачи.</p></li>
@@ -4215,8 +4220,8 @@ N.png
 - добавили вас в <cite>CHANGELOG.md</cite> (если он есть).</p></li>
 </ol>
 </section>
-<section id="id102">
-<h2>Отчёты об ошибках<a class="headerlink" href="#id102" title="Link to this heading"></a></h2>
+<section id="id103">
+<h2>Отчёты об ошибках<a class="headerlink" href="#id103" title="Link to this heading"></a></h2>
 <p>Перед отправкой:</p>
 <ul class="simple">
 <li><p>Обновитесь до последней версии библиотеки.</p></li>
@@ -4231,8 +4236,8 @@ N.png
 <li><p>Включите логи и команды запуска.</p></li>
 </ul>
 </section>
-<section id="id103">
-<h2>Рекомендации по контрибьюции<a class="headerlink" href="#id103" title="Link to this heading"></a></h2>
+<section id="id104">
+<h2>Рекомендации по контрибьюции<a class="headerlink" href="#id104" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Пишите понятный и документированный код.</p></li>
 <li><p>Используйте стиль оформления, принятый в библиотеке.</p></li>
