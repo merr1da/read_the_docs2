@@ -1,7 +1,7 @@
 Подготовка к работе
 ===================
 
-Зависимости библиотеки
+Установка и настройка зависимостей
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Для работы с библиотекой используется версия *OpenCV 4.10*, которая должна быть предварительно собрана и установлена на исполняемой платформе с операционными системами Windows или Linux. Для поддержки CUDA сборка OpenCV должна проводиться с установленными *CUDA 12.4* и *cuDNN 9.3*. Для сборки должна быть использована версия *CMake* не ниже 3.14. Также для работы с библиотекой требуется *libtorch 2.4.0*. При этом сборка с CUDA или без определяется установочным пакетом от разработчиков *libtorch*.
@@ -9,10 +9,35 @@
 Установка и первоначальная настройка библиотеки
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Для операционной системы Windows (сокращенная версия)
------------------------------------------------------
+Для операционной системы Windows без поддержки CUDA
+---------------------------------------------------
 
-Для установки библиотеки необходимо выполнить следующие действия:
+Необходимо выполнить следующий ряд действий:
+
+- Установить необходимые компоненты:
+  
+  1. CMake GUI 3.30.0-rc4 или новее с официального сайта (доступен по ссылке https://cmake.org/download/)
+  2. Git Bash (доступен по ссылке https://gitforwindows.org/)
+  3. Visual Studio 2022 Community Edition с компонентом **Desktop development with C++** (доступен по ссылке https://visualstudio.microsoft.com/)  
+  4. yaml-cpp при помощи консольных инструкций:
+  
+     .. code-block:: console
+     
+        cd C:\
+        git clone https://github.com/jbeder/yaml-cpp.git
+        cd yaml-cpp
+        mkdir build
+        cd build
+        cmake .. -DYAML_CPP_BUILD_TESTS=OFF -DYAML_CPP_INSTALL=ON
+        cmake --build . --config Release
+        cmake --install . --prefix "C:\yaml-cpp"
+  
+  5. LibTorch 2.4.0 без поддержки CUDA  
+     (https://download.pytorch.org/libtorch/cpu/libtorch-win-shared-with-deps-2.4.0%2Bcpu.zip). После скачивания архива распакуйте его содержимое в папку ``C:\libtorch-12.4``, переименуйте папку ``C:\libtorch-12.4\libtorch`` в ``C:\libtorch-12.4\Release``.
+
+- скачайте готовую сборку OpenCV 4.10.0 с официального сайта (https://opencv.org/releases/). Распакуйте содержимое папки build архива и скопируйте в ``C:\opencv-4.10.0-build\install``
+
+Для установки библиотеки MRCV необходимо выполнить следующие действия:
 
 - Клонировать актуальную версию проекта, используя команды:
 
@@ -21,107 +46,93 @@
      cd ~
      git clone --branch main https://github.com/valabsoft/code-ai-400393.git
 
-- Установить зависимости (CUDA Toolkit 12.4 и cuDNN 9.3) библиотеки, указанные в разделе `Зависимости библиотеки`_: libtorch, OpenCV, yaml-cpp (отображены рекомендованные пути для ОС Windows):
+- Установить зависимости: libtorch, OpenCV, yaml-cpp (отображены рекомендованные пути для ОС Windows):
 
   .. code-block:: text
   
      C:\
      ├───libtorch-12.4
-     ├───libtorch-12.4-cuda
      ├───opencv-4.10.0-build
-     ├───opencv-4.10.0-build-cuda
      └───yaml-cpp
-
-
-Соответствующие пути должны быть прописаны во всех файлах CMakeLists.txt проекта. Для этого следуюет отредактировать конструкции вида
-
-.. code-block:: text
-
-   if(USE_CUDA)
-      # Добавляем макрос MRCV_CUDA_ENABLED
-      target_compile_definitions(mrcv PRIVATE MRCV_CUDA_ENABLED)
-      set(CMAKE_PREFIX_PATH "C:/libtorch-12.4-cuda/Release;C:/yaml-cpp")
-      set(OpenCV_DIR "C:/opencv-4.10.0-build-cuda/install")
-      if(WIN32)
-    	  set(Torch_DIR "C:/libtorch-12.4-cuda/Release/share/cmake/Torch")
-      else()
-    	  set(Torch_DIR "/opt/libtorch/share/cmake/Torch")
-      endif()
-      # OpenCV DIRs
-      if(WIN32)
-        set(OpenCV_INCLUDE_DIRS "C:/opencv-4.10.0-build-cuda/install/include")
-        set(OpenCV_LIB_DIR "C:/opencv-4.10.0-build-cuda/install/x64/vc17/lib")
-      else()
-        set(OpenCV_INCLUDE_DIRS "/usr/local/include/opencv4")
-        set(OpenCV_LIB_DIR "/usr/local/lib")
-      endif()
-      # Torch DIRs
-      if(WIN32)
-        set(Torch_INCLUDE_DIRS "C:/libtorch-12.4-cuda/Release/include")
-        set(Torch_LIB_DIR "C:/libtorch-12.4-cuda/Release/lib")
-      else()
-        set(Torch_INCLUDE_DIRS "/usr/local/include/torch")
-        set(Torch_LIB_DIR "/usr/local/lib")
-      endif()
-   else()
-     set(CMAKE_PREFIX_PATH "C:/libtorch-12.4/Release;C:/yaml-cpp")
-     set(OpenCV_DIR "C:/opencv-4.10.0-build/install")
-     set(Torch_DIR "C:/libtorch-12.4/Release/share/cmake/Torch")
-     # OpenCV DIRs
-     if(WIN32)
-       set(OpenCV_INCLUDE_DIRS "C:/opencv-4.10.0-build/install/include")
-       set(OpenCV_LIB_DIR "C:/opencv-4.10.0-build/install/x64/vc17/lib")
-     else()
-       set(OpenCV_INCLUDE_DIRS "/usr/local/include/opencv4")
-       set(OpenCV_LIB_DIR "/usr/local/lib")
-     endif()
-     # Torch DIRs
-     if(WIN32)
-       set(Torch_INCLUDE_DIRS "C:/libtorch-12.4/Release/include")
-       set(Torch_LIB_DIR "C:/libtorch-12.4/Release/lib")
-     else()
-       set(Torch_INCLUDE_DIRS "/usr/local/include/torch")
-       set(Torch_LIB_DIR "/usr/local/lib")
-     endif()
-   endif()
 
 - Для корректной работы библиотеки под управлением операционной системы Windows необходимо прописать системные пути в переменные окружения:
 
   .. code-block:: text
   
       C:\opencv-4.10.0-build\install\x64\vc17\bin\
-      C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\
+      C:\libtorch-12.4\Release\bin\
 
--	Настроить сборку, установив ключ поддержки CUDA. Для этого отредактировать CMakeLists.txt проекта
+- Настроить сборку, отключив поддержку CUDA. Для этого отредактировать CMakeLists.txt проекта
 
   .. code-block:: text
 
       option(USE_CUDA "Use CUDA Build" OFF)
 
-   Флаг ON/OFF определяет режим сборки библиотеки:
-   OFF – сборка без поддержки CUDA. Используются OpenCV и LibTorch для CPU. CUDA-функции не будут доступны.
-   ON — сборка с поддержкой CUDA. Используются OpenCV с модулями CUDA и LibTorch для CUDA. CUDA-функции активны в пространстве имен mrcv.
+- Запустить проект от имени администратора и открыть mrcv как локальную папку (File → Open → Folder)
+- Настройте CMakeLists.txt и CMakeLists.txt в каждом примере в папке examples, убедившись, что пути к libtorch, opencv и yaml-cpp указаны корректно (см. пример ниже)
 
-- Для включения поддержки CUDA необходимо:
-   -	установить CUDA Toolkit 12.4;
-   -	загрузить архив (Tarball) cuDNN, содержащий папки bin, lib и include и копировать их в каталог установки CUDA Toolkit;
-   -	выполнить сборку и установку проекта согласно инструкциям далее;
-   -	запустить проект от имени администратора и открыть mrcv как локальную папку;
-   -	выбрать конфигурацию сборки dev-win;
-   -	в разделе «сборка» выбрать «Собрать проект»;
-   -	после успешной сборки в разделе «сборка» выбрать «Установить mrcv».
+  .. code-block:: text
 
-Для операционной системы Windows (расширенная версия)
------------------------------------------------------
+      if(USE_CUDA)
+         # Добавляем макрос MRCV_CUDA_ENABLED
+         target_compile_definitions(mrcv PRIVATE MRCV_CUDA_ENABLED)
+         if(WIN32)
+            set(CMAKE_PREFIX_PATH "C:/libtorch-12.4-cuda/Release;C:/yaml-cpp")
+            set(OpenCV_DIR "C:/opencv-4.10.0-build-cuda/install")
+            set(Torch_DIR "C:/libtorch-12.4-cuda/Release/share/cmake/Torch")
+         
+            set(OpenCV_INCLUDE_DIRS "C:/opencv-4.10.0-build-cuda/install/include")
+            set(OpenCV_LIB_DIR "C:/opencv-4.10.0-build-cuda/install/x64/vc17/lib")
+            
+            set(Torch_INCLUDE_DIRS "C:/libtorch-12.4-cuda/Release/include")
+            set(Torch_LIB_DIR "C:/libtorch-12.4-cuda/Release/lib")
+         else()
+            set(Torch_DIR "/opt/libtorch/share/cmake/Torch")
+         
+            set(OpenCV_INCLUDE_DIRS "/usr/local/include/opencv4")
+            set(OpenCV_LIB_DIR "/usr/local/lib")
+            
+            set(Torch_INCLUDE_DIRS "/usr/local/include/torch")
+            set(Torch_LIB_DIR "/usr/local/lib")
+            
+         endif()
+      else() 
+         if(WIN32)
+            set(CMAKE_PREFIX_PATH "C:/libtorch-12.4/Release;C:/yaml-cpp")
+            set(OpenCV_DIR "C:/opencv-4.10.0-build/install")
+            set(Torch_DIR "C:/libtorch-12.4/Release/share/cmake/Torch")
 
-Для установки библиотеки необходимо выполнить следующие действия:
+            set(OpenCV_INCLUDE_DIRS "C:/opencv-4.10.0-build/install/include")
+            set(OpenCV_LIB_DIR "C:/opencv-4.10.0-build/install/x64/vc17/lib")
+
+            set(Torch_INCLUDE_DIRS "C:/libtorch-12.4/Release/include")
+            set(Torch_LIB_DIR "C:/libtorch-12.4/Release/lib")
+         else()
+            set(Torch_DIR "/opt/libtorch/share/cmake/Torch")
+            
+            set(OpenCV_INCLUDE_DIRS "/usr/local/include/opencv4")
+            set(OpenCV_LIB_DIR "/usr/local/lib") 
+            
+            set(Torch_INCLUDE_DIRS "/usr/local/include/torch")
+            set(Torch_LIB_DIR "/usr/local/lib")
+         endif()
+      endif()
+
+-	Выбрать в Visual Studio конфигурацию сборки dev-win;
+-	В разделе «Сборка» выбрать «Собрать проект»;
+-	После успешной сборки в разделе «Сборка» выбрать «Установить mrcv».
+
+Для операционной системы Windows с поддержкой CUDA
+--------------------------------------------------
+
+Необходимо выполнить следующий ряд действий:
 
 - Установить необходимые компоненты:
   
-  1. CMake GUI 3.30.0-rc4  
-  2. Git Bash  
-  3. Visual Studio 2022 Community Edition  
-  4. yaml-cpp
+  1. CMake GUI 3.30.0-rc4 или новее с официального сайта (доступен по ссылке https://cmake.org/download/)
+  2. Git Bash (доступен по ссылке https://gitforwindows.org/)
+  3. Visual Studio 2022 Community Edition с компонентом **Desktop development with C++** (доступен по ссылке https://visualstudio.microsoft.com/)  
+  4. yaml-cpp при помощи консольных инструкций:
   
      .. code-block:: console
      
@@ -136,20 +147,16 @@
   
   5. LibTorch 2.4.0 с поддержкой CUDA 12.4  
      (доступна по ссылке:  
-     https://download.pytorch.org/libtorch/cu124/libtorch-win-shared-with-deps-2.4.0%2Bcu124.zip)  
-     или без поддержки CUDA  
-     (https://download.pytorch.org/libtorch/cpu/libtorch-win-shared-with-deps-2.4.0%2Bcpu.zip)
+     https://download.pytorch.org/libtorch/cu124/libtorch-win-shared-with-deps-2.4.0%2Bcu124.zip). После скачивания архива распакуйте его содержимое в папку ``C:\libtorch-12.4-cuda``, переименуйте папку ``C:\libtorch-12.4\libtorch`` в ``C:\libtorch-12.4\Release``.
   
   6. CUDA Toolkit 12.4  
-     (доступ по ссылке https://developer.nvidia.com/cuda-12-4-0-download-archive)
+     (доступ по ссылке https://developer.nvidia.com/cuda-12-4-0-download-archive). Установите CUDA Toolkit в папку по умолчанию: ``C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4``.
   
   7. cuDNN 9.3.0  
      (доступ по ссылке https://developer.nvidia.com/cudnn-9-3-0-download-archive?target_os=Windows&target_arch=x86_64)  
-     Необходимо скачать версию Tarball, будет загружен архив с тремя папками: bin, include, lib. Их нужно скопировать в папку установки CUDA Toolkit 12.4.
+     Необходимо скачать архив с тремя папками: bin, include, lib. Их нужно скопировать в папку установки CUDA Toolkit 12.4.
      Путь по умолчанию:  
      ``C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4``.
-  
-  8. nvToolsExt (NVTX)
 
 - Клонировать репозитории с версией OpenCV 4.10:
 
@@ -158,7 +165,8 @@
      git clone https://github.com/opencv/opencv.git -b "4.10.0"
      git clone https://github.com/opencv/opencv_contrib.git -b "4.10.0"
 
-- Создать директорию для сборки библиотеки.
+- Создайте папку ``C:\opencv-4.10.0-build-cuda\install`` и перенесите в нее скачанные opencv и opencv_contrib.
+- Создать пустые директории для сборки библиотеки ``C:\opencv-4.10.0-build-cuda\install\opencv\build`` и ``C:\opencv-4.10.0-build-cuda\install\bin``.
 - Запустить CMake-GUI.
 - Выбрать компилятор Visual Studio 17 2022.
 
@@ -174,9 +182,9 @@
 - Нажать **Configure**.
 - После успешного конфигурирования найти и выставить параметры:
 
-  - ``CMAKE_INSTALL_PREFIX`` -> ``D:/ваш путь к собранной библиотеке/cvcuda``
-  - ``EXECUTABLE_OUTPUT_PATH`` -> ``D:/ваш путь к собранной библиотеке/cvcuda/bin``
-  - ``OPENCV_EXTRA_MODULES_PATH`` -> ``D:/ваш путь к собранной библиотеке/opencv_contrib/modules``
+  - ``CMAKE_INSTALL_PREFIX`` -> ``C:/opencv-4.10.0-build-cuda/install``
+  - ``EXECUTABLE_OUTPUT_PATH`` -> ``C:/opencv-4.10.0-build-cuda/install/bin``
+  - ``OPENCV_EXTRA_MODULES_PATH`` -> ``C:/opencv-4.10.0-build-cuda/install/opencv_contrib/modules``
   - Отметить галочкой ``WITH_CUDA``
   
   **Примечание:** Если переменные отсутствуют в перечне, нужно поставить галочку в пункте Advanced.
@@ -185,7 +193,7 @@
 
   - Отметить ``CUDA_FAST_MATH``, ``OPENCV_DNN_CUDA``, ``ENABLE_FAST_MATH``, ``WITH_OPENGL``
   - Снять галочки с ``WITH_NVCUVENC``, ``WITH_NVCUVID``, ``WITH_VTK``
-  - Указать архитектуру видеокарты в ``CUDA_ARCH_BIN``
+  - Указать архитектуру видеокарты в ``CUDA_ARCH_BIN`` (например, 7.5 для NVIDIA RTX 20xx)
   - Если cuDNN установлен в нестандартном месте, указать пути:
   
     - ``CUDNN_LIBRARY`` -> путь к файлу ``cudnn.lib``
@@ -199,6 +207,92 @@
      :alt: Окно обозревателя решений
 
 - После успешной сборки выполнить сборку конфигурации **INSTALL**.
+
+Для установки библиотеки MRCV необходимо выполнить следующие действия:
+
+- Клонировать актуальную версию проекта, используя команды:
+
+  .. code-block:: console
+  
+     cd ~
+     git clone --branch main https://github.com/valabsoft/code-ai-400393.git
+
+- Установить зависимости (CUDA Toolkit 12.4 и cuDNN 9.3) библиотеки, указанные ранее: libtorch, OpenCV, yaml-cpp (отображены рекомендованные пути для ОС Windows):
+
+  .. code-block:: text
+  
+     C:\
+     ├───libtorch-12.4-cuda
+     ├───opencv-4.10.0-build-cuda
+     └───yaml-cpp
+
+- Для корректной работы библиотеки под управлением операционной системы Windows необходимо прописать системные пути в переменные окружения:
+
+  .. code-block:: text
+  
+      C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin
+      C:\libtorch-12.4-cuda\Release\bin
+      C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4\bin
+
+-	Настроить сборку, установив ключ поддержки CUDA. Для этого отредактировать CMakeLists.txt проекта
+
+  .. code-block:: text
+
+      option(USE_CUDA "Use CUDA Build" ON)
+
+- Запустить проект от имени администратора и открыть mrcv как локальную папку (File → Open → Folder);
+- Настройте CMakeLists.txt и CMakeLists.txt в каждом примере в папке examples, убедившись, что пути к libtorch, opencv и yaml-cpp указаны корректно (см. пример ниже)
+
+  .. code-block:: text
+
+      if(USE_CUDA)
+         # Добавляем макрос MRCV_CUDA_ENABLED
+         target_compile_definitions(mrcv PRIVATE MRCV_CUDA_ENABLED)
+         if(WIN32)
+            set(CMAKE_PREFIX_PATH "C:/libtorch-12.4-cuda/Release;C:/yaml-cpp")
+            set(OpenCV_DIR "C:/opencv-4.10.0-build-cuda/install")
+            set(Torch_DIR "C:/libtorch-12.4-cuda/Release/share/cmake/Torch")
+         
+            set(OpenCV_INCLUDE_DIRS "C:/opencv-4.10.0-build-cuda/install/include")
+            set(OpenCV_LIB_DIR "C:/opencv-4.10.0-build-cuda/install/x64/vc17/lib")
+            
+            set(Torch_INCLUDE_DIRS "C:/libtorch-12.4-cuda/Release/include")
+            set(Torch_LIB_DIR "C:/libtorch-12.4-cuda/Release/lib")
+         else()
+            set(Torch_DIR "/opt/libtorch/share/cmake/Torch")
+         
+            set(OpenCV_INCLUDE_DIRS "/usr/local/include/opencv4")
+            set(OpenCV_LIB_DIR "/usr/local/lib")
+            
+            set(Torch_INCLUDE_DIRS "/usr/local/include/torch")
+            set(Torch_LIB_DIR "/usr/local/lib")
+            
+         endif()
+      else() 
+         if(WIN32)
+            set(CMAKE_PREFIX_PATH "C:/libtorch-12.4/Release;C:/yaml-cpp")
+            set(OpenCV_DIR "C:/opencv-4.10.0-build/install")
+            set(Torch_DIR "C:/libtorch-12.4/Release/share/cmake/Torch")
+
+            set(OpenCV_INCLUDE_DIRS "C:/opencv-4.10.0-build/install/include")
+            set(OpenCV_LIB_DIR "C:/opencv-4.10.0-build/install/x64/vc17/lib")
+
+            set(Torch_INCLUDE_DIRS "C:/libtorch-12.4/Release/include")
+            set(Torch_LIB_DIR "C:/libtorch-12.4/Release/lib")
+         else()
+            set(Torch_DIR "/opt/libtorch/share/cmake/Torch")
+            
+            set(OpenCV_INCLUDE_DIRS "/usr/local/include/opencv4")
+            set(OpenCV_LIB_DIR "/usr/local/lib") 
+            
+            set(Torch_INCLUDE_DIRS "/usr/local/include/torch")
+            set(Torch_LIB_DIR "/usr/local/lib")
+         endif()
+      endif()
+   
+- Выбрать конфигурацию сборки dev-win;
+- В разделе «Сборка» выбрать «Собрать проект»;
+- После успешной сборки в разделе «Сборка» выбрать «Установить mrcv».
 
 Для операционной системы Linux (Ubuntu) без поддержки CUDA (пошаговая версия)
 -----------------------------------------------------------------------------
@@ -295,10 +389,7 @@
 Убедиться в правильности установки можно используя инструкцию https://docs.pytorch.org/cppdocs/installing.html.
 При нехватке системных ресурсов при сборке рекомендуется запускать сборку через make без указания параметра -j.
 
-Для операционной системы Linux (Ubuntu) без поддержки CUDA (версия с помощью скрипта)
--------------------------------------------------------------------------------------
-
-Для установки библиотеки необходимо выполнить следующие действия:
+Для установки библиотеки MRCV необходимо выполнить следующие действия:
 
 - Клонировать актуальную версию проекта, используя команды:
 
@@ -307,7 +398,7 @@
      cd ~
      git clone --branch main https://github.com/valabsoft/code-ai-400393.git
 
-- Установить библиотеки, указанные в разделе `Зависимости библиотеки`_
+- Установить библиотеки, указанные ранее
 
 - Выполнить команды
 
@@ -320,7 +411,10 @@
       sudo make install
       sudo ldconfig -v
 
-Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого нужно создать файл с помощью последовательности команд
+Для операционной системы Linux (Ubuntu) без поддержки CUDA (версия с помощью скрипта)
+-------------------------------------------------------------------------------------
+
+Для установки библиотеки MRCV вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого нужно создать файл с помощью последовательности команд
 
   .. code-block:: console
 
@@ -546,10 +640,7 @@
 Убедиться в правильности установки можно используя инструкцию https://docs.pytorch.org/cppdocs/installing.html.
 При нехватке системных ресурсов при сборке рекомендуется запускать сборку через make без указания параметра -j.
 
-Для операционной системы Linux (Ubuntu) с поддержкой CUDA (версия с помощью скрипта)
-------------------------------------------------------------------------------------
-
-Для установки библиотеки необходимо выполнить следующие действия:
+Для установки библиотеки MRCV необходимо выполнить следующие действия:
 
 - Клонировать актуальную версию проекта, используя команды:
 
@@ -558,7 +649,7 @@
      cd ~
      git clone --branch main https://github.com/valabsoft/code-ai-400393.git
 
-- Установить библиотеки, указанные в разделе `Зависимости библиотеки`_
+- Установить библиотеки, указанные ранее
 
 - Выполнить последовательность команд
 
@@ -568,11 +659,14 @@
       sed -i 's/option(USE_CUDA "Use CUDA Build" OFF)/option(USE_CUDA "Use CUDA Build" ON)/' CMakeLists.txt
       mkdir -p build && cd build
       sudo cmake -DCMAKE_CUDA_COMPILER:PATH=/usr/local/cuda/bin/nvcc ..
-      make -j$(nproc)
+      sudo make -j$(nproc)
       sudo make install
       sudo ldconfig -v
 
-Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт.
+Для операционной системы Linux (Ubuntu) с поддержкой CUDA (версия с помощью скрипта)
+------------------------------------------------------------------------------------
+
+Для установки библиотеки MRCV вместе с требующимися зависимостями возможно запустить shell-скрипт.
 Для этого необходимо создать файл с помощью команды
 
   .. code-block:: console
@@ -702,7 +796,6 @@
       
       ./install_cuda.sh
 
-.. _mrcv-python-version:
 Инструкция по установке Python версии библиотеки mrcv
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

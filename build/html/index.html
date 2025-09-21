@@ -1,22 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Marine Robotics Computer Vision &mdash; Marine Robotics Computer Vision  documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=ea7bc319" />
-
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -140,10 +140,10 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#id65">Подготовка к работе</a><ul>
-<li><a class="reference internal" href="#id66">Зависимости библиотеки</a></li>
+<li><a class="reference internal" href="#id66">Установка и настройка зависимостей</a></li>
 <li><a class="reference internal" href="#id67">Установка и первоначальная настройка библиотеки</a><ul>
-<li><a class="reference internal" href="#windows">Для операционной системы Windows (сокращенная версия)</a></li>
-<li><a class="reference internal" href="#id68">Для операционной системы Windows (расширенная версия)</a></li>
+<li><a class="reference internal" href="#windows-cuda">Для операционной системы Windows без поддержки CUDA</a></li>
+<li><a class="reference internal" href="#id68">Для операционной системы Windows с поддержкой CUDA</a></li>
 <li><a class="reference internal" href="#linux-ubuntu-cuda">Для операционной системы Linux (Ubuntu) без поддержки CUDA (пошаговая версия)</a></li>
 <li><a class="reference internal" href="#id69">Для операционной системы Linux (Ubuntu) без поддержки CUDA (версия с помощью скрипта)</a></li>
 <li><a class="reference internal" href="#id70">Для операционной системы Linux (Ubuntu) с поддержкой CUDA (пошаговая версия)</a></li>
@@ -1310,14 +1310,39 @@
 <section id="id65">
 <h1>Подготовка к работе<a class="headerlink" href="#id65" title="Link to this heading"></a></h1>
 <section id="id66">
-<h2>Зависимости библиотеки<a class="headerlink" href="#id66" title="Link to this heading"></a></h2>
+<h2>Установка и настройка зависимостей<a class="headerlink" href="#id66" title="Link to this heading"></a></h2>
 <p>Для работы с библиотекой используется версия <em>OpenCV 4.10</em>, которая должна быть предварительно собрана и установлена на исполняемой платформе с операционными системами Windows или Linux. Для поддержки CUDA сборка OpenCV должна проводиться с установленными <em>CUDA 12.4</em> и <em>cuDNN 9.3</em>. Для сборки должна быть использована версия <em>CMake</em> не ниже 3.14. Также для работы с библиотекой требуется <em>libtorch 2.4.0</em>. При этом сборка с CUDA или без определяется установочным пакетом от разработчиков <em>libtorch</em>.</p>
 </section>
 <section id="id67">
 <h2>Установка и первоначальная настройка библиотеки<a class="headerlink" href="#id67" title="Link to this heading"></a></h2>
-<section id="windows">
-<h3>Для операционной системы Windows (сокращенная версия)<a class="headerlink" href="#windows" title="Link to this heading"></a></h3>
-<p>Для установки библиотеки необходимо выполнить следующие действия:</p>
+<section id="windows-cuda">
+<h3>Для операционной системы Windows без поддержки CUDA<a class="headerlink" href="#windows-cuda" title="Link to this heading"></a></h3>
+<p>Необходимо выполнить следующий ряд действий:</p>
+<ul>
+<li><p>Установить необходимые компоненты:</p>
+<ol class="arabic">
+<li><p>CMake GUI 3.30.0-rc4 или новее с официального сайта (доступен по ссылке <a class="reference external" href="https://cmake.org/download/">https://cmake.org/download/</a>)</p></li>
+<li><p>Git Bash (доступен по ссылке <a class="reference external" href="https://gitforwindows.org/">https://gitforwindows.org/</a>)</p></li>
+<li><p>Visual Studio 2022 Community Edition с компонентом <strong>Desktop development with C++</strong> (доступен по ссылке <a class="reference external" href="https://visualstudio.microsoft.com/">https://visualstudio.microsoft.com/</a>)</p></li>
+<li><p>yaml-cpp при помощи консольных инструкций:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd C:\</span>
+<span class="go">git clone https://github.com/jbeder/yaml-cpp.git</span>
+<span class="go">cd yaml-cpp</span>
+<span class="go">mkdir build</span>
+<span class="go">cd build</span>
+<span class="go">cmake .. -DYAML_CPP_BUILD_TESTS=OFF -DYAML_CPP_INSTALL=ON</span>
+<span class="go">cmake --build . --config Release</span>
+<span class="go">cmake --install . --prefix &quot;C:\yaml-cpp&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>LibTorch 2.4.0 без поддержки CUDA
+(<a class="reference external" href="https://download.pytorch.org/libtorch/cpu/libtorch-win-shared-with-deps-2.4.0%2Bcpu.zip">https://download.pytorch.org/libtorch/cpu/libtorch-win-shared-with-deps-2.4.0%2Bcpu.zip</a>). После скачивания архива распакуйте его содержимое в папку <code class="docutils literal notranslate"><span class="pre">C:\libtorch-12.4</span></code>, переименуйте папку <code class="docutils literal notranslate"><span class="pre">C:\libtorch-12.4\libtorch</span></code> в <code class="docutils literal notranslate"><span class="pre">C:\libtorch-12.4\Release</span></code>.</p></li>
+</ol>
+</li>
+<li><p>скачайте готовую сборку OpenCV 4.10.0 с официального сайта (<a class="reference external" href="https://opencv.org/releases/">https://opencv.org/releases/</a>). Распакуйте содержимое папки build архива и скопируйте в <code class="docutils literal notranslate"><span class="pre">C:\opencv-4.10.0-build\install</span></code></p></li>
+</ul>
+<p>Для установки библиотеки MRCV необходимо выполнить следующие действия:</p>
 <ul>
 <li><p>Клонировать актуальную версию проекта, используя команды:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
@@ -1325,111 +1350,89 @@
 </pre></div>
 </div>
 </li>
-<li><p>Установить зависимости (CUDA Toolkit 12.4 и cuDNN 9.3) библиотеки, указанные в разделе <a class="reference internal" href="#id66">Зависимости библиотеки</a>: libtorch, OpenCV, yaml-cpp (отображены рекомендованные пути для ОС Windows):</p>
+<li><p>Установить зависимости: libtorch, OpenCV, yaml-cpp (отображены рекомендованные пути для ОС Windows):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\
 ├───libtorch-12.4
-├───libtorch-12.4-cuda
 ├───opencv-4.10.0-build
-├───opencv-4.10.0-build-cuda
 └───yaml-cpp
 </pre></div>
 </div>
 </li>
-</ul>
-<p>Соответствующие пути должны быть прописаны во всех файлах CMakeLists.txt проекта. Для этого следуюет отредактировать конструкции вида</p>
+<li><p>Для корректной работы библиотеки под управлением операционной системы Windows необходимо прописать системные пути в переменные окружения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\opencv-4.10.0-build\install\x64\vc17\bin\
+C:\libtorch-12.4\Release\bin\
+</pre></div>
+</div>
+</li>
+<li><p>Настроить сборку, отключив поддержку CUDA. Для этого отредактировать CMakeLists.txt проекта</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>option(USE_CUDA &quot;Use CUDA Build&quot; OFF)
+</pre></div>
+</div>
+</li>
+<li><p>Запустить проект от имени администратора и открыть mrcv как локальную папку (File → Open → Folder)</p></li>
+<li><p>Настройте CMakeLists.txt и CMakeLists.txt в каждом примере в папке examples, убедившись, что пути к libtorch, opencv и yaml-cpp указаны корректно (см. пример ниже)</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>if(USE_CUDA)
    # Добавляем макрос MRCV_CUDA_ENABLED
    target_compile_definitions(mrcv PRIVATE MRCV_CUDA_ENABLED)
-   set(CMAKE_PREFIX_PATH &quot;C:/libtorch-12.4-cuda/Release;C:/yaml-cpp&quot;)
-   set(OpenCV_DIR &quot;C:/opencv-4.10.0-build-cuda/install&quot;)
    if(WIN32)
-       set(Torch_DIR &quot;C:/libtorch-12.4-cuda/Release/share/cmake/Torch&quot;)
+      set(CMAKE_PREFIX_PATH &quot;C:/libtorch-12.4-cuda/Release;C:/yaml-cpp&quot;)
+      set(OpenCV_DIR &quot;C:/opencv-4.10.0-build-cuda/install&quot;)
+      set(Torch_DIR &quot;C:/libtorch-12.4-cuda/Release/share/cmake/Torch&quot;)
+
+      set(OpenCV_INCLUDE_DIRS &quot;C:/opencv-4.10.0-build-cuda/install/include&quot;)
+      set(OpenCV_LIB_DIR &quot;C:/opencv-4.10.0-build-cuda/install/x64/vc17/lib&quot;)
+
+      set(Torch_INCLUDE_DIRS &quot;C:/libtorch-12.4-cuda/Release/include&quot;)
+      set(Torch_LIB_DIR &quot;C:/libtorch-12.4-cuda/Release/lib&quot;)
    else()
-       set(Torch_DIR &quot;/opt/libtorch/share/cmake/Torch&quot;)
-   endif()
-   # OpenCV DIRs
-   if(WIN32)
-     set(OpenCV_INCLUDE_DIRS &quot;C:/opencv-4.10.0-build-cuda/install/include&quot;)
-     set(OpenCV_LIB_DIR &quot;C:/opencv-4.10.0-build-cuda/install/x64/vc17/lib&quot;)
-   else()
-     set(OpenCV_INCLUDE_DIRS &quot;/usr/local/include/opencv4&quot;)
-     set(OpenCV_LIB_DIR &quot;/usr/local/lib&quot;)
-   endif()
-   # Torch DIRs
-   if(WIN32)
-     set(Torch_INCLUDE_DIRS &quot;C:/libtorch-12.4-cuda/Release/include&quot;)
-     set(Torch_LIB_DIR &quot;C:/libtorch-12.4-cuda/Release/lib&quot;)
-   else()
-     set(Torch_INCLUDE_DIRS &quot;/usr/local/include/torch&quot;)
-     set(Torch_LIB_DIR &quot;/usr/local/lib&quot;)
+      set(Torch_DIR &quot;/opt/libtorch/share/cmake/Torch&quot;)
+
+      set(OpenCV_INCLUDE_DIRS &quot;/usr/local/include/opencv4&quot;)
+      set(OpenCV_LIB_DIR &quot;/usr/local/lib&quot;)
+
+      set(Torch_INCLUDE_DIRS &quot;/usr/local/include/torch&quot;)
+      set(Torch_LIB_DIR &quot;/usr/local/lib&quot;)
+
    endif()
 else()
-  set(CMAKE_PREFIX_PATH &quot;C:/libtorch-12.4/Release;C:/yaml-cpp&quot;)
-  set(OpenCV_DIR &quot;C:/opencv-4.10.0-build/install&quot;)
-  set(Torch_DIR &quot;C:/libtorch-12.4/Release/share/cmake/Torch&quot;)
-  # OpenCV DIRs
-  if(WIN32)
-    set(OpenCV_INCLUDE_DIRS &quot;C:/opencv-4.10.0-build/install/include&quot;)
-    set(OpenCV_LIB_DIR &quot;C:/opencv-4.10.0-build/install/x64/vc17/lib&quot;)
-  else()
-    set(OpenCV_INCLUDE_DIRS &quot;/usr/local/include/opencv4&quot;)
-    set(OpenCV_LIB_DIR &quot;/usr/local/lib&quot;)
-  endif()
-  # Torch DIRs
-  if(WIN32)
-    set(Torch_INCLUDE_DIRS &quot;C:/libtorch-12.4/Release/include&quot;)
-    set(Torch_LIB_DIR &quot;C:/libtorch-12.4/Release/lib&quot;)
-  else()
-    set(Torch_INCLUDE_DIRS &quot;/usr/local/include/torch&quot;)
-    set(Torch_LIB_DIR &quot;/usr/local/lib&quot;)
-  endif()
+   if(WIN32)
+      set(CMAKE_PREFIX_PATH &quot;C:/libtorch-12.4/Release;C:/yaml-cpp&quot;)
+      set(OpenCV_DIR &quot;C:/opencv-4.10.0-build/install&quot;)
+      set(Torch_DIR &quot;C:/libtorch-12.4/Release/share/cmake/Torch&quot;)
+
+      set(OpenCV_INCLUDE_DIRS &quot;C:/opencv-4.10.0-build/install/include&quot;)
+      set(OpenCV_LIB_DIR &quot;C:/opencv-4.10.0-build/install/x64/vc17/lib&quot;)
+
+      set(Torch_INCLUDE_DIRS &quot;C:/libtorch-12.4/Release/include&quot;)
+      set(Torch_LIB_DIR &quot;C:/libtorch-12.4/Release/lib&quot;)
+   else()
+      set(Torch_DIR &quot;/opt/libtorch/share/cmake/Torch&quot;)
+
+      set(OpenCV_INCLUDE_DIRS &quot;/usr/local/include/opencv4&quot;)
+      set(OpenCV_LIB_DIR &quot;/usr/local/lib&quot;)
+
+      set(Torch_INCLUDE_DIRS &quot;/usr/local/include/torch&quot;)
+      set(Torch_LIB_DIR &quot;/usr/local/lib&quot;)
+   endif()
 endif()
 </pre></div>
 </div>
-<ul>
-<li><p>Для корректной работы библиотеки под управлением операционной системы Windows необходимо прописать системные пути в переменные окружения:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\opencv-4.10.0-build\install\x64\vc17\bin\
-C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin\
-</pre></div>
-</div>
 </li>
-<li><p>Настроить сборку, установив ключ поддержки CUDA. Для этого отредактировать CMakeLists.txt проекта</p></li>
-</ul>
-<blockquote>
-<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   option(USE_CUDA &quot;Use CUDA Build&quot; OFF)
-
-Флаг ON/OFF определяет режим сборки библиотеки:
-OFF – сборка без поддержки CUDA. Используются OpenCV и LibTorch для CPU. CUDA-функции не будут доступны.
-ON — сборка с поддержкой CUDA. Используются OpenCV с модулями CUDA и LibTorch для CUDA. CUDA-функции активны в пространстве имен mrcv.
-</pre></div>
-</div>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Для включения поддержки CUDA необходимо:</dt><dd><ul>
-<li><p>установить CUDA Toolkit 12.4;</p></li>
-<li><p>загрузить архив (Tarball) cuDNN, содержащий папки bin, lib и include и копировать их в каталог установки CUDA Toolkit;</p></li>
-<li><p>выполнить сборку и установку проекта согласно инструкциям далее;</p></li>
-<li><p>запустить проект от имени администратора и открыть mrcv как локальную папку;</p></li>
-<li><p>выбрать конфигурацию сборки dev-win;</p></li>
-<li><p>в разделе «сборка» выбрать «Собрать проект»;</p></li>
-<li><p>после успешной сборки в разделе «сборка» выбрать «Установить mrcv».</p></li>
-</ul>
-</dd>
-</dl>
-</li>
+<li><p>Выбрать в Visual Studio конфигурацию сборки dev-win;</p></li>
+<li><p>В разделе «Сборка» выбрать «Собрать проект»;</p></li>
+<li><p>После успешной сборки в разделе «Сборка» выбрать «Установить mrcv».</p></li>
 </ul>
 </section>
 <section id="id68">
-<h3>Для операционной системы Windows (расширенная версия)<a class="headerlink" href="#id68" title="Link to this heading"></a></h3>
-<p>Для установки библиотеки необходимо выполнить следующие действия:</p>
+<h3>Для операционной системы Windows с поддержкой CUDA<a class="headerlink" href="#id68" title="Link to this heading"></a></h3>
+<p>Необходимо выполнить следующий ряд действий:</p>
 <ul>
 <li><p>Установить необходимые компоненты:</p>
 <ol class="arabic">
-<li><p>CMake GUI 3.30.0-rc4</p></li>
-<li><p>Git Bash</p></li>
-<li><p>Visual Studio 2022 Community Edition</p></li>
-<li><p>yaml-cpp</p>
+<li><p>CMake GUI 3.30.0-rc4 или новее с официального сайта (доступен по ссылке <a class="reference external" href="https://cmake.org/download/">https://cmake.org/download/</a>)</p></li>
+<li><p>Git Bash (доступен по ссылке <a class="reference external" href="https://gitforwindows.org/">https://gitforwindows.org/</a>)</p></li>
+<li><p>Visual Studio 2022 Community Edition с компонентом <strong>Desktop development with C++</strong> (доступен по ссылке <a class="reference external" href="https://visualstudio.microsoft.com/">https://visualstudio.microsoft.com/</a>)</p></li>
+<li><p>yaml-cpp при помощи консольных инструкций:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd C:\</span>
 <span class="go">git clone https://github.com/jbeder/yaml-cpp.git</span>
 <span class="go">cd yaml-cpp</span>
@@ -1443,17 +1446,14 @@ ON — сборка с поддержкой CUDA. Используются OpenC
 </li>
 <li><p>LibTorch 2.4.0 с поддержкой CUDA 12.4
 (доступна по ссылке:
-<a class="reference external" href="https://download.pytorch.org/libtorch/cu124/libtorch-win-shared-with-deps-2.4.0%2Bcu124.zip">https://download.pytorch.org/libtorch/cu124/libtorch-win-shared-with-deps-2.4.0%2Bcu124.zip</a>)
-или без поддержки CUDA
-(<a class="reference external" href="https://download.pytorch.org/libtorch/cpu/libtorch-win-shared-with-deps-2.4.0%2Bcpu.zip">https://download.pytorch.org/libtorch/cpu/libtorch-win-shared-with-deps-2.4.0%2Bcpu.zip</a>)</p></li>
+<a class="reference external" href="https://download.pytorch.org/libtorch/cu124/libtorch-win-shared-with-deps-2.4.0%2Bcu124.zip">https://download.pytorch.org/libtorch/cu124/libtorch-win-shared-with-deps-2.4.0%2Bcu124.zip</a>). После скачивания архива распакуйте его содержимое в папку <code class="docutils literal notranslate"><span class="pre">C:\libtorch-12.4-cuda</span></code>, переименуйте папку <code class="docutils literal notranslate"><span class="pre">C:\libtorch-12.4\libtorch</span></code> в <code class="docutils literal notranslate"><span class="pre">C:\libtorch-12.4\Release</span></code>.</p></li>
 <li><p>CUDA Toolkit 12.4
-(доступ по ссылке <a class="reference external" href="https://developer.nvidia.com/cuda-12-4-0-download-archive">https://developer.nvidia.com/cuda-12-4-0-download-archive</a>)</p></li>
+(доступ по ссылке <a class="reference external" href="https://developer.nvidia.com/cuda-12-4-0-download-archive">https://developer.nvidia.com/cuda-12-4-0-download-archive</a>). Установите CUDA Toolkit в папку по умолчанию: <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\NVIDIA</span> <span class="pre">GPU</span> <span class="pre">Computing</span> <span class="pre">Toolkit\CUDA\v12.4</span></code>.</p></li>
 <li><p>cuDNN 9.3.0
 (доступ по ссылке <a class="reference external" href="https://developer.nvidia.com/cudnn-9-3-0-download-archive?target_os=Windows&amp;target_arch=x86_64">https://developer.nvidia.com/cudnn-9-3-0-download-archive?target_os=Windows&amp;target_arch=x86_64</a>)
-Необходимо скачать версию Tarball, будет загружен архив с тремя папками: bin, include, lib. Их нужно скопировать в папку установки CUDA Toolkit 12.4.
+Необходимо скачать архив с тремя папками: bin, include, lib. Их нужно скопировать в папку установки CUDA Toolkit 12.4.
 Путь по умолчанию:
 <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\NVIDIA</span> <span class="pre">GPU</span> <span class="pre">Computing</span> <span class="pre">Toolkit\CUDA\v12.4</span></code>.</p></li>
-<li><p>nvToolsExt (NVTX)</p></li>
 </ol>
 </li>
 <li><p>Клонировать репозитории с версией OpenCV 4.10:</p>
@@ -1462,7 +1462,8 @@ ON — сборка с поддержкой CUDA. Используются OpenC
 </pre></div>
 </div>
 </li>
-<li><p>Создать директорию для сборки библиотеки.</p></li>
+<li><p>Создайте папку <code class="docutils literal notranslate"><span class="pre">C:\opencv-4.10.0-build-cuda\install</span></code> и перенесите в нее скачанные opencv и opencv_contrib.</p></li>
+<li><p>Создать пустые директории для сборки библиотеки <code class="docutils literal notranslate"><span class="pre">C:\opencv-4.10.0-build-cuda\install\opencv\build</span></code> и <code class="docutils literal notranslate"><span class="pre">C:\opencv-4.10.0-build-cuda\install\bin</span></code>.</p></li>
 <li><p>Запустить CMake-GUI.</p></li>
 <li><p>Выбрать компилятор Visual Studio 17 2022.</p>
 <img alt="Окно выбора компилятора" src="_images/compiler_selection.jpg" />
@@ -1474,9 +1475,9 @@ ON — сборка с поддержкой CUDA. Используются OpenC
 <li><p>Нажать <strong>Configure</strong>.</p></li>
 <li><p>После успешного конфигурирования найти и выставить параметры:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PREFIX</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">D:/ваш</span> <span class="pre">путь</span> <span class="pre">к</span> <span class="pre">собранной</span> <span class="pre">библиотеке/cvcuda</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">EXECUTABLE_OUTPUT_PATH</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">D:/ваш</span> <span class="pre">путь</span> <span class="pre">к</span> <span class="pre">собранной</span> <span class="pre">библиотеке/cvcuda/bin</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">OPENCV_EXTRA_MODULES_PATH</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">D:/ваш</span> <span class="pre">путь</span> <span class="pre">к</span> <span class="pre">собранной</span> <span class="pre">библиотеке/opencv_contrib/modules</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PREFIX</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">C:/opencv-4.10.0-build-cuda/install</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EXECUTABLE_OUTPUT_PATH</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">C:/opencv-4.10.0-build-cuda/install/bin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OPENCV_EXTRA_MODULES_PATH</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">C:/opencv-4.10.0-build-cuda/install/opencv_contrib/modules</span></code></p></li>
 <li><p>Отметить галочкой <code class="docutils literal notranslate"><span class="pre">WITH_CUDA</span></code></p></li>
 </ul>
 <p><strong>Примечание:</strong> Если переменные отсутствуют в перечне, нужно поставить галочку в пункте Advanced.</p>
@@ -1485,7 +1486,7 @@ ON — сборка с поддержкой CUDA. Используются OpenC
 <ul class="simple">
 <li><p>Отметить <code class="docutils literal notranslate"><span class="pre">CUDA_FAST_MATH</span></code>, <code class="docutils literal notranslate"><span class="pre">OPENCV_DNN_CUDA</span></code>, <code class="docutils literal notranslate"><span class="pre">ENABLE_FAST_MATH</span></code>, <code class="docutils literal notranslate"><span class="pre">WITH_OPENGL</span></code></p></li>
 <li><p>Снять галочки с <code class="docutils literal notranslate"><span class="pre">WITH_NVCUVENC</span></code>, <code class="docutils literal notranslate"><span class="pre">WITH_NVCUVID</span></code>, <code class="docutils literal notranslate"><span class="pre">WITH_VTK</span></code></p></li>
-<li><p>Указать архитектуру видеокарты в <code class="docutils literal notranslate"><span class="pre">CUDA_ARCH_BIN</span></code></p></li>
+<li><p>Указать архитектуру видеокарты в <code class="docutils literal notranslate"><span class="pre">CUDA_ARCH_BIN</span></code> (например, 7.5 для NVIDIA RTX 20xx)</p></li>
 <li><p>Если cuDNN установлен в нестандартном месте, указать пути:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">CUDNN_LIBRARY</span></code> -&gt; путь к файлу <code class="docutils literal notranslate"><span class="pre">cudnn.lib</span></code></p></li>
@@ -1500,6 +1501,90 @@ ON — сборка с поддержкой CUDA. Используются OpenC
 <img alt="Окно обозревателя решений" src="_images/solution_explorer.jpg" />
 </li>
 <li><p>После успешной сборки выполнить сборку конфигурации <strong>INSTALL</strong>.</p></li>
+</ul>
+<p>Для установки библиотеки MRCV необходимо выполнить следующие действия:</p>
+<ul>
+<li><p>Клонировать актуальную версию проекта, используя команды:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
+<span class="go">git clone --branch main https://github.com/valabsoft/code-ai-400393.git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Установить зависимости (CUDA Toolkit 12.4 и cuDNN 9.3) библиотеки, указанные ранее: libtorch, OpenCV, yaml-cpp (отображены рекомендованные пути для ОС Windows):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\
+├───libtorch-12.4-cuda
+├───opencv-4.10.0-build-cuda
+└───yaml-cpp
+</pre></div>
+</div>
+</li>
+<li><p>Для корректной работы библиотеки под управлением операционной системы Windows необходимо прописать системные пути в переменные окружения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\opencv-4.10.0-build-cuda\install\x64\vc17\bin
+C:\libtorch-12.4-cuda\Release\bin
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4\bin
+</pre></div>
+</div>
+</li>
+<li><p>Настроить сборку, установив ключ поддержки CUDA. Для этого отредактировать CMakeLists.txt проекта</p></li>
+</ul>
+<blockquote>
+<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>option(USE_CUDA &quot;Use CUDA Build&quot; ON)
+</pre></div>
+</div>
+</div></blockquote>
+<ul>
+<li><p>Запустить проект от имени администратора и открыть mrcv как локальную папку (File → Open → Folder);</p></li>
+<li><p>Настройте CMakeLists.txt и CMakeLists.txt в каждом примере в папке examples, убедившись, что пути к libtorch, opencv и yaml-cpp указаны корректно (см. пример ниже)</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>if(USE_CUDA)
+   # Добавляем макрос MRCV_CUDA_ENABLED
+   target_compile_definitions(mrcv PRIVATE MRCV_CUDA_ENABLED)
+   if(WIN32)
+      set(CMAKE_PREFIX_PATH &quot;C:/libtorch-12.4-cuda/Release;C:/yaml-cpp&quot;)
+      set(OpenCV_DIR &quot;C:/opencv-4.10.0-build-cuda/install&quot;)
+      set(Torch_DIR &quot;C:/libtorch-12.4-cuda/Release/share/cmake/Torch&quot;)
+
+      set(OpenCV_INCLUDE_DIRS &quot;C:/opencv-4.10.0-build-cuda/install/include&quot;)
+      set(OpenCV_LIB_DIR &quot;C:/opencv-4.10.0-build-cuda/install/x64/vc17/lib&quot;)
+
+      set(Torch_INCLUDE_DIRS &quot;C:/libtorch-12.4-cuda/Release/include&quot;)
+      set(Torch_LIB_DIR &quot;C:/libtorch-12.4-cuda/Release/lib&quot;)
+   else()
+      set(Torch_DIR &quot;/opt/libtorch/share/cmake/Torch&quot;)
+
+      set(OpenCV_INCLUDE_DIRS &quot;/usr/local/include/opencv4&quot;)
+      set(OpenCV_LIB_DIR &quot;/usr/local/lib&quot;)
+
+      set(Torch_INCLUDE_DIRS &quot;/usr/local/include/torch&quot;)
+      set(Torch_LIB_DIR &quot;/usr/local/lib&quot;)
+
+   endif()
+else()
+   if(WIN32)
+      set(CMAKE_PREFIX_PATH &quot;C:/libtorch-12.4/Release;C:/yaml-cpp&quot;)
+      set(OpenCV_DIR &quot;C:/opencv-4.10.0-build/install&quot;)
+      set(Torch_DIR &quot;C:/libtorch-12.4/Release/share/cmake/Torch&quot;)
+
+      set(OpenCV_INCLUDE_DIRS &quot;C:/opencv-4.10.0-build/install/include&quot;)
+      set(OpenCV_LIB_DIR &quot;C:/opencv-4.10.0-build/install/x64/vc17/lib&quot;)
+
+      set(Torch_INCLUDE_DIRS &quot;C:/libtorch-12.4/Release/include&quot;)
+      set(Torch_LIB_DIR &quot;C:/libtorch-12.4/Release/lib&quot;)
+   else()
+      set(Torch_DIR &quot;/opt/libtorch/share/cmake/Torch&quot;)
+
+      set(OpenCV_INCLUDE_DIRS &quot;/usr/local/include/opencv4&quot;)
+      set(OpenCV_LIB_DIR &quot;/usr/local/lib&quot;)
+
+      set(Torch_INCLUDE_DIRS &quot;/usr/local/include/torch&quot;)
+      set(Torch_LIB_DIR &quot;/usr/local/lib&quot;)
+   endif()
+endif()
+</pre></div>
+</div>
+</li>
+<li><p>Выбрать конфигурацию сборки dev-win;</p></li>
+<li><p>В разделе «Сборка» выбрать «Собрать проект»;</p></li>
+<li><p>После успешной сборки в разделе «Сборка» выбрать «Установить mrcv».</p></li>
 </ul>
 </section>
 <section id="linux-ubuntu-cuda">
@@ -1576,10 +1661,7 @@ ON — сборка с поддержкой CUDA. Используются OpenC
 </div>
 <p>Убедиться в правильности установки можно используя инструкцию <a class="reference external" href="https://docs.pytorch.org/cppdocs/installing.html">https://docs.pytorch.org/cppdocs/installing.html</a>.
 При нехватке системных ресурсов при сборке рекомендуется запускать сборку через make без указания параметра -j.</p>
-</section>
-<section id="id69">
-<h3>Для операционной системы Linux (Ubuntu) без поддержки CUDA (версия с помощью скрипта)<a class="headerlink" href="#id69" title="Link to this heading"></a></h3>
-<p>Для установки библиотеки необходимо выполнить следующие действия:</p>
+<p>Для установки библиотеки MRCV необходимо выполнить следующие действия:</p>
 <ul>
 <li><p>Клонировать актуальную версию проекта, используя команды:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
@@ -1587,7 +1669,7 @@ ON — сборка с поддержкой CUDA. Используются OpenC
 </pre></div>
 </div>
 </li>
-<li><p>Установить библиотеки, указанные в разделе <a class="reference internal" href="#id66">Зависимости библиотеки</a></p></li>
+<li><p>Установить библиотеки, указанные ранее</p></li>
 <li><p>Выполнить команды</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~/code-ai-400393</span>
 <span class="go">mkdir -p build &amp;&amp; cd build</span>
@@ -1599,7 +1681,10 @@ ON — сборка с поддержкой CUDA. Используются OpenC
 </div>
 </li>
 </ul>
-<p>Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого нужно создать файл с помощью последовательности команд</p>
+</section>
+<section id="id69">
+<h3>Для операционной системы Linux (Ubuntu) без поддержки CUDA (версия с помощью скрипта)<a class="headerlink" href="#id69" title="Link to this heading"></a></h3>
+<p>Для установки библиотеки MRCV вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого нужно создать файл с помощью последовательности команд</p>
 <blockquote>
 <div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
 <span class="go">nano install_cpu.sh</span>
@@ -1804,10 +1889,7 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </div>
 <p>Убедиться в правильности установки можно используя инструкцию <a class="reference external" href="https://docs.pytorch.org/cppdocs/installing.html">https://docs.pytorch.org/cppdocs/installing.html</a>.
 При нехватке системных ресурсов при сборке рекомендуется запускать сборку через make без указания параметра -j.</p>
-</section>
-<section id="id71">
-<h3>Для операционной системы Linux (Ubuntu) с поддержкой CUDA (версия с помощью скрипта)<a class="headerlink" href="#id71" title="Link to this heading"></a></h3>
-<p>Для установки библиотеки необходимо выполнить следующие действия:</p>
+<p>Для установки библиотеки MRCV необходимо выполнить следующие действия:</p>
 <ul>
 <li><p>Клонировать актуальную версию проекта, используя команды:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
@@ -1815,20 +1897,23 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </pre></div>
 </div>
 </li>
-<li><p>Установить библиотеки, указанные в разделе <a class="reference internal" href="#id66">Зависимости библиотеки</a></p></li>
+<li><p>Установить библиотеки, указанные ранее</p></li>
 <li><p>Выполнить последовательность команд</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~/code-ai-400393</span>
 <span class="go">sed -i &#39;s/option(USE_CUDA &quot;Use CUDA Build&quot; OFF)/option(USE_CUDA &quot;Use CUDA Build&quot; ON)/&#39; CMakeLists.txt</span>
 <span class="go">mkdir -p build &amp;&amp; cd build</span>
 <span class="go">sudo cmake -DCMAKE_CUDA_COMPILER:PATH=/usr/local/cuda/bin/nvcc ..</span>
-<span class="go">make -j$(nproc)</span>
+<span class="go">sudo make -j$(nproc)</span>
 <span class="go">sudo make install</span>
 <span class="go">sudo ldconfig -v</span>
 </pre></div>
 </div>
 </li>
 </ul>
-<p>Для установки библиотеки вместе с требующимися зависимостями возможно запустить shell-скрипт.
+</section>
+<section id="id71">
+<h3>Для операционной системы Linux (Ubuntu) с поддержкой CUDA (версия с помощью скрипта)<a class="headerlink" href="#id71" title="Link to this heading"></a></h3>
+<p>Для установки библиотеки MRCV вместе с требующимися зависимостями возможно запустить shell-скрипт.
 Для этого необходимо создать файл с помощью команды</p>
 <blockquote>
 <div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
@@ -1960,7 +2045,7 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </section>
 </section>
 <section id="python-mrcv">
-<span id="mrcv-python-version"></span><h2>Инструкция по установке Python версии библиотеки mrcv<a class="headerlink" href="#python-mrcv" title="Link to this heading"></a></h2>
+<h2>Инструкция по установке Python версии библиотеки mrcv<a class="headerlink" href="#python-mrcv" title="Link to this heading"></a></h2>
 <p>Минимальная версия Python для работы с библиотекой - 3.10.</p>
 <p>Проверить, установлен ли Python</p>
 <blockquote>
@@ -2091,8 +2176,7 @@ python comparing.py</p>
 <p>Тестирование проводилось на синтетическом изображении — модели кадра видеопотока, содержащего объект интереса.
 Режим отображения меток используется только в режиме отладки при включенном флаге <code class="docutils literal notranslate"><span class="pre">IS_DEBUG_LOG_ENABLED</span></code>.</p>
 <p>Результат работы детектора:</p>
-<a class="reference internal image-reference" href="_images/objcourse_result.jpg"><img alt="Тестовое изображение с результатом работы" src="_images/objcourse_result.jpg" style="width: 200px;" />
-</a>
+<a class="reference internal image-reference" href="_images/objcourse_result.jpg"><img alt="Тестовое изображение с результатом работы" src="_images/objcourse_result.jpg" style="width: 200px;" /></a>
 <p>Для выполнения основных функций модуля используются вызовы методов класса <code class="docutils literal notranslate"><span class="pre">ObjCourse</span></code>, как показано ниже.
 Подразумевается, что тестовое изображение предварительно загружено в переменную <code class="docutils literal notranslate"><span class="pre">cv::Mat</span> <span class="pre">frameShip</span></code>.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Подсчет объектов</span>
@@ -2416,15 +2500,13 @@ Epoch: 29, Valid Loss: 0.136483
 <p>Пример предсказания положения для траекторий синуса и окружности представлены на рисунке А.4.4:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure462.jpg"><img alt="_images/figure462.jpg" class="align-center" src="_images/figure462.jpg" style="width: 100%;" />
-</a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure462.jpg"><img alt="_images/figure462.jpg" class="align-center" src="_images/figure462.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure462a.jpg"><img alt="_images/figure462a.jpg" class="align-center" src="_images/figure462a.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure462a.jpg"><img alt="_images/figure462a.jpg" class="align-center" src="_images/figure462a.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
 </tbody>
@@ -2484,15 +2566,13 @@ Epoch: 29, Valid Loss: 0.136483
 Полученный ROI представлен на рисунке А.4.5:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure472.jpg"><img alt="_images/figure472.jpg" class="align-center" src="_images/figure472.jpg" style="width: 100%;" />
-</a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure472.jpg"><img alt="_images/figure472.jpg" class="align-center" src="_images/figure472.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure472a.jpg"><img alt="_images/figure472a.jpg" class="align-center" src="_images/figure472a.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure472a.jpg"><img alt="_images/figure472a.jpg" class="align-center" src="_images/figure472a.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
 </tbody>
@@ -2550,8 +2630,7 @@ Epoch: 29, Valid Loss: 0.136483
 </pre></div>
 </div>
 <p>Результаты предобработки подводных изображений:</p>
-<a class="reference internal image-reference" href="_images/preprocessing.jpg"><img alt="Исходное изображение, результат предобработки" class="align-center" src="_images/preprocessing.jpg" style="width: 200px;" />
-</a>
+<a class="reference internal image-reference" href="_images/preprocessing.jpg"><img alt="Исходное изображение, результат предобработки" class="align-center" src="_images/preprocessing.jpg" style="width: 200px;" /></a>
 <p>Пример фрагмента log-файла во время запуска примера:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>16:59:43 | INFO |  === НОВЫЙ ЗАПУСК ===
 16:59:43 | INFO | загружено изображение: ./files/img02.jfif :: 960x600x3
@@ -2591,16 +2670,11 @@ Epoch: 29, Valid Loss: 0.136483
 </pre></div>
 </div>
 <p><strong>Результаты работы</strong></p>
-<a class="reference internal image-reference" href="_images/figure10_1.jpg"><img alt="Фотография экспериментального стенда и стереопара со стереокамеры" src="_images/figure10_1.jpg" style="width: 200px;" />
-</a>
-<a class="reference internal image-reference" href="_images/figure10_2.jpg"><img alt="Карта диспаратности и бинарные маски сегментов" src="_images/figure10_2.jpg" style="width: 200px;" />
-</a>
-<a class="reference internal image-reference" href="_images/figure10_3.jpg"><img alt="Результат обнаружения объектов с координатой по Z" src="_images/figure10_3.jpg" style="width: 200px;" />
-</a>
-<a class="inline-images reference internal image-reference" href="_images/figure10_4.jpg"><img alt="Изображения 3D сцены" class="inline-images" src="_images/figure10_4.jpg" style="width: 200px;" />
-</a>
-<a class="reference internal image-reference" href="_images/figure10_5.jpg"><img alt="Изображения 3D сцены" src="_images/figure10_5.jpg" style="width: 200px;" />
-</a>
+<a class="reference internal image-reference" href="_images/figure10_1.jpg"><img alt="Фотография экспериментального стенда и стереопара со стереокамеры" src="_images/figure10_1.jpg" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/figure10_2.jpg"><img alt="Карта диспаратности и бинарные маски сегментов" src="_images/figure10_2.jpg" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/figure10_3.jpg"><img alt="Результат обнаружения объектов с координатой по Z" src="_images/figure10_3.jpg" style="width: 200px;" /></a>
+<a class="inline-images reference internal image-reference" href="_images/figure10_4.jpg"><img alt="Изображения 3D сцены" class="inline-images" src="_images/figure10_4.jpg" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/figure10_5.jpg"><img alt="Изображения 3D сцены" src="_images/figure10_5.jpg" style="width: 200px;" /></a>
 <p><strong>Фрагмент лог-файла</strong></p>
 <p>Ниже приведён фрагмент из лог-файла библиотеки во время запуска примера использования:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>14:51:16 | INFO | === НОВЫЙ ЗАПУСК ===
@@ -2674,20 +2748,17 @@ N.png
 </pre></div>
 </div>
 <p>На рисунке А.4.14 представлен процесс интерактивной калибровки:</p>
-<a class="reference internal image-reference" href="_images/figure410.jpg"><img alt="_images/figure410.jpg" src="_images/figure410.jpg" style="width: 100%;" />
-</a>
+<a class="reference internal image-reference" href="_images/figure410.jpg"><img alt="_images/figure410.jpg" src="_images/figure410.jpg" style="width: 100%;" /></a>
 <p>(а) – консольный вывод приложения;</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure410a.jpg"><img alt="_images/figure410a.jpg" src="_images/figure410a.jpg" style="width: 100%;" />
-</a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure410a.jpg"><img alt="_images/figure410a.jpg" src="_images/figure410a.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure410b.jpg"><img alt="_images/figure410b.jpg" src="_images/figure410b.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure410b.jpg"><img alt="_images/figure410b.jpg" src="_images/figure410b.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
 </tbody>
@@ -2722,29 +2793,23 @@ N.png
 <p>Результаты работы представлены на рисунке А.4.15:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure410a1.jpg"><img alt="_images/figure410a1.jpg" src="_images/figure410a1.jpg" style="width: 100%;" />
-</a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure410a1.jpg"><img alt="_images/figure410a1.jpg" src="_images/figure410a1.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure410a2.jpg"><img alt="_images/figure410a2.jpg" src="_images/figure410a2.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure410a2.jpg"><img alt="_images/figure410a2.jpg" src="_images/figure410a2.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="_images/figure410a3.jpg"><img alt="_images/figure410a3.jpg" src="_images/figure410a3.jpg" style="width: 100%;" />
-</a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="_images/figure410a3.jpg"><img alt="_images/figure410a3.jpg" src="_images/figure410a3.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure410a4.jpg"><img alt="_images/figure410a4.jpg" src="_images/figure410a4.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure410a4.jpg"><img alt="_images/figure410a4.jpg" src="_images/figure410a4.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure410a5.jpg"><img alt="_images/figure410a5.jpg" src="_images/figure410a5.jpg" style="width: 100%;" />
-</a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure410a5.jpg"><img alt="_images/figure410a5.jpg" src="_images/figure410a5.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure410a6.jpg"><img alt="_images/figure410a6.jpg" src="_images/figure410a6.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure410a6.jpg"><img alt="_images/figure410a6.jpg" src="_images/figure410a6.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
 </tbody>
@@ -2906,12 +2971,9 @@ N.png
 </div>
 <p>После выполнения всех операций, модифицированные изображения сохраняются на диск с использованием функции <code class="docutils literal notranslate"><span class="pre">cv::imwrite(ss.str(),</span> <span class="pre">resultImage)</span></code></p>
 <p>Результат работы функции аугментации :</p>
-<a class="inline-images reference internal image-reference" href="_images/augmentation1.jpg"><img alt="Пример результата обработки" class="inline-images" src="_images/augmentation1.jpg" style="width: 200px;" />
-</a>
-<a class="reference internal image-reference" href="_images/augmentation2.jpg"><img alt="Пример результата обработки" src="_images/augmentation2.jpg" style="width: 200px;" />
-</a>
-<a class="reference internal image-reference" href="_images/augmentation3.jpg"><img alt="Пример результата обработки" src="_images/augmentation3.jpg" style="width: 200px;" />
-</a>
+<a class="inline-images reference internal image-reference" href="_images/augmentation1.jpg"><img alt="Пример результата обработки" class="inline-images" src="_images/augmentation1.jpg" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/augmentation2.jpg"><img alt="Пример результата обработки" src="_images/augmentation2.jpg" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/augmentation3.jpg"><img alt="Пример результата обработки" src="_images/augmentation3.jpg" style="width: 200px;" /></a>
 </section>
 <section id="id87">
 <h2>Пример использования программных функций библиотеки для полуавтоматической разметки для аугментации данных с помощью нейронной сети<a class="headerlink" href="#id87" title="Link to this heading"></a></h2>
@@ -2949,15 +3011,13 @@ N.png
 <p>Результат работы функции приведен на рисунке А.4.20:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure415a.jpg"><img alt="_images/figure415a.jpg" class="align-center" src="_images/figure415a.jpg" style="width: 100%;" />
-</a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure415a.jpg"><img alt="_images/figure415a.jpg" class="align-center" src="_images/figure415a.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure415b.jpg"><img alt="_images/figure415b.jpg" class="align-center" src="_images/figure415b.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure415b.jpg"><img alt="_images/figure415b.jpg" class="align-center" src="_images/figure415b.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
 </tbody>
@@ -3060,29 +3120,23 @@ N.png
 <p>Среднее время обработки составило около 15 мс на изображение (Intel Core i7-9700K).</p>
 <table class="docutils align-center">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure417a1.jpg"><img alt="_images/figure417a1.jpg" class="align-center" src="_images/figure417a1.jpg" style="width: 100%;" />
-</a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure417a1.jpg"><img alt="_images/figure417a1.jpg" class="align-center" src="_images/figure417a1.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure417a2.jpg"><img alt="_images/figure417a2.jpg" class="align-center" src="_images/figure417a2.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure417a2.jpg"><img alt="_images/figure417a2.jpg" class="align-center" src="_images/figure417a2.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="_images/figure417a3.jpg"><img alt="_images/figure417a3.jpg" class="align-center" src="_images/figure417a3.jpg" style="width: 100%;" />
-</a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="_images/figure417a3.jpg"><img alt="_images/figure417a3.jpg" class="align-center" src="_images/figure417a3.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure417a4.jpg"><img alt="_images/figure417a4.jpg" class="align-center" src="_images/figure417a4.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure417a4.jpg"><img alt="_images/figure417a4.jpg" class="align-center" src="_images/figure417a4.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure417a5.jpg"><img alt="_images/figure417a5.jpg" class="align-center" src="_images/figure417a5.jpg" style="width: 100%;" />
-</a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure417a5.jpg"><img alt="_images/figure417a5.jpg" class="align-center" src="_images/figure417a5.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure417a6.jpg"><img alt="_images/figure417a6.jpg" class="align-center" src="_images/figure417a6.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure417a6.jpg"><img alt="_images/figure417a6.jpg" class="align-center" src="_images/figure417a6.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
 </tbody>
@@ -3345,25 +3399,21 @@ N.png
 Примеры работающих алгоритмов обработки изображений представлены на рис. А.4.35.</p>
 <table class="docutils align-center">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure424a1.jpg"><img alt="_images/figure424a1.jpg" src="_images/figure424a1.jpg" style="width: 100%;" />
-</a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure424a1.jpg"><img alt="_images/figure424a1.jpg" src="_images/figure424a1.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure424a2.jpg"><img alt="_images/figure424a2.jpg" src="_images/figure424a2.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure424a2.jpg"><img alt="_images/figure424a2.jpg" src="_images/figure424a2.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
 <tr class="row-even"><td><p>Изображение до обработки</p></td>
 <td><p>Изображение после применения морфологического размыкания</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure424a3.jpg"><img alt="_images/figure424a3.jpg" src="_images/figure424a3.jpg" style="width: 100%;" />
-</a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure424a3.jpg"><img alt="_images/figure424a3.jpg" src="_images/figure424a3.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure424a4.jpg"><img alt="_images/figure424a4.jpg" src="_images/figure424a4.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure424a4.jpg"><img alt="_images/figure424a4.jpg" src="_images/figure424a4.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
 <tr class="row-even"><td><p>Изображение до обработки</p></td>
@@ -3408,15 +3458,13 @@ N.png
 <p>На рис. А.4.36 представлены тестовые изображения, использовавшиеся для тестирования работы функции.</p>
 <table class="docutils align-center">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure425a.jpg"><img alt="_images/figure425a.jpg" src="_images/figure425a.jpg" style="width: 100%;" />
-</a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/figure425a.jpg"><img alt="_images/figure425a.jpg" src="_images/figure425a.jpg" style="width: 100%;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="_images/figure425b.jpg"><img alt="_images/figure425b.jpg" src="_images/figure425b.jpg" style="width: 100%;" />
-</a>
+<td><a class="reference internal image-reference" href="_images/figure425b.jpg"><img alt="_images/figure425b.jpg" src="_images/figure425b.jpg" style="width: 100%;" /></a>
 </td>
 </tr>
 <tr class="row-even"><td><p>Исходное изображение</p></td>
@@ -4248,7 +4296,7 @@ N.png
 </section>
 <section id="mrcv">
 <h2>Необходимые зависимости для установки библиотеки mrcv<a class="headerlink" href="#mrcv" title="Link to this heading"></a></h2>
-<p>Для корректной работы библиотеки все необходимые зависимости должны быть установлены в соответсвии с разделом руководства <strong>Зависимости библиотеки</strong>.</p>
+<p>Для корректной работы библиотеки все необходимые зависимости должны быть установлены в соответсвии с разделом руководства <strong>Установка и первоначальная настройка библиотеки</strong>.</p>
 </section>
 <section id="windows-linux-mrcv">
 <h2>Инструкция по установке Windows/Linux версии библиотеки mrcv<a class="headerlink" href="#windows-linux-mrcv" title="Link to this heading"></a></h2>
