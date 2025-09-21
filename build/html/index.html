@@ -142,12 +142,12 @@
 <li><a class="reference internal" href="#id65">Подготовка к работе</a><ul>
 <li><a class="reference internal" href="#id66">Установка и настройка зависимостей</a></li>
 <li><a class="reference internal" href="#id67">Установка и первоначальная настройка библиотеки</a><ul>
-<li><a class="reference internal" href="#windows-cpu">Для операционной системы Windows без поддержки CUDA</a></li>
-<li><a class="reference internal" href="#windows-cuda">Для операционной системы Windows с поддержкой CUDA</a></li>
-<li><a class="reference internal" href="#linux-cpu">Для операционной системы Linux (Ubuntu) без поддержки CUDA (пошаговая версия)</a></li>
-<li><a class="reference internal" href="#linux-cpu-sh">Для операционной системы Linux (Ubuntu) без поддержки CUDA (версия с помощью скрипта)</a></li>
-<li><a class="reference internal" href="#linux-cuda">Для операционной системы Linux (Ubuntu) с поддержкой CUDA (пошаговая версия)</a></li>
-<li><a class="reference internal" href="#linux-cuda-sh">Для операционной системы Linux (Ubuntu) с поддержкой CUDA (версия с помощью скрипта)</a></li>
+<li><a class="reference internal" href="#windows-cuda">Для операционной системы Windows без поддержки CUDA</a></li>
+<li><a class="reference internal" href="#id68">Для операционной системы Windows с поддержкой CUDA</a></li>
+<li><a class="reference internal" href="#linux-ubuntu-cuda">Для операционной системы Linux (Ubuntu) без поддержки CUDA (пошаговая версия)</a></li>
+<li><a class="reference internal" href="#id69">Для операционной системы Linux (Ubuntu) без поддержки CUDA (версия с помощью скрипта)</a></li>
+<li><a class="reference internal" href="#id70">Для операционной системы Linux (Ubuntu) с поддержкой CUDA (пошаговая версия)</a></li>
+<li><a class="reference internal" href="#id71">Для операционной системы Linux (Ubuntu) с поддержкой CUDA (версия с помощью скрипта)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#python-mrcv">Инструкция по установке Python версии библиотеки mrcv</a></li>
@@ -1316,7 +1316,7 @@
 <section id="id67">
 <h2>Установка и первоначальная настройка библиотеки<a class="headerlink" href="#id67" title="Link to this heading"></a></h2>
 <section id="windows-cuda">
-<h3>Для операционной системы Windows без поддержки CUDA<a class="headerlink" href="#windows-cpu" title="Link to this heading"></a></h3>
+<h3>Для операционной системы Windows без поддержки CUDA<a class="headerlink" href="#windows-cuda" title="Link to this heading"></a></h3>
 <p>Необходимо выполнить следующий ряд действий:</p>
 <ul>
 <li><p>Установить необходимые компоненты:</p>
@@ -1424,7 +1424,7 @@ endif()
 </ul>
 </section>
 <section id="id68">
-<h3>Для операционной системы Windows с поддержкой CUDA<a class="headerlink" href="#windows-cuda" title="Link to this heading"></a></h3>
+<h3>Для операционной системы Windows с поддержкой CUDA<a class="headerlink" href="#id68" title="Link to this heading"></a></h3>
 <p>Необходимо выполнить следующий ряд действий:</p>
 <ul>
 <li><p>Установить необходимые компоненты:</p>
@@ -1588,7 +1588,7 @@ endif()
 </ul>
 </section>
 <section id="linux-ubuntu-cuda">
-<h3>Для операционной системы Linux (Ubuntu) без поддержки CUDA (пошаговая версия)<a class="headerlink" href="#linux-cpu" title="Link to this heading"></a></h3>
+<h3>Для операционной системы Linux (Ubuntu) без поддержки CUDA (пошаговая версия)<a class="headerlink" href="#linux-ubuntu-cuda" title="Link to this heading"></a></h3>
 <p>Необходимо выполнить следующий ряд действий:</p>
 <p><strong>Установить зависимости с помощью набора команд</strong></p>
 <blockquote>
@@ -1683,7 +1683,7 @@ endif()
 </ul>
 </section>
 <section id="id69">
-<h3>Для операционной системы Linux (Ubuntu) без поддержки CUDA (версия с помощью скрипта)<a class="headerlink" href="#linux-cpu-sh" title="Link to this heading"></a></h3>
+<h3>Для операционной системы Linux (Ubuntu) без поддержки CUDA (версия с помощью скрипта)<a class="headerlink" href="#id69" title="Link to this heading"></a></h3>
 <p>Для установки библиотеки MRCV вместе с требующимися зависимостями возможно запустить shell-скрипт. Для этого нужно создать файл с помощью последовательности команд</p>
 <blockquote>
 <div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
@@ -1783,7 +1783,7 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </div></blockquote>
 </section>
 <section id="id70">
-<h3>Для операционной системы Linux (Ubuntu) с поддержкой CUDA (пошаговая версия)<a class="headerlink" href="#linux-cuda" title="Link to this heading"></a></h3>
+<h3>Для операционной системы Linux (Ubuntu) с поддержкой CUDA (пошаговая версия)<a class="headerlink" href="#id70" title="Link to this heading"></a></h3>
 <p>Необходимо выполнить следующий ряд действий:</p>
 <p><strong>Установить зависимости с помощью набора команд</strong></p>
 <blockquote>
@@ -1912,7 +1912,7 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </ul>
 </section>
 <section id="id71">
-<h3>Для операционной системы Linux (Ubuntu) с поддержкой CUDA (версия с помощью скрипта)<a class="headerlink" href="#linux-cuda-sh" title="Link to this heading"></a></h3>
+<h3>Для операционной системы Linux (Ubuntu) с поддержкой CUDA (версия с помощью скрипта)<a class="headerlink" href="#id71" title="Link to this heading"></a></h3>
 <p>Для установки библиотеки MRCV вместе с требующимися зависимостями возможно запустить shell-скрипт.
 Для этого необходимо создать файл с помощью команды</p>
 <blockquote>
