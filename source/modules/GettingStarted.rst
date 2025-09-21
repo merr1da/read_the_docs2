@@ -796,68 +796,95 @@
       
       ./install_cuda.sh
 
-Инструкция по установке Python версии библиотеки mrcv
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Инструкция по установке Python версии библиотеки
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Минимальная версия Python для работы с библиотекой - 3.10.
+Для установки библиотеки необходимо выполнить следующие действия:
 
-Проверить, установлен ли Python
+- Проверить, установлен ли Python
 
-    python3 --version
+  .. code-block:: console
 
-Если Python отсутствует, установить с помощью команды
+      python3 --version
 
-    sudo apt-get update
-    sudo apt-get install python3
+- Если Python отсутствует, установить с помощью команды
 
-Проверить, установлена ли поддержка Git
+  .. code-block:: console
 
-    git --version
+      sudo apt-get update
+      sudo apt-get install python3
 
-Если Git не установлен, установить с помощью команды
+- Проверить, установлен ли Git
 
-    sudo apt-get install git
+  .. code-block:: console
 
-Клонировать репозиторий кода из ветки **main**
+      git --version
 
-    git clone --branch main https://github.com/valabsoft/code-ai-400393.git
+- Если Git не установлен, установить с помощью команды
 
-Локальная копия репозитория создана на вашем устройстве.
+  .. code-block:: console
 
-Перейти в локальную копию репозитория на устройстве
+      sudo apt-get install git
 
-    cd code-ai-400393/python
+- Клонировать репозиторий кода из ветки **main**
 
-Рекомендуется использовать виртуальное окружение для изоляции зависимостей. Для этого необходимо выполнить следующие действия.
+  .. code-block:: console
+
+      git clone --branch main https://github.com/valabsoft/code-ai-400393.git
+
+- Перейти в локальную копию репозитория на устройстве
+
+  .. code-block:: console
+
+   cd code-ai-400393/python
+
+- Рекомендуется использовать виртуальное окружение для изоляции зависимостей. Для этого необходимо выполнить следующие действия.
 
 Создайте виртуальное окружение с именем *venv*
 
-    python3 -m venv venv
+  .. code-block:: console
+
+      python3 -m venv venv
 
 Активировать окружение
 
-    source venv/bin/activate
+  .. code-block:: console
+
+      source venv/bin/activate
 
 После этого в терминале появится *venv*, что указывает на активное окружение.
 
-В директории есть файл requirements.txt с необходимыми библиотеками:
+- В директории есть файлы requirements.txt и requirements_cuda.txt с необходимыми зависимостями для версий без поддержки CUDA и с поддержкой. Если файлы находится в текущей рабочей директории и требуется версия без CUDA, то выполнить команду
 
-Если файл находится в корневой директории, выполнить команду
+  .. code-block:: console
 
-    pip install -r requirements.txt
+      pip install -r requirements.txt
 
-Установите библиотеку с помощью команды
+Если необходима версия с CUDA, то необходимо воспользоваться файлом requirements_cuda.txt, выполнив команду
 
-    pip install -e .
+  .. code-block:: console
 
-Перейти в директорию с примерами с помощью команды
+      pip install -r requirements_cuda.txt
 
-    cd python/examples
+- Установите библиотеку с помощью команды
 
-Выбрать папку модуля и запустить пример. Предварительно убедиться, что в папке присутствуют файлы, использующиеся в качестве исходных данных
+  .. code-block:: console
 
-    cd python/examples/comparing/
-    python comparing.py
+      pip install -e .
+
+- Перейти в директорию с примерами с помощью команды
+
+   .. code-block:: console
+
+      cd examples
+
+- Выбрать директорию модуля и запустить пример. Предварительно убедиться, что в папке присутствуют файлы, использующиеся в качестве исходных данных. Например:
+
+  .. code-block:: console
+
+      cd comparing/
+      python comparing.py
 
 
 Для mini-ПК

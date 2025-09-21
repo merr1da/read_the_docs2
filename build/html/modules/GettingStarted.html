@@ -54,10 +54,10 @@
 <li><a class="reference internal" href="#id7">Для операционной системы Linux (Ubuntu) с поддержкой CUDA (версия с помощью скрипта)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#python-mrcv">Инструкция по установке Python версии библиотеки mrcv</a></li>
+<li><a class="reference internal" href="#python">Инструкция по установке Python версии библиотеки</a></li>
 <li><a class="reference internal" href="#mini">Для mini-ПК</a></li>
-<li><a class="reference internal" href="#id8">Подготовка данных для работы с примерами</a></li>
-<li><a class="reference internal" href="#id9">Запуск примеров библиотеки</a></li>
+<li><a class="reference internal" href="#id9">Подготовка данных для работы с примерами</a></li>
+<li><a class="reference internal" href="#id10">Запуск примеров библиотеки</a></li>
 </ul>
 </li>
 </ul>
@@ -823,70 +823,97 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </div></blockquote>
 </section>
 </section>
-<section id="python-mrcv">
-<h2>Инструкция по установке Python версии библиотеки mrcv<a class="headerlink" href="#python-mrcv" title="Link to this heading"></a></h2>
-<p>Минимальная версия Python для работы с библиотекой - 3.10.</p>
-<p>Проверить, установлен ли Python</p>
-<blockquote>
-<div><p>python3 –version</p>
-</div></blockquote>
-<p>Если Python отсутствует, установить с помощью команды</p>
-<blockquote>
-<div><p>sudo apt-get update
-sudo apt-get install python3</p>
-</div></blockquote>
-<p>Проверить, установлена ли поддержка Git</p>
-<blockquote>
-<div><p>git –version</p>
-</div></blockquote>
-<p>Если Git не установлен, установить с помощью команды</p>
-<blockquote>
-<div><p>sudo apt-get install git</p>
-</div></blockquote>
-<p>Клонировать репозиторий кода из ветки <strong>main</strong></p>
-<blockquote>
-<div><p>git clone –branch main <a class="reference external" href="https://github.com/valabsoft/code-ai-400393.git">https://github.com/valabsoft/code-ai-400393.git</a></p>
-</div></blockquote>
-<p>Локальная копия репозитория создана на вашем устройстве.</p>
-<p>Перейти в локальную копию репозитория на устройстве</p>
-<blockquote>
-<div><p>cd code-ai-400393/python</p>
-</div></blockquote>
-<p>Рекомендуется использовать виртуальное окружение для изоляции зависимостей. Для этого необходимо выполнить следующие действия.</p>
+<section id="python">
+<h2>Инструкция по установке Python версии библиотеки<a class="headerlink" href="#python" title="Link to this heading"></a></h2>
+<p>Минимальная версия Python для работы с библиотекой - 3.10.
+Для установки библиотеки необходимо выполнить следующие действия:</p>
+<ul>
+<li><p>Проверить, установлен ли Python</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python3 --version</span>
+</pre></div>
+</div>
+</li>
+<li><p>Если Python отсутствует, установить с помощью команды</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt-get update</span>
+<span class="go">sudo apt-get install python3</span>
+</pre></div>
+</div>
+</li>
+<li><p>Проверить, установлен ли Git</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git --version</span>
+</pre></div>
+</div>
+</li>
+<li><p>Если Git не установлен, установить с помощью команды</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt-get install git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Клонировать репозиторий кода из ветки <strong>main</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone --branch main https://github.com/valabsoft/code-ai-400393.git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Перейти в локальную копию репозитория на устройстве</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd code-ai-400393/python</span>
+</pre></div>
+</div>
+</li>
+<li><p>Рекомендуется использовать виртуальное окружение для изоляции зависимостей. Для этого необходимо выполнить следующие действия.</p></li>
+</ul>
 <p>Создайте виртуальное окружение с именем <em>venv</em></p>
 <blockquote>
-<div><p>python3 -m venv venv</p>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python3 -m venv venv</span>
+</pre></div>
+</div>
 </div></blockquote>
 <p>Активировать окружение</p>
 <blockquote>
-<div><p>source venv/bin/activate</p>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source venv/bin/activate</span>
+</pre></div>
+</div>
 </div></blockquote>
 <p>После этого в терминале появится <em>venv</em>, что указывает на активное окружение.</p>
-<p>В директории есть файл requirements.txt с необходимыми библиотеками:</p>
-<p>Если файл находится в корневой директории, выполнить команду</p>
+<ul>
+<li><p>В директории есть файлы requirements.txt и requirements_cuda.txt с необходимыми зависимостями для версий без поддержки CUDA и с поддержкой. Если файлы находится в текущей рабочей директории и требуется версия без CUDA, то выполнить команду</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install -r requirements.txt</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Если необходима версия с CUDA, то необходимо воспользоваться файлом requirements_cuda.txt, выполнив команду</p>
 <blockquote>
-<div><p>pip install -r requirements.txt</p>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install -r requirements_cuda.txt</span>
+</pre></div>
+</div>
 </div></blockquote>
-<p>Установите библиотеку с помощью команды</p>
+<ul>
+<li><p>Установите библиотеку с помощью команды</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install -e .</span>
+</pre></div>
+</div>
+</li>
+<li><p>Перейти в директорию с примерами с помощью команды</p>
 <blockquote>
-<div><p>pip install -e .</p>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd examples</span>
+</pre></div>
+</div>
 </div></blockquote>
-<p>Перейти в директорию с примерами с помощью команды</p>
-<blockquote>
-<div><p>cd python/examples</p>
-</div></blockquote>
-<p>Выбрать папку модуля и запустить пример. Предварительно убедиться, что в папке присутствуют файлы, использующиеся в качестве исходных данных</p>
-<blockquote>
-<div><p>cd python/examples/comparing/
-python comparing.py</p>
-</div></blockquote>
+</li>
+<li><p>Выбрать директорию модуля и запустить пример. Предварительно убедиться, что в папке присутствуют файлы, использующиеся в качестве исходных данных. Например:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd comparing/</span>
+<span class="go">python comparing.py</span>
+</pre></div>
+</div>
+</li>
+</ul>
 </section>
 <section id="mini">
 <h2>Для mini-ПК<a class="headerlink" href="#mini" title="Link to this heading"></a></h2>
 <p>Использование функций библиотеки доступно на мини-ПК типа NVIDIA Jetson, Raspberry Pi и др. Для предварительной настройки библиотеки на этом классе устройств рекомендуется воспользоваться рекомендациям, изложенными в разделе <a class="reference external" href="#mrcv-python-version">Установка Python версии</a>.</p>
 </section>
-<section id="id8">
-<h2>Подготовка данных для работы с примерами<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<section id="id9">
+<h2>Подготовка данных для работы с примерами<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
 <p>При знакомстве с библиотекой mrcv, после изучения состава модулей библиотеки, рекомендуется обратиться к демонстрационным примерам. Все примеры библиотеки снабжены необходимыми файлами, которые используются в качестве входных данных. После сборки примера рекомендуется скопировать в папку сборки примера папку <em>files</em> из репозитория кода. После копирования исходных данных выполнить запуски примера.</p>
 <p><em>Пример</em></p>
 <p>Демонстрация работы функций модуля сегментации (для операционной системы Windows).
@@ -919,8 +946,8 @@ python comparing.py</p>
 </pre></div>
 </div>
 </section>
-<section id="id9">
-<h2>Запуск примеров библиотеки<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+<section id="id10">
+<h2>Запуск примеров библиотеки<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
 <p>Запуск демонстрационного примера augmentation (остальные примеры запускаются по аналогии)</p>
 <ol class="arabic simple">
 <li><p>Перейти в папку <em>build/examples</em> любым удобным способом</p></li>
