@@ -568,22 +568,27 @@
    git clone https://github.com/opencv/opencv.git -b "4.10.0"
    git clone https://github.com/opencv/opencv_contrib.git -b "4.10.0"
    mkdir -p opencv/build && cd opencv/build
-   sudo cmake .. \
-      -D CMAKE_INSTALL_PREFIX=/usr/local/ \
-      -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 \
+   cmake .. \
+      -D CMAKE_BUILD_TYPE=Release \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D BUILD_opencv_world=OFF \
+      -D BUILD_opencv_python3=ON \
+      -D BUILD_opencv_cudacodec=ON \
+      -D BUILD_opencv_ximgproc=ON \
+      -D BUILD_opencv_tracking=ON \
+      -D BUILD_opencv_face=ON \
+      -D BUILD_opencv_text=ON \
+      -D WITH_CUDA=ON \
+      -D CUDA_ARCH_BIN=8.6 \
       -D ENABLE_FAST_MATH=ON \
       -D CUDA_FAST_MATH=ON \
       -D WITH_CUBLAS=ON \
-      -D WITH_CUDA=ON \
       -D WITH_CUDNN=ON \
-      -D CUDA_ARCH_BIN=8.6 \
       -D WITH_OPENGL=ON \
-      -D BUILD_opencv_cudacodec=ON \
-      -D BUILD_opencv_world=OFF \
-      -D OPENCV_GENERATE_PKGCONFIG=ON \
-      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-      -D CMAKE_CONFIGURATION_TYPES=Release
-   sudo make -j$(nproc)
+      -D CUDA_HOST_COMPILER=/usr/bin/gcc-11 \
+      -D OPENCV_GENERATE_PKGCONFIG=ON
+   make -j$(nproc)
    sudo make install
 
 Сборка осуществляется в папке build. При возникновении ошибок необходимо очистить папки build и .cache.
@@ -723,23 +728,28 @@
       fi
       mkdir -p opencv/build && cd opencv/build
 
-      sudo cmake .. \
-         -D CMAKE_INSTALL_PREFIX=/usr/local/ \
-         -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 \
+      cmake .. \
+         -D CMAKE_BUILD_TYPE=Release \
+         -D CMAKE_INSTALL_PREFIX=/usr/local \
+         -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+         -D BUILD_opencv_world=OFF \
+         -D BUILD_opencv_python3=ON \
+         -D BUILD_opencv_cudacodec=ON \
+         -D BUILD_opencv_ximgproc=ON \
+         -D BUILD_opencv_tracking=ON \
+         -D BUILD_opencv_face=ON \
+         -D BUILD_opencv_text=ON \
+         -D WITH_CUDA=ON \
+         -D CUDA_ARCH_BIN=8.6 \
          -D ENABLE_FAST_MATH=ON \
          -D CUDA_FAST_MATH=ON \
          -D WITH_CUBLAS=ON \
-         -D WITH_CUDA=ON \
          -D WITH_CUDNN=ON \
-         -D CUDA_ARCH_BIN=8.6 \
          -D WITH_OPENGL=ON \
-         -D BUILD_opencv_cudacodec=ON \
-         -D BUILD_opencv_world=OFF \
-         -D OPENCV_GENERATE_PKGCONFIG=ON \
-         -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-         -D CMAKE_CONFIGURATION_TYPES=Release
+         -D CUDA_HOST_COMPILER=/usr/bin/gcc-11 \
+         -D OPENCV_GENERATE_PKGCONFIG=ON
 
-      sudo make -j$(nproc)
+      make -j$(nproc)
       sudo make install
       sudo ldconfig
 
@@ -840,6 +850,12 @@
    cd code-ai-400393/python
 
 - Рекомендуется использовать виртуальное окружение для изоляции зависимостей. Для этого необходимо выполнить следующие действия.
+
+Установить соответствующий пакет:
+
+  .. code-block:: console
+
+      sudo apt install python3.10-venv
 
 Создайте виртуальное окружение с именем *venv*
 

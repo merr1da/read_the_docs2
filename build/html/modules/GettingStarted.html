@@ -610,22 +610,27 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 <span class="go">git clone https://github.com/opencv/opencv.git -b &quot;4.10.0&quot;</span>
 <span class="go">git clone https://github.com/opencv/opencv_contrib.git -b &quot;4.10.0&quot;</span>
 <span class="go">mkdir -p opencv/build &amp;&amp; cd opencv/build</span>
-<span class="go">sudo cmake .. \</span>
-<span class="go">   -D CMAKE_INSTALL_PREFIX=/usr/local/ \</span>
-<span class="go">   -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 \</span>
+<span class="go">cmake .. \</span>
+<span class="go">   -D CMAKE_BUILD_TYPE=Release \</span>
+<span class="go">   -D CMAKE_INSTALL_PREFIX=/usr/local \</span>
+<span class="go">   -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \</span>
+<span class="go">   -D BUILD_opencv_world=OFF \</span>
+<span class="go">   -D BUILD_opencv_python3=ON \</span>
+<span class="go">   -D BUILD_opencv_cudacodec=ON \</span>
+<span class="go">   -D BUILD_opencv_ximgproc=ON \</span>
+<span class="go">   -D BUILD_opencv_tracking=ON \</span>
+<span class="go">   -D BUILD_opencv_face=ON \</span>
+<span class="go">   -D BUILD_opencv_text=ON \</span>
+<span class="go">   -D WITH_CUDA=ON \</span>
+<span class="go">   -D CUDA_ARCH_BIN=8.6 \</span>
 <span class="go">   -D ENABLE_FAST_MATH=ON \</span>
 <span class="go">   -D CUDA_FAST_MATH=ON \</span>
 <span class="go">   -D WITH_CUBLAS=ON \</span>
-<span class="go">   -D WITH_CUDA=ON \</span>
 <span class="go">   -D WITH_CUDNN=ON \</span>
-<span class="go">   -D CUDA_ARCH_BIN=8.6 \</span>
 <span class="go">   -D WITH_OPENGL=ON \</span>
-<span class="go">   -D BUILD_opencv_cudacodec=ON \</span>
-<span class="go">   -D BUILD_opencv_world=OFF \</span>
-<span class="go">   -D OPENCV_GENERATE_PKGCONFIG=ON \</span>
-<span class="go">   -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \</span>
-<span class="go">   -D CMAKE_CONFIGURATION_TYPES=Release</span>
-<span class="go">sudo make -j$(nproc)</span>
+<span class="go">   -D CUDA_HOST_COMPILER=/usr/bin/gcc-11 \</span>
+<span class="go">   -D OPENCV_GENERATE_PKGCONFIG=ON</span>
+<span class="go">make -j$(nproc)</span>
 <span class="go">sudo make install</span>
 </pre></div>
 </div>
@@ -747,23 +752,28 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </
 <span class="k">fi</span>
 mkdir<span class="w"> </span>-p<span class="w"> </span>opencv/build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>opencv/build
 
-sudo<span class="w"> </span>cmake<span class="w"> </span>..<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>-D<span class="w"> </span><span class="nv">CMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local/<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>-D<span class="w"> </span><span class="nv">CMAKE_CXX_COMPILER</span><span class="o">=</span>/usr/bin/g++-11<span class="w"> </span><span class="se">\</span>
+cmake<span class="w"> </span>..<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">CMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">OPENCV_EXTRA_MODULES_PATH</span><span class="o">=</span>../../opencv_contrib/modules<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">BUILD_opencv_world</span><span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">BUILD_opencv_python3</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">BUILD_opencv_cudacodec</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">BUILD_opencv_ximgproc</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">BUILD_opencv_tracking</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">BUILD_opencv_face</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">BUILD_opencv_text</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">WITH_CUDA</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">CUDA_ARCH_BIN</span><span class="o">=</span><span class="m">8</span>.6<span class="w"> </span><span class="se">\</span>
 <span class="w">   </span>-D<span class="w"> </span><span class="nv">ENABLE_FAST_MATH</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
 <span class="w">   </span>-D<span class="w"> </span><span class="nv">CUDA_FAST_MATH</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
 <span class="w">   </span>-D<span class="w"> </span><span class="nv">WITH_CUBLAS</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>-D<span class="w"> </span><span class="nv">WITH_CUDA</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
 <span class="w">   </span>-D<span class="w"> </span><span class="nv">WITH_CUDNN</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>-D<span class="w"> </span><span class="nv">CUDA_ARCH_BIN</span><span class="o">=</span><span class="m">8</span>.6<span class="w"> </span><span class="se">\</span>
 <span class="w">   </span>-D<span class="w"> </span><span class="nv">WITH_OPENGL</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>-D<span class="w"> </span><span class="nv">BUILD_opencv_cudacodec</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>-D<span class="w"> </span><span class="nv">BUILD_opencv_world</span><span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>-D<span class="w"> </span><span class="nv">OPENCV_GENERATE_PKGCONFIG</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>-D<span class="w"> </span><span class="nv">OPENCV_EXTRA_MODULES_PATH</span><span class="o">=</span>../../opencv_contrib/modules<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>-D<span class="w"> </span><span class="nv">CMAKE_CONFIGURATION_TYPES</span><span class="o">=</span>Release
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">CUDA_HOST_COMPILER</span><span class="o">=</span>/usr/bin/gcc-11<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-D<span class="w"> </span><span class="nv">OPENCV_GENERATE_PKGCONFIG</span><span class="o">=</span>ON
 
-sudo<span class="w"> </span>make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
 sudo<span class="w"> </span>make<span class="w"> </span>install
 sudo<span class="w"> </span>ldconfig
 
@@ -861,6 +871,12 @@ sudo<span class="w"> </span>ldconfig<span class="w"> </span>-v
 </li>
 <li><p>Рекомендуется использовать виртуальное окружение для изоляции зависимостей. Для этого необходимо выполнить следующие действия.</p></li>
 </ul>
+<p>Установить соответствующий пакет:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt install python3.10-venv</span>
+</pre></div>
+</div>
+</div></blockquote>
 <p>Создайте виртуальное окружение с именем <em>venv</em></p>
 <blockquote>
 <div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python3 -m venv venv</span>
